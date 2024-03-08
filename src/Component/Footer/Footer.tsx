@@ -1,13 +1,16 @@
 import "./Footer.scss";
+import i18n from "../../Constants/LanguageTranslator";
+import { useTranslation } from "react-i18next";
 export function Footer() {
+  const { t } = useTranslation();
   return (
     <div className="footer">
       <div className="left-heading">
-        <h2>Kickdrum</h2>
+        <h2>{t("footer.leftHeading")}</h2>
       </div>
       <div className="right-heading">
-        <h4>&copy;Kickdrum Technology Group LLC.</h4>
-        <h4>All Rights Reserved.</h4>
+        <h4>{i18n.t("footer.rightHeading")}</h4>
+        <h4>{i18n.t("footer.allRightsReserved")}</h4>
       </div>
     </div>
   );
