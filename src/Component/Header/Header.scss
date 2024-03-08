@@ -1,0 +1,136 @@
+.header {
+  width: 100%;
+  height: 10%;
+  background-color: #ffffff;
+  display: flex;
+  padding: 30px 40px 20px 70px;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+}
+.headings {
+  display: flex;
+  gap: 8px;
+  h4 {
+    font-size: 1.3rem;
+  }
+  .main-heading {
+    color: #130639;
+  }
+  .sub-heading {
+    color: #26266d;
+  }
+}
+.right-part {
+  display: flex;
+  gap: 55px;
+  align-items: center;
+  .choice-components {
+    display: flex;
+    gap: 20px;
+  }
+  .language-component {
+    display: flex;
+    align-items: center;
+  }
+  .language-selection {
+    outline: none;
+    border: none;
+    height: 15px;
+    color: #26266d;
+    font-weight: 600;
+    option {
+      color: #26266d;
+    }
+  }
+  .currency-component {
+    display: flex;
+    align-items: center;
+  }
+  .currency-selection {
+    outline: none;
+    border: none;
+    height: 15px;
+    color: #26266d;
+    font-weight: 600;
+    option {
+      color: #26266d;
+    }
+  }
+  .login-button {
+    padding: 10px 18px;
+    background-color: #26266d;
+    color: #ffffff;
+    border-radius: 6px;
+    border: none;
+  }
+}
+.right-part-copy {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  top: calc(100%);
+  right: 10px;
+  background-color: #ffffff;
+  .login-button {
+    padding: 4px 8px;
+    background-color: #26266d;
+    color: #ffffff;
+    border-radius: 6px;
+    border: none;
+  }
+  .language-component {
+    display: flex;
+    align-items: center;
+    color: #26266d;
+  }
+  .currency-component {
+    display: flex;
+    align-items: center;
+    color: #26266d;
+  }
+}
+.hamburger {
+  display: none;
+  font-size: 1.3rem;
+}
+img {
+  height: 15px;
+  width: 15px;
+}
+@media (max-width: 900px) {
+  html {
+    font-size: 90%;
+  }
+  .header {
+    padding: 0.8em 0.7em 0.8em 0.6em;
+  }
+}
+@media (max-width: 768px) {
+  .right-part {
+    gap: 25px;
+    .choice-components {
+      gap: 10px;
+    }
+  }
+
+  html {
+    font-size: 80%;
+  }
+  .login-button {
+    padding: 8px 12px;
+  }
+}
+@media (max-width: 620px) {
+  html {
+    font-size: 80%;
+  }
+  .right-part {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
