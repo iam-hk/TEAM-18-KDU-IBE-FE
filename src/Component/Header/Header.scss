@@ -73,7 +73,7 @@
   gap: 5px;
   top: 100%;
   right: 10px;
-  background-color:#ffffff;
+  background-color: #ffffff;
   .login-button {
     padding: 4px 8px;
     background-color: #26266d;
@@ -84,38 +84,27 @@
   .language-component {
     display: flex;
     align-items: center;
-    
-    .language-selection {
-        outline: none;
-        border: none;
-        color: #26266d;
-        option {
-            color: #26266d;
-          }
-    }
 
+    .language-selection {
+      outline: none;
+      border: none;
+      color: #26266d;
+      option {
+        color: #26266d;
+      }
+    }
   }
   .currency-component {
     display: flex;
     align-items: center;
-    
     .currency-selection {
-        outline: none;
-        border: none;
+      outline: none;
+      border: none;
+      color: #26266d;
+      option {
         color: #26266d;
-        option {
-            color: #26266d;
-          }
+      }
     }
-
-
-  }
-  .login-button {
-    padding: 6px 11px;
-    background-color: #26266d;
-    color: #ffffff;
-    border-radius: 6px;
-    border: none;
   }
 }
 .hamburger {
@@ -151,7 +140,7 @@ img {
 }
 @media (max-width: 620px) {
   html {
-    font-size: 88%;
+    font-size: 84%;
   }
   .right-part {
     display: none;
