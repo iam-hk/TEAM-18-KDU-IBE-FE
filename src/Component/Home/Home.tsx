@@ -8,7 +8,7 @@ export function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/graphql');
+        const response = await axios.get('https://team18-ibe-be.azurewebsites.net/api/test');
         setApiData(response.data);
         
       } catch (error) {
