@@ -115,6 +115,13 @@ img {
   height: 11px;
   width: 11px;
 }
+.currency-display{
+  position: absolute;
+  top: 120%;
+  left: 40%;
+  font-size: 1.3rem;
+  
+}
 @media (max-width: 900px) {
   html {
     font-size: 90%;

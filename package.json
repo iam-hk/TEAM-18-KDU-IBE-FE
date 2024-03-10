@@ -14,6 +14,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
     "@sentry/react": "^7.105.0",
+    "axios": "^1.6.7",
     "env-cmd": "^10.1.0",
     "i18next": "^23.10.1",
     "react": "^18.2.0",

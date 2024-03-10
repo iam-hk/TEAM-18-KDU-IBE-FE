@@ -3,7 +3,6 @@ import { store } from "../../src/redux/Store";
 import { Header } from "../../src/Component/Header/Header";
 
 describe("<Header />", () => {
-  
   it("mounts", () => {
     cy.viewport(
       parseInt(`${import.meta.env.VITE_VIEWPORT_WIDTH}`),
