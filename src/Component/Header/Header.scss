@@ -69,12 +69,7 @@
 }
 .right-part-copy {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  top: 100%;
-  right: 10px;
-  background-color: #ffffff;
+  display: none;
   .login-button {
     padding: 4px 8px;
     background-color: #26266d;
@@ -157,5 +152,13 @@ img {
   .hamburger {
     display: block;
     font-weight: 600;
+  }
+  .right-part-copy{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    top: 100%;
+    right: 10px;
+    background-color: #ffffff;
   }
 }
