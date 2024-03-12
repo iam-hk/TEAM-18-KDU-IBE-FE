@@ -1,14 +1,15 @@
+@import "../../Constants/Colors.scss";
 .header {
   width: 100%;
   height: 10%;
-  background-color: #ffffff;
+  background-color: $header-background-color;
   display: flex;
   padding: 30px 40px 20px 70px;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: sticky;
   top: 0;
-  position: relative;
+
 }
 .headings {
   display: flex;
@@ -17,10 +18,10 @@
     font-size: 1.3rem;
   }
   .main-heading {
-    color: #130639;
+    color: $dark-blue-color;
   }
   .sub-heading {
-    color: #26266d;
+    color: $light-blue-color;
   }
 }
 .right-part {
@@ -39,10 +40,10 @@
     outline: none;
     border: none;
     height: 15px;
-    color: #26266d;
+    color: $light-blue-color;
     font-weight: 600;
     option {
-      color: #26266d;
+      color:$light-blue-color;
     }
   }
   .currency-component {
@@ -53,32 +54,26 @@
     outline: none;
     border: none;
     height: 15px;
-    color: #26266d;
+    color: $light-blue-color;
     font-weight: 600;
     option {
-      color: #26266d;
+      color: $light-blue-color;
     }
   }
   .login-button {
     padding: 10px 18px;
-    background-color: #26266d;
-    color: #ffffff;
+    background-color: $light-blue-color;
+    color: $header-background-color;
     border-radius: 6px;
     border: none;
   }
 }
 .right-part-copy {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  top: 100%;
-  right: 10px;
-  background-color: #ffffff;
+  display: none;
   .login-button {
     padding: 4px 8px;
-    background-color: #26266d;
-    color: #ffffff;
+    background-color: $light-blue-color;
+    color: $header-background-color;
     border-radius: 6px;
     border: none;
   }
@@ -89,9 +84,9 @@
     .language-selection {
       outline: none;
       border: none;
-      color: #26266d;
+      color: $light-blue-color;
       option {
-        color: #26266d;
+        color: $light-blue-color;
       }
     }
   }
@@ -101,9 +96,9 @@
     .currency-selection {
       outline: none;
       border: none;
-      color: #26266d;
+      color: $light-blue-color;
       option {
-        color: #26266d;
+        color: $light-blue-color;
       }
     }
   }
@@ -116,12 +111,11 @@ img {
   height: 11px;
   width: 11px;
 }
-.currency-display{
+.currency-display {
   position: absolute;
   top: 120%;
   left: 40%;
   font-size: 1.3rem;
-  
 }
 @media (max-width: 900px) {
   html {
@@ -157,5 +151,14 @@ img {
   .hamburger {
     display: block;
     font-weight: 600;
+  }
+  .right-part-copy {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    top: 100%;
+    right: 10px;
+    background-color: $header-background-color;
   }
 }

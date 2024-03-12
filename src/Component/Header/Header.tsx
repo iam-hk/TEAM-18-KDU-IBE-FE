@@ -62,9 +62,6 @@ export function Header() {
             </select>
           </div>
         </div>
-        <div className="currency-display">
-          Currency Rate:{currencyRates && currencyRates[selectedCurrency]}
-        </div>
         <button className="login-button">{i18n.t("login")}</button>
       </div>
       {isRightCopyOpen && (
