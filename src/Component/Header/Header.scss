@@ -69,6 +69,8 @@
   }
 }
 .right-part-copy {
+  position: absolute;
+  display: none;
   display: none;
   .login-button {
     padding: 4px 8px;
@@ -152,8 +154,7 @@ img {
     display: block;
     font-weight: 600;
   }
-  .right-part-copy {
-    position: absolute;
+  .right-part-copy{
     display: flex;
     flex-direction: column;
     gap: 5px;
