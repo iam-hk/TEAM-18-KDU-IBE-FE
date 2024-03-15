@@ -9,7 +9,6 @@
   align-items: center;
   position: sticky;
   top: 0;
-
 }
 .headings {
   display: flex;
@@ -28,6 +27,9 @@
   display: flex;
   gap: 55px;
   align-items: center;
+  h4{
+    font-size: 1.1rem;
+  }
   .choice-components {
     display: flex;
     gap: 20px;
@@ -42,6 +44,7 @@
     height: 15px;
     color: $light-blue-color;
     font-weight: 600;
+    font-size: 1rem;
     option {
       color:$light-blue-color;
     }
@@ -56,6 +59,7 @@
     height: 15px;
     color: $light-blue-color;
     font-weight: 600;
+    font-size: 1rem;
     option {
       color: $light-blue-color;
     }
@@ -66,6 +70,7 @@
     color: $header-background-color;
     border-radius: 6px;
     border: none;
+    font-size: 1rem;
   }
 }
 .right-part-copy {
@@ -110,18 +115,17 @@
   font-size: 1.3rem;
 }
 img {
-  height: 11px;
-  width: 11px;
-}
-.currency-display {
-  position: absolute;
-  top: 120%;
-  left: 40%;
-  font-size: 1.3rem;
+  height: 13px;
+  width: 13px;
 }
 @media (max-width: 900px) {
-  html {
-    font-size: 90%;
+  // html {
+  //   font-size: 90%;
+  // }
+  .headings{
+    h4{
+      font-size: 1.1rem;
+    }
   }
   .header {
     padding: 0.8em 0.7em 0.8em 0.6em;
@@ -133,6 +137,10 @@ img {
     .choice-components {
       gap: 10px;
     }
+    h4{
+      font-size: 0.8rem;
+    }
+    
   }
 
   html {
@@ -143,8 +151,10 @@ img {
   }
 }
 @media (max-width: 620px) {
-  html {
-    font-size: 84%;
+  .headings{
+    h4{
+      font-size: 1.3rem;
+    }
   }
   .right-part {
     display: none;

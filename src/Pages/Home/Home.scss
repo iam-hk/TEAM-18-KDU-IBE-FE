@@ -1,9 +1,159 @@
-// .center{
-//     padding: 20px;
-//     position: relative;
-//     top: 30%;
-// }
-
-.center{
+@import "../../Constants/Colors.scss";
+.home{
     height: 80%;
+    width: 100%;
+    background-image: var(--banner-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.home-wrapper {
+    height: 80%;
+    padding-left: 3em;
+    display: flex;
+    align-items: center;
+}
+.search-form {
+    height: 90%;
+    width: 350px;
+    background-color: #ffffff;
+    padding: 30px;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+}
+.all-search-fields {
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.search-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+.search-property-name {
+    width: 100%;
+}
+.MuiFormControl-root {
+    width: 100%;
+}
+.MuiInputBase-root {
+    width: 100%;
+    margin-top: 3px;
+
+}
+.guests-and-rooms {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .MuiFormControl-root {
+        margin: 0px;
+    }
+}
+.guests {
+    width: 70%;
+    position: relative;
+    height: 0.6rem;
+}
+.rooms {
+    width: 25%;
+}
+.MuiInputBase-root {
+    span {
+        font-size: 0.8rem;
+    }
+}
+.submit-button {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    button {
+        padding: 15px 35px;
+        background-color: $light-blue-color;
+        border: none;
+        border-radius: 5px;
+        color: #ffffff;
+    }
+}
+.guest-type-info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .guest-type {
+        h4 {
+            font-size: 0.9rem;
+        }
+        h5 {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+    }
+}
+.guest-count {
+    display: flex;
+    height: fit-content;
+    gap: 4px;
+    button {
+        padding: 2px 5px;
+        border: none;
+        background-color: transparent;
+        font-size: 1.2rem;
+    }
+}
+.select-wrapper {
+    position: relative;
+}
+.MuiList-root {
+    max-height: 170px;
+    overflow-y: auto;
+}
+.disabled-checkbox {
+    padding-left: 3px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 1.2rem;
+    input {
+        transform: scale(1.5);
+    }
+    img {
+        height: 15px;
+        width: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .home{
+        background-image: none;
+        background-color: #ffffff;
+    }
+    .home-wrapper {
+        padding: 0;
+        font-size: 1.3rem;
+    }
+    .search-form {
+        height: 100%;
+        width: 100%;
+    }
+    .guest-type-info {
+        .guest-type {
+            h4 {
+                font-size: 1rem;
+            }
+            h5 {
+                font-size: 0.8rem;
+                font-weight: 500;
+            }
+        }
+    }
+    .MuiInputBase-root {
+        span {
+            font-size: 1.1rem;
+        }
+    }
 }

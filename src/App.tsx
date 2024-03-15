@@ -10,19 +10,19 @@ import axios from "axios";
 import { addCurrencyExchangeRates } from "./redux/CurrencySlice";
 function App() {
   const reduxDispatch: AppDispatch = useDispatch();
-  useEffect(() => {
-    const fetchCurrencyExchangeRates = async () => {
-      try {
-        const response = await axios.get(
-          "https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_xxvHHr6U8Mi2L46U8A46RClOsi95LZjL4NcTVWRr"
-        );
-        reduxDispatch(addCurrencyExchangeRates(response.data));
-      } catch (error) {
-        console.error("Error fetching currency exchange rates:", error);
-      }
-    };
-    fetchCurrencyExchangeRates();
-  }, []);
+  // useEffect(() => {
+  //   const fetchCurrencyExchangeRates = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_xxvHHr6U8Mi2L46U8A46RClOsi95LZjL4NcTVWRr"
+  //       );
+  //       reduxDispatch(addCurrencyExchangeRates(response.data));
+  //     } catch (error) {
+  //       console.error("Error fetching currency exchange rates:", error);
+  //     }
+  //   };
+  //   fetchCurrencyExchangeRates();
+  // }, []);
   return (
     <BrowserRouter>
       <Header />

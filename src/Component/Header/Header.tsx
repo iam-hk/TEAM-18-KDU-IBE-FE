@@ -34,7 +34,7 @@ export function Header() {
         <h4 className="sub-heading">{i18n.t("subHeading")}</h4>
       </div>
       <div className="right-part">
-        <h4>{i18n.t("myBookings")}</h4>
+        <h4 className="my-bookings">{i18n.t("myBookings")}</h4>
         <div className="choice-components">
           <div className="language-component">
             <img src={siteLogo} alt="imagenotfound" />

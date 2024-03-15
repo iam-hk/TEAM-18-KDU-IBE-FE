@@ -13,7 +13,11 @@ describe("<Header />", () => {
         <Header />
       </Provider>
     );
-    cy.get(".main-heading").should("contain", "Kickdrum");
-    cy.get(".sub-heading").should("contain", "Internet Booking Engine");
+    cy.get(".header").then(($header) => {
+      console.log($header);
+    });
+    cy.get(".currency-selection").should("be.visible");
+    cy.get(".language-selection").should("be.visible");
+    cy.get(".login-button").should("be.visible");
   });
 });
