@@ -1,5 +1,5 @@
 import "./Footer.scss";
-import i18n from "../../Constants/LanguageTranslator";
+import i18n from "../../constants/LanguageTranslator";
 import { useTranslation } from "react-i18next";
 export function Footer() {
   const { t } = useTranslation();

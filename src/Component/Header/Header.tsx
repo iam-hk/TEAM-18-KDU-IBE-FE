@@ -1,7 +1,7 @@
 import "./Header.scss";
 import siteLogo from "../../assets/globe.png";
 import { useState } from "react";
-import i18n from "../../Constants/LanguageTranslator";
+import i18n from "../../constants/LanguageTranslator";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/Store";
 import { changeCurrentCurrency } from "../../redux/CurrencySlice";
@@ -9,7 +9,7 @@ export function Header() {
   const [isRightCopyOpen, setIsRightCopyOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const reduxDispatch: AppDispatch = useDispatch();
-  const selectedCurrency = useSelector(
+  const selectedCurrency: string = useSelector(
     (state: RootState) => state.currencyRate.currentSelectedCurrency
   );
   const toggleRightCopy = () => {
@@ -54,7 +54,7 @@ export function Header() {
               value={selectedCurrency}
             >
               <option value="USD">$ USD</option>
-              <option value="INR">₹ RS</option>
+              <option value="EUR">€ EUR</option>
               <option value="CAD">$ CAD</option>
             </select>
           </div>
@@ -85,7 +85,7 @@ export function Header() {
               value={selectedCurrency}
             >
               <option value="USD">$ USD</option>
-              <option value="RS">₹ RS</option>
+              <option value="EUR">€ EUR</option>
               <option value="CAD">$ CAD</option>
             </select>
           </div>

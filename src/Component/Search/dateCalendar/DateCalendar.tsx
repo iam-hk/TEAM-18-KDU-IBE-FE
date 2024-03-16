@@ -7,10 +7,10 @@ import { useMediaQuery } from "usehooks-ts";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
-import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
+import { CurrencySymbols } from "../../../constants/CurrencySymbols";
 import { useTranslation } from "react-i18next";
-import calendar from"../../../assets/calendar.svg"
-import "./DateCalendar.scss"
+import calendar from "../../../assets/calendar.svg";
+import "./DateCalendar.scss";
 export function DateCalender() {
   const { t } = useTranslation();
   const [dateRange, setDateRange] = useState([
@@ -24,14 +24,15 @@ export function DateCalender() {
     (state: RootState) => state.tenantInfo.maximumDays
   );
   const currentSelectedCurrency: keyof CurrencyExchangeRates = useSelector(
-    (state: RootState) => state.currencyRate.currentSelectedCurrency as keyof CurrencyExchangeRates
+    (state: RootState) =>
+      state.currencyRate.currentSelectedCurrency as keyof CurrencyExchangeRates
   );
   const currentPrice: CurrencyExchangeRates = useSelector(
     (state: RootState) => state.currencyRate.currentPrice
   );
   const widthMonth = useMediaQuery("(max-width:750px)");
   const [prices, setPrices] = useState({});
-  const maximumLengthOfStay =maxDays ;
+  const maximumLengthOfStay = maxDays;
 
   useEffect(() => {
     fetch("http://localhost:8000/api/v1/getMinimumRoomRates")
@@ -49,9 +50,7 @@ export function DateCalender() {
       .catch((error) => {
         console.error("Error fetching prices:", error);
       });
-  }, 
-
-  []);
+  }, []);
 
   const [dateInitial, setDateInitial] = useState(false);
 
@@ -82,8 +81,10 @@ export function DateCalender() {
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
-  function findMinimumPrice(prices:number) {
-    const validPrices = Object.values(prices).filter(price => price !== "" && !isNaN(price));
+  function findMinimumPrice(prices: number) {
+    const validPrices = Object.values(prices).filter(
+      (price) => price !== "" && !isNaN(price)
+    );
     if (validPrices.length === 0) {
       return null;
     } else {
@@ -91,8 +92,8 @@ export function DateCalender() {
       return minimumPrice * currentPrice[currentSelectedCurrency].toFixed(1);
     }
   }
-  function updatePrice(price:number){
-    return price*currentPrice[currentSelectedCurrency].toFixed(1);
+  function updatePrice(price: number) {
+    return price * currentPrice[currentSelectedCurrency].toFixed(1);
   }
   return (
     <div className="date-container">
@@ -100,8 +101,8 @@ export function DateCalender() {
         <input
           type="text"
           value={
-            dateInitial == false?
-            `    ${t("search.checkin")}     →    ${t("search.checkout")}`
+            dateInitial == false
+              ? `    ${t("search.checkin")}     →    ${t("search.checkout")}`
               : `   ${dateRange[0].startDate.toLocaleDateString()}     →    ${dateRange[0].endDate.toLocaleDateString()}`
           }
           className="input-date-container"
@@ -144,7 +145,10 @@ export function DateCalender() {
                   }}
                 >
                   <p className="date-item">{day.getDate()}</p>
-                  <p className="price-item">{(CurrencySymbols as any)[currentSelectedCurrency]}{updatePrice(price)} </p>
+                  <p className="price-item">
+                    {(CurrencySymbols as any)[currentSelectedCurrency]}
+                    {updatePrice(price)}{" "}
+                  </p>
                 </div>
               );
             }}
@@ -154,7 +158,9 @@ export function DateCalender() {
               {dateRange[0].startDate.getTime() !==
                 dateRange[0].endDate.getTime() && (
                 <p className="nightly-rate-summary">
-                {t("search.from")} {(CurrencySymbols as any)[currentSelectedCurrency]}{findMinimumPrice(prices)} {t("search.perNight")}
+                  {t("search.from")}{" "}
+                  {(CurrencySymbols as any)[currentSelectedCurrency]}
+                  {findMinimumPrice(prices)} {t("search.perNight")}
                 </p>
               )}
               <button
@@ -162,13 +168,15 @@ export function DateCalender() {
                 onClick={toggleVisibility}
                 disabled={!dateInitial}
               >
-                 {t("search.applyDates")}
+                {t("search.applyDates")}
               </button>
             </div>
             {dateRange[0].endDate.getTime() ===
             dateRange[0].startDate.getTime() ? (
               <>
-                <p className="date-footer-limitStay">{t("search.endDateMessage")}</p>
+                <p className="date-footer-limitStay">
+                  {t("search.endDateMessage")}
+                </p>
                 <p className="date-footer-limitStay">
                   {t("search.maxLength")} {maximumLengthOfStay}
                 </p>
@@ -180,5 +188,3 @@ export function DateCalender() {
     </div>
   );
 }
-
-

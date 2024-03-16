@@ -1,11 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { EachProperty, ListProperties } from "../types/PropertyName";
 import { getPropertyNames } from "./thunk/GetPropertyNames";
-export interface IPropertyResponse{
-    data:ListProperties
+export interface IPropertyResponse {
+  data: ListProperties;
 }
 interface IPropertySlice {
-  propertyResponse:EachProperty[];
+  propertyResponse: EachProperty[];
   propertyList: string[];
   state: string;
   errorMessage: string;
@@ -25,12 +25,16 @@ const PropertyNameSlice = createSlice({
       .addCase(getPropertyNames.pending, (state) => {
         state.state = "pending";
       })
-      .addCase(getPropertyNames.fulfilled, (state, action:PayloadAction<IPropertyResponse>) => {
-        state.state = "fulfilled";
-        state.propertyResponse=action.payload.data.listProperties;
-        state.propertyList = state.propertyResponse.map((property) => property.property_name);
-        // console.log(state.propertyList);
-      })
+      .addCase(
+        getPropertyNames.fulfilled,
+        (state, action: PayloadAction<IPropertyResponse>) => {
+          state.state = "fulfilled";
+          state.propertyResponse = action.payload.data.listProperties;
+          state.propertyList = state.propertyResponse.map(
+            (property) => property.property_name
+          );
+        }
+      )
       .addCase(getPropertyNames.rejected, (state, action) => {
         state.errorMessage = action.error.message!;
         console.log("rejected in slice");

@@ -1,23 +1,16 @@
 import { useEffect } from "react";
 import "./Home.scss";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Property } from "../../Component/Search/property/Property";
 import { Rooms } from "../../Component/Search/rooms/Rooms";
 import { Guests } from "../../Component/Search/guests/Guests";
 import { AppDispatch, RootState } from "../../redux/Store";
 import { useDispatch, useSelector } from "react-redux";
-import { updateGuestDispInfo } from "../../redux/SearchSlice";
 import { getTenantConfig } from "../../redux/thunk/GetTenantConfig";
 import { DateCalender } from "../../Component/Search/dateCalendar/DateCalendar";
 import { useTranslation } from "react-i18next";
 export function Home() {
   const bannerImage = useSelector(
     (state: RootState) => state.tenantInfo.bannerImage
-  );
-  const guestCounts = useSelector(
-    (state: RootState) => state.searchInfo.guestCounts
   );
   const disabledGuest = useSelector(
     (state: RootState) => state.propertyConfigInfo.showDisabilityOption
@@ -26,9 +19,6 @@ export function Home() {
   useEffect(() => {
     reduxDispatch(getTenantConfig());
   }, []);
-  useEffect(() => {
-    reduxDispatch(updateGuestDispInfo());
-  }, [guestCounts]);
   const { t } = useTranslation();
   return (
     <div className="home" style={{ "--banner-image": `url(${bannerImage})` }}>

@@ -21,10 +21,13 @@
     display: flex;
     height: fit-content;
     gap: 4px;
+    display: flex;
+    align-items: center;
     button {
         padding: 2px 5px;
         border: none;
         background-color: transparent;
-        font-size: 1.2rem;
+        font-size: 1.7rem;
+        font-weight: 500;
     }
 }

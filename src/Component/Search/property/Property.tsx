@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { getPropertyConfig } from "../../../redux/thunk/GetPropertyConfig";
 import { getPropertyNames } from "../../../redux/thunk/GetPropertyNames";
 import { useTranslation } from "react-i18next";
-import "./Property.scss"
+import "./Property.scss";
 export function Property() {
   const [property, setProperty] = useState("");
   const propertyList = useSelector(
@@ -48,4 +48,3 @@ export function Property() {
     </div>
   );
 }
-

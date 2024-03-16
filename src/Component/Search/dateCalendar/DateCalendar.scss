@@ -234,3 +234,16 @@
     }
 }
 
+@media(max-width:650px)
+{
+    .date-container{
+        width: 100%;
+       
+    }
+    .date-input-wrapper{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

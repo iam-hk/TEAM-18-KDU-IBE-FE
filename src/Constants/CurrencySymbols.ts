@@ -1,5 +1,5 @@
 export enum CurrencySymbols{
     USD = '$',
-    INR = '₹',
+    EUR = '€',
     CAD = '$'
 }

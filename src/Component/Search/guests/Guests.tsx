@@ -1,26 +1,30 @@
 import { FormControl, MenuItem, Select } from "@mui/material";
-import guestArray from "../../../Constants/GuestType";
+import guestArray from "../../../constants/GuestType";
 import { AppDispatch, RootState } from "../../../redux/Store";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateGuestCounts,
   updateGuestDispInfo,
-} from "../../../redux/SearchSlice";
+} from "../../../redux/PropertyConfigSlice";
 import { useTranslation } from "react-i18next";
-import "./Guests.scss"
+import "./Guests.scss";
+import { useEffect } from "react";
 export function Guests() {
   const showGuestSearch = useSelector(
     (state: RootState) => state.propertyConfigInfo.showGuestSearch
   );
   const guestCounts = useSelector(
-    (state: RootState) => state.searchInfo.guestCounts
+    (state: RootState) => state.propertyConfigInfo.guestCounts
   );
   const selectedRooms = useSelector(
-    (state: RootState) => state.searchInfo.rooms
+    (state: RootState) => state.searchRoomInfo.rooms
   );
   const guestDispInfo = useSelector(
-    (state: RootState) => state.searchInfo.guestDispInfo
+    (state: RootState) => state.propertyConfigInfo.guestDisplayInfo
   );
+  useEffect(() => {
+    reduxDispatch(updateGuestDispInfo());
+  }, [guestCounts]);
   const reduxDispatch: AppDispatch = useDispatch();
   const updateGuestInfo = () => {
     reduxDispatch(updateGuestDispInfo());

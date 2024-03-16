@@ -4,15 +4,16 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { updateRooms, updateAdultCount } from "../../../redux/SearchSlice";
+import { updateAdultCount } from "../../../redux/PropertyConfigSlice";
+import { updateRooms } from "../../../redux/SearchRoomSlice";
 import { AppDispatch, RootState } from "../../../redux/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import "./Rooms.scss"
+import "./Rooms.scss";
 export function Rooms() {
   const { t } = useTranslation();
   const selectedRooms = useSelector(
-    (state: RootState) => state.searchInfo.rooms
+    (state: RootState) => state.searchRoomInfo.rooms
   );
   const showRoomsSearch = useSelector(
     (state: RootState) => state.propertyConfigInfo.showRoomSearch
@@ -21,11 +22,12 @@ export function Rooms() {
     (state: RootState) => state.tenantInfo.maximumRooms
   );
   const guestCounts = useSelector(
-    (state: RootState) => state.searchInfo.guestCounts
+    (state: RootState) => state.propertyConfigInfo.guestCounts
   );
+  const adultIndex=useSelector((state:RootState)=>state.propertyConfigInfo.adultIndex);
   const reduxDispatch: AppDispatch = useDispatch();
   const handleRoomChange = (event: SelectChangeEvent) => {
-    if (parseInt(event.target.value) <= guestCounts[0]) {
+    if (parseInt(event.target.value) <= guestCounts[adultIndex]) {
       reduxDispatch(updateRooms(parseInt(event.target.value)));
     } else {
       reduxDispatch(updateRooms(parseInt(event.target.value)));

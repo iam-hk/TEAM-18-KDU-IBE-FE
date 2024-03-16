@@ -52,11 +52,6 @@
         margin: 0px;
     }
 }
-// .guests {
-//     width: 70%;
-//     position: relative;
-//     height: 0.6rem;
-// }
 .rooms {
     width: 25%;
 }
@@ -79,31 +74,6 @@
         color: #ffffff;
     }
 }
-// .guest-type-info {
-//     display: flex;
-//     width: 100%;
-//     justify-content: space-between;
-//     .guest-type {
-//         h4 {
-//             font-size: 0.9rem;
-//         }
-//         h5 {
-//             font-size: 0.7rem;
-//             font-weight: 500;
-//         }
-//     }
-// }
-// .guest-count {
-//     display: flex;
-//     height: fit-content;
-//     gap: 4px;
-//     button {
-//         padding: 2px 5px;
-//         border: none;
-//         background-color: transparent;
-//         font-size: 1.2rem;
-//     }
-// }
 .select-wrapper {
     position: relative;
 }
@@ -156,7 +126,7 @@
     }
     .MuiInputBase-root {
         span {
-            font-size: 1.1rem;
+            font-size: 1.0rem;
         }
     }
 }
