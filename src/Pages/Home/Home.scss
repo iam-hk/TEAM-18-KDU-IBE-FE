@@ -3,9 +3,8 @@
     height: 80%;
     width: 100%;
     background-image: var(--banner-image);
-    background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: calc(20% + 0px) calc(20% + 20px);
 }
 .home-wrapper {
     height: 80%;
@@ -34,9 +33,9 @@
     gap: 10px;
     width: 100%;
 }
-.search-property-name {
-    width: 100%;
-}
+// .search-property-name {
+//     width: 100%;
+// }
 .MuiFormControl-root {
     width: 100%;
 }
@@ -53,11 +52,11 @@
         margin: 0px;
     }
 }
-.guests {
-    width: 70%;
-    position: relative;
-    height: 0.6rem;
-}
+// .guests {
+//     width: 70%;
+//     position: relative;
+//     height: 0.6rem;
+// }
 .rooms {
     width: 25%;
 }
@@ -80,31 +79,31 @@
         color: #ffffff;
     }
 }
-.guest-type-info {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    .guest-type {
-        h4 {
-            font-size: 0.9rem;
-        }
-        h5 {
-            font-size: 0.7rem;
-            font-weight: 500;
-        }
-    }
-}
-.guest-count {
-    display: flex;
-    height: fit-content;
-    gap: 4px;
-    button {
-        padding: 2px 5px;
-        border: none;
-        background-color: transparent;
-        font-size: 1.2rem;
-    }
-}
+// .guest-type-info {
+//     display: flex;
+//     width: 100%;
+//     justify-content: space-between;
+//     .guest-type {
+//         h4 {
+//             font-size: 0.9rem;
+//         }
+//         h5 {
+//             font-size: 0.7rem;
+//             font-weight: 500;
+//         }
+//     }
+// }
+// .guest-count {
+//     display: flex;
+//     height: fit-content;
+//     gap: 4px;
+//     button {
+//         padding: 2px 5px;
+//         border: none;
+//         background-color: transparent;
+//         font-size: 1.2rem;
+//     }
+// }
 .select-wrapper {
     position: relative;
 }
@@ -126,7 +125,11 @@
         width: 15px;
     }
 }
-
+.search-property-calendar{
+    h4{
+        margin-bottom: 3px;
+    }
+}
 @media (max-width: 576px) {
     .home{
         background-image: none;

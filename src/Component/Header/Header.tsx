@@ -12,9 +12,6 @@ export function Header() {
   const selectedCurrency = useSelector(
     (state: RootState) => state.currencyRate.currentSelectedCurrency
   );
-  const currencyRates = useSelector(
-    (state: RootState) => state.currencyRate.currentPrice
-  );
   const toggleRightCopy = () => {
     setIsRightCopyOpen(!isRightCopyOpen);
   };

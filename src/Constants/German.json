@@ -7,6 +7,21 @@
       "leftHeading": "Kickdrum",
       "rightHeading": "©Kickdrum Technology Group GmbH",
       "allRightsReserved": "Alle Rechte vorbehalten."
-    }
+    },
+    "search":{
+        "propertyName":"Objektname*",
+        "selectDates":"Wählen Sie Daten",
+        "guests":"Gäste",
+        "rooms":"Zimmer",
+        "disabled":"Ich barrierefreien Zugang",
+        "searchButton":"Suche",
+        "checkin":"Anreise",
+        "checkout":"Abreise",
+        "from":"Von",
+        "perNight":"pro Nacht",
+        "applyDates":"Termine anwenden",
+        "endDateMessage":"Bitte wählen Sie das Enddatum aus.",
+        "maxLength":"Maximale Aufenthaltsdauer:"
+      } 
 }
   

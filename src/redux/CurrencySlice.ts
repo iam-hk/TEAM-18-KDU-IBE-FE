@@ -4,7 +4,7 @@ import { CurrencyExchangeResponse } from "../types/CurrencyExchangeResponse"
 
 interface CurrencyExchangeRateState{
    currentPrice:CurrencyExchangeRates,
-   currentSelectedCurrency:string
+   currentSelectedCurrency:string,
 }
 
 const initialState:CurrencyExchangeRateState={
