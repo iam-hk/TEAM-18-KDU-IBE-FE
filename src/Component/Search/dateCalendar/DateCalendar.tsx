@@ -32,10 +32,10 @@ export function DateCalender() {
   );
   const widthMonth = useMediaQuery("(max-width:750px)");
   const [prices, setPrices] = useState({});
-  const maximumLengthOfStay = maxDays;
-
+  const maximumLengthOfStay = maxDays-1;
   useEffect(() => {
-    fetch("http://localhost:8000/api/v1/getMinimumRoomRates")
+    const url=import.meta.env.VITE_REACT_APP_MINIMUM_ROOM_RATES;
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
         const pricesWithDateOnly = {};
@@ -89,7 +89,14 @@ export function DateCalender() {
       return null;
     } else {
       const minimumPrice = Math.min(...validPrices);
-      return minimumPrice * currentPrice[currentSelectedCurrency].toFixed(1);
+      const selectedCurrencyPrice = currentPrice[currentSelectedCurrency];
+      if (selectedCurrencyPrice !== undefined) {
+        return (
+          minimumPrice * parseFloat(selectedCurrencyPrice.toFixed(1))
+        ).toFixed(1);
+      } else {
+        return null;
+      }
     }
   }
   function updatePrice(price: number) {

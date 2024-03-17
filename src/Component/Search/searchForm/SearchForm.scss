@@ -1,17 +1,4 @@
-@import "../../Constants/Colors.scss";
-.home{
-    height: 80%;
-    width: 100%;
-    background-image: var(--banner-image);
-    background-size: cover;
-    background-position: calc(20% + 0px) calc(20% + 20px);
-}
-.home-wrapper {
-    height: 80%;
-    padding-left: 3em;
-    display: flex;
-    align-items: center;
-}
+@import "../../../constants/Colors.scss";
 .search-form {
     height: 90%;
     width: 350px;

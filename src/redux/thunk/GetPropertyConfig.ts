@@ -3,9 +3,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 export const getPropertyConfig = createAsyncThunk(
   "getPropertyConfig",
   async () => {
+    const url=import.meta.env.VITE_REACT_APP_PROPERTY_CONFIGURATION;
     try {
       const res = await fetch(
-        "http://localhost:8000/api/v1/configure/property/18"
+        url
       );
       const data = await res.json();
       return data;

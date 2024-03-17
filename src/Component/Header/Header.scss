@@ -9,6 +9,7 @@
   align-items: center;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 .headings {
   display: flex;
@@ -73,7 +74,6 @@
 }
 .right-part-copy {
   position: absolute;
-  display: none;
   display: none;
   .login-button {
     padding: 4px 8px;
@@ -164,6 +164,7 @@ img {
     gap: 5px;
     top: 100%;
     right: 10px;
+    z-index: 999;
     background-color: $header-background-color;
   }
 }
