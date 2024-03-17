@@ -1,5 +1,4 @@
 import { FormControl, MenuItem, Select } from "@mui/material";
-import guestArray from "../../../constants/GuestType";
 import { AppDispatch, RootState } from "../../../redux/Store";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,9 +9,7 @@ import { useTranslation } from "react-i18next";
 import "./Guests.scss";
 import { useEffect } from "react";
 export function Guests() {
-  const showGuestSearch = useSelector(
-    (state: RootState) => state.propertyConfigInfo.showGuestSearch
-  );
+  const { t } = useTranslation();
   const guestCounts = useSelector(
     (state: RootState) => state.propertyConfigInfo.guestCounts
   );
@@ -21,6 +18,9 @@ export function Guests() {
   );
   const guestDispInfo = useSelector(
     (state: RootState) => state.propertyConfigInfo.guestDisplayInfo
+  );
+  const guests = useSelector(
+    (state: RootState) => state.propertyConfigInfo.guests
   );
   useEffect(() => {
     reduxDispatch(updateGuestDispInfo());
@@ -38,10 +38,9 @@ export function Guests() {
       reduxDispatch(updateGuestCounts({ index, increment }));
     }
   };
-  const { t } = useTranslation();
   return (
     <>
-      {showGuestSearch ? (
+      {
         <div className="guests">
           <h4>{t("search.guests")}</h4>
           <FormControl>
@@ -51,12 +50,12 @@ export function Guests() {
               displayEmpty
               inputProps={{ "aria-label": "Without label" }}
             >
-              {guestArray.map((guest, index) => (
+              {guests.map((guest, index) => (
                 <MenuItem key={index} value={guest.type}>
                   <div className="guest-type-info">
                     <div className="guest-type">
-                      <h4>{guest.type}</h4>
-                      <h5>{guest.age}</h5>
+                      <h4>{t(`guestTypes.${guest.type}.type`)}</h4>
+                      <h5>{t(`guestTypes.${guest.type}.age`)}</h5>
                     </div>
                     <div className="guest-count">
                       <button
@@ -85,7 +84,7 @@ export function Guests() {
             </Select>
           </FormControl>
         </div>
-      ) : null}
+      }
     </>
   );
 }

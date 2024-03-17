@@ -22,6 +22,20 @@
         "applyDates":"Termine anwenden",
         "endDateMessage":"Bitte wählen Sie das Enddatum aus.",
         "maxLength":"Maximale Aufenthaltsdauer:"
-      } 
+      },
+      "guestTypes": {
+        "adults": {
+          "type": "Erwachsene",
+          "age": "18+ Jahre"
+        },
+        "teens": {
+          "type": "Jugendliche",
+          "age": "13-17 Jahre"
+        },
+        "kids": {
+          "type": "Kinder",
+          "age": "0-12 Jahre"
+        }
+      }
 }
   

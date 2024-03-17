@@ -16,18 +16,23 @@ export function SearchForm() {
   useEffect(() => {
     reduxDispatch(getTenantConfig());
   }, []);
+  const showRoomsSearch = useSelector(
+    (state: RootState) => state.propertyConfigInfo.showRoomSearch
+  );
+  const showGuestSearch = useSelector(
+    (state: RootState) => state.propertyConfigInfo.showGuestSearch
+  );
   const { t } = useTranslation();
   return (
     <div className="search-form">
       <div className="all-search-fields">
         <Property />
         <div className="search-property-calendar">
-          <h4>{t("search.selectDates")}</h4>
           <DateCalender />
         </div>
         <div className="guests-and-rooms">
-          <Guests />
-          <Rooms />
+          <>{showGuestSearch&&<Guests />}</>
+          <>{showRoomsSearch &&<Rooms />}</>
         </div>
         {disabledGuest && (
           <div className="disabled-checkbox">

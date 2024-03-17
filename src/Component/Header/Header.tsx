@@ -1,7 +1,7 @@
 import "./Header.scss";
 import siteLogo from "../../assets/globe.png";
 import { useState } from "react";
-import i18n from "../../constants/LanguageTranslator";
+import i18n from "../../Constants/LanguageTranslator";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/Store";
 import { changeCurrentCurrency } from "../../redux/CurrencySlice";

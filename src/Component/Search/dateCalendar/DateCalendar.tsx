@@ -7,7 +7,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
-import { CurrencySymbols } from "../../../constants/CurrencySymbols";
+import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
 import { useTranslation } from "react-i18next";
 import calendar from "../../../assets/calendar.svg";
 import "./DateCalendar.scss";
@@ -32,9 +32,9 @@ export function DateCalender() {
   );
   const widthMonth = useMediaQuery("(max-width:750px)");
   const [prices, setPrices] = useState({});
-  const maximumLengthOfStay = maxDays-1;
+  const maximumLengthOfStay = maxDays - 1;
   useEffect(() => {
-    const url=import.meta.env.VITE_REACT_APP_MINIMUM_ROOM_RATES;
+    const url = import.meta.env.VITE_REACT_APP_MINIMUM_ROOM_RATES;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -104,6 +104,7 @@ export function DateCalender() {
   }
   return (
     <div className="date-container">
+       <h4>{t("search.selectDates")}</h4>
       <div className="date-input-wrapper">
         <input
           type="text"

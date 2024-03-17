@@ -15,9 +15,6 @@ export function Rooms() {
   const selectedRooms = useSelector(
     (state: RootState) => state.searchRoomInfo.rooms
   );
-  const showRoomsSearch = useSelector(
-    (state: RootState) => state.propertyConfigInfo.showRoomSearch
-  );
   const maximumRooms = useSelector(
     (state: RootState) => state.tenantInfo.maximumRooms
   );
@@ -36,7 +33,7 @@ export function Rooms() {
   };
   return (
     <>
-      {showRoomsSearch && (
+      { (
         <div className="rooms">
           <h4>{t("search.rooms")}</h4>
           <FormControl>

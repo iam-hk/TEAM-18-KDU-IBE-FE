@@ -47,6 +47,7 @@ const PropertyConfigSlice = createSlice({
       state.guestCounts.forEach((count, index) => {
         if (count > 0) {
           guestInfo += `${state.guests[index].type}=${count}, `;
+          
         }
       });
       state.guestDisplayInfo = guestInfo.trim().slice(0, -1);
