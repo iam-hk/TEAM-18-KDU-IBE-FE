@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { DateRangePicker } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import "./DateCalendar.scss";
 import { useMediaQuery } from "usehooks-ts";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
@@ -11,6 +10,7 @@ import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
 import { useTranslation } from "react-i18next";
 import calendar from "../../../assets/calendar.svg";
 import "./DateCalendar.scss";
+
 export function DateCalender() {
   const { t } = useTranslation();
   const [dateRange, setDateRange] = useState([
@@ -37,8 +37,8 @@ export function DateCalender() {
     const url = import.meta.env.VITE_REACT_APP_MINIMUM_ROOM_RATES;
     fetch(url)
       .then((response) => response.json())
-      .then((data) => {
-        const pricesWithDateOnly = {};
+      .then((data: Record<string, number>) => { 
+        const pricesWithDateOnly: Record<string, number> = {};
         for (const key in data) {
           if (Object.prototype.hasOwnProperty.call(data, key)) {
             const dateOnly = key.split("T")[0];
@@ -56,7 +56,7 @@ export function DateCalender() {
 
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleDateChange = (ranges) => {
+  const handleDateChange = (ranges: { selection: { startDate: Date; endDate: Date; key: string; }; }) => {
     setDateInitial(true);
     setDateRange([ranges.selection]);
   };

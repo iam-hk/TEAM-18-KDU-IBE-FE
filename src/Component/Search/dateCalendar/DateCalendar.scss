@@ -25,15 +25,18 @@
 }
 
 .date-range-picker-wrapper{
-    width: fit-content;
+    width: max-content;
     background-color: white;
     position: absolute;
     z-index: 1;
     border: 1px solid gray;
+    height: fit-content;
     
 }
 .rdrMonthAndYearWrapper{
     width: 64.5em;
+    padding-top: 0;
+    position: absolute;
 }
 .rdrDateRangePickerWrapper .rdrDefinedRangesWrapper,
 .rdrDateDisplayWrapper,
@@ -145,14 +148,17 @@
 
 .rdrMonthName{
     font-size: 16px;
+    padding: 0;
+    padding-left: 3rem;
 }
 
 .date-picker-footer-container{
     display: flex;
     flex-direction: column;
     border-top: 1px solid gray;
-    padding: 1rem 0;
+    padding-top: 1rem;
     margin-right: 1rem;
+    margin-bottom: 0.5rem;
 
     .extraInformation-and-applyButton{
         display: flex;
@@ -219,7 +225,8 @@
 
 .rdrMonth{
     width: 32em !important;
-    padding-right: 0;
+    padding: 0;
+    padding-top: 1.2rem;
 }
 
 
@@ -231,6 +238,13 @@
     }
     .rdrMonthAndYearWrapper{
         width: 32em;
+    }
+    .rdrDay{
+        margin-bottom: 2px;
+        margin-right: 2px;
+    }
+    .rdrWeekDays{
+        width: 29.3em;
     }
 }
 
@@ -245,5 +259,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+}
+
+@media (max-width:572px) {
+    .input-date-container{
+        margin-right: 3rem;
     }
 }
