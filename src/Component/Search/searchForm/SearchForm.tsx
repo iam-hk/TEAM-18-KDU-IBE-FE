@@ -31,8 +31,8 @@ export function SearchForm() {
           <DateCalender />
         </div>
         <div className="guests-and-rooms">
-          <>{showGuestSearch&&<Guests />}</>
-          <>{showRoomsSearch &&<Rooms />}</>
+          <>{showGuestSearch && <Guests />}</>
+          <>{showRoomsSearch && <Rooms />}</>
         </div>
         {disabledGuest && (
           <div className="disabled-checkbox">

@@ -35,17 +35,19 @@ describe("<SearchForm />", () => {
     cy.get(".rooms .MuiSelect-select").click();
     cy.get(".MuiMenu-root").find("li").should("have.length", 10);
     cy.get("body").click();
-    cy.get(".disabled-checkbox").should("exist").then(() => {
+    cy.get(".disabled-checkbox")
+      .should("exist")
+      .then(() => {
         cy.get(".disabled-checkbox input[type='checkbox']").should("exist");
         cy.get(".disabled-checkbox h5").should(
           "contain",
           "I need an accessible room"
         );
-    });
+      });
     cy.get(".submit-button button")
-    .should("be.visible")
-    .should("not.be.disabled")
-    .click();
-  cy.get(".submit-button button").should("contain", "Search");
+      .should("be.visible")
+      .should("not.be.disabled")
+      .click();
+    cy.get(".submit-button button").should("contain", "Search");
   });
 });

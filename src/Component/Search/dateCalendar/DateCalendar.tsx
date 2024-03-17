@@ -104,7 +104,7 @@ export function DateCalender() {
   }
   return (
     <div className="date-container">
-       <h4>{t("search.selectDates")}</h4>
+      <h4>{t("search.selectDates")}</h4>
       <div className="date-input-wrapper">
         <input
           type="text"
@@ -186,7 +186,7 @@ export function DateCalender() {
                   {t("search.endDateMessage")}
                 </p>
                 <p className="date-footer-limitStay">
-                  {t("search.maxLength")} {maximumLengthOfStay}
+                  {t("search.maxLength")} {maxDays}
                 </p>
               </>
             ) : null}

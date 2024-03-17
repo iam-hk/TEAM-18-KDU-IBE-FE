@@ -21,7 +21,9 @@ export function Rooms() {
   const guestCounts = useSelector(
     (state: RootState) => state.propertyConfigInfo.guestCounts
   );
-  const adultIndex=useSelector((state:RootState)=>state.propertyConfigInfo.adultIndex);
+  const adultIndex = useSelector(
+    (state: RootState) => state.propertyConfigInfo.adultIndex
+  );
   const reduxDispatch: AppDispatch = useDispatch();
   const handleRoomChange = (event: SelectChangeEvent) => {
     if (parseInt(event.target.value) <= guestCounts[adultIndex]) {
@@ -33,7 +35,7 @@ export function Rooms() {
   };
   return (
     <>
-      { (
+      {
         <div className="rooms">
           <h4>{t("search.rooms")}</h4>
           <FormControl>
@@ -51,7 +53,7 @@ export function Rooms() {
             </Select>
           </FormControl>
         </div>
-      )}
+      }
     </>
   );
 }
