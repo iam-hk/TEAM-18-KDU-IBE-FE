@@ -24,15 +24,15 @@
         "maxLength":"Maximale Aufenthaltsdauer:"
       },
       "guestTypes": {
-        "adults": {
+        "Adults": {
           "type": "Erwachsene",
           "age": "18+ Jahre"
         },
-        "teens": {
+        "Teens": {
           "type": "Jugendliche",
           "age": "13-17 Jahre"
         },
-        "kids": {
+        "Kids": {
           "type": "Kinder",
           "age": "0-12 Jahre"
         }
