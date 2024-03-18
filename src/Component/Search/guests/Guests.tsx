@@ -7,7 +7,8 @@ import {
 } from "../../../redux/PropertyConfigSlice";
 import { useTranslation } from "react-i18next";
 import "./Guests.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import CustomizedSnackbars from "../../snackbar/CustomizedSnackbars";
 export function Guests() {
   const { t } = useTranslation();
   const guestCounts = useSelector(
@@ -22,6 +23,7 @@ export function Guests() {
   const guests = useSelector(
     (state: RootState) => state.propertyConfigInfo.guests
   );
+  const adultIndex=useSelector((state:RootState)=>state.propertyConfigInfo.adultIndex);
   useEffect(() => {
     reduxDispatch(updateGuestDispInfo());
   }, [guestCounts]);
@@ -29,10 +31,18 @@ export function Guests() {
   const updateGuestInfo = () => {
     reduxDispatch(updateGuestDispInfo());
   };
+
+  const [showSnackbar, setShowSnackbar]= useState<boolean>(false);
+
   const handleGuestCountChange = (index: number, increment: boolean) => {
-    if (index === 0 && increment === false) {
+    if (index === adultIndex && increment === false) {
       if (guestCounts[index] > selectedRooms) {
         reduxDispatch(updateGuestCounts({ index, increment }));
+      }
+      else if(guestCounts[index]==selectedRooms)
+      {
+        console.log(showSnackbar);
+        setShowSnackbar(true);
       }
     } else {
       reduxDispatch(updateGuestCounts({ index, increment }));
@@ -85,6 +95,9 @@ export function Guests() {
           </FormControl>
         </div>
       }
+    {showSnackbar && <CustomizedSnackbars status="error" message="Adults cannot be less than number of rooms." setShowSnackbar={setShowSnackbar} />}
+    
+
     </>
   );
 }

@@ -153,7 +153,10 @@ export function DateCalender() {
                   }}
                 >
                   <p className="date-item">{day.getDate()}</p>
-                  <p className="price-item">
+                  <p
+                    className="price-item"
+                    style={price ? {opacity : '1'} : {opacity : '0'} }
+                  >
                     {(CurrencySymbols as any)[currentSelectedCurrency]}
                     {updatePrice(price)}{" "}
                   </p>
