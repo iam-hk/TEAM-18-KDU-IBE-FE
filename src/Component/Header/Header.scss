@@ -45,6 +45,7 @@
     color: $light-blue-color;
     font-weight: 600;
     font-size: 1rem;
+    cursor: pointer;
     background-color: $header-background-color;
     option {
       color: $light-blue-color;
@@ -60,10 +61,25 @@
     color: $light-blue-color;
     font-weight: 600;
     font-size: 1rem;
+    cursor: pointer;
     background-color: $header-background-color;
     option {
       color: $light-blue-color;
     }
+  }
+
+  .language-selection:focus,
+  .currency-selection:focus {
+    font-size: 1.1rem;
+  }
+
+  .language-selection.open,
+  .currency-selection.open {
+    font-size: 0.6rem;
+  }
+  .language-selection.open option,
+  .currency-selection.open option {
+    font-size: 0.5rem;
   }
   .login-button {
     padding: 10px 18px;
@@ -87,7 +103,6 @@
   .language-component {
     display: flex;
     align-items: center;
-
     .language-selection {
       outline: none;
       border: none;
@@ -117,8 +132,8 @@
   font-size: 1.3rem;
 }
 img {
-  height: 13px;
-  width: 13px;
+  height: 15px !important;
+  width: 15px !important;
 }
 @media (max-width: 900px) {
   .headings {
