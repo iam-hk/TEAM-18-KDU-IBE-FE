@@ -1,18 +1,17 @@
+@import "../../Constants/Colors.scss";
 .footer {
   height: 10%;
   width: 100%;
-  background-color: #130739;
-  position: sticky;
-  bottom: 0;
-  padding: 10px 40px;
+  background-color:$dark-blue-color;
+  padding: 20px 50px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  color: #ffffff;
+  color: $header-background-color;
 }
 .left-heading {
   h2 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 }
 .right-heading {
@@ -21,6 +20,18 @@
   align-items: flex-end;
   gap: 5px;
   h4 {
-    font-size: 1rem;
+    font-size: 1.2rem;
+  }
+}
+@media(max-width:600px)
+{
+  .footer{
+    padding: 20px 25px;
+  
+  }
+  .right-heading{
+    h4{
+      font-size: 0.9rem;
+    }
   }
 }

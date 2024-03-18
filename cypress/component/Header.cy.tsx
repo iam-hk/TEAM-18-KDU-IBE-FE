@@ -1,7 +1,6 @@
 import { Provider } from "react-redux";
 import { store } from "../../src/redux/Store";
 import { Header } from "../../src/Component/Header/Header";
-
 describe("<Header />", () => {
   it("mounts", () => {
     cy.viewport(
@@ -13,7 +12,10 @@ describe("<Header />", () => {
         <Header />
       </Provider>
     );
-    cy.get(".main-heading").should("contain", "Kickdrum");
-    cy.get(".sub-heading").should("contain", "Internet Booking Engine");
+    cy.get(".language-selection").should("be.visible");
+    cy.get(".currency-selection").should("be.visible");
+    cy.get(".currency-selection option").should("have.length", 3);
+    cy.get(".language-selection option").should("have.length", 3);
+    cy.get(".my-bookings").should("be.visible").and("contain", "MY BOOKINGS");
   });
 });

@@ -1,0 +1,269 @@
+
+.date-container{
+    width: max-content;
+}
+
+.date-input-wrapper{
+    border: 1px solid gray;
+    width: 292px;
+    padding: 5px 0;
+    border-radius: 5px;
+    height: 57px;
+    display: flex;
+    align-items: center;
+    .input-date-container{
+        height: 38px;
+        border: 0;
+        font-size: 1rem;
+        width: 250px;
+    }
+    
+    .date-calender-icon{
+        border: 0;
+        background-color: white;
+    }
+}
+
+.date-range-picker-wrapper{
+    width: max-content;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    border: 1px solid gray;
+    height: fit-content;
+    
+}
+.rdrMonthAndYearWrapper{
+    width: 64.5em;
+    padding-top: 0;
+    position: absolute;
+}
+.rdrDateRangePickerWrapper .rdrDefinedRangesWrapper,
+.rdrDateDisplayWrapper,
+.rdrMonthAndYearPickers {
+    display: none;
+}
+.rdrDayNumber {
+    width: fit-content;
+}
+
+.individual-date-container{
+    color: #000;
+    display: flex;
+}
+
+.rdrDayDisabled{
+    color: #d6cbcb !important;
+    opacity: 0.2;
+
+    .price-item{
+        opacity: 0;
+    }
+}
+
+.rdrDayPassive {
+    color: #d6cbcb !important;
+    opacity: 0;
+}
+
+
+.rdrStartEdge, .rdrEndEdge, .rdrInRange{
+    color: white !important;
+    z-index: -1 !important;
+    
+}
+
+.rdrDay:has(> .rdrStartEdge){
+    background-color: rgb(38,38,109);
+    color: white !important;
+}
+
+.rdrDay:has(> .rdrEndEdge){
+    background-color: rgb(38,38,109);
+    color: white !important;
+}
+
+.rdrDay:has(> .rdrInRange){
+    background-color: rgb(193,194,194);
+}
+
+.rdrDay:has(> .rdrStartEdge):hover{
+    background-color: rgb(38,38,109) !important;
+}
+
+.rdrDay:has(> .rdrEndEdge):hover{
+    background-color: rgb(38,38,109) !important;
+}
+
+.rdrDay:has(> .rdrInRange):hover{
+    background-color: rgb(193,194,194) !important;
+}
+
+.rdrDayInPreview, .rdrDayStartPreview, .rdrDayEndPreview{
+    border: none !important;
+}
+
+
+.rdrDay:has(> .rdrDayEndPreview){
+    background-color: rgb(38,38,109);
+}
+
+.rdrDay:has(> .rdrDayStartPreview){
+    background-color: rgb(38,38,109);
+}
+
+.rdrDay:has(> .rdrDayInPreview){
+    background-color: rgb(193,194,194);
+}
+.rdrStartEdge+span , .rdrEndEdge+span{
+    .main-date-container{
+        color:white !important;
+    }
+}
+
+.rdrDayEndPreview+span , .rdrDayStartPreview+span{
+    .individual-date-container{
+        color:white !important;
+    }
+}
+.rdrDays{
+    width: 100%;
+}
+.rdrWeekDays{
+    width: 30.5em;
+}
+.rdrMonths{
+    width: 100%;
+    justify-content: space-between;
+}
+
+.rdrDay{
+    height: 2.7rem;
+    position: relative;
+    font-weight: 500;
+    width: 3rem;
+    margin-bottom: 3px;
+    margin-right: 5px;
+}
+
+.rdrMonthName{
+    font-size: 16px;
+    padding: 0;
+    padding-left: 3rem;
+}
+
+.date-picker-footer-container{
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid gray;
+    padding-top: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+
+    .extraInformation-and-applyButton{
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
+
+        .nightly-rate-summary{
+            margin-right: 1.5rem;
+            font-size: 20px;
+            font-weight: 700;
+            padding-bottom: 1rem;
+        }
+
+        .apply-btn{
+            width:fit-content;
+            background-color: rgb(38,38,109);
+            padding: 0.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+        .disabled {
+            opacity: 0.5; // Adjust opacity as needed
+            cursor: not-allowed; // Change cursor to indicate button is disabled
+          }
+          
+    }
+
+    .date-footer-limitStay{
+        display: flex;
+        justify-content: flex-end;
+        color: red;
+        font-size: small;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+
+.date-item{
+    position: relative;
+    top: 0.8rem;
+    text-align: center;
+    font-weight: 700;
+    margin: 0;
+
+    font-size: 16px;
+}
+
+.price-item{
+    position: relative;
+    bottom: 0.5rem;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+
+}
+.rdrEndEdge{
+    color: #d6cbcb;
+}
+
+.rdrMonth{
+    width: 32em !important;
+    padding: 0;
+    padding-top: 1.2rem;
+}
+
+
+@media screen and (max-width : 750px) {
+
+    .rdrMonth{
+        padding-left: 1.2rem;
+        padding-right:0;
+    }
+    .rdrMonthAndYearWrapper{
+        width: 32em;
+    }
+    .rdrDay{
+        margin-bottom: 2px;
+        margin-right: 2px;
+    }
+    .rdrWeekDays{
+        width: 29.3em;
+    }
+}
+
+@media(max-width:650px)
+{
+    .date-container{
+        width: 100%;
+       
+    }
+    .date-input-wrapper{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width:572px) {
+    .input-date-container{
+        margin-right: 3rem;
+    }
+}

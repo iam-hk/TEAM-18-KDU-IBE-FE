@@ -9,7 +9,7 @@
   align-items: center;
   position: sticky;
   top: 0;
-
+  z-index: 1;
 }
 .headings {
   display: flex;
@@ -28,6 +28,9 @@
   display: flex;
   gap: 55px;
   align-items: center;
+  h4 {
+    font-size: 1.1rem;
+  }
   .choice-components {
     display: flex;
     gap: 20px;
@@ -39,11 +42,12 @@
   .language-selection {
     outline: none;
     border: none;
-    height: 15px;
     color: $light-blue-color;
     font-weight: 600;
+    font-size: 1rem;
+    background-color: $header-background-color;
     option {
-      color:$light-blue-color;
+      color: $light-blue-color;
     }
   }
   .currency-component {
@@ -53,9 +57,10 @@
   .currency-selection {
     outline: none;
     border: none;
-    height: 15px;
     color: $light-blue-color;
     font-weight: 600;
+    font-size: 1rem;
+    background-color: $header-background-color;
     option {
       color: $light-blue-color;
     }
@@ -66,11 +71,11 @@
     color: $header-background-color;
     border-radius: 6px;
     border: none;
+    font-size: 1rem;
   }
 }
 .right-part-copy {
   position: absolute;
-  display: none;
   display: none;
   .login-button {
     padding: 4px 8px;
@@ -87,6 +92,7 @@
       outline: none;
       border: none;
       color: $light-blue-color;
+      background-color: $header-background-color;
       option {
         color: $light-blue-color;
       }
@@ -99,6 +105,7 @@
       outline: none;
       border: none;
       color: $light-blue-color;
+      background-color: $header-background-color;
       option {
         color: $light-blue-color;
       }
@@ -110,18 +117,14 @@
   font-size: 1.3rem;
 }
 img {
-  height: 11px;
-  width: 11px;
-}
-.currency-display {
-  position: absolute;
-  top: 120%;
-  left: 40%;
-  font-size: 1.3rem;
+  height: 13px;
+  width: 13px;
 }
 @media (max-width: 900px) {
-  html {
-    font-size: 90%;
+  .headings {
+    h4 {
+      font-size: 1.1rem;
+    }
   }
   .header {
     padding: 0.8em 0.7em 0.8em 0.6em;
@@ -133,6 +136,9 @@ img {
     .choice-components {
       gap: 10px;
     }
+    h4 {
+      font-size: 0.8rem;
+    }
   }
 
   html {
@@ -143,8 +149,10 @@ img {
   }
 }
 @media (max-width: 620px) {
-  html {
-    font-size: 84%;
+  .headings {
+    h4 {
+      font-size: 1.3rem;
+    }
   }
   .right-part {
     display: none;
@@ -154,12 +162,13 @@ img {
     display: block;
     font-weight: 600;
   }
-  .right-part-copy{
+  .right-part-copy {
     display: flex;
     flex-direction: column;
     gap: 5px;
     top: 100%;
     right: 10px;
+    z-index: 999;
     background-color: $header-background-color;
   }
 }

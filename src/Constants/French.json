@@ -7,6 +7,34 @@
       "leftHeading": "Kickdrum",
       "rightHeading": "©Kickdrum Technology Group GmbH",
       "allRightsReserved": "Tous droits réservés."
+    },"search":{
+      "propertyName":"Nom de la propriété*",
+      "selectDates":"Sélectionnez les dates",
+      "guests":"Invités",
+      "rooms":"chambres",
+      "disabled":"J'ai besoin d'un accès",
+      "searchButton":"Recherche",
+      "checkin":"Enregistrement",
+      "checkout":"Départ",
+      "from":"À partir de",
+      "perNight":"par nuit",
+      "applyDates":"Appliquer les dates",
+      "endDateMessage":"Veuillez sélectionner la date de fin.",
+      "maxLength":"Durée maximale du séjour :"
+    },
+    "guestTypes": {
+      "Adults": {
+        "type": "Adultes",
+        "age": "18 ans et plus"
+      },
+      "Teens": {
+        "type": "Adolescents",
+        "age": "13-17 ans"
+      },
+      "Kids": {
+        "type": "Enfants",
+        "age": "0-12 ans"
+      }
     }
   }
   

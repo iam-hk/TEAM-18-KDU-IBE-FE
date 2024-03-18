@@ -12,9 +12,10 @@ function App() {
   const reduxDispatch: AppDispatch = useDispatch();
   useEffect(() => {
     const fetchCurrencyExchangeRates = async () => {
+      const url = import.meta.env.VITE_REACT_APP_CURRENCY_CONVERTER;
       try {
         const response = await axios.get(
-          "https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_xxvHHr6U8Mi2L46U8A46RClOsi95LZjL4NcTVWRr"
+          url
         );
         reduxDispatch(addCurrencyExchangeRates(response.data));
       } catch (error) {

@@ -1,29 +1,25 @@
-import  { useState, useEffect } from 'react';
-import axios from 'axios';
-import './Home.scss';
-
+import { useEffect } from "react";
+import "./Home.scss";
+import { AppDispatch, RootState } from "../../redux/Store";
+import { useDispatch, useSelector } from "react-redux";
+import { getTenantConfig } from "../../redux/thunk/GetTenantConfig";
+import { SearchForm } from "../../Component/Search/searchForm/SearchForm";
 export function Home() {
-  // const [apiData, setApiData] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get('http://localhost:8000/api/test');
-  //       setApiData(response.data);
-        
-  //     } catch (error) {
-  //       console.log("error happened",error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
+  const bannerImage = useSelector(
+    (state: RootState) => state.tenantInfo.bannerImage
+  );
+  const reduxDispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    reduxDispatch(getTenantConfig());
+  }, []);
   return (
-    <div className="center">
-        {/* <div>
-          <h2>API Response:</h2>
-          <pre>{JSON.stringify(apiData, null, 2)}</pre>
-        </div> */}
+    <div
+      className="home"
+      style={{ "--banner-image": `url(${bannerImage})` } as React.CSSProperties}
+    >
+      <div className="home-wrapper">
+        <SearchForm />
+      </div>
     </div>
   );
 }
