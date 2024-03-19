@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import { addCurrencyExchangeRates } from "./redux/CurrencySlice";
+import { RoomPage } from "./Pages/RoomPage/RoomPage";
 function App() {
   const reduxDispatch: AppDispatch = useDispatch();
   useEffect(() => {
@@ -29,6 +30,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/rooms" element={<RoomPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
