@@ -7,8 +7,10 @@ import { getTenantConfig } from "../../../redux/thunk/GetTenantConfig";
 import { DateCalender } from "../dateCalendar/DateCalendar";
 import { useTranslation } from "react-i18next";
 import { AppDispatch, RootState } from "../../../redux/Store";
+import { useNavigate} from "react-router-dom"
 import "./SearchForm.scss";
 export function SearchForm() {
+  const navigate = useNavigate();
   const disabledGuest = useSelector(
     (state: RootState) => state.propertyConfigInfo.showDisabilityOption
   );
@@ -22,6 +24,10 @@ export function SearchForm() {
   const showGuestSearch = useSelector(
     (state: RootState) => state.propertyConfigInfo.showGuestSearch
   );
+  function handleSubmitButtonClick()
+  {
+    navigate("/rooms");
+  }
   const { t } = useTranslation();
   return (
     <div className="search-form">
@@ -46,7 +52,7 @@ export function SearchForm() {
         )}
       </div>
       <div className="submit-button">
-        <button>{t("search.searchButton")}</button>
+        <button onClick={handleSubmitButtonClick}>{t("search.searchButton")}</button>
       </div>
     </div>
   );
