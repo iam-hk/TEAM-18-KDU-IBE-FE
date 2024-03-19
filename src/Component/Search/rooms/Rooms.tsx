@@ -4,7 +4,10 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { updateAdultCount } from "../../../redux/PropertyConfigSlice";
+import {
+  updateAdultCount,
+  resetGuests,
+} from "../../../redux/PropertyConfigSlice";
 import { updateRooms } from "../../../redux/SearchRoomSlice";
 import { AppDispatch, RootState } from "../../../redux/Store";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,8 +27,18 @@ export function Rooms() {
   const adultIndex = useSelector(
     (state: RootState) => state.propertyConfigInfo.adultIndex
   );
+  const maxGuest = useSelector(
+    (state: RootState) => state.tenantInfo.maixmumGuests
+  );
   const reduxDispatch: AppDispatch = useDispatch();
   const handleRoomChange = (event: SelectChangeEvent) => {
+    let totalGuests = 0;
+    guestCounts.forEach((guest) => {
+      totalGuests += guest;
+    });
+    if (parseInt(event.target.value) * maxGuest < totalGuests) {
+      reduxDispatch(resetGuests());
+    }
     if (parseInt(event.target.value) <= guestCounts[adultIndex]) {
       reduxDispatch(updateRooms(parseInt(event.target.value)));
     } else {

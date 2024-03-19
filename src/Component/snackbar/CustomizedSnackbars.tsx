@@ -4,7 +4,6 @@ import Alert from "@mui/material/Alert";
 interface CustomizedSnackbarProps {
   status: string;
   message: string;
-  // showSnackbar: boolean;
   setShowSnackbar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function CustomizedSnackbars(props: Readonly<CustomizedSnackbarProps>) 

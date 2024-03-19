@@ -37,7 +37,6 @@ const PropertyNameSlice = createSlice({
       )
       .addCase(getPropertyNames.rejected, (state, action) => {
         state.errorMessage = action.error.message!;
-        console.log("rejected in slice");
         state.state = "rejected";
       });
   },

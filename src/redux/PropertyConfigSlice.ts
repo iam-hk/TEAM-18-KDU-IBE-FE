@@ -51,6 +51,11 @@ const PropertyConfigSlice = createSlice({
       });
       state.guestDisplayInfo = guestInfo.trim().slice(0, -1);
     },
+    resetGuests: (state) => {
+      state.guestCounts = state.guests.map((item) =>
+        item.type === "Adults" ? 1 : 0
+      );
+    },
   },
   extraReducers(builder) {
     builder
@@ -77,11 +82,14 @@ const PropertyConfigSlice = createSlice({
       )
       .addCase(getPropertyConfig.rejected, (state, action) => {
         state.errorMessage = action.error.message!;
-        console.log("rejected in slice");
         state.state = "rejected";
       });
   },
 });
-export const { updateGuestCounts, updateGuestDispInfo, updateAdultCount } =
-  PropertyConfigSlice.actions;
+export const {
+  updateGuestCounts,
+  updateGuestDispInfo,
+  updateAdultCount,
+  resetGuests,
+} = PropertyConfigSlice.actions;
 export const PropertyConfigReducer = PropertyConfigSlice.reducer;
