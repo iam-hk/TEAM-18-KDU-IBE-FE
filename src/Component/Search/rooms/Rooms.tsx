@@ -37,7 +37,7 @@ export function Rooms() {
       totalGuests += guest;
     });
     if (parseInt(event.target.value) * maxGuest < totalGuests) {
-      reduxDispatch(resetGuests());
+      reduxDispatch(resetGuests(parseInt(event.target.value)));
     }
     if (parseInt(event.target.value) <= guestCounts[adultIndex]) {
       reduxDispatch(updateRooms(parseInt(event.target.value)));

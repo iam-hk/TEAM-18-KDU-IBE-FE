@@ -51,9 +51,9 @@ const PropertyConfigSlice = createSlice({
       });
       state.guestDisplayInfo = guestInfo.trim().slice(0, -1);
     },
-    resetGuests: (state) => {
+    resetGuests: (state,action:PayloadAction<number>) => {
       state.guestCounts = state.guests.map((item) =>
-        item.type === "Adults" ? 1 : 0
+        item.type === "Adults" ? action.payload : 0
       );
     },
   },

@@ -23,6 +23,7 @@ export function DateCalender() {
   const maxDays = useSelector(
     (state: RootState) => state.tenantInfo.maximumDays
   );
+  const guestCount: number[] = useSelector((state: RootState) => state.propertyConfigInfo.guestCounts);
   const currentSelectedCurrency: keyof CurrencyExchangeRates = useSelector(
     (state: RootState) =>
       state.currencyRate.currentSelectedCurrency as keyof CurrencyExchangeRates
@@ -79,6 +80,7 @@ export function DateCalender() {
   };
 
   const toggleVisibility = () => {
+    if(guestCount.length!==0)
     setIsVisible(!isVisible);
   };
   function findMinimumPrice(prices: number) {
