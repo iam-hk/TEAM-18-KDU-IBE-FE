@@ -32,7 +32,6 @@ const TenantConfigSlice = createSlice({
     builder
       .addCase(getTenantConfig.pending, (state) => {
         state.state = "pending";
-        console.log("pending");
       })
       .addCase(getTenantConfig.fulfilled, (state, action) => {
         state.maximumDays = action.payload.maximumDays;
@@ -44,11 +43,9 @@ const TenantConfigSlice = createSlice({
         state.taxes = action.payload.taxes;
         state.percentPayableAtHotel = action.payload.percentPayableAtHotel;
         state.state = "fulfilled";
-        console.log(state.state,"data received");
       })
       .addCase(getTenantConfig.rejected, (state, action) => {
         state.errorMessage = action.error.message!;
-        console.log("rejected in slice");
         state.state = "rejected";
       });
   },

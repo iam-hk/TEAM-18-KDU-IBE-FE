@@ -23,7 +23,11 @@ export function Guests() {
   const guests = useSelector(
     (state: RootState) => state.propertyConfigInfo.guests
   );
-  const adultIndex=useSelector((state:RootState)=>state.propertyConfigInfo.adultIndex);
+  const adultIndex = useSelector(
+    (state: RootState) => state.propertyConfigInfo.adultIndex
+  );
+  const maximumGuests=useSelector((state:RootState)=>state.tenantInfo.maixmumGuests);
+  const roomsSelected=useSelector((state:RootState)=>state.searchRoomInfo.rooms);
   useEffect(() => {
     reduxDispatch(updateGuestDispInfo());
   }, [guestCounts]);
@@ -32,16 +36,21 @@ export function Guests() {
     reduxDispatch(updateGuestDispInfo());
   };
 
-  const [showSnackbar, setShowSnackbar]= useState<boolean>(false);
+  const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
 
   const handleGuestCountChange = (index: number, increment: boolean) => {
+    if (increment) {
+      let totalGuests = 0;
+      guestCounts.forEach((guest) => {
+        totalGuests += guest;
+      });
+      if(totalGuests>=maximumGuests*roomsSelected)
+      return;
+    }
     if (index === adultIndex && increment === false) {
       if (guestCounts[index] > selectedRooms) {
         reduxDispatch(updateGuestCounts({ index, increment }));
-      }
-      else if(guestCounts[index]==selectedRooms)
-      {
-        console.log(showSnackbar);
+      } else if (guestCounts[index] == selectedRooms) {
         setShowSnackbar(true);
       }
     } else {
@@ -95,9 +104,13 @@ export function Guests() {
           </FormControl>
         </div>
       }
-    {showSnackbar && <CustomizedSnackbars status="error" message="Adults cannot be less than number of rooms." setShowSnackbar={setShowSnackbar} />}
-    
-
+      {showSnackbar && (
+        <CustomizedSnackbars
+          status="error"
+          message="Adults cannot be less than number of rooms."
+          setShowSnackbar={setShowSnackbar}
+        />
+      )}
     </>
   );
 }
