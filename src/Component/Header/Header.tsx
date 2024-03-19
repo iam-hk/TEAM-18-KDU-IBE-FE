@@ -5,7 +5,9 @@ import i18n from "../../Constants/LanguageTranslator";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/Store";
 import { changeCurrentCurrency } from "../../redux/CurrencySlice";
+import { useNavigate} from "react-router-dom"
 export function Header() {
+  const navigate=useNavigate();
   const [isRightCopyOpen, setIsRightCopyOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const reduxDispatch: AppDispatch = useDispatch();
@@ -24,14 +26,18 @@ export function Header() {
     const newCurrency = e.target.value;
     reduxDispatch(changeCurrentCurrency(newCurrency));
   };
+  function handleRedirect()
+  {
+    navigate("/");
+  }
   return (
     <div className="header">
       <div className="headings">
-        <h4 className="main-heading">{i18n.t("mainHeading")}</h4>
+        <button className="main-heading" onClick={handleRedirect}>{i18n.t("mainHeading")}</button>
         <h4 className="sub-heading">{i18n.t("subHeading")}</h4>
       </div>
       <div className="right-part">
-        <h4 className="my-bookings">{i18n.t("myBookings")}</h4>
+        <button className="my-bookings">{i18n.t("myBookings")}</button>
         <div className="choice-components">
           <div className="language-component">
             <img src={siteLogo} alt="imagenotfound" />
@@ -63,7 +69,7 @@ export function Header() {
       </div>
       {isRightCopyOpen && (
         <div className="right-part-copy">
-          <h4>{i18n.t("myBookings")}</h4>
+          <button className="my-bookings">{i18n.t("myBookings")}</button>
           <div className="language-component">
             <img src={siteLogo} alt="logo not found" />
             <select
