@@ -99,6 +99,17 @@ export function DateCalender() {
       }
     }
   }
+  const generateMinDate = () => {
+    if(dateRange[0].startDate.getTime() === dateRange[0].endDate.getTime() ){
+        let disabledDate = new Date(dateRange[0].startDate);
+        disabledDate.setDate(disabledDate.getDate() - maxDays);
+        return disabledDate
+    }
+    else{
+        return new Date();
+    }
+  }
+
   function updatePrice(price: number) {
     return price * currentPrice[currentSelectedCurrency].toFixed(1);
   }
@@ -126,7 +137,7 @@ export function DateCalender() {
             ranges={dateRange}
             className="dateRangePicker"
             onChange={handleDateChange}
-            minDate={new Date()}
+            minDate={generateMinDate()}
             maxDate={
               dateRange[0].startDate.getTime() ===
               dateRange[0].endDate.getTime()
