@@ -28,6 +28,12 @@ export function SearchForm() {
   {
     navigate("/rooms");
   }
+
+  const startDate:string = useSelector((state:RootState)=>state.searchRoomInfo.startDate);
+  const endDate:string = useSelector((state:RootState)=>state.searchRoomInfo.endDate);
+  const selectedProperty:string = useSelector((state:RootState)=>state.searchRoomInfo.selectedProperty);
+  const isDisabled = startDate === "" || endDate === "" || selectedProperty === "";
+
   const { t } = useTranslation();
   return (
     <div className="search-form">
@@ -52,7 +58,7 @@ export function SearchForm() {
         )}
       </div>
       <div className="submit-button">
-        <button onClick={handleSubmitButtonClick}>{t("search.searchButton")}</button>
+        <button onClick={handleSubmitButtonClick} disabled={isDisabled}>{t("search.searchButton")}</button>
       </div>
     </div>
   );

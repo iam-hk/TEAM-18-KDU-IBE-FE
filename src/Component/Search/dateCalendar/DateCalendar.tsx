@@ -3,13 +3,14 @@ import { DateRangePicker } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { useMediaQuery } from "usehooks-ts";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
 import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
 import { useTranslation } from "react-i18next";
 import calendar from "../../../assets/calendar.svg";
 import "./DateCalendar.scss";
+import { updateEndDate, updateStartDate } from "../../../redux/SearchRoomSlice";
 
 export function DateCalender() {
   const { t } = useTranslation();
@@ -57,16 +58,53 @@ export function DateCalender() {
 
   const [isVisible, setIsVisible] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleDateChange = (ranges: { selection: { startDate: Date; endDate: Date; key: string; }; }) => {
     setDateInitial(true);
     setDateRange([ranges.selection]);
+
+    const newEndDate: Date = new Date(ranges.selection.endDate);
+    const newStartDate: Date = new Date(ranges.selection.startDate);
+
+    newEndDate.setDate(newEndDate.getDate() + 1);
+    newStartDate.setDate(newStartDate.getDate() + 1);
+
+
+    const updatedEndDateString: string = newEndDate.toISOString().split("T")[0];
+    const updatedStartDateString: string = newStartDate.toISOString().split("T")[0];
+
+
+    dispatch(updateEndDate(updatedEndDateString));
+    dispatch(updateStartDate(updatedStartDateString));
   };
 
-  const getMaxEndDate = (startDate) => {
-    const maxEndDate = new Date(startDate);
-    maxEndDate.setDate(startDate.getDate() + maximumLengthOfStay);
-    return maxEndDate;
-  };
+  const getMaxEndDate = () => {
+    if(dateRange[0].startDate.getTime() === dateRange[0].endDate.getTime()){
+        const maxEndDate = new Date(dateRange[0].startDate);
+        maxEndDate.setDate(dateRange[0].startDate.getDate() + maximumLengthOfStay);
+
+        const maxEndDate1 = new Date();
+        maxEndDate1.setDate(1);
+        maxEndDate1.setMonth(6);
+        maxEndDate1.setFullYear(2024);
+
+        if(maxEndDate.getTime() < maxEndDate1.getTime()){
+            return maxEndDate;
+        }
+        else{
+            return maxEndDate1;
+        }
+    }
+    else{
+        const maxEndDate = new Date();
+        maxEndDate.setDate(1);
+        maxEndDate.setMonth(6);
+        maxEndDate.setFullYear(2024);
+
+        return maxEndDate;
+    }
+};
 
   const handleStartDateChange = (startDate) => {
     let maxDate = null;
@@ -102,14 +140,7 @@ export function DateCalender() {
     }
   }
   const generateMinDate = () => {
-    if(dateRange[0].startDate.getTime() === dateRange[0].endDate.getTime() ){
-        let disabledDate = new Date(dateRange[0].startDate);
-        disabledDate.setDate(disabledDate.getDate() - maxDays);
-        return disabledDate
-    }
-    else{
         return new Date();
-    }
   }
 
   function updatePrice(price: number) {
@@ -123,8 +154,8 @@ export function DateCalender() {
           type="text"
           value={
             dateInitial == false
-              ? `    ${t("search.checkin")}     →    ${t("search.checkout")}`
-              : `   ${dateRange[0].startDate.toLocaleDateString()}     →    ${dateRange[0].endDate.toLocaleDateString()}`
+              ? `    ${t("search.checkin")}    →   ${t("search.checkout")}`
+              : `   ${dateRange[0].startDate.toLocaleDateString()}    →   ${dateRange[0].endDate.toLocaleDateString()}`
           }
           className="input-date-container"
           readOnly
@@ -140,12 +171,7 @@ export function DateCalender() {
             className="dateRangePicker"
             onChange={handleDateChange}
             minDate={generateMinDate()}
-            maxDate={
-              dateRange[0].startDate.getTime() ===
-              dateRange[0].endDate.getTime()
-                ? getMaxEndDate(dateRange[0].startDate)
-                : new Date(new Date().getFullYear() + 100, 11, 31)
-            }
+            maxDate={getMaxEndDate()}
             months={widthMonth ? 1 : 2}
             direction="horizontal"
             showSelectionPreview={false}

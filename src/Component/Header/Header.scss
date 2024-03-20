@@ -19,6 +19,7 @@
     background-color: transparent;
     font-size: 1.3rem;
     font-weight: 600;
+    cursor: pointer;
   }
   h4 {
     font-size: 1.3rem;
@@ -40,6 +41,7 @@
     background-color: transparent;
     font-weight: 600;
     font-size: 1.1rem;
+    cursor: pointer;
   }
   h4 {
     font-size: 1.1rem;
@@ -101,6 +103,7 @@
     border-radius: 6px;
     border: none;
     font-size: 1rem;
+    cursor: pointer;
   }
 }
 .right-part-copy {
@@ -112,11 +115,13 @@
     color: $header-background-color;
     border-radius: 6px;
     border: none;
+    cursor: pointer;
   }
   .my-bookings{
     border: none;
     background-color: transparent;
     font-weight: 600;
+    cursor: pointer;
   }
   .language-component {
     display: flex;

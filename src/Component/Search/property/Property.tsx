@@ -11,14 +11,18 @@ import { getPropertyConfig } from "../../../redux/thunk/GetPropertyConfig";
 import { getPropertyNames } from "../../../redux/thunk/GetPropertyNames";
 import { useTranslation } from "react-i18next";
 import "./Property.scss";
+import { updateSelectedProperty } from "../../../redux/SearchRoomSlice";
 export function Property() {
+
   const [property, setProperty] = useState("");
   const propertyList = useSelector(
     (state: RootState) => state.propertyNameInfo.propertyList
   );
   const reduxDispatch: AppDispatch = useDispatch();
   const handlePropertyChange = (event: SelectChangeEvent) => {
-    setProperty(event.target.value);
+    const selectedPropertyValue :string = event.target.value;
+    setProperty(selectedPropertyValue);
+    reduxDispatch(updateSelectedProperty(selectedPropertyValue));
     reduxDispatch(getPropertyConfig());
   };
   useEffect(() => {
