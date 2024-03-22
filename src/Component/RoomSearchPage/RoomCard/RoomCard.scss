@@ -17,7 +17,7 @@
             margin-bottom: 0.8rem;
             .propertyNameContainer {
                 width: 120px;
-                font-weight: 700px;
+                font-weight: 700;
                 font-size: 16px;
             }
             .reviewAndRatingContainer {
@@ -167,4 +167,114 @@
     border-top-right-radius: 5px;
 }
 
+@media(max-width:700px)
+{
+    .individual-roomCard {
+       
+        .informationOfRoomType {
+            .propertyAndReviewContainer {
+                .propertyNameContainer {
+                    width: 200px;
+                    font-weight: 700;
+                    font-size: 1.2rem;
+                }
+                .reviewAndRatingContainer {
+                    text-align: right;
+                    .newProperty{
+                        font-size:0.9rem;
+                        font-weight: 400;
+                    }
+                    .ratingContainer {
+                        font-weight: 700;
+                        font-size: 1rem;
+                    }
+                    .reviewCountContainer {
+                        font-size: 0.9rem;
+                        font-weight: 400;
+                    }
+                }
+            }
+            .otherDetailsOfRoomType{
+                .locationContainer{
+                    font-size: 1rem;
+                    font-weight: 400;
+                }
+                .roomCategoryAndSizeContainer{
+                    display: flex;
+                    font-size: 1rem;
+                    .category_container{
+                        font-style: italic;
+                        margin-right: 1rem;
+                    }
+                }
+                .maximumNumberOfGuestsContainer{
+                    font-size: 1rem;
+                    font-weight: 400;
+                    margin-bottom: 0.6rem;
+                }
+                .bedInformation{
+                    font-size: 1rem;
+                    font-weight: 400;
+                    .bed_content{
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+        .promotionOfRoomType{
+            margin-bottom: 0.5rem;
+            .BannerOfSpecialDeal{
+                position: relative;
+                .banner_title_of_promotion{
+                    position: absolute;
+                    bottom:10px;
+                    color: #fff;
+                    font-size: 1rem;
+                }
+            }
+            .descriptionOfSpecialDeal{
+                font-size: 14px;
+            }
+        }
+        .price_containerOfRoomType{
+            margin-left: 1.2rem;
+            margin-bottom: 1.2rem;
+            .minimumPriceOfRoomType{
+                font-weight: 700;
+                font-size: 16px;
+                margin-bottom: 0.2rem;
+            }
+            .priceLabelContainer{
+                font-weight: 400;
+                font-size: 14px;
+                color: #858685;
+                margin-bottom: 0.5rem;
+            }
+            .selectRoom-btn{
+                color: #fff;
+                padding: 0.8rem 0.9rem;
+                background-color: #26266D;
+                border: none;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: 700;
+                text-align: center;
+            }
+        }
+    }
+}
 
+.thumbs-wrapper{
+    display: none;
+}
+
+.slide{
+    width: 100%;
+    height: 143px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.carousel-status{
+    display: none;
+}

@@ -56,6 +56,11 @@ const PropertyConfigSlice = createSlice({
         item.type === "Adults" ? action.payload : 0
       );
     },
+    assignGuests:(state,action:PayloadAction<number[]>)=>
+    {
+      console.log("hello",action.payload);
+      state.guestCounts=action.payload;
+    }
   },
   extraReducers(builder) {
     builder
@@ -91,5 +96,6 @@ export const {
   updateGuestDispInfo,
   updateAdultCount,
   resetGuests,
+  assignGuests
 } = PropertyConfigSlice.actions;
 export const PropertyConfigReducer = PropertyConfigSlice.reducer;

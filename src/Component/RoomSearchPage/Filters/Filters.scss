@@ -92,14 +92,17 @@
 @media(max-width:750px)
 {
     .filter-container{
-        // background-color: #ffffff;
         margin-top: 10px;
         width: 100%;
         border: 1px solid #dadada;
-        height: 55px;
+        min-height: 55px;
         border-radius: 4px;
         height: fit-content;
         .filter-heading{
+                .filter-heading-text
+                {
+                    font-size: 1.1rem;
+                }
                 .arrow{
                     display: block;
                 }

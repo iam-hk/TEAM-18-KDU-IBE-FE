@@ -1,32 +1,32 @@
 import "./RoomCard.scss";
-import Carousel from "react-bootstrap/Carousel";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
 export function RoomCard() {
   return (
     <div className="room-display">
       <div className="individual-roomCard">
         <div className="imageOfRoomTypeContainer">
-          <Carousel>
-            <Carousel.Item>
+          <Carousel autoPlay infiniteLoop>
+            <div>
               <img
                 className="imageOfRoomType"
                 src="https://images.unsplash.com/photo-1710764275022-ede939a1f5e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               ></img>
-            </Carousel.Item>
-            <Carousel.Item>
+              </div>
+              <div>
               <img
                 className="imageOfRoomType"
                 src="https://images.unsplash.com/photo-1710764275022-ede939a1f5e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               ></img>
-            </Carousel.Item>
-            <Carousel.Item>
+              </div>
+              <div>
               <img
                 className="imageOfRoomType"
                 src="https://images.unsplash.com/photo-1710764275022-ede939a1f5e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               ></img>
-            </Carousel.Item>
+              </div>
           </Carousel>
-          
         </div>
         <div className="informationOfRoomType">
           <div className="propertyAndReviewContainer">

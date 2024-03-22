@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0px;
+    gap: 3px;
     
     .checkin-heading{
         p{
@@ -54,7 +54,6 @@
         justify-content: center;
         gap: 3px;
     .checkout-heading{
-        // height: 24px;
         p{
             font-size: 0.9rem;
             color: #858685;

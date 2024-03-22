@@ -14,7 +14,7 @@ import { useState } from "react";
 
 export default function Filters() {
   const dispatch = useDispatch();
-  const [toggleFilters,setToggleFilters]=useState(false)
+  const [toggleFilters, setToggleFilters] = useState(false);
   const bedTypeVisible = useSelector(
     (state: RootState) => state.filterRoom.bedType
   );
@@ -36,8 +36,7 @@ export default function Filters() {
   const handleToggleRoomType = (roomType: string) => {
     dispatch(toggleRoomType(roomType));
   };
-  function handleToggleFilter()
-  {
+  function handleToggleFilter() {
     setToggleFilters(!toggleFilters);
   }
   return (
@@ -45,7 +44,7 @@ export default function Filters() {
       <div className="filter-container">
         <div className="filter-heading">
           <h2 className="filter-heading-text">Narrow your results</h2>
-          <div className="arrow toggleDisplay"onClick={handleToggleFilter}>
+          <div className="arrow toggleDisplay" onClick={handleToggleFilter}>
             <img
               src={downArrow}
               alt=""
@@ -125,90 +124,24 @@ export default function Filters() {
           )}
         </div>
 
-
-       
-        {/* <div className="each-filter-copy">
-          <div className="filter-name" onClick={handleToggleBedTypeVisibility}>
-            <h3 className="filter-content">Bed type</h3>
-            <div className="arrow">
-              <img
-                src={downArrow}
-                alt=""
-                style={{ display: bedTypeVisible ? "none" : "block" }}
-              />
-              <img
-                src={upArrow}
-                alt=""
-                style={{ display: bedTypeVisible ? "block" : "none" }}
-              />
-            </div>
-          </div>
-          {bedTypeVisible && (
-            <div className="filter-type">
-              <div className="filter-options">
-                <input
-                  type="checkbox"
-                  onChange={() => handleToggleBedType("Single bed")}
-                />
-                <p className="filter-text">Single bed</p>
-              </div>
-              <div className="filter-options">
-                <input
-                  type="checkbox"
-                  onChange={() => handleToggleBedType("Double bed")}
-                />
-                <p className="filter-text">Double bed</p>
-              </div>
-            </div>
-          )}
-        </div>
-        <div className="each-filter-copy">
-          <div className="filter-name" onClick={handleToggleRoomTypeVisibility}>
-            <h3 className="filter-content">Room type</h3>
-            <div className="arrow">
-              <img
-                src={downArrow}
-                alt=""
-                style={{ display: roomTypeVisible ? "none" : "block" }}
-              />
-              <img
-                src={upArrow}
-                alt=""
-                style={{ display: roomTypeVisible ? "block" : "none" }}
-              />
-            </div>
-          </div>
-          {roomTypeVisible && (
-            <div className="filter-type">
-              {roomTypeNames.map((roomType, index) => (
-                <div
-                  className="filter-options"
-                  key={index}
-                  onClick={() => handleToggleRoomType(roomType)}
-                >
-                  <input type="checkbox" />
-                  <p className="filter-text">{roomType}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div> */}
-
-{toggleFilters && (
+        {toggleFilters && (
           <>
             <div className="each-filter-copy">
-              <div className="filter-name" onClick={handleToggleBedTypeVisibility}>
+              <div
+                className="filter-name"
+                onClick={handleToggleBedTypeVisibility}
+              >
                 <h3 className="filter-content">Bed type</h3>
                 <div className="arrow">
                   <img
                     src={downArrow}
                     alt=""
-                    style={{ display: bedTypeVisible ? 'none' : 'block' }}
+                    style={{ display: bedTypeVisible ? "none" : "block" }}
                   />
                   <img
                     src={upArrow}
                     alt=""
-                    style={{ display: bedTypeVisible ? 'block' : 'none' }}
+                    style={{ display: bedTypeVisible ? "block" : "none" }}
                   />
                 </div>
               </div>
@@ -217,14 +150,14 @@ export default function Filters() {
                   <div className="filter-options">
                     <input
                       type="checkbox"
-                      onChange={() => handleToggleBedType('Single bed')}
+                      onChange={() => handleToggleBedType("Single bed")}
                     />
                     <p className="filter-text">Single bed</p>
                   </div>
                   <div className="filter-options">
                     <input
                       type="checkbox"
-                      onChange={() => handleToggleBedType('Double bed')}
+                      onChange={() => handleToggleBedType("Double bed")}
                     />
                     <p className="filter-text">Double bed</p>
                   </div>
@@ -232,18 +165,21 @@ export default function Filters() {
               )}
             </div>
             <div className="each-filter-copy">
-              <div className="filter-name" onClick={handleToggleRoomTypeVisibility}>
+              <div
+                className="filter-name"
+                onClick={handleToggleRoomTypeVisibility}
+              >
                 <h3 className="filter-content">Room type</h3>
                 <div className="arrow">
                   <img
                     src={downArrow}
                     alt=""
-                    style={{ display: roomTypeVisible ? 'none' : 'block' }}
+                    style={{ display: roomTypeVisible ? "none" : "block" }}
                   />
                   <img
                     src={upArrow}
                     alt=""
-                    style={{ display: roomTypeVisible ? 'block' : 'none' }}
+                    style={{ display: roomTypeVisible ? "block" : "none" }}
                   />
                 </div>
               </div>

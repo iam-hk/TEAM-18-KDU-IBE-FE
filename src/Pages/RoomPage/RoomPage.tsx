@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./RoomPage.scss";
-import { RootState } from "../../redux/Store";
+import { AppDispatch, RootState } from "../../redux/Store";
 import { StepperUI } from "../../Component/RoomSearchPage/ReactStepper/StepperUI";
 import Guests from "../../Component/RoomSearchPage/Guests/RoomGuests";
 import RoomPageRoom from "../../Component/RoomSearchPage/Rooms/RoomSelectedRoom";
@@ -9,12 +9,58 @@ import { RoomCalendar } from "../../Component/RoomSearchPage/RoomCalendar/RoomCa
 import wheelchair from "../../assets/disabled.png";
 import Filters from "../../Component/RoomSearchPage/Filters/Filters";
 import { RoomCard } from "../../Component/RoomSearchPage/RoomCard/RoomCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { updateGuestDispInfo } from "../../redux/PropertyConfigSlice";
 import PriceFilterSelect from "../../Component/RoomSearchPage/PriceFilterSelect/PriceFilterSelect";
+import {
+  updateRooms,
+  updateStartDate,
+  updateEndDate,
+  updateSelectedProperty,
+} from "../../redux/SearchRoomSlice";
+import { assignGuests } from "../../redux/PropertyConfigSlice";
 export function RoomPage() {
   const bannerImage = useSelector(
     (state: RootState) => state.tenantInfo.bannerImage
   );
+  const guests = useSelector(
+    (state: RootState) => state.propertyConfigInfo.guests
+  );
+  const guestCounts = useSelector(
+    (state: RootState) => state.propertyConfigInfo.guestCounts
+  );
+  const reduxDispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    reduxDispatch(updateGuestDispInfo());
+  }, [guestCounts]);
+  useEffect(() => {
+    const url = window.location.href;
+    const params = new URL(url).searchParams;
+    const id = params.get("id");
+    const guestCount = params.get("guestCount");
+    const roomCount = params.get("roomCount");
+    const startDate = params.get("startDate");
+    const endDate = params.get("endDate");
+    const countOfGuests: number[] = [];
+    guests.forEach((guest, index) => {
+      console.log(guest);
+      const typeInURL = params.get(guest.type);
+      // console.log(typeInURL, "hello");
+      if (typeInURL !== null) {
+        const count = parseInt(typeInURL);
+        console.log(count, "countttt");
+        if (!isNaN(count)) {
+          countOfGuests[index] = count;
+        }
+      }
+    });
+    const bedCount = params.get("bedCount");
+    console.log(countOfGuests, "countofguest");
+    reduxDispatch(assignGuests(countOfGuests));
+    reduxDispatch(updateRooms(parseInt(roomCount)));
+    reduxDispatch(updateStartDate(startDate));
+    reduxDispatch(updateEndDate(endDate));
+  }, []);
   return (
     <div className="room-page">
       <div

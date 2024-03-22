@@ -105,7 +105,7 @@ export function DateCalender() {
         return maxEndDate;
     }
 };
-
+  
   const handleStartDateChange = (startDate) => {
     let maxDate = null;
     if (startDate.getTime() === dateRange[0].endDate.getTime()) {
