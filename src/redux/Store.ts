@@ -4,6 +4,8 @@ import { SearchRoomReducer } from "./SearchRoomSlice";
 import { TenantReducer } from "./TenantConfigSlice";
 import { PropertyNameReducer } from "./PropertyNameSlice";
 import { PropertyConfigReducer } from "./PropertyConfigSlice";
+import { StepperReducer } from "./StepperSlice";
+import { FilterRoomReducer } from "./FilterRoomSlice";
 export const store = configureStore({
   reducer: {
     currencyRate: CurrencyReducer,
@@ -11,6 +13,8 @@ export const store = configureStore({
     tenantInfo: TenantReducer,
     propertyNameInfo: PropertyNameReducer,
     propertyConfigInfo: PropertyConfigReducer,
+    stepper:StepperReducer,
+    filterRoom:FilterRoomReducer
   },
 });
 

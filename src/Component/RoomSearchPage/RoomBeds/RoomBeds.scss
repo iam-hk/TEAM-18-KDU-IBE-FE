@@ -1,0 +1,42 @@
+.room-page-selected-beds{
+    width: 11%;
+    .css-1lxtzcg-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+        height: 70px !important;
+        width: 100%;
+    }
+    .MuiSelect-select .MuiSelect-outlined .MuiInputBase-input .MuiOutlinedInput-input .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+        height: 100%;
+        
+    }
+}
+.beds-heading{
+    font-size: 0.8rem !important;
+}
+.beds-selected{
+    font-size: 1rem !important;
+}
+
+@media (max-width:900px)
+{
+    .beds-selected{
+        font-size: 0.8rem !important;
+    }
+}
+@media(max-width:750px)
+{
+    .beds-heading{
+        font-size: 0.9rem !important;
+    }
+    .beds-selected{
+        font-size: 1rem !important;
+    }
+    .room-page-selected-beds{
+        width: 100%;
+        // margin-top: -3px;
+        .css-1lxtzcg-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+            height: 55px !important;
+            width: 100%;
+        }
+    }
+    
+}

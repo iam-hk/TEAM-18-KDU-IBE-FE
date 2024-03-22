@@ -1,0 +1,80 @@
+@import "../../../Constants/Colors.scss";
+.stepper-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:$light-grey;
+}
+
+.stepper {
+    padding: 10px 0px;
+    width: 50%;
+}
+.MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+    font-size: 1.0rem ;
+    font-weight: 500;
+    margin-top: 5px;
+}
+.MuiStepLabel-label.Mui-disabled.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+    font-size: 1.0rem;
+    font-weight: 500;
+    margin-top: 5px;
+}
+.MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+    font-size: 1.0rem;
+    font-weight: 500;
+    margin-top: 5px;
+}
+.active-label {
+    color: #26266d;
+    font-weight: 600;
+    
+}
+@media(max-width:980px)
+{
+    .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+        font-size: 0.7rem ;
+    }
+    .MuiStepLabel-label.Mui-disabled.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+        font-size: 0.7rem;
+    }
+    .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+        font-size: 0.7rem;
+    }
+}
+@media(max-width:850px)
+{
+    .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+        font-size: 0.7rem ;
+    }
+    .MuiStepLabel-label.Mui-disabled.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+        font-size: 0.7rem;
+    }
+    .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+        font-size: 0.7rem;
+    }
+}
+@media(max-width:610px)
+{
+  
+    .css-ascpo7-MuiStepLabel-root.MuiStepLabel-alternativeLabel{
+        width: 90px;
+    }
+    .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+        font-size: 0.7rem ;
+    }
+    .MuiStepLabel-label.Mui-disabled.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+        font-size: 0.7rem;
+    }
+    .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
+        font-size: 0.6rem;
+    }
+}
+@media(max-width:500px)
+{
+    .stepper-container{
+        justify-content: start;
+        padding-left: 15vw;
+    }
+}

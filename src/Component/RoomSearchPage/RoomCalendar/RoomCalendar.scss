@@ -1,0 +1,182 @@
+.date-component{
+    width: 40%;
+    border: 1px solid #afafaf;
+    border-radius: 4px;
+    display: flex;
+    height: 68px;
+    margin-top: 3px;
+    align-items: center;
+}
+.date-checkin{
+    width: 40%;
+    padding: 10px 10px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0px;
+    
+    .checkin-heading{
+        p{
+            font-size: 0.9rem;
+            color: #858685;
+        }
+        
+    }
+    .checkin-date{
+        p{
+            font-size: 1.1rem;
+        }
+    }
+}
+.border-line{
+    height: 80%;
+    width: 1px;
+    background-color: #333232;
+}
+.date-checkout{
+    width: 60%;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    
+    .img
+    {
+        display: flex;
+        align-items: center;
+        img{
+            height: 30px;
+            width: 30px;
+        }
+    }
+    .checkout-details{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 3px;
+    .checkout-heading{
+        // height: 24px;
+        p{
+            font-size: 0.9rem;
+            color: #858685;
+        }
+    }
+    .checkout-date{
+        p{
+            font-size: 1.1rem;
+        }
+    }
+    }
+}
+@media(max-width:1250px)
+{
+    .date-checkin{
+        padding: 10px 7px;
+        .checkin-heading{
+            p{
+                font-size: 0.8rem;
+            } 
+        }
+        .checkin-date{
+            p{
+                font-size: 1rem;
+            }
+        }
+    }
+    .date-checkout{
+        padding: 10px 10px;
+        .img
+        {
+            img{
+                height: 20px;
+                width: 20px;
+            }
+        }
+        .checkout-details{
+        .checkout-heading{
+            p{
+                font-size: 0.8rem;
+            }
+        }
+        .checkout-date{
+            p{
+                font-size: 1.0rem;
+            }
+        }
+        }
+    }
+}
+@media(max-width:1000px)
+{
+    .date-checkin{
+        padding: 10px 3px;
+        .checkin-heading{
+            p{
+                font-size: 0.8rem;
+                
+            } 
+        }
+        .checkin-date{
+            p{
+                font-size: 0.8rem;
+            }
+        }
+    }
+    .date-checkout{
+        padding: 10px 7px;
+        .img
+        {
+            img{
+                height: 20px;
+                width: 20px;
+            }
+        }
+        .checkout-details{
+        .checkout-heading{
+            p{
+                font-size: 0.8rem;
+            }
+        }
+        .checkout-date{
+            p{
+                font-size: 0.8rem;
+            }
+        }
+        }
+    }
+}
+@media(max-width:750px)
+{
+    .date-component{
+        width: 100%;
+        height: 55px;
+        margin: 0;
+    }
+    .date-checkin{
+        padding: 10px 3px;
+        .checkin-heading{
+            p{
+                font-size: 0.9rem;
+                
+            } 
+        }
+        .checkin-date{
+            p{
+                font-size: 0.9rem;
+            }
+        }
+    }
+    .date-checkout{
+        .checkout-details{
+        .checkout-heading{
+            p{
+                font-size: 0.9rem;
+            }
+        }
+        .checkout-date{
+            p{
+                font-size: 0.9rem;
+            }
+        }
+        }
+    }
+}

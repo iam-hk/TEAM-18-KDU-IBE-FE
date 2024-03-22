@@ -1,0 +1,32 @@
+.custom-select {
+    position: relative;
+    width: 100px;
+    
+  }
+  
+  .selected-option {
+    display: flex;
+    gap: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .options {
+    position: absolute;
+    z-index:99;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+  }
+  
+  .option {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .option:hover {
+    background-color: #f0f0f0;
+  }
+  

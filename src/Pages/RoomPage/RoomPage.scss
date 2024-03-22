@@ -1,0 +1,200 @@
+.room-page {
+  min-height: 80%;
+  width: 100%;
+  overflow-x: hidden;
+}
+.bg-image {
+  height: 140px;
+  width: 100%;
+  // background-image: var(--banner-image);
+  background-image: url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D");
+  background-position: calc(65% + 0px) calc(65% + 20px);
+  background-size: cover;
+}
+.select-form {
+  display: flex;
+  padding: 1vw 4vw;
+  justify-content: space-between;
+  align-items: center;
+}
+.disabled-person {
+  width: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  input {
+    height: 25px;
+    width: 25px;
+  }
+  .disabled-image {
+    img {
+      height: 30px;
+      width: 30px;
+    }
+  }
+}
+.text {
+  display: none;
+}
+.search-submit-button {
+  width: 10%;
+  margin-top: 3px;
+  .search-submit {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 68px;
+    border-radius: 4px;
+    background-color: #26266d;
+    color: #ffffff;
+  }
+}
+.display-content {
+  display: flex;
+  padding: 1vw 4vw;
+  justify-content: space-between;
+  width: 100%;
+}
+.left-display-content {
+  width: 20%;
+}
+.border{
+    height: 30px;
+    width: 1px;
+    background-color: #c1c2c2;
+    border: none;
+}
+.right-display-content {
+  width: 76%;
+  .right-top-heading {
+    display: flex;
+    // background-color: red;
+    padding: 10px 10px;
+    justify-content: space-between;
+    .top-left-heading {
+        display: flex;
+        align-items: center;
+      .room-results {
+        font-size: 1.2rem;
+      }
+    }
+    .top-right-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      h3 {
+        font-size: 1.2rem;
+      }
+      select {
+        margin-top: -7px;
+        font-size: 1rem;
+        outline: none;
+        border: none;
+        background-color: #fff;
+        cursor: pointer;
+        option {
+          font-size: 1rem;
+        }
+      }
+      
+    }
+  }
+  .all-cards-display {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 1230px) {
+  .disabled-person {
+    input {
+      height: 15px;
+      width: 15px;
+    }
+    .disabled-image {
+      img {
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+  .search-submit-button {
+    .search-submit {
+      font-size: 0.7rem;
+    }
+  }
+}
+@media (max-width: 900px) {
+  .select-form {
+    padding: 1vw 4vw;
+  }
+}
+@media (max-width: 750px) {
+    .left-display-content {
+        width: 100%;
+      }
+  .select-form {
+    flex-direction: column;
+    gap: 3px;
+    padding: 0px 4vw;
+  }
+  .text {
+    display: block;
+  }
+  .disabled-person {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    margin-left: 50px;
+    padding: 10px 0px;
+  }
+  .search-submit-button {
+    width: 50%;
+    .search-submit {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  }
+  .display-content{
+    display: flex;
+    flex-direction: column;
+  }
+  .right-display-content{
+    width: 100%;
+  }
+   .right-top-heading{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .top-left-heading{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0px;
+      .room-results{
+        font-size: 1.4rem !important;
+      }
+    }
+    .top-right-heading{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+   }
+   .all-cards-display{
+    // display: flex;
+    // justify-content: center;
+    width: 100%;
+    
+    .room-display{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      .individual-roomCard{
+        width: 70%;
+        // background-color: red;
+      }
+    }
+   }
+}
+
