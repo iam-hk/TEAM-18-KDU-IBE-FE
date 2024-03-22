@@ -7,9 +7,9 @@
   padding: 30px 40px 20px 70px;
   justify-content: space-between;
   align-items: center;
-  position:relative;
-  // top: 0;
-  z-index: 1;
+  position:sticky;
+  top: 0; 
+  z-index: 2;
 }
 .headings {
   display: flex;
@@ -21,9 +21,6 @@
     font-weight: 600;
     cursor: pointer;
   }
-  // h4 {
-  //   font-size: 1.3rem;
-  // }
   .main-heading {
     color: $dark-blue-color;
     

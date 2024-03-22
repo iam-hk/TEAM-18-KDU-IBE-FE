@@ -16,7 +16,7 @@ import {
   updateRooms,
   updateStartDate,
   updateEndDate,
-  updateSelectedProperty,
+  updateBeds,
 } from "../../redux/SearchRoomSlice";
 import { assignGuests } from "../../redux/PropertyConfigSlice";
 export function RoomPage() {
@@ -43,9 +43,7 @@ export function RoomPage() {
     const endDate = params.get("endDate");
     const countOfGuests: number[] = [];
     guests.forEach((guest, index) => {
-      console.log(guest);
       const typeInURL = params.get(guest.type);
-      // console.log(typeInURL, "hello");
       if (typeInURL !== null) {
         const count = parseInt(typeInURL);
         console.log(count, "countttt");
@@ -55,7 +53,7 @@ export function RoomPage() {
       }
     });
     const bedCount = params.get("bedCount");
-    console.log(countOfGuests, "countofguest");
+    reduxDispatch(updateBeds(bedCount));
     reduxDispatch(assignGuests(countOfGuests));
     reduxDispatch(updateRooms(parseInt(roomCount)));
     reduxDispatch(updateStartDate(startDate));

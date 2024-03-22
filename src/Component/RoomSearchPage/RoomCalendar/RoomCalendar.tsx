@@ -22,9 +22,6 @@ export function RoomCalendar() {
   const maxDays = useSelector(
     (state: RootState) => state.tenantInfo.maximumDays
   );
-//   const guestCount: number[] = useSelector(
-//     (state: RootState) => state.propertyConfigInfo.guestCounts
-//   );
   const currentSelectedCurrency: keyof CurrencyExchangeRates = useSelector(
     (state: RootState) =>
       state.currencyRate.currentSelectedCurrency as keyof CurrencyExchangeRates
@@ -35,6 +32,12 @@ export function RoomCalendar() {
   const widthMonth = useMediaQuery("(max-width:860px)");
   const [prices, setPrices] = useState({});
   const maximumLengthOfStay = maxDays - 1;
+  const startingDate = useSelector(
+    (state: RootState) => state.searchRoomInfo.startDate
+  );
+  const endingDate = useSelector(
+    (state: RootState) => state.searchRoomInfo.endDate
+  );
   useEffect(() => {
     const url = import.meta.env.VITE_REACT_APP_MINIMUM_ROOM_RATES;
     fetch(url)
@@ -120,7 +123,7 @@ export function RoomCalendar() {
   };
 
   const toggleVisibility = () => {
-     setIsVisible(!isVisible);
+    setIsVisible(!isVisible);
   };
   function findMinimumPrice(prices: number) {
     const validPrices = Object.values(prices).filter(
@@ -155,95 +158,101 @@ export function RoomCalendar() {
           <div className="checkin_heading-information">Check in between</div>
         </div>
         <div className="checkin-date">
-          <div className="checkin_date_information">Any Date</div>
+          <div className="checkin_date_information">{startingDate}</div>
         </div>
       </div>
       <div className="border-line"></div>
       <div className="date-checkout">
         <div className="checkout-details">
           <div className="checkout-heading">
-            <div className="checkout_heading-information">Check out between</div>
+            <div className="checkout_heading-information">
+              Check out between
+            </div>
           </div>
           <div className="checkout-date">
-            <div className="checkout_date_information">Any Date</div>
+            <div className="checkout_date_information">{endingDate}</div>
           </div>
         </div>
         <div className="img">
-          <button style={{border:"none",backgroundColor:"#fff"}}onClick={toggleVisibility} className="date-calender-icon">
+          <button
+            style={{ border: "none", backgroundColor: "#fff" }}
+            onClick={toggleVisibility}
+            className="date-calender-icon"
+          >
             <img src={calendar} alt="notfound" />
           </button>
         </div>
         {isVisible && (
-        <div className="date-range-picker-wrapper2">
-          <DateRangePicker
-            ranges={dateRange}
-            className="dateRangePicker"
-            onChange={handleDateChange}
-            minDate={generateMinDate()}
-            maxDate={getMaxEndDate()}
-            months={widthMonth ? 1 : 2}
-            direction="horizontal"
-            showSelectionPreview={false}
-            editableDateInputs={true}
-            onChangeStart={handleStartDateChange}
-            dayContentRenderer={(day) => {
-              const selectedDate = day.toISOString().split("T")[0];
-              const price = prices[selectedDate] || "";
+          <div className="date-range-picker-wrapper2">
+            <DateRangePicker
+              ranges={dateRange}
+              className="dateRangePicker"
+              onChange={handleDateChange}
+              minDate={generateMinDate()}
+              maxDate={getMaxEndDate()}
+              months={widthMonth ? 1 : 2}
+              direction="horizontal"
+              showSelectionPreview={false}
+              editableDateInputs={true}
+              onChangeStart={handleStartDateChange}
+              dayContentRenderer={(day) => {
+                const selectedDate = day.toISOString().split("T")[0];
+                const price = prices[selectedDate] || "";
 
-              return (
-                <div
-                  className="individual-date-container"
-                  style={{
-                    display: "block",
-                    position: "relative",
-                    left: "0.8rem",
-                    fontSize: "0.8rem",
-                  }}
-                >
-                  <p className="date-item">{day.getDate()}</p>
-                  <p
-                    className="price-item"
-                    style={price ? {opacity : '1'} : {opacity : '0'} }
+                return (
+                  <div
+                    className="individual-date-container"
+                    style={{
+                      display: "block",
+                      position: "relative",
+                      left: "0.8rem",
+                      fontSize: "0.8rem",
+                    }}
                   >
+                    <p className="date-item">{day.getDate()}</p>
+                    <p
+                      className="price-item"
+                      style={price ? { opacity: "1" } : { opacity: "0" }}
+                    >
+                      {(CurrencySymbols as any)[currentSelectedCurrency]}
+                      {updatePrice(price)}{" "}
+                    </p>
+                  </div>
+                );
+              }}
+            />
+            <div className="date-picker-footer-container">
+              <div className="extraInformation-and-applyButton">
+                {dateRange[0].startDate.getTime() !==
+                  dateRange[0].endDate.getTime() && (
+                  <p className="nightly-rate-summary">
+                    {t("search.from")}{" "}
                     {(CurrencySymbols as any)[currentSelectedCurrency]}
-                    {updatePrice(price)}{" "}
+                    {findMinimumPrice(prices)} {t("search.perNight")}
                   </p>
-                </div>
-              );
-            }}
-          />
-          <div className="date-picker-footer-container">
-            <div className="extraInformation-and-applyButton">
-              {dateRange[0].startDate.getTime() !==
-                dateRange[0].endDate.getTime() && (
-                <p className="nightly-rate-summary">
-                  {t("search.from")}{" "}
-                  {(CurrencySymbols as any)[currentSelectedCurrency]}
-                  {findMinimumPrice(prices)} {t("search.perNight")}
-                </p>
-              )}
-              <button
-                className={`apply-btn ${!dateInitial && "disabled"}`}
-                onClick={toggleVisibility}
-                disabled={!dateInitial}
-              >
-                {t("search.applyDates")}
-              </button>
+                )}
+                <button
+                  className={`apply-btn ${!dateInitial && "disabled"}`}
+                  onClick={toggleVisibility}
+                  disabled={!dateInitial}
+                >
+                  {t("search.applyDates")}
+                </button>
+              </div>
+              {dateRange[0].endDate.getTime() ===
+              dateRange[0].startDate.getTime() ? (
+                <>
+                  <p className="date-footer-limitStay">
+                    {t("search.endDateMessage")}
+                  </p>
+                  <p className="date-footer-limitStay">
+                    {t("search.maxLength")} {maxDays}
+                  </p>
+                </>
+              ) : null}
             </div>
-            {dateRange[0].endDate.getTime() ===
-            dateRange[0].startDate.getTime() ? (
-              <>
-                <p className="date-footer-limitStay">
-                  {t("search.endDateMessage")}
-                </p>
-                <p className="date-footer-limitStay">
-                  {t("search.maxLength")} {maxDays}
-                </p>
-              </>
-            ) : null}
           </div>
-        </div>
-      )}
+        )}
       </div>
     </div>
   );
