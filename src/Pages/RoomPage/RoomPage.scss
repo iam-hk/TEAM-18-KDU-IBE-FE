@@ -6,8 +6,8 @@
 .bg-image {
   height: 140px;
   width: 100%;
-  // background-image: var(--banner-image);
-  background-image: url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D");
+  background-image: var(--banner-image);
+  // background-image: url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D");
   background-position: calc(65% + 0px) calc(65% + 20px);
   background-size: cover;
 }

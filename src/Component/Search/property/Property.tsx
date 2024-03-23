@@ -14,14 +14,14 @@ import "./Property.scss";
 import { updateSelectedProperty } from "../../../redux/SearchRoomSlice";
 export function Property() {
 
-  const [property, setProperty] = useState("");
+  // const [property, setProperty] = useState("");
   const propertyList = useSelector(
     (state: RootState) => state.propertyNameInfo.propertyList
   );
+  const property=useSelector((state:RootState)=>state.searchRoomInfo.selectedProperty);
   const reduxDispatch: AppDispatch = useDispatch();
   const handlePropertyChange = (event: SelectChangeEvent) => {
     const selectedPropertyValue :string = event.target.value;
-    setProperty(selectedPropertyValue);
     reduxDispatch(updateSelectedProperty(selectedPropertyValue));
     reduxDispatch(getPropertyConfig());
   };

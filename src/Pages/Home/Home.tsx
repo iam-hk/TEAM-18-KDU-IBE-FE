@@ -5,15 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTenantConfig } from "../../redux/thunk/GetTenantConfig";
 import { SearchForm } from "../../Component/Search/searchForm/SearchForm";
 import CircularProgress from "@mui/material/CircularProgress";
-export function Home() {
+interface HomeProps {
+  loader: boolean;
+}
+export function Home({ loader }: HomeProps) {
   const bannerImage = useSelector(
     (state: RootState) => state.tenantInfo.bannerImage
   );
-  const [loader, setLoader] = useState(true);
+  // const [loader, setLoader] = useState(true);
   const reduxDispatch: AppDispatch = useDispatch();
-  useEffect(() => {
-    reduxDispatch(getTenantConfig()).then(() => setLoader(false));
-  }, []);
+  // useEffect(() => {
+  //   reduxDispatch(getTenantConfig()).then(() => setLoader(false));
+  // }, []);
   return (
     <div
       className="home"

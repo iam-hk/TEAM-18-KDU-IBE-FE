@@ -1,4 +1,4 @@
-import {createSlice } from "@reduxjs/toolkit";
+import {PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface IFilterRoom {
     bedType: boolean,
     roomType: boolean,
@@ -21,6 +21,12 @@ const FilterRoomSlice = createSlice({
     },
     toggleRoomTypeVisibility: (state) => {
       state.roomType = !state.roomType;
+    },
+    setBedTypeVisibility: (state,action:PayloadAction<boolean>) => {
+      state.bedType = action.payload;
+    },
+    setRoomTypeVisibility: (state,action:PayloadAction<boolean>) => {
+      state.roomType = action.payload;
     },
     toggleBedType: (state, action) => {
       const option = action.payload;
@@ -46,6 +52,8 @@ export const {
     toggleBedTypeVisibility,
     toggleRoomTypeVisibility,
     toggleBedType,
-    toggleRoomType
+    toggleRoomType,
+    setRoomTypeVisibility,
+    setBedTypeVisibility
   } = FilterRoomSlice.actions;
 export const FilterRoomReducer = FilterRoomSlice.reducer;

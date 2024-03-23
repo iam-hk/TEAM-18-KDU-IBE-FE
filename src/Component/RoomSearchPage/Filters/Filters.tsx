@@ -4,6 +4,8 @@ import {
   toggleRoomTypeVisibility,
   toggleBedType,
   toggleRoomType,
+  setBedTypeVisibility,
+  setRoomTypeVisibility,
 } from "../../../redux/FilterRoomSlice";
 import downArrow from "../../../assets/down-arrow.png";
 import upArrow from "../../../assets/up-arrow.png";
@@ -37,6 +39,10 @@ export default function Filters() {
     dispatch(toggleRoomType(roomType));
   };
   function handleToggleFilter() {
+    if (toggleFilters === true) {
+      dispatch(setBedTypeVisibility(false));
+      dispatch(setRoomTypeVisibility(false));
+    }
     setToggleFilters(!toggleFilters);
   }
   return (
