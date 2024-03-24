@@ -1,37 +1,52 @@
 import "./RoomCard.scss";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import {
+  PropertyInformation,
+  RoomCardIndividual,
+} from "../../../types/RoomCardResponse";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/Store";
+import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
+import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
+interface RoomCardProp {
+  property: PropertyInformation;
+  currentRoom: RoomCardIndividual;
+}
+export function RoomCard(props: RoomCardProp) {
+  const currentSelectedCurrency = useSelector(
+    (state: RootState) => state.currencyRate.currentSelectedCurrency
+  ) as keyof CurrencyExchangeRates;
 
-export function RoomCard() {
+  const currentPrice = useSelector(
+    (state: RootState) => state.currencyRate.currentPrice
+  );
+
+  function updatePrice(price: number) {
+    return price * currentPrice[currentSelectedCurrency].toFixed(1);
+  }
   return (
     <div className="room-display">
       <div className="individual-roomCard">
         <div className="imageOfRoomTypeContainer">
           <Carousel autoPlay infiniteLoop>
-            <div>
-              <img
-                className="imageOfRoomType"
-                src="https://images.unsplash.com/photo-1710764275022-ede939a1f5e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              ></img>
-              </div>
-              <div>
-              <img
-                className="imageOfRoomType"
-                src="https://images.unsplash.com/photo-1710764275022-ede939a1f5e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              ></img>
-              </div>
-              <div>
-              <img
-                className="imageOfRoomType"
-                src="https://images.unsplash.com/photo-1710764275022-ede939a1f5e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              ></img>
-              </div>
+            {props.currentRoom.arrayOfImages.map((imageUrl) => {
+              return (
+                <div key={imageUrl}>
+                  <img
+                    className="imageOfRoomType"
+                    src={imageUrl}
+                    alt="room photo"
+                  />
+                </div>
+              );
+            })}
           </Carousel>
         </div>
         <div className="informationOfRoomType">
           <div className="propertyAndReviewContainer">
             <div className="propertyNameContainer">
-              Long beautiful Resort Name
+              {props.currentRoom.roomTypeName}
             </div>
             <div className="reviewAndRatingContainer">
               <div className="newProperty">New Property</div>
@@ -57,11 +72,15 @@ export function RoomCard() {
                   />
                 </svg>
               </span>
-              <span className="location_content">here</span>
+              <span className="location_content">
+                {props.property.propertyAddress}
+              </span>
             </div>
             <div className="roomCategoryAndSizeContainer">
               <div className="category_container">Inclusive</div>
-              <div className="roomSizeContainer">301 ft</div>
+              <div className="roomSizeContainer">
+                {props.currentRoom.areaInSquareFeet} ft
+              </div>
             </div>
             <div className="maximumNumberOfGuestsContainer">
               <svg
@@ -75,10 +94,12 @@ export function RoomCard() {
                   fill="#858685"
                 />
               </svg>
-              <span className="numberOfGuests_content">1-2</span>
+              <span className="numberOfGuests_content">
+                {props.currentRoom.maxCapacity}
+              </span>
             </div>
             <div className="bedInformation">
-              <span>
+              <span className="bedIconSpan">
                 <svg
                   className="bedIcon"
                   viewBox="0 0 16 16"
@@ -91,11 +112,18 @@ export function RoomCard() {
                   />
                 </svg>
               </span>
-              <span className="bed_content">Queen or 2 doubles</span>
+              <span className="bed_content">
+                {props.currentRoom.singleBed != 0
+                  ? `King - ${props.currentRoom.singleBed} `
+                  : ""}
+                {props.currentRoom.doubleBed != 0
+                  ? `Queen - ${props.currentRoom.doubleBed}`
+                  : ""}
+              </span>
             </div>
           </div>
         </div>
-        <div className="promotionOfRoomType">
+        {/* <div className="promotionOfRoomType">
           <div className="BannerOfSpecialDeal">
             <div className="banner_title_of_promotion">Special Deal</div>
             <svg
@@ -114,9 +142,12 @@ export function RoomCard() {
           <div className="descriptionOfSpecialDeal">
             Lorem ipsum dolor sit amet.
           </div>
-        </div>
+        </div> */}
         <div className="price_containerOfRoomType">
-          <div className="minimumPriceOfRoomType">132</div>
+          <div className="minimumPriceOfRoomType">
+            {(CurrencySymbols as any)[currentSelectedCurrency]}
+            {updatePrice(props.currentRoom.price)}
+          </div>
           <div className="priceLabelContainer">per night</div>
           <button className="selectRoom-btn">SELECT ROOM</button>
         </div>

@@ -4,13 +4,13 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { useMediaQuery } from "usehooks-ts";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/Store";
+import { AppDispatch, RootState } from "../../../redux/Store";
 import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
 import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
 import { useTranslation } from "react-i18next";
 import calendar from "../../../assets/calendar.svg";
 import "./DateCalendar.scss";
-import { updateEndDate, updateStartDate } from "../../../redux/SearchRoomSlice";
+import { updateEndDate, updateStartDate,setDateInitials } from "../../../redux/SearchRoomSlice";
 
 export function DateCalender() {
   const { t } = useTranslation();
@@ -40,6 +40,7 @@ export function DateCalender() {
   const endDateSlice = useSelector(
     (state: RootState) => state.searchRoomInfo.endDate
   );
+  const setInitials=useSelector((state:RootState)=>state.searchRoomInfo.dateInitial);
   const widthMonth = useMediaQuery("(max-width:750px)");
   const [prices, setPrices] = useState({});
   const maximumLengthOfStay = maxDays - 1;
@@ -62,7 +63,7 @@ export function DateCalender() {
       });
   }, []);
 
-  const [dateInitial, setDateInitial] = useState(false);
+  // const [dateInitial, setDateInitial] = useState(false);
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -71,7 +72,8 @@ export function DateCalender() {
   const handleDateChange = (ranges: {
     selection: { startDate: Date; endDate: Date; key: string };
   }) => {
-    setDateInitial(true);
+    // setDateInitial(true);
+    dispatch(setDateInitials(true));
     setDateRange([ranges.selection]);
 
     const newEndDate: Date = new Date(ranges.selection.endDate);
@@ -162,7 +164,7 @@ export function DateCalender() {
         <input
           type="text"
           value={
-            dateInitial == false
+            setInitials == false
               ? `    ${t("search.checkin")}    →   ${t("search.checkout")}`
               : `   ${startDateSlice}    →   ${endDateSlice}`
           }
@@ -223,9 +225,9 @@ export function DateCalender() {
                 </p>
               )}
               <button
-                className={`apply-btn ${!dateInitial && "disabled"}`}
+                className={`apply-btn ${!setInitials && "disabled"}`}
                 onClick={toggleVisibility}
-                disabled={!dateInitial}
+                disabled={!setInitials}
               >
                 {t("search.applyDates")}
               </button>

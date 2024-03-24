@@ -1,10 +1,10 @@
-import { PayloadAction, createSlice} from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface IStepperSlice {
   isFulfilled: boolean[];
   currentState: number;
 }
 const initialState: IStepperSlice = {
-  currentState: 1,
+  currentState: 0,
   isFulfilled: [false, false, false],
 };
 const StepperSlice = createSlice({

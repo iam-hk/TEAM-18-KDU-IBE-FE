@@ -34,7 +34,7 @@ const RoomSelectedRoom = () => {
         <Typography color={"#858685"}>
           <span className="rooms-heading">{t("search.rooms")}</span>
         </Typography>
-        <Typography fontWeight={700}>
+        <Typography>
           <span className="selected-room">{selectedRooms.toString()}</span>
         </Typography>
       </Box>

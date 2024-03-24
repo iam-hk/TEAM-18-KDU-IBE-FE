@@ -19,12 +19,14 @@
         .checkin_heading-information{
             font-size: 0.9rem;
             color: #858685;
+            font-weight: 500;
         }
         
     }
     .checkin-date{
         .checkin_date_information{
-            font-size: 1.1rem;
+            font-size: 1.0rem;
+            font-weight: 500;
         }
     }
 }
@@ -54,15 +56,16 @@
         justify-content: center;
         gap: 3px;
     .checkout-heading{
-        // height: 24px;
         .checkout_heading-information{
             font-size: 0.9rem;
+            font-weight: 500;
             color: #858685;
         }
     }
     .checkout-date{
         .checkout_date_information{
-            font-size: 1.1rem;
+            font-size: 1.0rem;
+            font-weight: 500;
         }
     }
     }

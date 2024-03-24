@@ -1,16 +1,21 @@
-import {PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface IFilterRoom {
-    bedType: boolean,
-    roomType: boolean,
-    bedTypeOptions: string[],
-    roomTypeOptions: string[],
-
+  bedType: boolean;
+  roomType: boolean;
+  bedTypeOptions: string[];
+  roomTypeOptions: string[];
+  selectedSortingParam: string;
+  pageNumber:number;
+  responseReceived:boolean
 }
 const initialState: IFilterRoom = {
-          bedType: false,
-          roomType: false,
-          bedTypeOptions: [],
-          roomTypeOptions: []
+  bedType: false,
+  roomType: false,
+  bedTypeOptions: [],
+  roomTypeOptions: [],
+  selectedSortingParam:"Select",
+  pageNumber:1,
+  responseReceived:false
 };
 const FilterRoomSlice = createSlice({
   name: "filterRoom",
@@ -22,10 +27,10 @@ const FilterRoomSlice = createSlice({
     toggleRoomTypeVisibility: (state) => {
       state.roomType = !state.roomType;
     },
-    setBedTypeVisibility: (state,action:PayloadAction<boolean>) => {
+    setBedTypeVisibility: (state, action: PayloadAction<boolean>) => {
       state.bedType = action.payload;
     },
-    setRoomTypeVisibility: (state,action:PayloadAction<boolean>) => {
+    setRoomTypeVisibility: (state, action: PayloadAction<boolean>) => {
       state.roomType = action.payload;
     },
     toggleBedType: (state, action) => {
@@ -45,15 +50,28 @@ const FilterRoomSlice = createSlice({
       } else {
         state.roomTypeOptions.splice(index, 1);
       }
+    },
+    changeSelectedSortingParam:(state,action:PayloadAction<string>)=>{
+      state.selectedSortingParam=action.payload;
+    },
+    changePageNumber:(state,action:PayloadAction<number>)=>
+    {
+        state.pageNumber=action.payload;
+    },
+    setResponseReceived:(state,action:PayloadAction<boolean>)=>{
+      state.responseReceived=action.payload;
     }
   },
 });
 export const {
-    toggleBedTypeVisibility,
-    toggleRoomTypeVisibility,
-    toggleBedType,
-    toggleRoomType,
-    setRoomTypeVisibility,
-    setBedTypeVisibility
-  } = FilterRoomSlice.actions;
+  toggleBedTypeVisibility,
+  toggleRoomTypeVisibility,
+  toggleBedType,
+  toggleRoomType,
+  setRoomTypeVisibility,
+  setBedTypeVisibility,
+  changeSelectedSortingParam,
+  changePageNumber,
+  setResponseReceived
+} = FilterRoomSlice.actions;
 export const FilterRoomReducer = FilterRoomSlice.reducer;

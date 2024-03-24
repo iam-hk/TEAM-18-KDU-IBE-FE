@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from "../../../redux/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBeds } from "../../../redux/SearchRoomSlice";
 const RoomBeds = () => {
-  const beds = [0, 1, 2, 3, 4, 5];
+  const beds = [1, 2, 3, 4, 5];
   const bedsSelected = useSelector(
     (state: RootState) => state.searchRoomInfo.beds
   );
@@ -17,7 +17,7 @@ const RoomBeds = () => {
         <Typography color={"#858685"}>
           <span className="beds-heading">{"Beds"}</span>
         </Typography>
-        <Typography fontWeight={700}>
+        <Typography>
           <span className="beds-selected">{bedsSelected}</span>
         </Typography>
       </Box>

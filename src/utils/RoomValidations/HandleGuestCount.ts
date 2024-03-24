@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/Store";
 import {
   NEED_MORE_ROOMS,
   NEED_MORE_ADULTS,
@@ -27,7 +25,6 @@ export function validateGuestCount(
   if (parsedGuestCount > parsedRoomCount * maxGuests) {
     return NEED_MORE_ROOMS;
   }
-  // const totalGuests = countOfGuests.reduce((total, count) => total + count, 0);
   const totalGuests = countOfGuests.reduce((total, count, index) => {
     console.log(`Guest count at index ${index}: ${count}`);
     return total + count;
