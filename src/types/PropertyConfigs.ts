@@ -21,3 +21,7 @@ export interface Sorting {
     variable:        string;
     order:           boolean;
 }
+
+export interface IDropDownSort{
+    sorts : Sorting[]
+}

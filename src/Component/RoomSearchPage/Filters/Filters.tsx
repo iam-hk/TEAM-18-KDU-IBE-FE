@@ -212,7 +212,7 @@
 // }
 
 import { useDispatch, useSelector } from "react-redux";
-import { toggleFilterOption,toggleFilterVisibility } from "../../../redux/PropertyConfigSlice";
+import { addFilters, removeFilters, toggleFilterOption,toggleFilterVisibility } from "../../../redux/PropertyConfigSlice";
 import downArrow from "../../../assets/down-arrow.png";
 import upArrow from "../../../assets/up-arrow.png";
 import "./Filters.scss";
@@ -223,7 +223,7 @@ import { useState } from "react";
 export default function Filters() {
   const reduxDispatch:AppDispatch = useDispatch();
   const isFilterVisible = useSelector((state: RootState) => state.propertyConfigInfo.isFilterVisible);
-  const selectedFilters = useSelector((state: RootState) => state.propertyConfigInfo.selectedFilters);
+  const appliedFilters = useSelector((state: RootState) => state.propertyConfigInfo.appliedFilters);
   const filters=useSelector((state:RootState)=>state.propertyConfigInfo.filters);
   const [toggleFilters, setToggleFilters] = useState(false);
   const handleToggleFilterVisibility = (index: number) => {
@@ -231,8 +231,13 @@ export default function Filters() {
   };
 
   const handleToggleFilterOption = (filterIndex: number, option: string) => {
-    reduxDispatch(toggleFilterOption({ filterIndex, option }));
+    if(appliedFilters.includes(option)){
+      reduxDispatch(removeFilters(option));
+    }else{
+      reduxDispatch(addFilters(option));
+    }
   };
+
   function handleToggleFilter() 
   {
     if (toggleFilters === true) 
@@ -240,6 +245,7 @@ export default function Filters() {
       setToggleFilters(!toggleFilters);
     }
   }
+
   return (
     <div className="filter-wrapper">
       <div className="filter-container">
@@ -282,7 +288,7 @@ export default function Filters() {
                   <input
                     type="checkbox"
                     onChange={() => handleToggleFilterOption(index, option)}
-                    checked={selectedFilters[index].includes(option)}
+                    checked={appliedFilters.includes(option)}
                   />
                   <p className="filter-text">{option}</p>
                 </div>

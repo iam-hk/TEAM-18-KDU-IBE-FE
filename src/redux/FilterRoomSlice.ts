@@ -5,6 +5,7 @@ interface IFilterRoom {
   bedTypeOptions: string[];
   roomTypeOptions: string[];
   selectedSortingParam: string;
+  selectedSortingOrder:boolean;
   pageNumber:number;
   responseReceived:boolean
 }
@@ -14,6 +15,7 @@ const initialState: IFilterRoom = {
   bedTypeOptions: [],
   roomTypeOptions: [],
   selectedSortingParam:"Select",
+  selectedSortingOrder:true,
   pageNumber:1,
   responseReceived:false
 };
@@ -60,6 +62,10 @@ const FilterRoomSlice = createSlice({
     },
     setResponseReceived:(state,action:PayloadAction<boolean>)=>{
       state.responseReceived=action.payload;
+    },
+    changeSortingTechnique:(state,action:PayloadAction<boolean>)=>{
+      state.selectedSortingOrder = action.payload;
+      console.log(state.selectedSortingParam + state.selectedSortingOrder)
     }
   },
 });
@@ -72,6 +78,7 @@ export const {
   setBedTypeVisibility,
   changeSelectedSortingParam,
   changePageNumber,
+  changeSortingTechnique,
   setResponseReceived
 } = FilterRoomSlice.actions;
 export const FilterRoomReducer = FilterRoomSlice.reducer;

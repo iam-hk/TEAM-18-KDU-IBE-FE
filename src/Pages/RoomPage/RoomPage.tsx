@@ -10,7 +10,7 @@ import wheelchair from "../../assets/disabled.png";
 import Filters from "../../Component/RoomSearchPage/Filters/Filters";
 import { RoomCard } from "../../Component/RoomSearchPage/RoomCard/RoomCard";
 import { useEffect, useState } from "react";
-import { updateGuestDispInfo } from "../../redux/PropertyConfigSlice";
+import { addFilters, updateGuestDispInfo } from "../../redux/PropertyConfigSlice";
 import PriceFilterSelect from "../../Component/RoomSearchPage/PriceFilterSelect/PriceFilterSelect";
 import {
   updateRooms,
@@ -29,6 +29,7 @@ import { RoomCardResponse } from "../../types/RoomCardResponse";
 import { useNavigate } from "react-router-dom";
 import {
   changeSelectedSortingParam,
+  changeSortingTechnique,
   setResponseReceived,
 } from "../../redux/FilterRoomSlice";
 import { changePageNumber } from "../../redux/FilterRoomSlice";
@@ -82,6 +83,13 @@ export function RoomPage() {
   const pageNumber = useSelector(
     (state: RootState) => state.filterRoom.pageNumber
   );
+  const sortingOptions = useSelector(
+    (state:RootState)=>state.propertyConfigInfo.sorting
+  )
+  const sortingTechnique = useSelector((state:RootState)=>state.filterRoom.selectedSortingOrder);
+
+  const appliedFilters = useSelector((state:RootState)=>state.propertyConfigInfo.appliedFilters);
+
   const [roomCardResponse, setRoomCardResponse] = useState<RoomCardResponse>();
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
@@ -138,6 +146,7 @@ export function RoomPage() {
       }
       const sortType = params.get("sortType");
       const sortTerm = params.get("sortTerm");
+      const filterContent = params.get("filterContent")?.split(",");
       const countOfGuests: number[] = [];
       guests.forEach((guest, index) => {
         const typeInURL = params.get(guest.type);
@@ -181,14 +190,18 @@ export function RoomPage() {
       );
       let redirectUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomCount}&startDate=${startDate}&endDate=${endDate}&bedCount=1`;
       if (sortType !== null && sortTerm !== null) {
-        let sortOptn = "Price";
-        if (sortType === "false") {
-          sortOptn += " High";
-        } else {
-          sortOptn += " Low";
-        }
-        reduxDispatch(changeSelectedSortingParam(sortOptn));
+        const technique = sortType == "true" ? true : false;
+        reduxDispatch(changeSelectedSortingParam(sortTerm));
+        reduxDispatch((changeSortingTechnique(technique)));
         redirectUrl += `&sortType=${sortType}&sortTerm=${sortTerm}`;
+      }
+      if(filterContent != null && filterContent.length > 0){
+        redirectUrl += `&filterContent=`; 
+        filterContent.forEach((filterWord)=>{
+          reduxDispatch(addFilters(filterWord));
+          redirectUrl += `${filterWord},`
+        });
+        
       }
       reduxDispatch(updateBeds(parseInt(bedCount)));
       reduxDispatch(assignGuests(countOfGuests));
@@ -210,20 +223,29 @@ export function RoomPage() {
         .join("&");
       let activeUrl = "";
       let backendUrl = "";
-      const sortType = selectedSortingParams === "Price Low" ? true : false;
+
       if (selectedSortingParams === "Select") {
         activeUrl = `/rooms?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&${guestTypeParams}&bedCount=${bedsSelected}`;
         backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}&page=${1}`;
       } else {
-        activeUrl = `/rooms?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&${guestTypeParams}&bedCount=${bedsSelected}&sortType=${sortType}&sortTerm=price`;
-        backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}&sortType=${sortType}&sortTerm=price&page=${1}`;
+        activeUrl = `/rooms?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&${guestTypeParams}&bedCount=${bedsSelected}&sortType=${sortingTechnique}&sortTerm=${selectedSortingParams}`;
+        backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}&sortType=${sortingTechnique}&sortTerm=${selectedSortingParams}&page=${1}`;
       }
+      if(appliedFilters.length != 0){
+        activeUrl+=`&filterContent=`;
+        backendUrl+=`&filterContent=`;
+        appliedFilters.forEach((filterWord)=>{
+          activeUrl+=`${filterWord},`;
+          backendUrl+=`${filterWord},`;
+        })
+      }
+
       reduxDispatch(changePageNumber(1));
       navigate(activeUrl);
       console.log(backendUrl);
       fetchRoomCards(backendUrl);
     }
-  }, [bedFilters, roomFilters, selectedSortingParams]);
+  }, [selectedSortingParams,sortingTechnique,appliedFilters]);
   function gotoBackPage() {
     if (pageNumber > 1) {
       reduxDispatch(changePageNumber(pageNumber - 1));
@@ -233,13 +255,13 @@ export function RoomPage() {
         0
       );
       let backendUrl = "";
-      const sortType = selectedSortingParams === "Price Low" ? true : false;
+      // const sortType = selectedSortingParams === "Price Low" ? true : false;
       if (selectedSortingParams === "Select") {
         backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}&page=${
           pageNumber - 1
         }`;
       } else {
-        backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}&sortType=${sortType}&sortTerm=price&page=${
+        backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}&sortType=${sortingTechnique}&sortTerm=${selectedSortingParams}&page=${
           pageNumber - 1
         }`;
       }
@@ -257,16 +279,23 @@ export function RoomPage() {
         0
       );
       let backendUrl = "";
-      const sortType = selectedSortingParams === "Price Low" ? true : false;
+     
       if (selectedSortingParams === "Select") {
         backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}&page=${
           pageNumber + 1
         }`;
       } else {
-        backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}&sortType=${sortType}&sortTerm=price&page=${
-          pageNumber + 1
-        }`;
+        backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}&sortType=${sortingTechnique}&sortTerm=${selectedSortingParams}`;
       }
+
+      if(appliedFilters.length != 0){
+        backendUrl+=`&filterContent=`;
+        appliedFilters.forEach((filterWord)=>{
+          backendUrl+=`${filterWord},`;
+        })
+      }
+      backendUrl += `&page=${pageNumber + 1}`;
+      
       fetchRoomCards(backendUrl);
     } else {
       console.log("errorrrr");
@@ -334,7 +363,7 @@ export function RoomPage() {
                   <img src={nextIcon} alt="" />
                 </button>
                 <div className="border"></div>
-                <PriceFilterSelect />
+                <PriceFilterSelect sorts={sortingOptions}/>
               </div>
             </div>
             {loader ? (

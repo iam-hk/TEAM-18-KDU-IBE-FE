@@ -20,7 +20,8 @@ interface IPropertyConfigSlice {
   sorting: Sorting[];
   filters: Filter[];
   isFilterVisible: boolean[];
-  selectedFilters: string[][];
+  selectedFilters: string[];
+  appliedFilters: string[]
 }
 const initialState: IPropertyConfigSlice = {
   guests: [],
@@ -41,6 +42,7 @@ const initialState: IPropertyConfigSlice = {
   filters: [],
   isFilterVisible: [],
   selectedFilters: [],
+  appliedFilters:[],
 };
 const PropertyConfigSlice = createSlice({
   name: "propertyConfigInfo",
@@ -90,6 +92,14 @@ const PropertyConfigSlice = createSlice({
         state.selectedFilters[filterIndex].splice(index, 1);
       }
     },
+    addFilters: (state, action: PayloadAction<string>) => {
+      state.appliedFilters.push(action.payload);
+      console.log(state.appliedFilters);
+    },
+    removeFilters: (state,action : PayloadAction<string>)=>{
+      const itemToRemove = action.payload;
+      state.appliedFilters = state.appliedFilters.filter(item => item !== itemToRemove);
+    }
   },
   extraReducers(builder) {
     builder
@@ -137,6 +147,8 @@ export const {
   resetGuests,
   assignGuests,
   toggleFilterOption,
-  toggleFilterVisibility
+  toggleFilterVisibility,
+  removeFilters,
+  addFilters
 } = PropertyConfigSlice.actions;
 export const PropertyConfigReducer = PropertyConfigSlice.reducer;
