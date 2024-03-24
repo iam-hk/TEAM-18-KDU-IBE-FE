@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { getPropertyConfig } from "./thunk/GetPropertyConfig";
 import { IEachGuest } from "../types/PropertyConfig";
+import { Filter, Sorting } from "../types/PropertyConfigs";
 interface IPropertyConfigSlice {
   guests: IEachGuest[];
   promocode: [];
@@ -12,6 +13,14 @@ interface IPropertyConfigSlice {
   adultIndex: number;
   state: string;
   errorMessage: string;
+  roomType: boolean;
+  bedType: boolean;
+  maxBeds: number;
+  maxCards: number;
+  sorting: Sorting[];
+  filters: Filter[];
+  isFilterVisible: boolean[];
+  selectedFilters: string[][];
 }
 const initialState: IPropertyConfigSlice = {
   guests: [],
@@ -24,6 +33,14 @@ const initialState: IPropertyConfigSlice = {
   showRoomSearch: false,
   state: "",
   errorMessage: "",
+  roomType: false,
+  bedType: false,
+  maxBeds: 1,
+  maxCards: 2,
+  sorting: [],
+  filters: [],
+  isFilterVisible: [],
+  selectedFilters: [],
 };
 const PropertyConfigSlice = createSlice({
   name: "propertyConfigInfo",
@@ -51,16 +68,28 @@ const PropertyConfigSlice = createSlice({
       });
       state.guestDisplayInfo = guestInfo.trim().slice(0, -1);
     },
-    resetGuests: (state,action:PayloadAction<number>) => {
+    resetGuests: (state, action: PayloadAction<number>) => {
       state.guestCounts = state.guests.map((item) =>
         item.type === "Adults" ? action.payload : 0
       );
     },
-    assignGuests:(state,action:PayloadAction<number[]>)=>
-    {
-      console.log("hello",action.payload);
-      state.guestCounts=action.payload;
-    }
+    assignGuests: (state, action: PayloadAction<number[]>) => {
+      console.log("hello", action.payload);
+      state.guestCounts = action.payload;
+    },
+    toggleFilterVisibility(state, action: PayloadAction<number>) {
+      const index = action.payload;
+      state.isFilterVisible[index] = !state.isFilterVisible[index];
+    },
+    toggleFilterOption(state, action: PayloadAction<{ filterIndex: number; option: string }>) {
+      const { filterIndex, option } = action.payload;
+      const index = state.selectedFilters[filterIndex].indexOf(option);
+      if (index === -1) {
+        state.selectedFilters[filterIndex].push(option);
+      } else {
+        state.selectedFilters[filterIndex].splice(index, 1);
+      }
+    },
   },
   extraReducers(builder) {
     builder
@@ -70,6 +99,7 @@ const PropertyConfigSlice = createSlice({
       .addCase(
         getPropertyConfig.fulfilled,
         (state, action: PayloadAction<IPropertyConfigSlice>) => {
+          console.log(action.payload);
           state.state = "fulfilled";
           state.guests = action.payload.guests;
           state.guestCounts = state.guests.map((item) =>
@@ -83,6 +113,15 @@ const PropertyConfigSlice = createSlice({
             (guest) => guest.type === "Adults"
           );
           state.adultIndex = adultIndex !== -1 ? adultIndex : 0;
+          state.roomType = action.payload.roomType;
+          state.bedType = action.payload.bedType;
+          state.maxBeds = action.payload.maxBeds;
+          state.maxCards = action.payload.maxCards;
+          state.sorting = action.payload.sorting;
+          state.filters = action.payload.filters;
+          state.isFilterVisible = new Array(state.filters.length).fill(false);
+          state.selectedFilters = new Array(state.filters.length).fill([]);
+          console.log(state.selectedFilters, "", " ", state.isFilterVisible);
         }
       )
       .addCase(getPropertyConfig.rejected, (state, action) => {
@@ -96,6 +135,8 @@ export const {
   updateGuestDispInfo,
   updateAdultCount,
   resetGuests,
-  assignGuests
+  assignGuests,
+  toggleFilterOption,
+  toggleFilterVisibility
 } = PropertyConfigSlice.actions;
 export const PropertyConfigReducer = PropertyConfigSlice.reducer;
