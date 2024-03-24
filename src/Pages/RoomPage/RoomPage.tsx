@@ -10,7 +10,7 @@ import wheelchair from "../../assets/disabled.png";
 import Filters from "../../Component/RoomSearchPage/Filters/Filters";
 import { RoomCard } from "../../Component/RoomSearchPage/RoomCard/RoomCard";
 import { useEffect, useState } from "react";
-import { addFilters, updateGuestDispInfo } from "../../redux/PropertyConfigSlice";
+import {updateGuestDispInfo } from "../../redux/PropertyConfigSlice";
 import PriceFilterSelect from "../../Component/RoomSearchPage/PriceFilterSelect/PriceFilterSelect";
 import {
   updateRooms,
@@ -36,6 +36,7 @@ import { changePageNumber } from "../../redux/FilterRoomSlice";
 import CircularProgress from "@mui/material/CircularProgress";
 import nextIcon from "../../assets/right-arrow-icon.png";
 import prevIcon from "../../assets/left-arrow-icon.png";
+import { addFilters } from "../../redux/FilterSlice";
 export function RoomPage() {
   let maxCards = 2;
   const bannerImage = useSelector(
@@ -88,7 +89,7 @@ export function RoomPage() {
   )
   const sortingTechnique = useSelector((state:RootState)=>state.filterRoom.selectedSortingOrder);
 
-  const appliedFilters = useSelector((state:RootState)=>state.propertyConfigInfo.appliedFilters);
+  const appliedFilters = useSelector((state:RootState)=>state.filterInfo.appliedFilters);
 
   const [roomCardResponse, setRoomCardResponse] = useState<RoomCardResponse>();
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
@@ -255,7 +256,6 @@ export function RoomPage() {
         0
       );
       let backendUrl = "";
-      // const sortType = selectedSortingParams === "Price Low" ? true : false;
       if (selectedSortingParams === "Select") {
         backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}&page=${
           pageNumber - 1
@@ -302,12 +302,13 @@ export function RoomPage() {
     }
   }
   function updateSearchParams() {
+    
     const totalGuests = guestCounts.reduce((total, count) => total + count, 0);
     const guestTypeParams = guests
       .map((guest, index) => `${guest.type}=${guestCounts[index]}`)
       .join("&");
     const activeUrl = `/rooms?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&${guestTypeParams}&bedCount=${bedsSelected}`;
-    const backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}`;
+    const backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}`;
     navigate(activeUrl);
     fetchRoomCards(backendUrl);
   }

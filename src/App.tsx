@@ -3,14 +3,14 @@ import { Header } from "./Component/Header/Header";
 import { Footer } from "./Component/Footer/Footer";
 import * as Sentry from "@sentry/react";
 import { Home } from "./Pages/Home/Home";
-import { AppDispatch, persistor } from "./redux/Store";
+import { AppDispatch } from "./redux/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { addCurrencyExchangeRates } from "./redux/CurrencySlice";
 import { RoomPage } from "./Pages/RoomPage/RoomPage";
 import { getTenantConfig } from "../src/redux/thunk/GetTenantConfig";
-import { PersistGate } from "redux-persist/integration/react";
+// import { PersistGate } from "redux-persist/integration/react";
 function App() {
   const reduxDispatch: AppDispatch = useDispatch();
   // useEffect(() => {
@@ -43,16 +43,16 @@ function App() {
     fetchData();
   }, []);
   return (
-    <PersistGate loading={null}persistor={persistor}>
+    // <PersistGate loading={null}persistor={persistor}>
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Home  loader={loader} />} />
+        <Route path="/" element={<Home loader={loader} />} />
         <Route path="/rooms" element={<RoomPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
-    </PersistGate>
+    // </PersistGate>
   );
 }
 

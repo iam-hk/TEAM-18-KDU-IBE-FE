@@ -212,18 +212,19 @@
 // }
 
 import { useDispatch, useSelector } from "react-redux";
-import { addFilters, removeFilters, toggleFilterOption,toggleFilterVisibility } from "../../../redux/PropertyConfigSlice";
+import {toggleFilterOption,toggleFilterVisibility } from "../../../redux/PropertyConfigSlice";
 import downArrow from "../../../assets/down-arrow.png";
 import upArrow from "../../../assets/up-arrow.png";
 import "./Filters.scss";
 import { roomTypeNames } from "../../../Constants/RoomTypeNames";
 import { AppDispatch, RootState } from "../../../redux/Store";
 import { useState } from "react";
+import { addFilters, removeFilters } from "../../../redux/FilterSlice";
 
 export default function Filters() {
   const reduxDispatch:AppDispatch = useDispatch();
   const isFilterVisible = useSelector((state: RootState) => state.propertyConfigInfo.isFilterVisible);
-  const appliedFilters = useSelector((state: RootState) => state.propertyConfigInfo.appliedFilters);
+  const appliedFilters = useSelector((state: RootState) => state.filterInfo.appliedFilters);
   const filters=useSelector((state:RootState)=>state.propertyConfigInfo.filters);
   const [toggleFilters, setToggleFilters] = useState(false);
   const handleToggleFilterVisibility = (index: number) => {
