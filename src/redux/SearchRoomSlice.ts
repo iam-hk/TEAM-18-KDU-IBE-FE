@@ -1,15 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface ISearchRoomSlice {
+  beds:number;
   rooms: number;
   startDate:string;
   endDate:string;
   selectedProperty:string;
+  dateInitial:boolean,
 }
 const initialState: ISearchRoomSlice = {
+  beds:1,
   rooms: 1,
   startDate:"",
   endDate:"",
   selectedProperty:"",
+  dateInitial:false
 };
 const SearchRoomSlice = createSlice({
   name: "searchRoomInfo",
@@ -26,8 +30,14 @@ const SearchRoomSlice = createSlice({
     },
     updateSelectedProperty:(state,action: PayloadAction<string>)=>{
       state.selectedProperty = action.payload;
-    }
+    },
+    updateBeds:((state,action:PayloadAction<number>)=>{
+      state.beds=action.payload;
+    }),
+    setDateInitials:((state,action:PayloadAction<boolean>)=>{
+      state.dateInitial=action.payload;
+    })
   },
 });
-export const { updateRooms,updateEndDate,updateStartDate,updateSelectedProperty} = SearchRoomSlice.actions;
+export const { updateRooms,updateEndDate,updateStartDate,updateSelectedProperty,updateBeds,setDateInitials} = SearchRoomSlice.actions;
 export const SearchRoomReducer = SearchRoomSlice.reducer;

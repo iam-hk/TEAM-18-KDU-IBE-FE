@@ -7,9 +7,9 @@
   padding: 30px 40px 20px 70px;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+  position:sticky;
+  top: 0; 
+  z-index: 99;  
 }
 .headings {
   display: flex;
@@ -21,14 +21,13 @@
     font-weight: 600;
     cursor: pointer;
   }
-  h4 {
-    font-size: 1.3rem;
-  }
   .main-heading {
     color: $dark-blue-color;
+    
   }
   .sub-heading {
     color: $light-blue-color;
+    font-size: 1.3rem;
   }
 }
 .right-part {
@@ -154,10 +153,7 @@
   display: none;
   font-size: 1.3rem;
 }
-img {
-  height: 15px !important;
-  width: 15px !important;
-}
+
 @media (max-width: 900px) {
   .headings {
     h4 {

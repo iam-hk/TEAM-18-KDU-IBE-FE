@@ -7,7 +7,7 @@ import { getTenantConfig } from "../../../redux/thunk/GetTenantConfig";
 import { DateCalender } from "../dateCalendar/DateCalendar";
 import { useTranslation } from "react-i18next";
 import { AppDispatch, RootState } from "../../../redux/Store";
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import "./SearchForm.scss";
 export function SearchForm() {
   const navigate = useNavigate();
@@ -24,15 +24,38 @@ export function SearchForm() {
   const showGuestSearch = useSelector(
     (state: RootState) => state.propertyConfigInfo.showGuestSearch
   );
-  function handleSubmitButtonClick()
-  {
-    navigate("/rooms");
+  const guests = useSelector(
+    (state: RootState) => state.propertyConfigInfo.guests
+  );
+  const roomCount = useSelector(
+    (state: RootState) => state.searchRoomInfo.rooms
+  );
+  const guestCounts = useSelector(
+    (state: RootState) => state.propertyConfigInfo.guestCounts
+  );
+  function createUrl() {
+    const totalGuests = guestCounts.reduce((total, count) => total + count, 0);
+    const guestTypeParams = guests
+      .map((guest, index) => `${guest.type}=${guestCounts[index]}`)
+      .join("&");
+    const url = `/rooms?id=18&guestCount=${totalGuests}&roomCount=${roomCount}&startDate=${startDate}&endDate=${endDate}&${guestTypeParams}&bedCount=1`;
+    return url;
+  }
+  function handleSubmitButtonClick() {
+    navigate(createUrl());
   }
 
-  const startDate:string = useSelector((state:RootState)=>state.searchRoomInfo.startDate);
-  const endDate:string = useSelector((state:RootState)=>state.searchRoomInfo.endDate);
-  const selectedProperty:string = useSelector((state:RootState)=>state.searchRoomInfo.selectedProperty);
-  const isDisabled = startDate === "" || endDate === "" || selectedProperty === "";
+  const startDate: string = useSelector(
+    (state: RootState) => state.searchRoomInfo.startDate
+  );
+  const endDate: string = useSelector(
+    (state: RootState) => state.searchRoomInfo.endDate
+  );
+  const selectedProperty: string = useSelector(
+    (state: RootState) => state.searchRoomInfo.selectedProperty
+  );
+  const isDisabled =
+    startDate === "" || endDate === "" || selectedProperty === "";
 
   const { t } = useTranslation();
   return (
@@ -58,7 +81,9 @@ export function SearchForm() {
         )}
       </div>
       <div className="submit-button">
-        <button onClick={handleSubmitButtonClick} disabled={isDisabled}>{t("search.searchButton")}</button>
+        <button onClick={handleSubmitButtonClick} disabled={isDisabled}>
+          {t("search.searchButton")}
+        </button>
       </div>
     </div>
   );

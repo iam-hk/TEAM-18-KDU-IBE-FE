@@ -1,0 +1,107 @@
+.room-page-guest-display{
+    width: 18%;
+.MuiInputBase-root{
+    height: 70px !important;
+}
+}
+.guest-change-heading{
+    font-size: 1rem ;
+}
+.guest-display-information{
+    font-size: 1.0rem !important;
+}
+.guest-heading-display{
+    font-size: 0.9rem !important;
+}
+.guest-type-information {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .each-guest-type {
+        .guest-type-name {
+            font-size: 1.1rem;
+        }
+        .guest-type-age {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    }
+}
+.each-guest-count {
+    display: flex;
+    height: fit-content;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    .decrement-each-guest-count{
+        margin-bottom: 5px;
+    }
+    button {
+        padding: 0px 7px;
+        border: none;
+        background-color: transparent;
+        font-size: 2.1rem;
+        font-weight: 500;
+    }
+}
+.MuiSelect-select .MuiSelect-outlined .MuiInputBase-input .MuiOutlinedInput-input .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    height: 70px !important;
+}
+@media(max-width:1250px)
+{
+    .guest-change-heading{
+        font-size: 0.8rem;
+    }
+    .guest-display-information{
+        font-size: 0.9rem !important;
+    }
+}
+@media(max-width:1000px)
+{
+    .guest-heading-display{
+        font-size: 0.8rem !important;
+    }
+    .guest-display-information{
+        font-size: 0.7rem !important;
+    }
+    .guest-type-information {
+       
+        .each-guest-type {
+            .guest-type-name {
+                font-size: 0.9rem;
+            }
+            .guest-type-age {
+                font-size: 0.7rem;
+            }
+        }
+    }
+    .each-guest-count {
+        button {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+    }
+}
+
+@media(max-width:800px)
+{
+    .MuiInputBase-root{
+        height: 55px !important;
+    }
+    .guest-type-information{
+        padding: 0px 100px 0px 0px;
+    }
+    .room-page-guest-display{
+        width: 100%;
+        .MuiInputBase-root{
+            height: 55px !important;
+        }
+    }
+    .guest-change-heading{
+        font-size: 0.9rem;
+    }
+    .guest-display-information{
+        font-size: 1.0rem !important;
+    }
+    
+}

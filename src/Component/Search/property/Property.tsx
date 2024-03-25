@@ -6,22 +6,22 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/Store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getPropertyConfig } from "../../../redux/thunk/GetPropertyConfig";
 import { getPropertyNames } from "../../../redux/thunk/GetPropertyNames";
 import { useTranslation } from "react-i18next";
 import "./Property.scss";
 import { updateSelectedProperty } from "../../../redux/SearchRoomSlice";
 export function Property() {
-
-  const [property, setProperty] = useState("");
   const propertyList = useSelector(
     (state: RootState) => state.propertyNameInfo.propertyList
   );
+  const property = useSelector(
+    (state: RootState) => state.searchRoomInfo.selectedProperty
+  );
   const reduxDispatch: AppDispatch = useDispatch();
   const handlePropertyChange = (event: SelectChangeEvent) => {
-    const selectedPropertyValue :string = event.target.value;
-    setProperty(selectedPropertyValue);
+    const selectedPropertyValue: string = event.target.value;
     reduxDispatch(updateSelectedProperty(selectedPropertyValue));
     reduxDispatch(getPropertyConfig());
   };

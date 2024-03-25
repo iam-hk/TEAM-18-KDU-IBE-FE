@@ -1,0 +1,162 @@
+.filter-wrapper{
+    width: 100%;
+}
+.filter-container{
+    padding: 20px 20px;
+    width: 100%;
+    background-color: #eff0f1;
+    border-radius: 6px;
+    .filter-heading{
+        display: flex;
+        justify-content: space-between;
+        .arrow{
+            display: none;
+        }
+        .filter-heading-text{
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+    }
+    .each-filter{
+        padding: 6px 0px;
+        .filter-name{
+            padding: 7px 0px;
+            display: flex;
+            justify-content: space-between;
+            .filter-content{
+                font-size:1.2rem;
+            }
+            border-bottom: 1px solid #dadada;
+        }   
+    }
+    .filter-type{
+        .filter-type-name{
+            h3{
+                padding: 0;
+                font-size: 0.7rem;
+            }
+        }
+        .filter-options{
+            display: flex;
+            align-items: center;
+            margin: 5px 0px;
+            gap: 4px;
+            input{
+                height: 18px;
+                width: 18px;
+
+            }
+            p{
+                font-size: 1.1rem;
+                font-weight:500;
+            }
+        }
+    }
+}
+.each-filter-copy{
+    padding: 6px 0px;
+    .filter-name{
+        padding: 7px 0px;
+        display: flex;
+        justify-content: space-between;
+        .filter-content{
+            font-size:1.2rem;
+        }
+        border-bottom: 1px solid #dadada;
+    }
+    .filter-type{
+        .filter-type-name{
+            h3{
+                padding: 0;
+                font-size: 0.7rem;
+            }
+        }
+        .filter-options{
+            display: flex;
+            align-items: center;
+            margin: 5px 0px;
+            gap: 4px;
+            input{
+                height: 18px;
+                width: 18px;
+    
+            }
+            p{
+                font-size: 1.1rem;
+                font-weight:500;
+            }
+        }
+    }   
+}
+@media(max-width:1200px)
+{
+    .filter-container{
+        padding: 10px;
+        .filter-heading{
+           
+            .filter-heading-text{
+                font-size: 1.1rem;
+                font-weight: 600;
+            }
+        }
+        .each-filter{
+            padding: 6px 0px;
+            .filter-name{
+                padding: 7px 0px;
+                display: flex;
+                justify-content: space-between;
+                .filter-content{
+                    font-size:1.0rem;
+                }
+                border-bottom: 1px solid #dadada;
+            }   
+        }
+        .filter-type{
+            .filter-type-name{
+                h3{
+                    padding: 0;
+                    font-size: 0.7rem;
+                }
+            }
+            .filter-options{
+                display: flex;
+                align-items: center;
+                margin: 5px 0px;
+                gap: 4px;
+                input{
+                    height: 18px;
+                    width: 18px;
+    
+                }
+                p{
+                    font-size: 0.9rem;
+                    font-weight:500;
+                }
+            }
+        }
+    }
+}
+@media(max-width:800px)
+{
+    .filter-container{
+        margin-top: 10px;
+        width: 100%;
+        border: 1px solid #dadada;
+        min-height: 55px;
+        border-radius: 4px;
+        height: fit-content;
+        .filter-heading{
+                .filter-heading-text
+                {
+                    font-size: 1.1rem;
+                }
+                .arrow{
+                    display: block;
+                }
+        }
+    }
+    .each-filter{
+        display: none;
+    }
+    
+}

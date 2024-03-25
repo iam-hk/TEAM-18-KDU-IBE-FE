@@ -10,7 +10,11 @@ import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
 import { useTranslation } from "react-i18next";
 import calendar from "../../../assets/calendar.svg";
 import "./DateCalendar.scss";
-import { updateEndDate, updateStartDate } from "../../../redux/SearchRoomSlice";
+import {
+  updateEndDate,
+  updateStartDate,
+  setDateInitials,
+} from "../../../redux/SearchRoomSlice";
 
 export function DateCalender() {
   const { t } = useTranslation();
@@ -24,13 +28,24 @@ export function DateCalender() {
   const maxDays = useSelector(
     (state: RootState) => state.tenantInfo.maximumDays
   );
-  const guestCount: number[] = useSelector((state: RootState) => state.propertyConfigInfo.guestCounts);
+  const guestCount: number[] = useSelector(
+    (state: RootState) => state.propertyConfigInfo.guestCounts
+  );
   const currentSelectedCurrency: keyof CurrencyExchangeRates = useSelector(
     (state: RootState) =>
       state.currencyRate.currentSelectedCurrency as keyof CurrencyExchangeRates
   );
   const currentPrice: CurrencyExchangeRates = useSelector(
     (state: RootState) => state.currencyRate.currentPrice
+  );
+  const startDateSlice = useSelector(
+    (state: RootState) => state.searchRoomInfo.startDate
+  );
+  const endDateSlice = useSelector(
+    (state: RootState) => state.searchRoomInfo.endDate
+  );
+  const setInitials = useSelector(
+    (state: RootState) => state.searchRoomInfo.dateInitial
   );
   const widthMonth = useMediaQuery("(max-width:750px)");
   const [prices, setPrices] = useState({});
@@ -39,7 +54,7 @@ export function DateCalender() {
     const url = import.meta.env.VITE_REACT_APP_MINIMUM_ROOM_RATES;
     fetch(url)
       .then((response) => response.json())
-      .then((data: Record<string, number>) => { 
+      .then((data: Record<string, number>) => {
         const pricesWithDateOnly: Record<string, number> = {};
         for (const key in data) {
           if (Object.prototype.hasOwnProperty.call(data, key)) {
@@ -54,14 +69,14 @@ export function DateCalender() {
       });
   }, []);
 
-  const [dateInitial, setDateInitial] = useState(false);
-
   const [isVisible, setIsVisible] = useState(false);
 
   const dispatch = useDispatch();
 
-  const handleDateChange = (ranges: { selection: { startDate: Date; endDate: Date; key: string; }; }) => {
-    setDateInitial(true);
+  const handleDateChange = (ranges: {
+    selection: { startDate: Date; endDate: Date; key: string };
+  }) => {
+    dispatch(setDateInitials(true));
     setDateRange([ranges.selection]);
 
     const newEndDate: Date = new Date(ranges.selection.endDate);
@@ -70,41 +85,41 @@ export function DateCalender() {
     newEndDate.setDate(newEndDate.getDate() + 1);
     newStartDate.setDate(newStartDate.getDate() + 1);
 
-
     const updatedEndDateString: string = newEndDate.toISOString().split("T")[0];
-    const updatedStartDateString: string = newStartDate.toISOString().split("T")[0];
-
+    const updatedStartDateString: string = newStartDate
+      .toISOString()
+      .split("T")[0];
 
     dispatch(updateEndDate(updatedEndDateString));
     dispatch(updateStartDate(updatedStartDateString));
   };
 
   const getMaxEndDate = () => {
-    if(dateRange[0].startDate.getTime() === dateRange[0].endDate.getTime()){
-        const maxEndDate = new Date(dateRange[0].startDate);
-        maxEndDate.setDate(dateRange[0].startDate.getDate() + maximumLengthOfStay);
+    if (dateRange[0].startDate.getTime() === dateRange[0].endDate.getTime()) {
+      const maxEndDate = new Date(dateRange[0].startDate);
+      maxEndDate.setDate(
+        dateRange[0].startDate.getDate() + maximumLengthOfStay
+      );
 
-        const maxEndDate1 = new Date();
-        maxEndDate1.setDate(1);
-        maxEndDate1.setMonth(6);
-        maxEndDate1.setFullYear(2024);
+      const maxEndDate1 = new Date();
+      maxEndDate1.setDate(1);
+      maxEndDate1.setMonth(6);
+      maxEndDate1.setFullYear(2024);
 
-        if(maxEndDate.getTime() < maxEndDate1.getTime()){
-            return maxEndDate;
-        }
-        else{
-            return maxEndDate1;
-        }
-    }
-    else{
-        const maxEndDate = new Date();
-        maxEndDate.setDate(1);
-        maxEndDate.setMonth(6);
-        maxEndDate.setFullYear(2024);
-
+      if (maxEndDate.getTime() < maxEndDate1.getTime()) {
         return maxEndDate;
+      } else {
+        return maxEndDate1;
+      }
+    } else {
+      const maxEndDate = new Date();
+      maxEndDate.setDate(1);
+      maxEndDate.setMonth(6);
+      maxEndDate.setFullYear(2024);
+
+      return maxEndDate;
     }
-};
+  };
 
   const handleStartDateChange = (startDate) => {
     let maxDate = null;
@@ -118,8 +133,7 @@ export function DateCalender() {
   };
 
   const toggleVisibility = () => {
-    if(guestCount.length!==0)
-    setIsVisible(!isVisible);
+    if (guestCount.length !== 0) setIsVisible(!isVisible);
   };
   function findMinimumPrice(prices: number) {
     const validPrices = Object.values(prices).filter(
@@ -140,8 +154,8 @@ export function DateCalender() {
     }
   }
   const generateMinDate = () => {
-        return new Date();
-  }
+    return new Date();
+  };
 
   function updatePrice(price: number) {
     return price * currentPrice[currentSelectedCurrency].toFixed(1);
@@ -153,9 +167,9 @@ export function DateCalender() {
         <input
           type="text"
           value={
-            dateInitial == false
+            setInitials == false
               ? `    ${t("search.checkin")}    →   ${t("search.checkout")}`
-              : `   ${dateRange[0].startDate.toLocaleDateString()}    →   ${dateRange[0].endDate.toLocaleDateString()}`
+              : `   ${startDateSlice}    →   ${endDateSlice}`
           }
           className="input-date-container"
           readOnly
@@ -194,7 +208,7 @@ export function DateCalender() {
                   <p className="date-item">{day.getDate()}</p>
                   <p
                     className="price-item"
-                    style={price ? {opacity : '1'} : {opacity : '0'} }
+                    style={price ? { opacity: "1" } : { opacity: "0" }}
                   >
                     {(CurrencySymbols as any)[currentSelectedCurrency]}
                     {updatePrice(price)}{" "}
@@ -214,9 +228,9 @@ export function DateCalender() {
                 </p>
               )}
               <button
-                className={`apply-btn ${!dateInitial && "disabled"}`}
+                className={`apply-btn ${!setInitials && "disabled"}`}
                 onClick={toggleVisibility}
-                disabled={!dateInitial}
+                disabled={!setInitials}
               >
                 {t("search.applyDates")}
               </button>

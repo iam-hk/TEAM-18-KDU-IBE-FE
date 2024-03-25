@@ -1,0 +1,37 @@
+.room-page-selected-beds{
+    width: 11%;
+    .MuiInputBase-root{
+        height: 70px !important;
+        width: 100%;
+    }
+}
+.beds-heading{
+    font-size: 0.8rem !important;
+}
+.beds-selected{
+    font-size: 1rem !important;
+}
+
+@media (max-width:900px)
+{
+    .beds-selected{
+        font-size: 0.8rem !important;
+    }
+}
+@media(max-width:800px)
+{
+    .beds-heading{
+        font-size: 0.9rem !important;
+    }
+    .beds-selected{
+        font-size: 1rem !important;
+    }
+    .room-page-selected-beds{
+        width: 100%;
+        .css-1lxtzcg-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+            height: 55px !important;
+            width: 100%;
+        }
+    }
+    
+}
