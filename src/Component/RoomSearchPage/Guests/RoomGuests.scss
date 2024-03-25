@@ -1,11 +1,14 @@
 .room-page-guest-display{
     width: 18%;
-.css-1nrlq1o-MuiFormControl-root{
-    height: 73px !important;
-    width: 100%;
-} 
-.css-1lxtzcg-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
-    height: 100%;
+// .css-1nrlq1o-MuiFormControl-root{
+//     height: 73px !important;
+//     width: 100%;
+// } 
+// .css-1lxtzcg-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+//     height: 100%;
+// }
+.MuiInputBase-root{
+    height: 70px !important;
 }
 }
 .guest-change-heading{
@@ -87,9 +90,12 @@
     }
 }
 
-@media(max-width:750px)
+@media(max-width:800px)
 {
-    .MuiSelect-select .MuiSelect-outlined .MuiInputBase-input .MuiOutlinedInput-input .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    // .MuiSelect-select .MuiSelect-outlined .MuiInputBase-input .MuiOutlinedInput-input .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    //     height: 55px !important;
+    // }
+    .MuiInputBase-root{
         height: 55px !important;
     }
     .guest-type-information{
@@ -97,10 +103,13 @@
     }
     .room-page-guest-display{
         width: 100%;
-        .css-1nrlq1o-MuiFormControl-root{
+        // .css-1nrlq1o-MuiFormControl-root{
+        //     height: 55px !important;
+        //     width: 100%;
+        // } 
+        .MuiInputBase-root{
             height: 55px !important;
-            width: 100%;
-        } 
+        }
     }
     .guest-change-heading{
         font-size: 0.9rem;

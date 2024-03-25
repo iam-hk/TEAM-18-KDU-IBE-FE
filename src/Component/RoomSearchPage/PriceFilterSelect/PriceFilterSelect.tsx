@@ -30,7 +30,7 @@ const PriceFilterSelect = (props:IDropDownSort) => {
       {selectedSortingParam !== "Select" ? (
           <>
             {selectedSortingParam} 
-            {selectedSortingTechnique && selectedSortingTechnique ? " LOW" : " HIGH"}
+            {selectedSortingTechnique && selectedSortingTechnique ? " Low" : " High"}
           </>
         ) : (
           selectedSortingParam

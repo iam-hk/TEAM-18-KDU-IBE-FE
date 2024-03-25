@@ -1,12 +1,16 @@
 .room-page-selected-beds{
     width: 11%;
-    .css-1lxtzcg-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+    // .css-1lxtzcg-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+    //     height: 70px !important;
+    //     width: 100%;
+    // }
+    // .MuiSelect-select .MuiSelect-outlined .MuiInputBase-input .MuiOutlinedInput-input .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    //     height: 100%;
+        
+    // }
+    .MuiInputBase-root{
         height: 70px !important;
         width: 100%;
-    }
-    .MuiSelect-select .MuiSelect-outlined .MuiInputBase-input .MuiOutlinedInput-input .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-        height: 100%;
-        
     }
 }
 .beds-heading{
@@ -22,7 +26,7 @@
         font-size: 0.8rem !important;
     }
 }
-@media(max-width:750px)
+@media(max-width:800px)
 {
     .beds-heading{
         font-size: 0.9rem !important;

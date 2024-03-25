@@ -62,7 +62,7 @@ const Guests = () => {
       <Box>
         <Typography color={"#858685"}>
           <span className="guest-heading-display">{t("search.guests")}</span>
-          </Typography>
+        </Typography>
         <Typography>
           <span className="guest-display-information">{guestDispInfo}</span>
         </Typography>
@@ -72,56 +72,56 @@ const Guests = () => {
 
   return (
     <div className="room-page-guest-display">
-      <FormControl>
-        <Select
-          sx={{
-            "& .MuiSelect-select": {
-              padding: "0.7rem",
-            },
-          }}
-          renderValue={() => <GuestSelected />}
-          displayEmpty={true}
-          defaultValue=""
-          IconComponent={KeyboardArrowDownIcon}
-          onChange={updateGuestInfo}
-        >
-          {guests.map((guest, index) => (
-            <MenuItem key={index} value={guest.type}>
-              <div className="guest-type-information">
-                <div className="each-guest-type">
-                  <h4 className="guest-type-name">
-                    {t(`guestTypes.${guest.type}.type`)}
-                  </h4>
-                  <h5 className="guest-type-age">
-                    {t(`guestTypes.${guest.type}.age`)}
-                  </h5>
-                </div>
-                <div className="each-guest-count">
-                  <button
-                    className="decrement-each-guest-count"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleGuestCountChange(index, false);
-                    }}
-                  >
-                    -
-                  </button>
-                  <h4 className="each-guest-count">{guestCounts[index]}</h4>
-                  <button
-                    className="increment-each-guest-count"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleGuestCountChange(index, true);
-                    }}
-                  >
-                    +
-                  </button>
-                </div>
+      {/* <FormControl> */}
+      <Select
+        sx={{
+          "& .MuiSelect-select": {
+            padding: "0.7rem",
+          },
+        }}
+        renderValue={() => <GuestSelected />}
+        displayEmpty={true}
+        defaultValue=""
+        IconComponent={KeyboardArrowDownIcon}
+        onChange={updateGuestInfo}
+      >
+        {guests.map((guest, index) => (
+          <MenuItem key={index} value={guest.type}>
+            <div className="guest-type-information">
+              <div className="each-guest-type">
+                <h4 className="guest-type-name">
+                  {t(`guestTypes.${guest.type}.type`)}
+                </h4>
+                <h5 className="guest-type-age">
+                  {t(`guestTypes.${guest.type}.age`)}
+                </h5>
               </div>
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+              <div className="each-guest-count">
+                <button
+                  className="decrement-each-guest-count"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleGuestCountChange(index, false);
+                  }}
+                >
+                  -
+                </button>
+                <h4 className="each-guest-count">{guestCounts[index]}</h4>
+                <button
+                  className="increment-each-guest-count"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleGuestCountChange(index, true);
+                  }}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </MenuItem>
+        ))}
+      </Select>
+      {/* </FormControl> */}
     </div>
   );
 };

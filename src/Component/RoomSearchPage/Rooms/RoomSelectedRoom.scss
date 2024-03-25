@@ -1,12 +1,15 @@
 .room-page-selected-rooms{
     width: 11%;
-    .css-1nrlq1o-MuiFormControl-root{
+    // .css-1nrlq1o-MuiFormControl-root{
+    //     height: 70px !important;
+    //     width: 100%;
+    // } 
+    // .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+    //     height: 68px !important;
+    //     width: 100%;
+    // }
+    .MuiInputBase-root{
         height: 70px !important;
-        width: 100%;
-    } 
-    .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
-        height: 68px !important;
-        width: 100%;
     }
 }
 .rooms-heading{
@@ -24,18 +27,21 @@
         font-size: 0.8rem !important;
     }
 }
-@media(max-width:750px)
+@media(max-width:800px)
 {
     .room-page-selected-rooms{
         width: 100%;
         // margin-top: -1px;
-        .css-1nrlq1o-MuiFormControl-root{
+        // .css-1nrlq1o-MuiFormControl-root{
+        //     height: 55px !important;
+        //     width: 100%;
+        // } 
+        // .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+        //     height: 53px !important;
+        //     width: 100%;
+        // }
+        .MuiInputBase-root{
             height: 55px !important;
-            width: 100%;
-        } 
-        .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
-            height: 53px !important;
-            width: 100%;
         }
     }
     

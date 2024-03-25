@@ -62,22 +62,22 @@ const RoomSelectedRoom = () => {
   };
   return (
     <div className="room-page-selected-rooms">
-      <FormControl>
-        <Select
-          value={selectedRooms.toString()}
-          onChange={handleRoomChange}
-          displayEmpty
-          inputProps={{ "aria-label": "Without label" }}
-          IconComponent={KeyboardArrowDownIcon}
-          renderValue={() => <RoomsName />}
-        >
-          {Array.from({ length: maximumRooms }, (_, index) => (
-            <MenuItem key={index + 1} value={index + 1}>
-              {index + 1}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      {/* <FormControl> */}
+      <Select
+        value={selectedRooms.toString()}
+        onChange={handleRoomChange}
+        displayEmpty
+        inputProps={{ "aria-label": "Without label" }}
+        IconComponent={KeyboardArrowDownIcon}
+        renderValue={() => <RoomsName />}
+      >
+        {Array.from({ length: maximumRooms }, (_, index) => (
+          <MenuItem key={index + 1} value={index + 1}>
+            {index + 1}
+          </MenuItem>
+        ))}
+      </Select>
+      {/* </FormControl> */}
     </div>
   );
 };
