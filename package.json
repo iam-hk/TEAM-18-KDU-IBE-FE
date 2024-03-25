@@ -48,6 +48,7 @@
     "@types/react-date-range": "^1.4.9",
     "@types/react-dom": "^18.2.19",
     "@types/react-i18next": "^8.1.0",
+    "@types/redux-persist": "^4.3.1",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-react": "^4.2.1",

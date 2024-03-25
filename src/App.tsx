@@ -3,30 +3,17 @@ import { Header } from "./Component/Header/Header";
 import { Footer } from "./Component/Footer/Footer";
 import * as Sentry from "@sentry/react";
 import { Home } from "./Pages/Home/Home";
-import { AppDispatch } from "./redux/Store";
-import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, persistor } from "./redux/Store";
+import { useDispatch} from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { addCurrencyExchangeRates } from "./redux/CurrencySlice";
 import { RoomPage } from "./Pages/RoomPage/RoomPage";
 import { getTenantConfig } from "../src/redux/thunk/GetTenantConfig";
-// import { PersistGate } from "redux-persist/integration/react";
+import { PersistGate } from 'redux-persist/es/integration/react';
+
 function App() {
   const reduxDispatch: AppDispatch = useDispatch();
-  // useEffect(() => {
-  //   const fetchCurrencyExchangeRates = async () => {
-  //     const url = import.meta.env.VITE_REACT_APP_CURRENCY_CONVERTER;
-  //     try {
-  //       const response = await axios.get(
-  //         url
-  //       );
-  //       reduxDispatch(addCurrencyExchangeRates(response.data));
-  //     } catch (error) {
-  //       console.error("Error fetching currency exchange rates:", error);
-  //     }
-  //   };
-  //   fetchCurrencyExchangeRates();
-  // }, []);
   const [loader, setLoader] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +30,7 @@ function App() {
     fetchData();
   }, []);
   return (
-    // <PersistGate loading={null}persistor={persistor}>
+    <PersistGate loading={null}persistor={persistor}>
     <BrowserRouter>
       <Header />
       <Routes>
@@ -52,7 +39,7 @@ function App() {
       </Routes>
       <Footer />
     </BrowserRouter>
-    // </PersistGate>
+    </PersistGate>
   );
 }
 

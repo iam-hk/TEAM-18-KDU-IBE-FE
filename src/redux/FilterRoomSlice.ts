@@ -65,7 +65,6 @@ const FilterRoomSlice = createSlice({
     },
     changeSortingTechnique:(state,action:PayloadAction<boolean>)=>{
       state.selectedSortingOrder = action.payload;
-      console.log(state.selectedSortingParam + state.selectedSortingOrder)
     }
   },
 });

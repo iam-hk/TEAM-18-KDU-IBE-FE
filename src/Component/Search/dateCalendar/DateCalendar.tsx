@@ -4,13 +4,17 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { useMediaQuery } from "usehooks-ts";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../redux/Store";
+import { RootState } from "../../../redux/Store";
 import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
 import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
 import { useTranslation } from "react-i18next";
 import calendar from "../../../assets/calendar.svg";
 import "./DateCalendar.scss";
-import { updateEndDate, updateStartDate,setDateInitials } from "../../../redux/SearchRoomSlice";
+import {
+  updateEndDate,
+  updateStartDate,
+  setDateInitials,
+} from "../../../redux/SearchRoomSlice";
 
 export function DateCalender() {
   const { t } = useTranslation();
@@ -40,7 +44,9 @@ export function DateCalender() {
   const endDateSlice = useSelector(
     (state: RootState) => state.searchRoomInfo.endDate
   );
-  const setInitials=useSelector((state:RootState)=>state.searchRoomInfo.dateInitial);
+  const setInitials = useSelector(
+    (state: RootState) => state.searchRoomInfo.dateInitial
+  );
   const widthMonth = useMediaQuery("(max-width:750px)");
   const [prices, setPrices] = useState({});
   const maximumLengthOfStay = maxDays - 1;
@@ -63,8 +69,6 @@ export function DateCalender() {
       });
   }, []);
 
-  // const [dateInitial, setDateInitial] = useState(false);
-
   const [isVisible, setIsVisible] = useState(false);
 
   const dispatch = useDispatch();
@@ -72,7 +76,6 @@ export function DateCalender() {
   const handleDateChange = (ranges: {
     selection: { startDate: Date; endDate: Date; key: string };
   }) => {
-    // setDateInitial(true);
     dispatch(setDateInitials(true));
     setDateRange([ranges.selection]);
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, FormControl, MenuItem, Select, Typography } from "@mui/material";
+import { Box,  MenuItem, Select, Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "./RoomBeds.scss";
 import { AppDispatch, RootState } from "../../../redux/Store";

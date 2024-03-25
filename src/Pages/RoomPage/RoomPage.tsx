@@ -103,7 +103,6 @@ export function RoomPage() {
     reduxDispatch(updateGuestDispInfo());
   }, [guestCounts]);
   function invalidParam(error: string) {
-    console.log(error);
     setMessage(error);
     setShowSnackbar(true);
     setTimeout(() => {
@@ -113,8 +112,8 @@ export function RoomPage() {
   const fetchRoomCards = async (roomUrl: string) => {
     try {
       setLoader(true);
-      const roomCardsUrl = `http://localhost:8000/api/v1${roomUrl}`;
-      console.log(roomCardsUrl, "roomurl");
+      const backendUrl=import.meta.env.VITE_REACT_APP_BACKEND_URL
+      const roomCardsUrl = `${backendUrl}${roomUrl}`;
       const roomCardFromBackend = await axios.get(roomCardsUrl);
       const result = await roomCardFromBackend.data;
       setRoomCardResponse(result);
@@ -251,14 +250,12 @@ export function RoomPage() {
 
       reduxDispatch(changePageNumber(1));
       navigate(activeUrl);
-      console.log(backendUrl);
       fetchRoomCards(backendUrl);
     }
   }, [selectedSortingParams, sortingTechnique, appliedFilters]);
   function gotoBackPage() {
     if (pageNumber > 1) {
       reduxDispatch(changePageNumber(pageNumber - 1));
-      console.log(pageNumber);
       const totalGuests = guestCounts.reduce(
         (total, count) => total + count,
         0
@@ -277,16 +274,12 @@ export function RoomPage() {
     }
   }
   function gotoNextPage() {
-    console.log("going to next page");
     if (maxCards * pageNumber <= roomCardResponse!.totalRoomCards) {
-      console.log("why");
       reduxDispatch(changePageNumber(pageNumber + 1));
-      console.log(pageNumber, "pgno");
       const totalGuests = guestCounts.reduce(
         (total, count) => total + count,
         0
       );
-      console.log("heyyyyy");
       let backendUrl = "";
 
       if (selectedSortingParams === "Select") {
@@ -297,9 +290,6 @@ export function RoomPage() {
 
       if (appliedFilters.length != 0) {
         backendUrl += `&filterContent=`;
-        // appliedFilters.forEach((filterWord) => {
-        //   backendUrl += `${filterWord},`;
-        // });
         backendUrl += appliedFilters.join(",");
       }
       backendUrl += `&page=${pageNumber + 1}`;

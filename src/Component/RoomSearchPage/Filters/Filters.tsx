@@ -1,8 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-// import {
-//   toggleFilterOption,
-//   toggleFilterVisibility,
-// } from "../../../redux/PropertyConfigSlice";
 import {
   toggleFilterVisibility,
   setAllFilterOptions,

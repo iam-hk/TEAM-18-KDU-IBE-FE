@@ -12,7 +12,6 @@ export function validateGuestCount(
   adultIndex: number,
   maxGuests: number
 ): string {
-  console.log(countOfGuests.length, "len");
   if (guestCount === null || isNaN(parseInt(guestCount))) {
     return INVALID_GUEST_COUNT;
   }
@@ -25,11 +24,9 @@ export function validateGuestCount(
   if (parsedGuestCount > parsedRoomCount * maxGuests) {
     return NEED_MORE_ROOMS;
   }
-  const totalGuests = countOfGuests.reduce((total, count, index) => {
-    console.log(`Guest count at index ${index}: ${count}`);
+  const totalGuests = countOfGuests.reduce((total, count) => {
     return total + count;
   }, 0);
-  console.log(totalGuests, "tot", parsedGuestCount, "parsed");
   if (totalGuests !== parsedGuestCount) {
     return GUEST_COUNT_MISMATCH;
   }

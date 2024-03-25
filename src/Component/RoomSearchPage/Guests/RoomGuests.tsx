@@ -1,4 +1,4 @@
-import { Box, FormControl, MenuItem, Select, Typography } from "@mui/material";
+import { Box, MenuItem, Select, Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useTranslation } from "react-i18next";
 import { AppDispatch, RootState } from "../../../redux/Store";
@@ -72,7 +72,6 @@ const Guests = () => {
 
   return (
     <div className="room-page-guest-display">
-      {/* <FormControl> */}
       <Select
         sx={{
           "& .MuiSelect-select": {
@@ -121,7 +120,6 @@ const Guests = () => {
           </MenuItem>
         ))}
       </Select>
-      {/* </FormControl> */}
     </div>
   );
 };

@@ -74,7 +74,6 @@ const PropertyConfigSlice = createSlice({
       );
     },
     assignGuests: (state, action: PayloadAction<number[]>) => {
-      console.log("hello", action.payload);
       state.guestCounts = action.payload;
     },
     toggleFilterVisibility(state, action: PayloadAction<number>) {
@@ -99,7 +98,6 @@ const PropertyConfigSlice = createSlice({
       .addCase(
         getPropertyConfig.fulfilled,
         (state, action: PayloadAction<IPropertyConfigSlice>) => {
-          console.log(action.payload);
           state.state = "fulfilled";
           state.guests = action.payload.guests;
           state.guestCounts = state.guests.map((item) =>
@@ -121,7 +119,6 @@ const PropertyConfigSlice = createSlice({
           state.filters = action.payload.filters;
           state.isFilterVisible = new Array(state.filters.length).fill(false);
           state.selectedFilters = new Array(state.filters.length).fill([]);
-          console.log(state.selectedFilters, "", " ", state.isFilterVisible);
         }
       )
       .addCase(getPropertyConfig.rejected, (state, action) => {
