@@ -160,6 +160,12 @@ export function DateCalender() {
   function updatePrice(price: number) {
     return price * currentPrice[currentSelectedCurrency].toFixed(1);
   }
+
+  function isDatePast(day: Date){
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    return day.getTime() < today.getTime();
+  }
   return (
     <div className="date-container">
       <h4>{t("search.selectDates")}</h4>
@@ -208,7 +214,11 @@ export function DateCalender() {
                   <p className="date-item">{day.getDate()}</p>
                   <p
                     className="price-item"
-                    style={price ? { opacity: "1" } : { opacity: "0" }}
+                    style={{
+                      opacity:isDatePast(day) || isNaN(price) || !price ?
+                      "0" : "1"
+                    }}
+                    // style={price ? { opacity: "1" } : { opacity: "0" }}
                   >
                     {(CurrencySymbols as any)[currentSelectedCurrency]}
                     {updatePrice(price)}{" "}

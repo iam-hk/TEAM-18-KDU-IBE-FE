@@ -36,6 +36,19 @@
           "type": "Kinder",
           "age": "0-12 Jahre"
         }
-      }
+      },
+      "rooms": "Zimmer",
+      "beds": "Betten",
+      "checkin": "Einchecken zwischen",
+      "checkout": "Auschecken zwischen",
+      "searchDates": "Suchdaten",
+      "narrowResults": "Ergebnisse eingrenzen",
+      "roomResults": "Zimmerergebnisse",
+      "showing": "Anzeigen",
+      "results": "Ergebnisse",
+      "newProperty": "Neue Immobilie",
+      "inclusive": "Inklusive",
+      "perNight": "pro Nacht",
+      "selectRoom": "ZIMMER AUSWÄHLEN"
 }
   

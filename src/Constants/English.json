@@ -36,7 +36,21 @@
         "type":"Kids",
         "age":"Ages 0-12"
       }
-    }
+    },
+    "rooms":"Rooms",
+    "beds":"Beds",
+    "checkin":"Check in between",
+    "checkout":"Check out between",
+    "searchDates":"Search Dates",
+    "narrowResults":"Narrow Your Results",
+    "roomResults":"Room Results",
+    "showing":"Showing",
+    "results":"Results",
+    "newProperty":"New Property",
+    "inclusive":"Inclusive",
+    "perNight":"per night",
+    "selectRoom":"SELECT ROOM"
+
   }
   
   

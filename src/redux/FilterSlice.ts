@@ -1,9 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface IFilterSlice {
+  displaySortName : string;
   appliedFilters: string[];
   isFilterVisible: boolean[];
 }
 const initialState: IFilterSlice = {
+  displaySortName:"Select",
   appliedFilters: [],
   isFilterVisible: [],
 };
@@ -23,6 +25,9 @@ const FilterSlice = createSlice({
         (item) => item !== itemToRemove
       );
     },
+    updateSortDisplay:(state,action: PayloadAction<string>)=>{
+      state.displaySortName = action.payload;
+    },
     toggleFilterVisibility(state, action: PayloadAction<number>) {
       const index = action.payload;
       state.isFilterVisible[index] = !state.isFilterVisible[index];
@@ -35,6 +40,7 @@ const FilterSlice = createSlice({
 export const {
   removeFilters,
   addFilters,
+  updateSortDisplay,
   toggleFilterVisibility,
   setAllFilterOptions,
 } = FilterSlice.actions;

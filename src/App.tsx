@@ -4,14 +4,14 @@ import { Footer } from "./Component/Footer/Footer";
 import * as Sentry from "@sentry/react";
 import { Home } from "./Pages/Home/Home";
 import { AppDispatch, persistor } from "./redux/Store";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { addCurrencyExchangeRates } from "./redux/CurrencySlice";
 import { RoomPage } from "./Pages/RoomPage/RoomPage";
 import { getTenantConfig } from "../src/redux/thunk/GetTenantConfig";
-import { PersistGate } from 'redux-persist/es/integration/react';
-
+import { PersistGate } from "redux-persist/es/integration/react";
+import "./App.scss";
 function App() {
   const reduxDispatch: AppDispatch = useDispatch();
   const [loader, setLoader] = useState(true);
@@ -30,7 +30,7 @@ function App() {
     fetchData();
   }, []);
   return (
-    <PersistGate loading={null}persistor={persistor}>
+    // <PersistGate loading={null}persistor={persistor}>
     <BrowserRouter>
       <Header />
       <Routes>
@@ -39,7 +39,7 @@ function App() {
       </Routes>
       <Footer />
     </BrowserRouter>
-    </PersistGate>
+    // </PersistGate>
   );
 }
 

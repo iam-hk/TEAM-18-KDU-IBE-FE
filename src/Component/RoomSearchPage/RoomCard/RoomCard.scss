@@ -4,6 +4,9 @@
     border-radius: 5px;
     margin: 1rem 0.5rem;
     border: 1px solid #EFF0F1;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: transform 0.3s ease; 
+    transform: scale(1);
     .imageOfRoomTypeContainer {
         height: 143px;
         border-top-left-radius: 5px;
@@ -268,6 +271,9 @@
             }
         }
     }
+}
+.individual-roomCard:hover {
+    transform: scale(1.05); 
 }
 
 .thumbs-wrapper{
