@@ -150,8 +150,8 @@ export function RoomCard(props: RoomCardProp) {
             {(CurrencySymbols as any)[currentSelectedCurrency]}
             {updatePrice(props.currentRoom.price)}
           </div>
-          <div className="priceLabelContainer">per night</div>
-          <button className="selectRoom-btn">SELECT ROOM</button>
+          <div className="priceLabelContainer">{t("perNight")}</div>
+          <button className="selectRoom-btn">{t("selectRoom")}</button>
         </div>
       </div>
     </div>
