@@ -21,8 +21,10 @@
     display: flex;
     height: fit-content;
     gap: 4px;
-    display: flex;
     align-items: center;
+    .decrement-guest-count{
+        margin-bottom: 5px;
+    }
     button {
         padding: 2px 5px;
         border: none;
