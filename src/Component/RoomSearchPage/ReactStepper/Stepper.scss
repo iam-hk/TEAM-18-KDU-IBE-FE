@@ -11,18 +11,18 @@
     padding: 10px 0px;
     width: 50%;
 }
-.MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-    font-size: 1.0rem ;
+.MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel {
+    font-size: 1.0rem !important;
     font-weight: 500;
     margin-top: 5px;
 }
-.MuiStepLabel-label.Mui-disabled.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-    font-size: 1.0rem;
+.MuiStepLabel-label.Mui-disabled.MuiStepLabel-alternativeLabel {
+    font-size: 1.0rem !important;
     font-weight: 500;
     margin-top: 5px;
 }
-.MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-    font-size: 1.0rem;
+.MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel{
+    font-size: 1.0rem !important;
     font-weight: 500;
     margin-top: 5px;
 }
@@ -33,48 +33,43 @@
 }
 @media(max-width:980px)
 {
-    .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-        font-size: 0.7rem ;
+    .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel{
+        font-size: 0.7rem !important;
     }
-    .MuiStepLabel-label.Mui-disabled.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-        font-size: 0.7rem;
+    .MuiStepLabel-label.Mui-disabled.MuiStepLabel-alternativeLabel{
+        font-size: 0.7rem !important;
     }
-    .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-        font-size: 0.7rem;
+    .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel {
+        font-size: 0.7rem !important;
     }
 }
 @media(max-width:850px)
 {
     .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-        font-size: 0.7rem ;
+        font-size: 0.7rem !important;
     }
     .MuiStepLabel-label.Mui-disabled.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-        font-size: 0.7rem;
+        font-size: 0.7rem !important;
     }
     .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-        font-size: 0.7rem;
+        font-size: 0.7rem !important;
     }
 }
 @media(max-width:610px)
 {
-  
+    .stepper{
+        width: 80%;
+    }
     .css-ascpo7-MuiStepLabel-root.MuiStepLabel-alternativeLabel{
         width: 90px;
     }
     .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-        font-size: 0.7rem ;
+        font-size: 0.8rem !important;
     }
     .MuiStepLabel-label.Mui-disabled.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-        font-size: 0.7rem;
+        font-size: 0.8rem !important;
     }
     .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel.css-1hv8oq8-MuiStepLabel-label {
-        font-size: 0.6rem;
-    }
-}
-@media(max-width:500px)
-{
-    .stepper-container{
-        justify-content: start;
-        padding-left: 12vw;
+        font-size: 0.8rem !important;
     }
 }
