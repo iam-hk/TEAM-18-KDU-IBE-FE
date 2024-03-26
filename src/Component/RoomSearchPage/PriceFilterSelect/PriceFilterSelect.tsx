@@ -9,6 +9,7 @@ import {
   changeSortingTechnique,
 } from "../../../redux/FilterRoomSlice";
 import { IDropDownSort } from "../../../types/PropertyConfigs";
+import { updateSortDisplay } from "../../../redux/FilterSlice";
 
 const PriceFilterSelect = (props: IDropDownSort) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,14 +19,17 @@ const PriceFilterSelect = (props: IDropDownSort) => {
   const selectedSortingTechnique = useSelector(
     (state: RootState) => state.filterRoom.selectedSortingOrder
   );
+  const displaySort = useSelector((state:RootState)=>state.filterInfo.displaySortName);
 
   const reduxDispatch: AppDispatch = useDispatch();
   const toggleOptions = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (variable: string, sort: boolean) => {
+  const handleOptionClick = (variable: string, sort: boolean,displayName : string) => {
     reduxDispatch(changeSelectedSortingParam(variable));
+    reduxDispatch(updateSortDisplay(displayName));
+
     if (variable != "Select") reduxDispatch(changeSortingTechnique(sort));
     setIsOpen(false);
   };
@@ -33,16 +37,7 @@ const PriceFilterSelect = (props: IDropDownSort) => {
   return (
     <div className="custom-select">
       <div className="selected-option" onClick={toggleOptions}>
-        {selectedSortingParam !== "Select" ? (
-          <>
-            {selectedSortingParam}
-            {selectedSortingTechnique && selectedSortingTechnique
-              ? " Low"
-              : " High"}
-          </>
-        ) : (
-          selectedSortingParam
-        )}
+        {displaySort}
         {isOpen ? (
           <img src={upArrow} alt="Up Arrow" />
         ) : (
@@ -53,7 +48,7 @@ const PriceFilterSelect = (props: IDropDownSort) => {
         <div className="options">
           <div
             className="option"
-            onClick={() => handleOptionClick("Select", false)}
+            onClick={() => handleOptionClick("Select", false,"Select")}
           >
             Select
           </div>
@@ -64,7 +59,8 @@ const PriceFilterSelect = (props: IDropDownSort) => {
                 onClick={() =>
                   handleOptionClick(
                     individualOption.variable,
-                    individualOption.order
+                    individualOption.order,
+                    individualOption.sortDisplayName
                   )
                 }
                 data-variable={individualOption.variable}

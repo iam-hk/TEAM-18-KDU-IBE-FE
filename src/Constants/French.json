@@ -35,6 +35,19 @@
         "type": "Enfants",
         "age": "0-12 ans"
       }
-    }
+    },
+    "rooms": "Chambres",
+    "beds": "Lits",
+    "checkin": "Arrivée entre",
+    "checkout": "Départ entre",
+    "searchDates": "Dates de recherche",
+    "narrowResults": "Affiner vos résultats",
+    "roomResults": "Résultats de la chambre",
+    "showing": "Affichage",
+    "results": "Résultats",
+    "newProperty": "Nolle proprté",
+    "inclusive": "Inclus",
+    "perNight": "par nuit",
+    "selectRoom": "SÉLECTIONNER UNE CHAMBRE"
   }
   

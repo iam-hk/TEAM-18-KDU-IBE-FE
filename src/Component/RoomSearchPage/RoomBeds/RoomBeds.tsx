@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Box,  MenuItem, Select, Typography } from "@mui/material";
+import { Box, MenuItem, Select, Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "./RoomBeds.scss";
 import { AppDispatch, RootState } from "../../../redux/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBeds } from "../../../redux/SearchRoomSlice";
+import { useTranslation } from "react-i18next";
 const RoomBeds = () => {
+  const { t } = useTranslation();
   const beds = [1, 2, 3, 4, 5];
   const bedsSelected = useSelector(
     (state: RootState) => state.searchRoomInfo.beds
@@ -15,7 +17,7 @@ const RoomBeds = () => {
     return (
       <Box>
         <Typography color={"#858685"}>
-          <span className="beds-heading">{"Beds"}</span>
+          <span className="beds-heading">{t("beds")}</span>
         </Typography>
         <Typography>
           <span className="beds-selected">{bedsSelected}</span>

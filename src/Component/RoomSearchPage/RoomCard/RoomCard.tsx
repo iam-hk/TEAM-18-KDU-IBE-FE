@@ -9,11 +9,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
 import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
+import { useTranslation } from "react-i18next";
 interface RoomCardProp {
   property: PropertyInformation;
   currentRoom: RoomCardIndividual;
 }
 export function RoomCard(props: RoomCardProp) {
+  const { t } = useTranslation();
   const currentSelectedCurrency = useSelector(
     (state: RootState) => state.currencyRate.currentSelectedCurrency
   ) as keyof CurrencyExchangeRates;
@@ -49,7 +51,7 @@ export function RoomCard(props: RoomCardProp) {
               {props.currentRoom.roomTypeName}
             </div>
             <div className="reviewAndRatingContainer">
-              <div className="newProperty">New Property</div>
+              <div className="newProperty">{t("newProperty")}</div>
               {/* <div className="ratingContainer">
                 <i className="fi fi-sr-star"></i>
                 3.5
@@ -77,7 +79,7 @@ export function RoomCard(props: RoomCardProp) {
               </span>
             </div>
             <div className="roomCategoryAndSizeContainer">
-              <div className="category_container">Inclusive</div>
+              <div className="category_container">{t("inclusive")}</div>
               <div className="roomSizeContainer">
                 {props.currentRoom.areaInSquareFeet} ft
               </div>

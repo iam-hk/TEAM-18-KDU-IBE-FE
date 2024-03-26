@@ -149,9 +149,10 @@
         width: 100%;
       }
   .select-form {
-    flex-direction: column;
-    gap: 8px;
-    padding: 0px 4vw;
+    // flex-direction: column;
+    // gap: 8px;
+    // padding: 0px 4vw;
+    flex-wrap: wrap;
   }
   .text {
     display: block;
@@ -160,12 +161,15 @@
     width: 100%;
     display: flex;
     justify-content: start;
-    margin-left: 50px;
     padding: 10px 0px;
   }
   .search-submit-button {
-    width: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .search-submit {
+      width: 50%;
       font-size: 1rem;
       padding: 10px;
     }
@@ -218,5 +222,6 @@
   .right-display-content .right-top-heading .top-right-heading h3{
     font-size: 1rem;
   }
+  
 }
 

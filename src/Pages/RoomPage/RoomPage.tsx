@@ -37,7 +37,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 import nextIcon from "../../assets/right-arrow-icon.png";
 import prevIcon from "../../assets/left-arrow-icon.png";
 import { addFilters } from "../../redux/FilterSlice";
+import { useTranslation } from "react-i18next";
+
 export function RoomPage() {
+  const { t } = useTranslation();
   const maxCards = useSelector(
     (state: RootState) => state.propertyConfigInfo.maxCards
   );
@@ -112,7 +115,7 @@ export function RoomPage() {
   const fetchRoomCards = async (roomUrl: string) => {
     try {
       setLoader(true);
-      const backendUrl=import.meta.env.VITE_REACT_APP_BACKEND_URL
+      const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL;
       const roomCardsUrl = `${backendUrl}${roomUrl}`;
       const roomCardFromBackend = await axios.get(roomCardsUrl);
       const result = await roomCardFromBackend.data;
@@ -122,9 +125,21 @@ export function RoomPage() {
       console.log(error);
     }
   };
+
   useEffect(() => {
     reduxDispatch(getPropertyConfig());
   }, []);
+
+  const previousSearch = window.localStorage.getItem("prevSearch");
+
+  if (window.location.search === "") {
+    if (previousSearch === null) {
+      window.location.href = "/";
+    } else {
+      console.log("Redirecting to previous search:", previousSearch);
+      window.location.search = previousSearch;
+    }
+  }
   useEffect(() => {
     if (guests.length !== 0 && maxDays > 0) {
       const url = window.location.href;
@@ -135,6 +150,7 @@ export function RoomPage() {
       const startDate = params.get("startDate");
       const endDate = params.get("endDate");
       const bedCount = params.get("bedCount");
+
       if (
         !id ||
         !guestCount ||
@@ -249,6 +265,7 @@ export function RoomPage() {
       }
 
       reduxDispatch(changePageNumber(1));
+      window.localStorage.setItem("prevSearch", `?${activeUrl.split("?")[1]}`);
       navigate(activeUrl);
       fetchRoomCards(backendUrl);
     }
@@ -332,8 +349,13 @@ export function RoomPage() {
             </div>
           </div>
           <div className="search-submit-button">
-            <button className="search-submit" onClick={updateSearchParams}>
-              SEARCH DATES
+            <button
+              className="search-submit"
+              onClick={() => {
+                updateSearchParams();
+              }}
+            >
+              {t("searchDates")}
             </button>
           </div>
         </div>
@@ -352,7 +374,7 @@ export function RoomPage() {
               <>
                 <div className="right-top-heading">
                   <div className="top-left-heading">
-                    <h3 className="room-results">Room Results</h3>
+                    <h3 className="room-results">{t("roomResults")}</h3>
                   </div>
                   <div className="top-right-heading">
                     <div className="page-info">
@@ -360,8 +382,8 @@ export function RoomPage() {
                         <img src={prevIcon} alt="" />
                       </button>
                       <h3>
-                        Showing {start}-{end} of{" "}
-                        {roomCardResponse?.totalRoomCards} Results
+                        {t("showing")} {start}-{end} of{" "}
+                        {roomCardResponse?.totalRoomCards} {t("results")}
                       </h3>
                       <button className="next-page" onClick={gotoNextPage}>
                         <img src={nextIcon} alt="" />

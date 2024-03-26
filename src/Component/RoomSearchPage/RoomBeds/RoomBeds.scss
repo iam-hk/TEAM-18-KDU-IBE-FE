@@ -27,11 +27,19 @@
         font-size: 1rem !important;
     }
     .room-page-selected-beds{
-        width: 100%;
+        // width: 100%;
+        margin: 10px 0px;
+        width: 49.5%;
         .css-1lxtzcg-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
             height: 55px !important;
             width: 100%;
         }
     }
     
+}
+@media(max-width:550px)
+{
+    .room-page-selected-beds{
+        width: 100%;
+    }
 }

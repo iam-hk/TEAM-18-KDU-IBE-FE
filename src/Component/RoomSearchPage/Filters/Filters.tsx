@@ -10,8 +10,10 @@ import upArrow from "../../../assets/up-arrow.png";
 import "./Filters.scss";
 import { AppDispatch, RootState } from "../../../redux/Store";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Filters() {
+  const { t } = useTranslation();
   const reduxDispatch: AppDispatch = useDispatch();
   const isFilterVisible = useSelector(
     (state: RootState) => state.filterInfo.isFilterVisible
@@ -46,7 +48,7 @@ export default function Filters() {
     <div className="filter-wrapper">
       <div className="filter-container">
         <div className="filter-heading">
-          <h2 className="filter-heading-text">Narrow your results</h2>
+          <h2 className="filter-heading-text">{t("narrowResults")}</h2>
           <div className="arrow toggleDisplay" onClick={handleToggleFilter}>
             <img
               src={downArrow}
