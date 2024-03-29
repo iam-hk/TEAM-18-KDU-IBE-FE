@@ -99,7 +99,16 @@ export function RoomPage() {
     (state: RootState) => state.filterInfo.appliedFilters
   );
 
-  const [globalApplicablePromotions,setGlobalApplicablePromotions] = useState<GlobalPromotions>();
+  const [globalApplicablePromotions,setGlobalApplicablePromotions] = useState<GlobalPromotions>({
+    highestPromotion:{
+      "priceFactor":100,
+      "minimumDaysOfStay":100,
+      "promotionDescription":"",
+      "promotionTitle":"",
+      "promotionId":1
+    },
+    allApplicablePromotions:[],
+  });
   const [roomCardResponse, setRoomCardResponse] = useState<RoomCardResponse>();
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");

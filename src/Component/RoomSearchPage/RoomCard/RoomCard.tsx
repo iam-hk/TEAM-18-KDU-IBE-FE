@@ -83,12 +83,18 @@ export function RoomCard(props: RoomCardProp) {
               {t(`${props.currentRoom.roomTypeName}`)}
             </div>
             <div className="reviewAndRatingContainer">
-              <div className="newProperty">{t("newProperty")}</div>
-              {/* <div className="ratingContainer">
-                <i className="fi fi-sr-star"></i>
-                3.5
+              {props.currentRoom.newProperty ? 
+              <div className="newProperty">
+                {t("newProperty")}
+              </div> :
+              <>
+              <div className="ratingContainer">
+              <i className="fi fi-sr-star"></i>
+              {props.currentRoom.rating}
               </div>
-              <div className="reviewCountContainer">128 reviews</div> */}
+            <div className="reviewCountContainer">{props.currentRoom.reviewCount} reviews</div>
+              </>
+          }
             </div>
           </div>
           <div className="otherDetailsOfRoomType">
@@ -157,6 +163,9 @@ export function RoomCard(props: RoomCardProp) {
             </div>
           </div>
         </div>
+        {
+          props.globalPromotion.allApplicablePromotions.length != 0 &&
+
         <div className="promotionOfRoomType">
           <div className="BannerOfSpecialDeal">
             <div className="banner_title_of_promotion">Special Deal</div>
@@ -166,17 +175,18 @@ export function RoomCard(props: RoomCardProp) {
               viewBox="0 0 121 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-            >
+              >
               <path
                 d="M120.759 0H0V32H120.759L112.775 14.9677L120.759 0Z"
                 fill="#26266D"
-              />
+                />
             </svg>
           </div>
           <div className="descriptionOfSpecialDeal">
             {props.globalPromotion.highestPromotion.promotionDescription}
           </div>
         </div>
+        }
         <div className="price_containerOfRoomType">
           <div className="minimumPriceOfRoomType">
             {(CurrencySymbols as any)[currentSelectedCurrency]}
