@@ -8,9 +8,12 @@ import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
 import { StepIconProps } from "@mui/material/StepIcon";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/Store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/Store";
 import "./Stepper.scss";
+import { setStepperState } from "../../../redux/StepperSlice";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 22,
@@ -68,13 +71,28 @@ function ColorlibStepIcon(props: StepIconProps) {
     </ColorlibStepIconRoot>
   );
 }
+const steps = ["chooseRoom", "chooseAddon", "checkOut"];
 
-const steps = ["1:Choose Room", "2:Choose Add on", "3.Checkout"];
-
-export function StepperUI() {
+export function StepperUI({ onStepClick }) {
+  const navigate = useNavigate();
+  const reduxDispatch: AppDispatch = useDispatch();
+  const { t } = useTranslation();
   const stepperState = useSelector(
     (state: RootState) => state.stepper.currentState
   );
+
+  const handleClick = (step) => {
+    const currentIndex = steps.indexOf(step);
+    const previousSearch = window.localStorage.getItem("prevSearch");
+    if (currentIndex < stepperState) {
+      reduxDispatch(setStepperState(currentIndex));
+      navigate(`/rooms/${previousSearch}`);
+    }
+    if (typeof onStepClick === "function") {
+      onStepClick(step);
+    }
+  };
+
   return (
     <div className="stepper-container">
       <div className="stepper">
@@ -85,7 +103,8 @@ export function StepperUI() {
             connector={<ColorlibConnector />}
           >
             {steps.map((label, index) => (
-              <Step key={label}>
+              <Step key={label} onClick={() => handleClick(label)}>
+                {" "}
                 <StepLabel
                   StepIconComponent={ColorlibStepIcon}
                   completed={index < stepperState ? "true" : undefined}
@@ -93,7 +112,7 @@ export function StepperUI() {
                   <span
                     className={index === stepperState ? "active-label" : ""}
                   >
-                    {label}
+                    {t(`${label}`)}
                   </span>
                 </StepLabel>
               </Step>

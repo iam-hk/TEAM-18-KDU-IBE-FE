@@ -13,7 +13,7 @@
       "guests":"Invités",
       "rooms":"chambres",
       "disabled":"J'ai besoin d'un accès",
-      "searchButton":"Recherche",
+      "searchButton":"RECHERCHE",
       "checkin":"Enregistrement",
       "checkout":"Départ",
       "from":"À partir de",
@@ -48,6 +48,18 @@
     "newProperty": "Nolle proprté",
     "inclusive": "Inclus",
     "perNight": "par nuit",
-    "selectRoom": "SÉLECT CHAMBRE"
+    "selectRoom": "SÉLECT CHAMBRE",
+    "chooseRoom": "1:Chossez un chambre",
+  "chooseAddon": "2:Chossez un addon",
+  "checkOut": "3:Paser à caisse",
+  "STANDARD_SUITE": "SUITE STANDARD",
+  "GARDEN_SUITE": "SUITE JARDIN",
+  "COUPLE_SUITE": "SUITE COUPLE",
+  "FAMILY_DELUXE": "DELUXE FAMILLE",
+  "SUPER_DELUXE": "DELUXE SUPÉRIEUR",
+  "GRAND_DELUXE": "GRAND DELUXE",
+    "king": "ROI",
+    "queen": "REINE"
+  
   }
   

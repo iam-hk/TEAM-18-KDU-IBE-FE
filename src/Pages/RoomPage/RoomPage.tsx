@@ -38,9 +38,13 @@ import nextIcon from "../../assets/right-arrow-icon.png";
 import prevIcon from "../../assets/left-arrow-icon.png";
 import { addFilters } from "../../redux/FilterSlice";
 import { useTranslation } from "react-i18next";
-
+import { Itinerary } from "../../Component/RoomSearchPage/Itinerary/Itinerary";
+import { setRoomCards } from "../../redux/FilterRoomSlice";
 export function RoomPage() {
   const { t } = useTranslation();
+  const itineraryPropertyName = useSelector(
+    (state: RootState) => state.itineraryInfo.propertyName
+  );
   const maxCards = useSelector(
     (state: RootState) => state.propertyConfigInfo.maxCards
   );
@@ -120,6 +124,7 @@ export function RoomPage() {
       const roomCardFromBackend = await axios.get(roomCardsUrl);
       const result = await roomCardFromBackend.data;
       setRoomCardResponse(result);
+      reduxDispatch(setRoomCards(result));
       setLoader(false);
     } catch (error) {
       console.log(error);
@@ -136,7 +141,6 @@ export function RoomPage() {
     if (previousSearch === null) {
       window.location.href = "/";
     } else {
-      console.log("Redirecting to previous search:", previousSearch);
       window.location.search = previousSearch;
     }
   }
@@ -222,6 +226,7 @@ export function RoomPage() {
           else redirectUrl += `${filterWord}`;
         });
       }
+      window.localStorage.setItem("prevSearch", `?${url.split("?")[1]}`);
       reduxDispatch(updateBeds(parseInt(bedCount)));
       reduxDispatch(assignGuests(countOfGuests));
       reduxDispatch(updateRooms(parseInt(roomCount)));
@@ -320,6 +325,7 @@ export function RoomPage() {
       .map((guest, index) => `${guest.type}=${guestCounts[index]}`)
       .join("&");
     const activeUrl = `/rooms?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&${guestTypeParams}&bedCount=${bedsSelected}`;
+    window.localStorage.setItem("prevSearch", `?${activeUrl.split("?")[1]}`);
     const backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}`;
     navigate(activeUrl);
     fetchRoomCards(backendUrl);
@@ -333,7 +339,7 @@ export function RoomPage() {
             { "--banner-image": `url(${bannerImage})` } as React.CSSProperties
           }
         ></div>
-        <StepperUI />
+        <StepperUI onStepClick={undefined} />
         <div className="select-form">
           <Guests />
           <RoomPageRoom />
@@ -364,6 +370,11 @@ export function RoomPage() {
             <Filters />
           </div>
           <div className="right-display-content">
+            {itineraryPropertyName && (
+              <div className="itinerary-copy">
+                <Itinerary />
+              </div>
+            )}
             {loader ? (
               <div className="wrapper">
                 <div className="loader-container">
@@ -393,14 +404,21 @@ export function RoomPage() {
                     <PriceFilterSelect sorts={sortingOptions} />
                   </div>
                 </div>
-                <div className="all-cards-display">
-                  {roomCardResponse?.roomCards.map((room) => (
-                    <RoomCard
-                      key={room.roomTypeId}
-                      property={roomCardResponse.propertyInformation}
-                      currentRoom={room}
-                    />
-                  ))}
+                <div className="itinerary-display-content">
+                  <div className="all-cards-display">
+                    {roomCardResponse?.roomCards.map((room) => (
+                      <RoomCard
+                        key={room.roomTypeId}
+                        property={roomCardResponse.propertyInformation}
+                        currentRoom={room}
+                      />
+                    ))}
+                  </div>
+                  {itineraryPropertyName && (
+                    <div className="itinerary-content">
+                      <Itinerary />
+                    </div>
+                  )}
                 </div>
               </>
             )}

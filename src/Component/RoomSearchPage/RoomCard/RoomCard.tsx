@@ -5,16 +5,38 @@ import {
   PropertyInformation,
   RoomCardIndividual,
 } from "../../../types/RoomCardResponse";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/Store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/Store";
 import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
 import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
 import { useTranslation } from "react-i18next";
-interface RoomCardProp {
+import { useEffect, useState } from "react";
+import RoomModal from "../../Modals/RoomModal/RoomModal";
+import {
+  setStepperState,
+  increaseStepperState,
+} from "../../../redux/StepperSlice";
+export interface RoomCardProp {
   property: PropertyInformation;
   currentRoom: RoomCardIndividual;
 }
 export function RoomCard(props: RoomCardProp) {
+  const [open, setOpen] = useState(false);
+  const selectedPropertyName = useSelector(
+    (state: RootState) => state.itineraryInfo.propertyName
+  );
+  useEffect(() => {
+    if (open == false) {
+      if (selectedPropertyName) {
+        reduxDispatch(setStepperState(1));
+      } else {
+        reduxDispatch(setStepperState(0));
+      }
+    }
+  }, [open]);
+  function updateOpen(data: boolean) {
+    setOpen(data);
+  }
   const { t } = useTranslation();
   const currentSelectedCurrency = useSelector(
     (state: RootState) => state.currencyRate.currentSelectedCurrency
@@ -26,6 +48,13 @@ export function RoomCard(props: RoomCardProp) {
 
   function updatePrice(price: number) {
     return price * currentPrice[currentSelectedCurrency].toFixed(1);
+  }
+  const reduxDispatch: AppDispatch = useDispatch();
+  const stepperState = useSelector(
+    (state: RootState) => state.stepper.currentState
+  );
+  function changeStepperState() {
+    reduxDispatch(increaseStepperState(stepperState + 1));
   }
   return (
     <div className="room-display">
@@ -48,7 +77,8 @@ export function RoomCard(props: RoomCardProp) {
         <div className="informationOfRoomType">
           <div className="propertyAndReviewContainer">
             <div className="propertyNameContainer">
-              {props.currentRoom.roomTypeName}
+              {/* {removeUnderscore(props.currentRoom.roomTypeName)} */}
+              {t(`${props.currentRoom.roomTypeName}`)}
             </div>
             <div className="reviewAndRatingContainer">
               <div className="newProperty">{t("newProperty")}</div>
@@ -116,10 +146,10 @@ export function RoomCard(props: RoomCardProp) {
               </span>
               <span className="bed_content">
                 {props.currentRoom.singleBed != 0
-                  ? `King - ${props.currentRoom.singleBed} `
+                  ? `${t("king")} - ${props.currentRoom.singleBed} `
                   : ""}
                 {props.currentRoom.doubleBed != 0
-                  ? `Queen - ${props.currentRoom.doubleBed}`
+                  ? `${t("queen")} - ${props.currentRoom.doubleBed}`
                   : ""}
               </span>
             </div>
@@ -151,7 +181,16 @@ export function RoomCard(props: RoomCardProp) {
             {updatePrice(props.currentRoom.price)}
           </div>
           <div className="priceLabelContainer">{t("perNight")}</div>
-          <button className="selectRoom-btn">{t("selectRoom")}</button>
+          <button
+            className="selectRoom-btn"
+            onClick={() => {
+              setOpen(true);
+              changeStepperState();
+            }}
+          >
+            {t("selectRoom")}
+          </button>
+          <RoomModal open={open} updateOpen={updateOpen} props={props} />
         </div>
       </div>
     </div>

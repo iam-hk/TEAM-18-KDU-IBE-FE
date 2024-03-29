@@ -1,6 +1,6 @@
 import "./Home.scss";
-import {  RootState } from "../../redux/Store";
-import {  useSelector } from "react-redux";
+import { RootState } from "../../redux/Store";
+import { useSelector } from "react-redux";
 import { SearchForm } from "../../Component/Search/searchForm/SearchForm";
 import CircularProgress from "@mui/material/CircularProgress";
 interface HomeProps {

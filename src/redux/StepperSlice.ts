@@ -12,12 +12,18 @@ const StepperSlice = createSlice({
   initialState,
   reducers: {
     increaseStepperState: (state, action: PayloadAction<number>) => {
-      if (state.isFulfilled[action.payload] === false) {
-        state.currentState += 1;
-      } else {
-        state.currentState += action.payload;
+      state.currentState = action.payload;
+    },
+    decreaseStepperState: (state, action: PayloadAction<number>) => {
+      if (action.payload >= 0) {
+        state.currentState = action.payload;
       }
+    },
+    setStepperState: (state, action: PayloadAction<number>) => {
+      state.currentState = action.payload;
     },
   },
 });
+export const { increaseStepperState, decreaseStepperState, setStepperState } =
+  StepperSlice.actions;
 export const StepperReducer = StepperSlice.reducer;

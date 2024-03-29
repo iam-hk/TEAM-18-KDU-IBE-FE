@@ -14,7 +14,7 @@
         "guests":"Gäste",
         "rooms":"Zimmer",
         "disabled":"Ich barrierefreien Zugang",
-        "searchButton":"Suche",
+        "searchButton":"SUCHE",
         "checkin":"Anreise",
         "checkout":"Abreise",
         "from":"Von",
@@ -49,6 +49,17 @@
       "newProperty": "Neue Immobilie",
       "inclusive": "Inklusive",
       "perNight": "pro Nacht",
-      "selectRoom": "ZIMMER AUÄHLEN"
+      "selectRoom": "ZIMMER AUÄHLEN",
+      "chooseRoom": "1:Wählen Zimmer",
+      "chooseAddon": "2:Wählen Addon",
+      "checkOut": "3:Zur gehen",
+      "STANDARD_SUITE": "STANDARD SUITE",
+      "GARDEN_SUITE": "GARTEN SUITE",
+      "COUPLE_SUITE": "PAAR SUITE",
+      "FAMILY_DELUXE": "FAMILIEN DELUXE",
+      "SUPER_DELUXE": "SUPER DELUXE",
+      "GRAND_DELUXE": "GRAND DELUXE",
+      "king": "KÖNIG",
+      "queen": "KÖNIGIN"
 }
   

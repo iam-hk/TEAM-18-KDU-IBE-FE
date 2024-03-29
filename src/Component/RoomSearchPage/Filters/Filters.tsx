@@ -86,12 +86,14 @@ export default function Filters() {
               <div className="filter-type">
                 {filter.options.map((option, optionIndex) => (
                   <div className="filter-options" key={optionIndex}>
-                    <input
-                      type="checkbox"
-                      onChange={() => handleToggleFilterOption(index, option)}
-                      checked={appliedFilters.includes(option)}
-                    />
-                    <p className="filter-text">{option}</p>
+                    <label className="input-text-wrapper">
+                      <input
+                        type="checkbox"
+                        onChange={() => handleToggleFilterOption(index, option)}
+                        checked={appliedFilters.includes(option)}
+                      />
+                      <p className="filter-text">{option}</p>
+                    </label>
                   </div>
                 ))}
               </div>
@@ -128,14 +130,16 @@ export default function Filters() {
                   <div className="filter-type">
                     {filter.options.map((option, optionIndex) => (
                       <div className="filter-options" key={optionIndex}>
-                        <input
-                          type="checkbox"
-                          onChange={() =>
-                            handleToggleFilterOption(index, option)
-                          }
-                          checked={appliedFilters.includes(option)}
-                        />
-                        <p className="filter-text">{option}</p>
+                        <label className="input-text-wrapper">
+                          <input
+                            type="checkbox"
+                            onChange={() =>
+                              handleToggleFilterOption(index, option)
+                            }
+                            checked={appliedFilters.includes(option)}
+                          />
+                          <p className="filter-text">{option}</p>
+                        </label>
                       </div>
                     ))}
                   </div>

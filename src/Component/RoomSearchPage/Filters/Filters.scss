@@ -1,11 +1,16 @@
 .filter-wrapper{
     width: 100%;
 }
+
 .filter-container{
     padding: 20px 20px;
     width: 100%;
     background-color: #eff0f1;
     border-radius: 6px;
+    .input-text-wrapper{
+        display: flex;
+        gap: 4px;
+    }
     .filter-heading{
         display: flex;
         justify-content: space-between;

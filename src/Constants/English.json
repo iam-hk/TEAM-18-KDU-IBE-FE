@@ -14,7 +14,7 @@
       "guests":"Guests",
       "rooms":"Rooms",
       "disabled":"I need an accessible room",
-      "searchButton":"Search",
+      "searchButton":"SEARCH",
       "checkin":"Check-in",
       "checkout":"Check-out",
       "from":"From",
@@ -41,7 +41,7 @@
     "beds":"Beds",
     "checkin":"Check in between",
     "checkout":"Check out between",
-    "searchDates":"Search Dates",
+    "searchDates":"SEARCH DATES",
     "narrowResults":"Narrow Your Results",
     "roomResults":"Room Results",
     "showing":"Showing",
@@ -49,8 +49,18 @@
     "newProperty":"New Property",
     "inclusive":"Inclusive",
     "perNight":"per night",
-    "selectRoom":"SELECT ROOM"
-
+    "selectRoom":"SELECT ROOM",
+    "chooseRoom":"1:Choose Room",
+    "chooseAddon":"2:Choose add on",
+    "checkOut":"3:Checkout",
+    "STANDARD_SUITE":"STANDARD SUITE",
+    "GARDEN_SUITE":"GARDEN SUITE",
+    "COUPLE_SUITE":"COUPLE SUITE",
+    "FAMILY_DELUXE":"FAMILY DELUXE",
+    "SUPER_DELUXE":"SUPER DELUXE",
+    "GRAND_DELUXE":"GRAND DELUXE",
+    "king":"KING",
+    "queen":"QUEEN"
   }
   
   

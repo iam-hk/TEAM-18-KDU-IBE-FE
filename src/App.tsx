@@ -12,6 +12,7 @@ import { RoomPage } from "./Pages/RoomPage/RoomPage";
 import { getTenantConfig } from "../src/redux/thunk/GetTenantConfig";
 import { PersistGate } from "redux-persist/es/integration/react";
 import "./App.scss";
+import CheckoutPage from "./Pages/CheckoutPage/CheckoutPage";
 function App() {
   const reduxDispatch: AppDispatch = useDispatch();
   const [loader, setLoader] = useState(true);
@@ -36,6 +37,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home loader={loader} />} />
         <Route path="/rooms" element={<RoomPage />} />
+        <Route path="/checkout" element={<CheckoutPage />}/>
       </Routes>
       <Footer />
     </BrowserRouter>

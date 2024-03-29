@@ -1,0 +1,20 @@
+.room-page {
+    min-height: 80%;
+    width: 100%;
+  }
+  .bg-image {
+    height: 140px;
+    width: 100%;
+    background-image: var(--banner-image);
+    background-position: calc(45% + 0px) calc(25% + 20px);
+    background-size: cover;
+  }
+  .itinerary-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .itinerary-content{
+        width: 30%;
+    }
+  }

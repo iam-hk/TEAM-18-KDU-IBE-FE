@@ -1,7 +1,6 @@
 .room-page {
   min-height: 80%;
   width: 100%;
-  overflow-x: hidden;
 }
 .bg-image {
   height: 140px;
@@ -76,7 +75,7 @@
     border: none;
 }
 .right-display-content {
-  width: 76%;
+  width: 78%;
   .right-top-heading {
     display: flex;
     padding: 10px 10px;
@@ -115,9 +114,19 @@
       
     }
   }
+  .itinerary-display-content
+  {
+    width: 100%;
+    display: flex;
+    .itinerary-content{
+      // display: none;
+      min-width: 35%;
+    }
+  }
   .all-cards-display {
     display: flex;
     flex-wrap: wrap;
+    min-width: 65%;
   }
 }
 @media (max-width: 1230px) {
@@ -149,9 +158,6 @@
         width: 100%;
       }
   .select-form {
-    // flex-direction: column;
-    // gap: 8px;
-    // padding: 0px 4vw;
     flex-wrap: wrap;
   }
   .text {
@@ -213,11 +219,34 @@
     }
    }
 }
+.itinerary-copy{
+  display: none;
+}
+@media(max-width:770px)
+{
+  .itinerary-display-content{
+    flex-wrap: wrap;
+  }
+  .all-cards-display{
+    min-width: 100% !important;
+  }
+  .itinerary-content{
+    min-width: 100% !important;
+    order: -1;
+    display: flex;
+    justify-content: center;
+  }
+  .itinerary-content{
+    display: none !important;
+  }
+  .itinerary-copy{
+    display: block;
+  }
+}
 @media(max-width:550px)
 {
   .individual-roomCard{
     width: 90% !important;
-    
   }
   .right-display-content .right-top-heading .top-right-heading h3{
     font-size: 1rem;
