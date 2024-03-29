@@ -40,6 +40,7 @@ import { addFilters } from "../../redux/FilterSlice";
 import { useTranslation } from "react-i18next";
 import { Itinerary } from "../../Component/RoomSearchPage/Itinerary/Itinerary";
 import { setRoomCards } from "../../redux/FilterRoomSlice";
+import { GlobalPromotions } from "../../types/PromotionList";
 export function RoomPage() {
   const { t } = useTranslation();
   const itineraryPropertyName = useSelector(
@@ -98,6 +99,7 @@ export function RoomPage() {
     (state: RootState) => state.filterInfo.appliedFilters
   );
 
+  const [globalApplicablePromotions,setGlobalApplicablePromotions] = useState<GlobalPromotions>();
   const [roomCardResponse, setRoomCardResponse] = useState<RoomCardResponse>();
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
@@ -123,6 +125,9 @@ export function RoomPage() {
       const roomCardsUrl = `${backendUrl}${roomUrl}`;
       const roomCardFromBackend = await axios.get(roomCardsUrl);
       const result = await roomCardFromBackend.data;
+      const getAllPromotions = await axios.get("http://localhost:8000/api/v1/getAllPromotions?startDate=2024-03-24&endDate=2024-03-27&elderGuest=false&militaryGuest=false");
+      const data_promotions = await getAllPromotions.data;
+      setGlobalApplicablePromotions(data_promotions);
       setRoomCardResponse(result);
       reduxDispatch(setRoomCards(result));
       setLoader(false);
@@ -411,6 +416,7 @@ export function RoomPage() {
                         key={room.roomTypeId}
                         property={roomCardResponse.propertyInformation}
                         currentRoom={room}
+                        globalPromotion = {globalApplicablePromotions}
                       />
                     ))}
                   </div>

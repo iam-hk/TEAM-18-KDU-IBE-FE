@@ -8,6 +8,7 @@ export interface PropertyInformation {
     propertyAddress: string;
     propertyName:    string;
 }
+
 export interface RoomCardIndividual {
     roomTypeId:                      number;
     roomTypeName:                    string;
@@ -17,9 +18,11 @@ export interface RoomCardIndividual {
     areaInSquareFeet:                number;
     price:                           number;
     roomCount:                       number;
-    arrayOfImages:                   any[];
+    arrayOfImages:                   string[];
     rating:                          number;
     reviewCount:                     number;
     priceOfRoomTypeInParticularDate: { [key: string]: number };
+    amenitiesOfRoom:                 any[];
+    description:                     string;
     newProperty:                     boolean;
 }

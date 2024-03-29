@@ -16,9 +16,11 @@ import {
   setStepperState,
   increaseStepperState,
 } from "../../../redux/StepperSlice";
+import { GlobalPromotions } from "../../../types/PromotionList";
 export interface RoomCardProp {
   property: PropertyInformation;
   currentRoom: RoomCardIndividual;
+  globalPromotion : GlobalPromotions;
 }
 export function RoomCard(props: RoomCardProp) {
   const [open, setOpen] = useState(false);
@@ -155,7 +157,7 @@ export function RoomCard(props: RoomCardProp) {
             </div>
           </div>
         </div>
-        {/* <div className="promotionOfRoomType">
+        <div className="promotionOfRoomType">
           <div className="BannerOfSpecialDeal">
             <div className="banner_title_of_promotion">Special Deal</div>
             <svg
@@ -172,9 +174,9 @@ export function RoomCard(props: RoomCardProp) {
             </svg>
           </div>
           <div className="descriptionOfSpecialDeal">
-            Lorem ipsum dolor sit amet.
+            {props.globalPromotion.highestPromotion.promotionDescription}
           </div>
-        </div> */}
+        </div>
         <div className="price_containerOfRoomType">
           <div className="minimumPriceOfRoomType">
             {(CurrencySymbols as any)[currentSelectedCurrency]}
@@ -190,7 +192,7 @@ export function RoomCard(props: RoomCardProp) {
           >
             {t("selectRoom")}
           </button>
-          <RoomModal open={open} updateOpen={updateOpen} props={props} />
+          <RoomModal open={open} updateOpen={updateOpen} room={props} globalPromotions = {props.globalPromotion}/>
         </div>
       </div>
     </div>
