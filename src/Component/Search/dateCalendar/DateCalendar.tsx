@@ -178,6 +178,7 @@ export function DateCalender() {
               : `   ${startDateSlice}    →   ${endDateSlice}`
           }
           className="input-date-container"
+          onClick={toggleVisibility}
           readOnly
         />
         <button onClick={toggleVisibility} className="date-calender-icon">
