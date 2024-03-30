@@ -25,22 +25,38 @@
   justify-content: space-between;
   align-items: center;
 }
-.disabled-person {
-  width: 5%;
+.checkbox-wrapper{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+  flex-direction: column;
+  .wrapper-label{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .military-veteran{
+    
+    input{
+      height: 15px;
+      width: 15px;
+    }
+    .military-image
+    {
+      height: 18px;
+      width: 18px;
+    }
+  }
+.disabled-person {
   input {
-    height: 25px;
-    width: 25px;
+    height: 15px;
+    width: 15px;
   }
   .disabled-image {
     img {
-      height: 30px;
-      width: 30px;
+      height: 18px;
+      width: 18px;
     }
   }
+}
 }
 .text {
   display: none;
@@ -132,8 +148,8 @@
 @media (max-width: 1230px) {
   .disabled-person {
     input {
-      height: 15px;
-      width: 15px;
+      height: 13px;
+      width: 13px;
     }
     .disabled-image {
       img {
@@ -167,7 +183,15 @@
     width: 100%;
     display: flex;
     justify-content: start;
+    align-items: center;
     padding: 10px 0px;
+  }
+  .military-veteran{
+    display: flex;
+    width: 100%;
+    padding: 10px 0px;
+    align-items: start;
+    gap: 3px;
   }
   .search-submit-button {
     width: 100%;

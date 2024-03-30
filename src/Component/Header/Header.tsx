@@ -41,7 +41,7 @@ export function Header() {
         <button className="my-bookings">{i18n.t("myBookings")}</button>
         <div className="choice-components">
           <div className="language-component">
-            <img src={siteLogo} alt="imagenotfound" />
+            <img src={siteLogo} alt="imagenotfound" className="language-component-img"/>
             <select
               className="language-selection"
               name="language"
@@ -66,16 +66,13 @@ export function Header() {
             </select>
           </div>
         </div>
-        {/* <button className="login-button"> */}
           <LoggIn/>
-          {/* {i18n.t("login")} */}
-          {/* </button> */}
       </div>
       {isRightCopyOpen && (
         <div className="right-part-copy">
           <button className="my-bookings">{i18n.t("myBookings")}</button>
           <div className="language-component">
-            <img src={siteLogo} alt="logo not found" />
+            <img src={siteLogo} alt="logo not found" className="language-component-img" />
             <select
               className="language-selection"
               name="language"

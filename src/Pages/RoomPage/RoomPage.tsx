@@ -17,6 +17,7 @@ import {
   updateStartDate,
   updateEndDate,
   updateBeds,
+  toggleIsMilitaryVetran,
 } from "../../redux/SearchRoomSlice";
 import CustomizedSnackbars from "../../Component/snackbar/CustomizedSnackbars";
 import { validateDates } from "../../utils/RoomValidations/HandleDateValidations";
@@ -41,6 +42,7 @@ import { useTranslation } from "react-i18next";
 import { Itinerary } from "../../Component/RoomSearchPage/Itinerary/Itinerary";
 import { setRoomCards } from "../../redux/FilterRoomSlice";
 import { GlobalPromotions } from "../../types/PromotionList";
+import fighterJet from "../../assets/fighter-jet.png";
 export function RoomPage() {
   const { t } = useTranslation();
   const itineraryPropertyName = useSelector(
@@ -98,17 +100,20 @@ export function RoomPage() {
   const appliedFilters = useSelector(
     (state: RootState) => state.filterInfo.appliedFilters
   );
-
-  const [globalApplicablePromotions,setGlobalApplicablePromotions] = useState<GlobalPromotions>({
-    highestPromotion:{
-      "priceFactor":100,
-      "minimumDaysOfStay":100,
-      "promotionDescription":"",
-      "promotionTitle":"",
-      "promotionId":1
-    },
-    allApplicablePromotions:[],
-  });
+  const militaryVeteran = useSelector(
+    (state: RootState) => state.searchRoomInfo.isMilitaryVetran
+  );
+  const [globalApplicablePromotions, setGlobalApplicablePromotions] =
+    useState<GlobalPromotions>({
+      highestPromotion: {
+        priceFactor: 100,
+        minimumDaysOfStay: 100,
+        promotionDescription: "",
+        promotionTitle: "",
+        promotionId: 1,
+      },
+      allApplicablePromotions: [],
+    });
   const [roomCardResponse, setRoomCardResponse] = useState<RoomCardResponse>();
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
@@ -117,6 +122,16 @@ export function RoomPage() {
   const navigate = useNavigate();
   let start = (pageNumber - 1) * maxCards + 1;
   let end = Math.min(pageNumber * maxCards, roomCardResponse?.totalRoomCards);
+  if (Number.isNaN(end)) {
+    start = 0;
+    end = 0;
+  }
+  if (roomCardResponse?.totalRoomCards === 0) {
+    start = 0;
+  }
+  const militaryServiceVetran = useSelector(
+    (state: RootState) => state.searchRoomInfo.isMilitaryVetran
+  );
   useEffect(() => {
     reduxDispatch(updateGuestDispInfo());
   }, [guestCounts]);
@@ -127,6 +142,36 @@ export function RoomPage() {
       window.location.href = "/";
     }, 3000);
   }
+  const checkSeniorCitizenGuest = (): boolean => {
+    const seniorCitizenIndex = guests.findIndex(
+      (guest) => guest.type === "Senior Citizen"
+    );
+    if (seniorCitizenIndex !== -1) {
+      return guestCounts[seniorCitizenIndex] > 0;
+    } else {
+      return false;
+    }
+  };
+  function formPromotionsUrl() {
+    const seniorCitizen = checkSeniorCitizenGuest();
+    let url = "http://localhost:8000/api/v1/getAllPromotions?";
+    if (!startDate && !endDate) {
+      const getUrl = window.location.href;
+      const params = new URL(getUrl).searchParams;
+      const sDate = params.get("startDate");
+      const eDate = params.get("endDate");
+      url += `startDate=${sDate}&endDate=${eDate}`;
+    } else {
+      url += `startDate=${startDate}&endDate=${endDate}`;
+    }
+    if (seniorCitizen) {
+      url += "&elderGuest=true";
+    }
+    if (militaryVeteran) {
+      url += "&militaryGuest=true";
+    }
+    return url;
+  }
   const fetchRoomCards = async (roomUrl: string) => {
     try {
       setLoader(true);
@@ -134,7 +179,12 @@ export function RoomPage() {
       const roomCardsUrl = `${backendUrl}${roomUrl}`;
       const roomCardFromBackend = await axios.get(roomCardsUrl);
       const result = await roomCardFromBackend.data;
-      const getAllPromotions = await axios.get("http://localhost:8000/api/v1/getAllPromotions?startDate=2024-03-24&endDate=2024-03-27&elderGuest=false&militaryGuest=false");
+      const promoUrl = formPromotionsUrl();
+      console.log(promoUrl);
+      const getAllPromotions = await axios.get(
+        //"http://localhost:8000/api/v1/getAllPromotions?startDate=2024-03-24&endDate=2024-03-27&elderGuest=false&militaryGuest=false"
+        promoUrl
+      );
       const data_promotions = await getAllPromotions.data;
       setGlobalApplicablePromotions(data_promotions);
       setRoomCardResponse(result);
@@ -333,6 +383,9 @@ export function RoomPage() {
       fetchRoomCards(backendUrl);
     }
   }
+  function toggleMilitaryServiceVetran() {
+    reduxDispatch(toggleIsMilitaryVetran());
+  }
   function updateSearchParams() {
     const totalGuests = guestCounts.reduce((total, count) => total + count, 0);
     const guestTypeParams = guests
@@ -359,13 +412,34 @@ export function RoomPage() {
           <RoomPageRoom />
           <RoomBeds />
           <RoomCalendar />
-          <div className="disabled-person">
-            <input className="checkbox-input" type="checkbox" />
-            <div className="disabled-image">
-              <img src={wheelchair} alt="notfound" />
+          <div className="checkbox-wrapper">
+            <div className="disabled-person">
+              <label className="wrapper-label">
+                <input className="checkbox-input" type="checkbox" />
+                <div className="disabled-image">
+                  <img src={wheelchair} alt="notfound" />
+                </div>
+              </label>
+
+              <div className="text">
+                <p>I need an Accessible Room.</p>
+              </div>
             </div>
-            <div className="text">
-              <p>I need an Accessible Room.</p>
+            <div className="military-veteran">
+              <label className="wrapper-label">
+                <input
+                  className="checkbox-input"
+                  type="checkbox"
+                  checked={militaryServiceVetran}
+                  onChange={toggleMilitaryServiceVetran}
+                />
+                <div className="military-image">
+                  <img src={fighterJet} alt="" />
+                </div>
+              </label>
+              <div className="text">
+                <p>Military Service Veteran?</p>
+              </div>
             </div>
           </div>
           <div className="search-submit-button">
@@ -408,7 +482,10 @@ export function RoomPage() {
                       </button>
                       <h3>
                         {t("showing")} {start}-{end} of{" "}
-                        {roomCardResponse?.totalRoomCards} {t("results")}
+                        {isNaN(roomCardResponse?.totalRoomCards)
+                          ? 0
+                          : roomCardResponse?.totalRoomCards}{" "}
+                        {t("results")}
                       </h3>
                       <button className="next-page" onClick={gotoNextPage}>
                         <img src={nextIcon} alt="" />
@@ -420,14 +497,18 @@ export function RoomPage() {
                 </div>
                 <div className="itinerary-display-content">
                   <div className="all-cards-display">
-                    {roomCardResponse?.roomCards.map((room) => (
-                      <RoomCard
-                        key={room.roomTypeId}
-                        property={roomCardResponse.propertyInformation}
-                        currentRoom={room}
-                        globalPromotion = {globalApplicablePromotions}
-                      />
-                    ))}
+                    {roomCardResponse?.roomCards.length === 0 ? (
+                      <h3>No results found</h3>
+                    ) : (
+                      roomCardResponse?.roomCards.map((room) => (
+                        <RoomCard
+                          key={room.roomTypeId}
+                          property={roomCardResponse.propertyInformation}
+                          currentRoom={room}
+                          globalPromotion={globalApplicablePromotions}
+                        />
+                      ))
+                    )}
                   </div>
                   {itineraryPropertyName && (
                     <div className="itinerary-content">

@@ -21,6 +21,7 @@ import { MsalProvider } from "@azure/msal-react";
 const msalInstance = new PublicClientApplication(msalConfig);
 
 
+import { RoomReview } from "./Pages/ReviewPage/RoomReview";
 function App() {
   const reduxDispatch: AppDispatch = useDispatch();
   const [loader, setLoader] = useState(true);
@@ -48,6 +49,7 @@ function App() {
         <Route path="/" element={<Home loader={loader} />} />
         <Route path="/rooms" element={<RoomPage />} />
         <Route path="/checkout" element={<CheckoutPage />}/>
+        <Route path="/review" element={<RoomReview />}/>
       </Routes>
       <Footer />
       </MsalProvider>

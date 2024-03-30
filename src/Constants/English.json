@@ -2,7 +2,8 @@
     "mainHeading": "Kickdrum",
     "subHeading": "Internet Booking Engine",
     "myBookings": "MY BOOKINGS",
-    "login": "Login",
+    "login": "LOGIN",
+    "logout":"LOGOUT",
     "footer": {
       "leftHeading": "Kickdrum",
       "rightHeading": "©Kickdrum Technology Group LLC.",

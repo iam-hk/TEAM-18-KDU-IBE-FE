@@ -18,19 +18,16 @@ export function Itinerary() {
     setIsOpen(!isOpen);
   };
   const propertyName = useSelector(
-    (state: RootState) => state.itineraryInfo.propertyName
+    (state: RootState) => state.itineraryInfo.roomName
   );
   const priceOfRoomTypeInParticularDate = useSelector(
     (state: RootState) => state.itineraryInfo.priceOfRoomTypeInParticularDate
   );
   const promoCode = useSelector(
-    (state: RootState) => state.itineraryInfo.promoCode
+    (state: RootState) => state.itineraryInfo.promoCodeInfo
   );
   const roomCount = useSelector(
     (state: RootState) => state.itineraryInfo.roomCount
-  );
-  const guestCount = useSelector(
-    (state: RootState) => state.itineraryInfo.guestCount
   );
   const guestDisplayInfo = useSelector(
     (state: RootState) => state.propertyConfigInfo.guestDisplayInfo

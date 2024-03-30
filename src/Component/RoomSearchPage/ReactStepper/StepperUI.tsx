@@ -85,7 +85,7 @@ export function StepperUI({ onStepClick }) {
     const currentIndex = steps.indexOf(step);
     const previousSearch = window.localStorage.getItem("prevSearch");
     if (currentIndex < stepperState) {
-      reduxDispatch(setStepperState(currentIndex));
+      reduxDispatch(setStepperState(1));
       navigate(`/rooms/${previousSearch}`);
     }
     if (typeof onStepClick === "function") {

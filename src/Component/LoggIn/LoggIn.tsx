@@ -1,8 +1,9 @@
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
 import { useState } from 'react';
 import "./LoggIn.scss"
-
+import { useTranslation } from 'react-i18next';
 function LoggIn() {
+    const { t } = useTranslation();
     const { instance } = useMsal();
     const [idToken, setIdToken] = useState("");
     const Login = async () => {
@@ -22,18 +23,18 @@ function LoggIn() {
         }
     }
     return (
-        <div className="home">
+        <>
             <AuthenticatedTemplate>
                 <div role="alert">
-                    <button type="button" className="logout-button" onClick={() => Logout()}>Logout</button>
+                    <button type="button" className="logoutbutton" onClick={() => Logout()}>{t('logout')}</button>
                 </div>
             </AuthenticatedTemplate>
             <UnauthenticatedTemplate>
                 <div className="login-button" role="alert">
-                    <button type="button" className="login-button"  onClick={() => Login()}>Login</button>
+                    <button type="button" className="loginbutton"  onClick={() => Login()}>{t('login')}</button>
                 </div>
             </UnauthenticatedTemplate>
-        </div>
+        </>
     )
 }
 export default LoggIn;

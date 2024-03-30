@@ -1,17 +1,28 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+export interface IItineraryPromo{
+  promoCode:string,
+  priceFactor: number,
+  promotionDescription:string,
+  promotionTitle: string,
+}
 export interface IItinerary {
-  propertyName: string;
+  roomName: string;
   priceOfRoomTypeInParticularDate: { [key: string]: number };
-  promoCode: string;
+  promoCodeInfo: IItineraryPromo;
   roomCount: number;
   startDate: string;
   endDate: string;
   guestCount: number[];
 }
 const initialState: IItinerary = {
-  propertyName: "",
+  roomName: "",
   priceOfRoomTypeInParticularDate: {},
-  promoCode: "",
+  promoCodeInfo: {
+    promoCode: "",
+    priceFactor: 0,
+    promotionDescription: "",
+    promotionTitle: ""
+  },
   roomCount: 0,
   startDate: "",
   endDate: "",
@@ -22,21 +33,26 @@ const ItinerarySlice = createSlice({
   initialState,
   reducers: {
     setItineraryDetails(state, action: PayloadAction<IItinerary>) {
-      state.propertyName = action.payload.propertyName;
+      state.roomName = action.payload.roomName;
       state.priceOfRoomTypeInParticularDate =
-        action.payload.priceOfRoomTypeInParticularDate;
+      action.payload.priceOfRoomTypeInParticularDate;
       state.guestCount = action.payload.guestCount;
       state.roomCount = action.payload.roomCount;
-      state.promoCode = action.payload.promoCode;
+      state.promoCodeInfo=action.payload.promoCodeInfo;
       state.startDate = action.payload.startDate;
       state.endDate = action.payload.endDate;
     },
     setDefaultValues(state) {
-      state.propertyName = "";
+      state.roomName = "";
       state.priceOfRoomTypeInParticularDate = {};
       state.guestCount = [];
       state.roomCount = 0;
-      state.promoCode = "";
+      state.promoCodeInfo = { 
+        promoCode: "",
+        priceFactor: 0,
+        promotionDescription: "",
+        promotionTitle: ""
+      };
       state.startDate = "";
       state.endDate = "";
     },

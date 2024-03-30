@@ -6,6 +6,8 @@ interface ISearchRoomSlice {
   endDate: string;
   selectedProperty: string;
   dateInitial: boolean;
+  isMilitaryVetran: boolean;
+  seniorCitizen: boolean;
 }
 const initialState: ISearchRoomSlice = {
   beds: 1,
@@ -14,6 +16,8 @@ const initialState: ISearchRoomSlice = {
   endDate: "",
   selectedProperty: "",
   dateInitial: false,
+  isMilitaryVetran: false,
+  seniorCitizen: false,
 };
 const SearchRoomSlice = createSlice({
   name: "searchRoomInfo",
@@ -37,6 +41,12 @@ const SearchRoomSlice = createSlice({
     setDateInitials: (state, action: PayloadAction<boolean>) => {
       state.dateInitial = action.payload;
     },
+    toggleIsMilitaryVetran: (state) => {
+      state.isMilitaryVetran = !state.isMilitaryVetran;
+    },
+    toggleSeniorCitizen: (state) => {
+      state.seniorCitizen = !state.seniorCitizen;
+    },
   },
 });
 export const {
@@ -46,5 +56,7 @@ export const {
   updateSelectedProperty,
   updateBeds,
   setDateInitials,
+  toggleIsMilitaryVetran,
+  toggleSeniorCitizen,
 } = SearchRoomSlice.actions;
 export const SearchRoomReducer = SearchRoomSlice.reducer;
