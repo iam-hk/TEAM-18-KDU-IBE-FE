@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/Store";
 import { changeCurrentCurrency } from "../../redux/CurrencySlice";
 import { useNavigate} from "react-router-dom"
+import LoggIn from "../LoggIn/LoggIn";
 export function Header() {
   const navigate=useNavigate();
   const [isRightCopyOpen, setIsRightCopyOpen] = useState(false);
@@ -65,7 +66,10 @@ export function Header() {
             </select>
           </div>
         </div>
-        <button className="login-button">{i18n.t("login")}</button>
+        {/* <button className="login-button"> */}
+          <LoggIn/>
+          {/* {i18n.t("login")} */}
+          {/* </button> */}
       </div>
       {isRightCopyOpen && (
         <div className="right-part-copy">
