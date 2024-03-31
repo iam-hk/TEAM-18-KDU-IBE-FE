@@ -96,7 +96,7 @@ export function Header() {
               <option value="CAD">$ CAD</option>
             </select>
           </div>
-          <button className="login-button">{i18n.t("login")}</button>
+          <LoggIn/>
         </div>
       )}
       <div className="hamburger" onClick={toggleRightCopy}>

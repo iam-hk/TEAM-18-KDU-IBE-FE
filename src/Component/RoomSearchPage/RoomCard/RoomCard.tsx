@@ -20,12 +20,12 @@ import { GlobalPromotions } from "../../../types/PromotionList";
 export interface RoomCardProp {
   property: PropertyInformation;
   currentRoom: RoomCardIndividual;
-  globalPromotion : GlobalPromotions;
+  globalPromotion: GlobalPromotions;
 }
 export function RoomCard(props: RoomCardProp) {
   const [open, setOpen] = useState(false);
   const selectedPropertyName = useSelector(
-    (state: RootState) => state.itineraryInfo.propertyName
+    (state: RootState) => state.itineraryInfo.roomName
   );
   useEffect(() => {
     if (open == false) {
@@ -79,22 +79,22 @@ export function RoomCard(props: RoomCardProp) {
         <div className="informationOfRoomType">
           <div className="propertyAndReviewContainer">
             <div className="propertyNameContainer">
-              {/* {removeUnderscore(props.currentRoom.roomTypeName)} */}
-              {t(`${props.currentRoom.roomTypeName}`)}
+              {t(`${props.currentRoom.roomTypeName}.name`)}
             </div>
             <div className="reviewAndRatingContainer">
-              {props.currentRoom.newProperty ? 
-              <div className="newProperty">
-                {t("newProperty")}
-              </div> :
-              <>
-              <div className="ratingContainer">
-              <i className="fi fi-sr-star"></i>
-              {props.currentRoom.rating}
-              </div>
-            <div className="reviewCountContainer">{props.currentRoom.reviewCount} reviews</div>
-              </>
-          }
+              {props.currentRoom.newProperty ? (
+                <div className="newProperty">{t("newProperty")}</div>
+              ) : (
+                <>
+                  <div className="ratingContainer">
+                    <i className="fi fi-sr-star"></i>
+                    {props.currentRoom.rating}
+                  </div>
+                  <div className="reviewCountContainer">
+                    {props.currentRoom.reviewCount} reviews
+                  </div>
+                </>
+              )}
             </div>
           </div>
           <div className="otherDetailsOfRoomType">
@@ -163,30 +163,30 @@ export function RoomCard(props: RoomCardProp) {
             </div>
           </div>
         </div>
-        {
-          props.globalPromotion.allApplicablePromotions.length != 0 &&
-
-        <div className="promotionOfRoomType">
-          <div className="BannerOfSpecialDeal">
-            <div className="banner_title_of_promotion">Special Deal</div>
-            <svg
-              width="121"
-              height="32"
-              viewBox="0 0 121 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+        {props.globalPromotion.allApplicablePromotions.length != 0 && (
+          <div className="promotionOfRoomType">
+            <div className="BannerOfSpecialDeal">
+              <div className="banner_title_of_promotion">
+                {t("specialDeal")}
+              </div>
+              <svg
+                width="121"
+                height="32"
+                viewBox="0 0 121 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-              <path
-                d="M120.759 0H0V32H120.759L112.775 14.9677L120.759 0Z"
-                fill="#26266D"
+                <path
+                  d="M120.759 0H0V32H120.759L112.775 14.9677L120.759 0Z"
+                  fill="#26266D"
                 />
-            </svg>
+              </svg>
+            </div>
+            <div className="descriptionOfSpecialDeal">
+              {t(`${props.globalPromotion.highestPromotion.promotionTitle}.description`)}
+            </div>
           </div>
-          <div className="descriptionOfSpecialDeal">
-            {props.globalPromotion.highestPromotion.promotionDescription}
-          </div>
-        </div>
-        }
+        )}
         <div className="price_containerOfRoomType">
           <div className="minimumPriceOfRoomType">
             {(CurrencySymbols as any)[currentSelectedCurrency]}
@@ -202,7 +202,12 @@ export function RoomCard(props: RoomCardProp) {
           >
             {t("selectRoom")}
           </button>
-          <RoomModal open={open} updateOpen={updateOpen} room={props} globalPromotions = {props.globalPromotion}/>
+          <RoomModal
+            open={open}
+            updateOpen={updateOpen}
+            room={props}
+            globalPromotions={props.globalPromotion}
+          />
         </div>
       </div>
     </div>

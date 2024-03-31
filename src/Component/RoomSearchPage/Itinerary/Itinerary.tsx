@@ -11,7 +11,11 @@ import { AppDispatch, RootState } from "../../../redux/Store";
 import { setDefaultValues } from "../../../redux/ItinerarySlice";
 import { useNavigate } from "react-router-dom";
 import { setStepperState } from "../../../redux/StepperSlice";
+import { useTranslation } from "react-i18next";
+import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
+import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
 export function Itinerary() {
+  const { t } = useTranslation();
   const reduxDispatch: AppDispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDetails = () => {
@@ -50,6 +54,16 @@ export function Itinerary() {
   const onOpenModal2 = () => setOpenModal2(true);
   const onCloseModal2 = () => setOpenModal2(false);
   const navigate = useNavigate();
+  const currentSelectedCurrency = useSelector(
+    (state: RootState) => state.currencyRate.currentSelectedCurrency
+  ) as keyof CurrencyExchangeRates;
+
+  const currentPrice = useSelector(
+    (state: RootState) => state.currencyRate.currentPrice
+  );
+  function updatePrice(price: number) {
+    return (price * currentPrice[currentSelectedCurrency]).toFixed(1);
+  }
   function formatDates() {
     const startDateFormat = new Date(startDate);
     const endDateFormat = new Date(endDate);
@@ -85,9 +99,11 @@ export function Itinerary() {
   function resetItinerary() {
     reduxDispatch(setDefaultValues());
     reduxDispatch(setStepperState(0));
+    const previousSearch = window.localStorage.getItem("prevSearch");
+    navigate(`/rooms/${previousSearch}`);
   }
   function handleCheckout() {
-    if (stepperState == 1) {
+    if (stepperState <= 1) {
       reduxDispatch(setStepperState(2));
       navigate("/checkout");
     } else {
@@ -99,16 +115,20 @@ export function Itinerary() {
   return (
     <div className="itinerary">
       <div className="itinerary-heading-container" onClick={toggleDetails}>
-        <div className="itinerary-heading">Your Trip Itinerary</div>
+        <div className="itinerary-heading">
+          {t("itinerary.itineraryHeading")}
+        </div>
         <div className="itinerary-heading-arrow">
           <img src={isOpen ? upArrow : downArrow} alt="arrow" />
         </div>
       </div>
       <div className={`itinerary-details ${isOpen ? "open" : "closed"}`}>
         <div className="itinerary-hotel-details">
-          <div className="itinerary-hotel-name">{propertyName}</div>
+          <div className="itinerary-hotel-name">
+            {t(`${propertyName}.name`)}
+          </div>
           <button className="itinerary-hotel-remove" onClick={resetItinerary}>
-            Remove
+            {t("itinerary.remove")}
           </button>
         </div>
         <div className="itinerary-trip-details">
@@ -117,8 +137,10 @@ export function Itinerary() {
           <div className="itinerary-guest-information">{guestDisplayInfo}</div>
         </div>
         <div className="itinerary-room-details">
-          <div className="room-name">Executive Room</div>
-          <div className="room-count">{roomCount} room</div>
+          <div className="room-name">{t(`${propertyName}.name`)}</div>
+          <div className="room-count">
+            {roomCount} {t("itinerary.room")}
+          </div>
         </div>
         {Object.entries(priceOfRoomTypeInParticularDate)
           .sort(
@@ -132,53 +154,73 @@ export function Itinerary() {
             return (
               <div key={dateString} className="itinerary-each-day-rate-details">
                 <div className="itinerary-day">{formattedDate}</div>
-                <div className="itinerary-rate">${price.toFixed(1)}</div>
+                <div className="itinerary-rate">
+                {(CurrencySymbols as any)[currentSelectedCurrency]}
+                  {updatePrice(price)}
+                </div>
               </div>
             );
           })}
 
         <div className="itinerary-promocode">
           <div className="itinerary-promoname">
-            Special Promoname
+            {t("itinerary.specialPromo")}
             <button className="modal-button" onClick={onOpenModal1}>
               <img src={infoIcon} alt="Info Icon" />
             </button>
             <PromoModal open={openModal1} onClose={onCloseModal1} />
           </div>
-          <div className="itinerary-promoname-rate">$0.0</div>
+          <div className="itinerary-promoname-rate">
+          {(CurrencySymbols as any)[currentSelectedCurrency]}
+                  {updatePrice(0)}
+          </div>
         </div>
         <div className="itinerary-border-bottom"></div>
         <div className="itinerary-subtotal">
-          <div className="itinerary-subtotal-heading">Subtotal</div>
+          <div className="itinerary-subtotal-heading">
+            {t("itinerary.specialPromo")}
+          </div>
           <div className="itinerary-subtotal-value">
-            ${calculateTotalPrice()}
+          {(CurrencySymbols as any)[currentSelectedCurrency]}
+                  {updatePrice(calculateTotalPrice())}
           </div>
         </div>
         <div className="itinerary-taxes">
           <div className="itinerary-taxes-field">
-            Taxes,Surcharges,Fees
+            {t("itinerary.taxesCharges")}
             <button className="modal-button" onClick={onOpenModal2}>
               <img src={infoIcon} alt="Info Icon" />
             </button>
             <TaxModal open={openModal2} onClose={onCloseModal2} />
           </div>
-          <div className="itinerary-taxes-cost">$0.0</div>
+          <div className="itinerary-taxes-cost">
+          {(CurrencySymbols as any)[currentSelectedCurrency]}
+                  {updatePrice(0)}
+          </div>
         </div>
         <div className="itinerary-vat">
-          <div className="itinerary-vat-field">VAT</div>
-          <div className="itinerary-vat-price">$0.0</div>
+          <div className="itinerary-vat-field">{t("itinerary.vat")}</div>
+          <div className="itinerary-vat-price">
+          {(CurrencySymbols as any)[currentSelectedCurrency]}
+                  {updatePrice(0)}
+          </div>
         </div>
         <div className="itinerary-border-bottom"></div>
         <div className="itinerary-amount-details">
-          <div className="itinerary-due-now">Due Now</div>
-          <div className="itinarary-due-price">$0.0</div>
+          <div className="itinerary-due-now">{t("itinerary.dueNow")}</div>
+          <div className="itinarary-due-price">
+          {(CurrencySymbols as any)[currentSelectedCurrency]}
+                  {updatePrice(0)}
+          </div>
         </div>
         <div className="itinerary-submit-container">
           <button
             className="itinerary-checkout-button"
             onClick={handleCheckout}
           >
-            {stepperState === 1 ? "CHECKOUT" : "CONTINUE SHOPPING"}
+            {stepperState <= 1
+              ? t("itinerary.checkout")
+              : t("itinerary.continue")}
           </button>
         </div>
       </div>

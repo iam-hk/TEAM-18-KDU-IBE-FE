@@ -1,20 +1,54 @@
-.room-page {
-    min-height: 80%;
-    width: 100%;
+@import "../../Constants/Colors.scss";
+.checkout-page {
+  min-height: 80%;
+  width: 100%;
+}
+
+.checkout-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.form-container {
+  width: 25%;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid $grey;
+  border-radius: 5px;
+  .email-heading{
+    font-size: 1.2rem;
   }
-  .bg-image {
-    height: 140px;
-    width: 100%;
-    background-image: var(--banner-image);
-    background-position: calc(45% + 0px) calc(25% + 20px);
-    background-size: cover;
-  }
-  .itinerary-wrapper{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .itinerary-content{
-        width: 30%;
-    }
-  }
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-container input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid $grey;
+  border-radius: 5px;
+}
+
+.form-container button[type="submit"] {
+  background-color: $light-blue-color;
+  color: $white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: $dark-blue-color;
+}
+
+.itinerary-content {
+  margin-top: 20px;
+  width: 30%;
+}

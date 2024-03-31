@@ -13,6 +13,7 @@ export interface IItinerary {
   startDate: string;
   endDate: string;
   guestCount: number[];
+  roomTypeId:number;
 }
 const initialState: IItinerary = {
   roomName: "",
@@ -27,6 +28,7 @@ const initialState: IItinerary = {
   startDate: "",
   endDate: "",
   guestCount: [],
+  roomTypeId:0,
 };
 const ItinerarySlice = createSlice({
   name: "itineraryInfo",
@@ -41,6 +43,7 @@ const ItinerarySlice = createSlice({
       state.promoCodeInfo=action.payload.promoCodeInfo;
       state.startDate = action.payload.startDate;
       state.endDate = action.payload.endDate;
+      state.roomTypeId=action.payload.roomTypeId;
     },
     setDefaultValues(state) {
       state.roomName = "";
@@ -55,6 +58,7 @@ const ItinerarySlice = createSlice({
       };
       state.startDate = "";
       state.endDate = "";
+      state.roomTypeId=0;
     },
   },
 });

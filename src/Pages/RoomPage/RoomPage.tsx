@@ -46,7 +46,7 @@ import fighterJet from "../../assets/fighter-jet.png";
 export function RoomPage() {
   const { t } = useTranslation();
   const itineraryPropertyName = useSelector(
-    (state: RootState) => state.itineraryInfo.propertyName
+    (state: RootState) => state.itineraryInfo.roomName
   );
   const maxCards = useSelector(
     (state: RootState) => state.propertyConfigInfo.maxCards

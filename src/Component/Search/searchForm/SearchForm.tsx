@@ -42,7 +42,7 @@ export function SearchForm() {
       .map((guest, index) => `${guest.type}=${guestCounts[index]}`)
       .join("&");
     const url = `/rooms?id=18&guestCount=${totalGuests}&roomCount=${roomCount}&startDate=${startDate}&endDate=${endDate}&${guestTypeParams}&bedCount=1`;
-    return url; 
+    return url;
   }
   function handleSubmitButtonClick() {
     navigate(createUrl());
@@ -91,7 +91,7 @@ export function SearchForm() {
           <label htmlFor="military" className="search-wrapper-label">
             <input type="checkbox" id="military" onChange={toggleMilitary} />
             <img src={fighterJet} alt="not-found" />
-            <h5 id="military">Military Service Veteran?</h5>
+            <h5 id="military">{t("military")}</h5>
           </label>
         </div>
       </div>

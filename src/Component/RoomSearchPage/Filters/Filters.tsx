@@ -68,7 +68,7 @@ export default function Filters() {
               className="filter-name"
               onClick={() => handleToggleFilterVisibility(index)}
             >
-              <h3 className="filter-content">{filter.filterTitle}</h3>
+              <h3 className="filter-content">{t(`${filter.filterTitle}`)}</h3>
               <div className="arrow">
                 <img
                   src={downArrow}
@@ -92,7 +92,7 @@ export default function Filters() {
                         onChange={() => handleToggleFilterOption(index, option)}
                         checked={appliedFilters.includes(option)}
                       />
-                      <p className="filter-text">{option}</p>
+                      <p className="filter-text">{t(`${option}.name`)}</p>
                     </label>
                   </div>
                 ))}

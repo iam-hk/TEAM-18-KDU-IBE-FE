@@ -30,7 +30,7 @@ function LoggIn() {
                 </div>
             </AuthenticatedTemplate>
             <UnauthenticatedTemplate>
-                <div className="login-button" role="alert">
+                <div className="loginbtn" role="alert">
                     <button type="button" className="loginbutton"  onClick={() => Login()}>{t('login')}</button>
                 </div>
             </UnauthenticatedTemplate>
