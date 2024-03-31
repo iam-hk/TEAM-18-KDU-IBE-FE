@@ -31,7 +31,7 @@ export default function CustomizedSnackbars(
           onClose={() => handleClose()}
           severity={props.status === "error" ? "error" : "success"}
           variant="filled"
-          sx={{ width: "100%" }}
+          sx={{ width: "30%" }}
         >
           {props.message}
         </Alert>
