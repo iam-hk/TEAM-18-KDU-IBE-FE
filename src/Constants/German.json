@@ -195,6 +195,10 @@
           "title": "Exklusive Rückzugsmöglichkeit",
           "description": "Geben Sie $10 pro Übernachtung aus und erhalten Sie $150 Guthaben für Speisen im Resort."
         },
+        "Spring Offer ": {
+          "title": "Frühlingsangebot",
+          "description": "Erhalten Sie 25% Rabatt auf Ihre nächste Buchung."
+        },
         "military": "Militärdienst-Veteran ?",
         "specialDeal":"Sonderanbot",
         "highestPromotion": "Gilt nur, wenn die Reise länger als 2 Tage dauert und über Wochenenden stattfindet",

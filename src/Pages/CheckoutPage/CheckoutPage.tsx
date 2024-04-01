@@ -5,8 +5,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/Store";
 import { SetStateAction, useState } from "react";
 import axios from "axios";
+import CustomizedSnackbars from "../../Component/snackbar/CustomizedSnackbars";
 export default function CheckoutPage() {
   const [email, setEmail] = useState("");
+  const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
   const itineraryPropertyName = useSelector(
     (state: RootState) => state.itineraryInfo.roomName
   );
@@ -19,11 +22,14 @@ export default function CheckoutPage() {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setEmail("");
+    setMessage("A Review link has been sent to your Mail .");
+    setShowSnackbar(true);
     sendEmailDetails();
   };
   async function sendEmailDetails() {
-    let customUrl= import.meta.env.VITE_REACT_APP_EMAIL_REVIEW;
-     customUrl+= `roomTypeId=${roomTypeId}&email=${email}`;
+    let customUrl = import.meta.env.VITE_REACT_APP_EMAIL_REVIEW;
+    customUrl += `roomTypeId=${roomTypeId}&email=${email}`;
     console.log(customUrl);
     try {
       await axios.get(customUrl);
@@ -39,13 +45,16 @@ export default function CheckoutPage() {
           <div className="form-container">
             <form onSubmit={handleSubmit}>
               <div>
-                <label className="email-heading" htmlFor="email">Email:</label>
+                <label className="email-heading" htmlFor="email">
+                  Email:
+                </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={email}
                   onChange={handleChange}
+                  required={true}
                 />
               </div>
               <button type="submit">Submit</button>
@@ -58,6 +67,13 @@ export default function CheckoutPage() {
           )}
         </div>
       </div>
+      {showSnackbar && (
+        <CustomizedSnackbars
+          status="success"
+          message={message}
+          setShowSnackbar={setShowSnackbar}
+        />
+      )}
     </>
   );
 }

@@ -47,8 +47,12 @@ const TaxModal: React.FC<TaxModalProps> = ({ open, onClose }) => {
         <div className="tax-modal-promotions">
           {t(`${promoCodeInfo.promotionTitle}.title`)}
         </div>
-        {Object.entries(priceOfRoomTypeInParticularDate).map(
-          ([dateString, price]) => {
+        {Object.entries(priceOfRoomTypeInParticularDate)
+          .sort(
+            ([dateStringA], [dateStringB]) =>
+              new Date(dateStringA) - new Date(dateStringB)
+          )
+          .map(([dateString, price]) => {
             const date = new Date(dateString);
             const options = { weekday: "long", day: "numeric", month: "short" };
             const formattedDate = date.toLocaleDateString("en-US", options);
@@ -56,13 +60,12 @@ const TaxModal: React.FC<TaxModalProps> = ({ open, onClose }) => {
               <div key={dateString} className="tax-modal-date-rate">
                 <div className="tax-modal-date">{formattedDate}</div>
                 <div className="tax-modal-rate">
-                  {(CurrencySymbols as any)[currentSelectedCurrency]}
+                {(CurrencySymbols as any)[currentSelectedCurrency]}
                   {updatePrice(price)}
                 </div>
               </div>
             );
-          }
-        )}
+          })}
 
         <div className="tax-modal-total">
           <div className="tax-modal-total-heading">

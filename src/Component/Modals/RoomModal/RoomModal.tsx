@@ -131,8 +131,8 @@ export default function RoomModal(props: IRoomModal) {
         promotionId: promotionsAvailable.length + 1,
       };
       setpromotionsAvailable((previousPromotions: Promotion[]) => [
-        ...previousPromotions,
         customPromo,
+        ...previousPromotions
       ]);
     } catch (error) {
       showMessageForDuration(error.response.data.message, 3000);
