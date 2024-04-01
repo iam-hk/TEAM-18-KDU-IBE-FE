@@ -158,7 +158,7 @@ export function RoomCalendar() {
 
   return (
     <div className="date-component">
-      <div className="date-checkin" onClick={toggleVisibility}>
+      <div className="date-checkin">
         <div className="checkin-heading">
           <div className="checkin_heading-information">{t("checkin")}</div>
         </div>
@@ -167,7 +167,7 @@ export function RoomCalendar() {
         </div>
       </div>
       <div className="border-line"></div>
-      <div className="date-checkout" onClick={toggleVisibility}>
+      <div className="date-checkout">
         <div className="checkout-details">
           <div className="checkout-heading">
             <div className="checkout_heading-information">{t("checkout")}</div>

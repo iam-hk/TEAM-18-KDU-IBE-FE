@@ -21,11 +21,6 @@ export const RoomReview = () => {
   };
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-
-    if (stars === 0 || review.trim() === "") {
-      // alert("Please provide both star rating and review.");
-      // return;
-    }
     const urlParams = new URLSearchParams(window.location.search);
     const uuid = urlParams.get("id");
     console.log(uuid);

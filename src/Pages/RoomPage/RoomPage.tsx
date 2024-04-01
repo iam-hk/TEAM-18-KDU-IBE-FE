@@ -43,6 +43,7 @@ import { Itinerary } from "../../Component/RoomSearchPage/Itinerary/Itinerary";
 import { setRoomCards } from "../../redux/FilterRoomSlice";
 import { GlobalPromotions } from "../../types/PromotionList";
 import fighterJet from "../../assets/fighter-jet.png";
+import SkeletonRoomCard from "../../Component/RoomSearchPage/SkeletonRoomCard/SkeletonRoomCard";
 export function RoomPage() {
   const { t } = useTranslation();
   const itineraryPropertyName = useSelector(
@@ -463,10 +464,11 @@ export function RoomPage() {
               </div>
             )}
             {loader ? (
-              <div className="wrapper">
-                <div className="loader-container">
-                  <CircularProgress size={100} />
-                </div>
+              <div style={{display:'flex',flexWrap:'wrap'}}>
+                <SkeletonRoomCard />
+                <SkeletonRoomCard />
+                <SkeletonRoomCard />
+                <SkeletonRoomCard />
               </div>
             ) : (
               <>
