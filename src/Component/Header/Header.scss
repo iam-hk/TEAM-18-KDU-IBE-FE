@@ -153,7 +153,10 @@
   display: none;
   font-size: 1.3rem;
 }
-
+.language-component-img{
+  height: 15px;
+  width: 15px;
+}
 @media (max-width: 900px) {
   .headings {
     h4 {
@@ -213,6 +216,7 @@
   .right-part-copy {
     display: flex;
     flex-direction: column;
+    padding: 5px 5px;
     gap: 5px;
     top: 100%;
     right: 10px;

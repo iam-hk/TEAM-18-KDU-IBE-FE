@@ -3,6 +3,7 @@
     "subHeading": "Internet buchungs maschine",
     "myBookings": "MEINE BUCHUNGEN",
     "login": "Anmelden",
+    "logout":"Abmelden",
     "footer": {
       "leftHeading": "Kickdrum",
       "rightHeading": "©Kickdrum Technology Group GmbH",
@@ -14,7 +15,7 @@
         "guests":"Gäste",
         "rooms":"Zimmer",
         "disabled":"Ich barrierefreien Zugang",
-        "searchButton":"Suche",
+        "searchButton":"SUCHE",
         "checkin":"Anreise",
         "checkout":"Abreise",
         "from":"Von",
@@ -49,6 +50,176 @@
       "newProperty": "Neue Immobilie",
       "inclusive": "Inklusive",
       "perNight": "pro Nacht",
-      "selectRoom": "ZIMMER AUÄHLEN"
+      "selectRoom": "ZIMMER AUÄHLEN",
+      "chooseRoom": "1:Wählen Zimmer",
+      "chooseAddon": "2:Wählen Addon",
+      "checkOut": "3:Zur gehen",
+      "king": "KÖNIG",
+      "queen": "KÖNIGIN",
+        "GRAND_DELUXE": {
+          "name": "GRAND DELUXE",
+          "description": "Erleben Sie Luxus in seiner schönsten Form in unseren Grand Deluxe Zimmern. Diese geräumigen und elegant eingerichteten Zimmer bieten atemberaubende Ausblicke und erstklassige Annehmlichkeiten für einen komfortablen und unvergesslichen Aufenthalt. Tauchen Sie ein in die Opulenz, während Sie sich in der luxuriösen Umgebung entspannen, in der jedes Detail sorgfältig entwickelt wurde, um Ihre Erwartungen zu übertreffen.",
+          "amenities": {
+            "amenitiesHeading": "Annehmlichkeiten",
+            "City views": "Stadtblick",
+            "Spacious bathroom": "Geräumiges Badezimmer",
+            "High-speed Wi-Fi": "Highspeed-WLAN",
+            "24-hour room service": "24-Stunden-Zimmerservice",
+            "Complimentary bottled water": "Kostenloses Wasser in Flaschen",
+            "In-room coffee maker": "Kaffeemaschine im Zimmer",
+            "Luxury bath amenities": "Luxuriöse Badutensilien",
+            "Plush bathrobes": "Plüsch-Bademäntel",
+            "Evening turndown service": "Abendlicher Bettservice",
+            "In-room safe": "Safe im Zimmer"
+          }
+        },
+        "SUPER_DELUXE": {
+          "name": "SUPER DELUXE",
+          "description": "Genießen Sie Komfort und Stil in unseren Super Deluxe Zimmern. Mit modernen Möbeln und durchdachten Details bieten diese Zimmer die perfekte Rückzugsmöglichkeit nach einem Tag voller Erkundungen in der Stadt. Entspannen Sie sich in zeitgenössischer Eleganz und genießen Sie die Ruhe Ihrer Umgebung, in der jeder Komfort berücksichtigt wurde, um Ihren Aufenthalt zu verbessern.",
+          "amenities": {
+            "amenitiesHeading": "Annehmlichkeiten",
+            "Garden views": "Gartenblick",
+            "En-suite bathroom": "Eigenes Bad",
+            "Free Wi-Fi": "Kostenloses WLAN",
+            "Mini-fridge": "Minibar",
+            "Flat-screen TV": "Flachbildfernseher",
+            "Air conditioning": "Klimaanlage",
+            "Work desk": "Schreibtisch",
+            "Hairdryer": "Haartrockner",
+            "Electronic key card access": "Zugang mit elektronischer Schlüsselkarte",
+            "Iron and ironing board": "Bügeleisen und Bügelbrett"
+          }
+        },
+        "FAMILY_DELUXE": {
+          "name": "FAMILIEN DELUXE",
+          "description": "Ideal für Familien, die zusammen reisen, bieten unsere Family Deluxe Zimmer ausreichend Platz und durchdachte Annehmlichkeiten für einen entspannten Aufenthalt für alle. Genießen Sie gemeinsame Zeit in einer komfortablen und einladenden Umgebung, in der jedes Familienmitglied sich entspannen und unvergessliche Erinnerungen schaffen kann, die ein Leben lang halten.",
+          "amenities": {
+            "amenitiesHeading": "Annehmlichkeiten",
+            "Connecting rooms": "Verbindungszimmer",
+            "Kid-friendly movies": "Kindgerechte Filme",
+            "Microwave and fridge": "Mikrowelle und Kühlschrank",
+            "Children's menu": "Kinderkarte",
+            "Board games": "Brettspiele",
+            "Kids' welcome pack": "Willkommenspaket für Kinder",
+            "Baby crib (upon request)": "Babybett (auf Anfrage)",
+            "High chair (upon request)": "Kinderhochstuhl (auf Anfrage)",
+            "Laundry service": "Wäscheservice",
+            "Room service menu for kids": "Zimmerservice-Menü für Kinder"
+          }
+        },
+        "COUPLE_SUITE": {
+          "name": "PAAR SUITE",
+          "description": "Gönnen Sie sich und Ihrem Liebsten einen romantischen Kurzurlaub in unserer Couple Suite. Mit luxuriösen Möbeln und intimen Settings bieten diese Suiten die perfekte Atmosphäre für einen unvergesslichen Aufenthalt. Entfliehen Sie dem Alltag und genießen Sie Momente purer Glückseligkeit, während Sie sich in dieser bezaubernden Rückzugsmöglichkeit an der Gesellschaft des anderen erfreuen.",
+          "amenities": {
+            "amenitiesHeading": "Annehmlichkeiten",
+            "Jacuzzi": "Jacuzzi",
+            "His and hers bathrobes": "Seine und ihre Bademäntel",
+            "Concierge service": "Concierge-Service",
+            "Couples' massage": "Paarmassage",
+            "Romantic dinner package": "Romantisches Dinner-Paket",
+            "Champagne and strawberries": "Champagner und Erdbeeren",
+            "Turntable with romantic music selection": "Plattenspieler mit romantischer Musikauswahl",
+            "Late check-out option": "Später Check-out",
+            "Private balcony": "Privater Balkon",
+            "Fireplace": "Kamin"
+          }
+        },
+        "GARDEN_SUITE": {
+          "name": "GARTEN SUITE",
+          "description": "Entkommen Sie der Ruhe in unserer Garden Suite, wo üppiges Grün und eine friedliche Umgebung auf Sie warten. Diese geräumigen Suiten bieten eine private Oase, perfekt zur Revitalisierung von Körper und Geist. Tauchen Sie ein in die Umarmung der Natur und lassen Sie sich von der Schönheit des Gartens zu Momenten der Gelassenheit und Entspannung inspirieren.",
+          "amenities": {
+            "amenitiesHeading": "Annehmlichkeiten",
+            "Private garden": "Privatgarten",
+            "Outdoor seating": "Sitzgelegenheiten im Freien",
+            "Yoga mat": "Yogamatte",
+            "Guided nature walks": "Geführte Naturwanderungen",
+            "Picnic basket service": "Picknickkorb-Service",
+            "Hammock": "Hängematte",
+            "Outdoor shower": "Außendusche",
+            "Herb garden": "Kräutergarten",
+            "Bird watching guidebook": "Vogelbeobachtungs-Guidebook",
+            "Private BBQ area": "Privater Grillbereich"
+          }
+        },
+        "STANDARD_SUITE": {
+          "name": "STANDARD SUITE",
+          "description": "Erleben Sie Komfort und Bequemlichkeit in unserer Standard Suite. Mit modernen Annehmlichkeiten durchdacht gestaltet, bieten diese Suiten alles, was Sie für einen angenehmen Aufenthalt benötigen, egal ob Sie geschäftlich oder privat reisen. Genießen Sie die Einfachheit des eleganten Designs und die Bequemlichkeit des modernen Lebens in diesen einladenden Unterkünften.",
+          "amenities": {
+            "amenitiesHeading": "Annehmlichkeiten",
+            "Choice of bed size": "Wahl der Bettgröße",
+            "City views": "Stadtblick",
+            "Sitting area": "Sitzecke",
+            "Complimentary Wi-Fi": "Kostenloses WLAN",
+            "Daily housekeeping": "Tägliche Zimmerreinigung",
+            "Telephone with voicemail": "Telefon mit Anrufbeantworter",
+            "Alarm clock": "Wecker",
+            "Tea and coffee facilities": "Tee- und Kaffeezubereitungsmöglichkeiten",
+            "Laptop-sized safe": "Tresor für Laptops",
+            "Accessible room options": "Barrierefreie Zimmeroptionen"
+          }
+        },
+        "SINGLE_BED": {
+          "name": "EINZELBETT"
+        },
+        "DOUBLE_BED": {
+          "name": "DOPPELBETT"
+        },
+        "Bed Type": "Bettentyp",
+        "Room Type": "Zimmertyp",
+        "promoHeading": "Geben Sie einen Promo-Code ein",
+        "apply": "ANWDEN",
+        "standardRate": "Standardtarif",
+        "dealsNPackages": "Angebote & Pakete",
+        "selectPackage": "PAKET AUSLEN",
+        "Long weekend discount": {
+          "title": "Rabatt für lange Wochenenden",
+          "description": "Gilt nur, wenn die Reise länger als 2 Tage dauert und über Wochenenden stattfindet"
+        },
+        "KDU Membership Discount": {
+          "title": "Rabatt für KDU-Mitgliedschaft",
+          "description": "Rabatt für KDU-Mitgliedschaft"
+        },
+        "Military personnel discount": {
+          "title": "Rabatt für Militärpersonal",
+          "description": "Rabatt für Militärpersonal"
+        },
+        "Upfront payment discount": {
+          "title": "Rabatt für Vorauszahlung",
+          "description": "Zahlen Sie 100% bei der Buchung und erhalten Sie einen Rabatt von 10%"
+        },
+        "Weekend discount": {
+          "title": "Wochenendrabatt",
+          "description": "Gilt nur, wenn die Reise um einen Samstag und Sonntag herum stattfindet"
+        },
+        "Exclusive Retreat": {
+          "title": "Exklusive Rückzugsmöglichkeit",
+          "description": "Geben Sie $10 pro Übernachtung aus und erhalten Sie $150 Guthaben für Speisen im Resort."
+        },
+        "military": "Militärdienst-Veteran ?",
+        "specialDeal":"Sonderanbot",
+        "highestPromotion": "Gilt nur, wenn die Reise länger als 2 Tage dauert und über Wochenenden stattfindet",
+        "packageTotal":"Paketgesamtsumme",
+        "taxModal": {
+          "rateBreakdown": "Tarifübersicht",
+          "roomType": "Zimmertyp",
+          "nightlyRate": "Nachtgebühr (pro Zimmer)",
+          "roomTotal": "Zimmer Gesamt",
+          "resortFee": "Resort-Gebühr",
+          "occupancyFee": "Belegungssteuer",
+          "dueNow": "Jetzt fällig",
+          "dueAtResort": "Bei Ankunft fällig",
+          "taxes": "Taxes et frais (par chambre)"
+        },
+        "itinerary": {
+          "itineraryHeading": "Ihr Reiseplan",
+          "remove": "Entfernen",
+          "room": "Zimmer",
+          "specialPromo": "Name der Sonderaktion",
+          "subtotal": "Zwischensumme",
+          "taxesCharges": "Steuern, Zuschläge, Gebühren",
+          "vat": "MwSt.",
+          "dueNow": "Fällig jetzt"
+      }
+              
 }
   

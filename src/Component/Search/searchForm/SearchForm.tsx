@@ -8,6 +8,9 @@ import { DateCalender } from "../dateCalendar/DateCalendar";
 import { useTranslation } from "react-i18next";
 import { AppDispatch, RootState } from "../../../redux/Store";
 import { useNavigate } from "react-router-dom";
+import soldier from "../../../assets/soldier-2.png";
+import { toggleIsMilitaryVetran } from "../../../redux/SearchRoomSlice";
+import fighterJet from "../../../assets/fighter-jet.png";
 import "./SearchForm.scss";
 export function SearchForm() {
   const navigate = useNavigate();
@@ -44,7 +47,9 @@ export function SearchForm() {
   function handleSubmitButtonClick() {
     navigate(createUrl());
   }
-
+  function toggleMilitary() {
+    reduxDispatch(toggleIsMilitaryVetran());
+  }
   const startDate: string = useSelector(
     (state: RootState) => state.searchRoomInfo.startDate
   );
@@ -71,14 +76,24 @@ export function SearchForm() {
         </div>
         {disabledGuest && (
           <div className="disabled-checkbox">
-            <input type="checkbox" />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Wheelchair_symbol.svg"
-              alt=""
-            />
-            <h5>{t("search.disabled")}</h5>
+            <label htmlFor="disabled" className="search-wrapper-label">
+              <input type="checkbox" id="disabled" />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Wheelchair_symbol.svg"
+                alt=""
+                id="disabled"
+              />
+              <h5>{t("search.disabled")}</h5>
+            </label>
           </div>
         )}
+        <div className="military-checkbox">
+          <label htmlFor="military" className="search-wrapper-label">
+            <input type="checkbox" id="military" onChange={toggleMilitary} />
+            <img src={fighterJet} alt="not-found" />
+            <h5 id="military">{t("military")}</h5>
+          </label>
+        </div>
       </div>
       <div className="submit-button">
         <button onClick={handleSubmitButtonClick} disabled={isDisabled}>

@@ -47,6 +47,7 @@ import { PropertyConfigReducer } from "./PropertyConfigSlice";
 import { StepperReducer } from "./StepperSlice";
 import { FilterRoomReducer } from "./FilterRoomSlice";
 import { FilterReducer } from "./FilterSlice";
+import { ItineraryReducer } from "./ItinerarySlice";
 export const store = configureStore({
   reducer: {
     currencyRate: CurrencyReducer,
@@ -56,7 +57,8 @@ export const store = configureStore({
     propertyConfigInfo: PropertyConfigReducer,
     stepper: StepperReducer,
     filterRoom: FilterRoomReducer,
-    filterInfo:FilterReducer
+    filterInfo: FilterReducer,
+    itineraryInfo: ItineraryReducer,
   },
 });
 

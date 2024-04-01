@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { RoomCardIndividual ,RoomCardResponse} from "../types/RoomCardResponse";
 interface IFilterRoom {
   bedType: boolean;
   roomType: boolean;
@@ -7,7 +8,8 @@ interface IFilterRoom {
   selectedSortingParam: string;
   selectedSortingOrder:boolean;
   pageNumber:number;
-  responseReceived:boolean
+  responseReceived:boolean,
+  roomCardIndividual:RoomCardIndividual[],
 }
 const initialState: IFilterRoom = {
   bedType: false,
@@ -17,7 +19,8 @@ const initialState: IFilterRoom = {
   selectedSortingParam:"Select",
   selectedSortingOrder:true,
   pageNumber:1,
-  responseReceived:false
+  responseReceived:false,
+  roomCardIndividual:[]
 };
 const FilterRoomSlice = createSlice({
   name: "filterRoom",
@@ -65,6 +68,10 @@ const FilterRoomSlice = createSlice({
     },
     changeSortingTechnique:(state,action:PayloadAction<boolean>)=>{
       state.selectedSortingOrder = action.payload;
+    },
+    setRoomCards:(state,action:PayloadAction<RoomCardResponse>)=>
+    {
+      state.roomCardIndividual=action.payload.roomCards;
     }
   },
 });
@@ -78,6 +85,7 @@ export const {
   changeSelectedSortingParam,
   changePageNumber,
   changeSortingTechnique,
-  setResponseReceived
+  setResponseReceived,
+  setRoomCards
 } = FilterRoomSlice.actions;
 export const FilterRoomReducer = FilterRoomSlice.reducer;

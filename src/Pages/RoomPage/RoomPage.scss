@@ -1,7 +1,6 @@
 .room-page {
   min-height: 80%;
   width: 100%;
-  overflow-x: hidden;
 }
 .bg-image {
   height: 140px;
@@ -26,22 +25,38 @@
   justify-content: space-between;
   align-items: center;
 }
-.disabled-person {
-  width: 5%;
+.checkbox-wrapper{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+  flex-direction: column;
+  .wrapper-label{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .military-veteran{
+    
+    input{
+      height: 15px;
+      width: 15px;
+    }
+    .military-image
+    {
+      height: 18px;
+      width: 18px;
+    }
+  }
+.disabled-person {
   input {
-    height: 25px;
-    width: 25px;
+    height: 15px;
+    width: 15px;
   }
   .disabled-image {
     img {
-      height: 30px;
-      width: 30px;
+      height: 18px;
+      width: 18px;
     }
   }
+}
 }
 .text {
   display: none;
@@ -76,7 +91,7 @@
     border: none;
 }
 .right-display-content {
-  width: 76%;
+  width: 78%;
   .right-top-heading {
     display: flex;
     padding: 10px 10px;
@@ -115,16 +130,26 @@
       
     }
   }
+  .itinerary-display-content
+  {
+    width: 100%;
+    display: flex;
+    .itinerary-content{
+      // display: none;
+      min-width: 35%;
+    }
+  }
   .all-cards-display {
     display: flex;
     flex-wrap: wrap;
+    min-width: 65%;
   }
 }
 @media (max-width: 1230px) {
   .disabled-person {
     input {
-      height: 15px;
-      width: 15px;
+      height: 13px;
+      width: 13px;
     }
     .disabled-image {
       img {
@@ -149,9 +174,6 @@
         width: 100%;
       }
   .select-form {
-    // flex-direction: column;
-    // gap: 8px;
-    // padding: 0px 4vw;
     flex-wrap: wrap;
   }
   .text {
@@ -161,7 +183,15 @@
     width: 100%;
     display: flex;
     justify-content: start;
+    align-items: center;
     padding: 10px 0px;
+  }
+  .military-veteran{
+    display: flex;
+    width: 100%;
+    padding: 10px 0px;
+    align-items: start;
+    gap: 3px;
   }
   .search-submit-button {
     width: 100%;
@@ -213,11 +243,34 @@
     }
    }
 }
+.itinerary-copy{
+  display: none;
+}
+@media(max-width:770px)
+{
+  .itinerary-display-content{
+    flex-wrap: wrap;
+  }
+  .all-cards-display{
+    min-width: 100% !important;
+  }
+  .itinerary-content{
+    min-width: 100% !important;
+    order: -1;
+    display: flex;
+    justify-content: center;
+  }
+  .itinerary-content{
+    display: none !important;
+  }
+  .itinerary-copy{
+    display: block;
+  }
+}
 @media(max-width:550px)
 {
   .individual-roomCard{
     width: 90% !important;
-    
   }
   .right-display-content .right-top-heading .top-right-heading h3{
     font-size: 1rem;

@@ -2,7 +2,8 @@
     "mainHeading": "Kickdrum",
     "subHeading": "Internet Booking Engine",
     "myBookings": "MY BOOKINGS",
-    "login": "Login",
+    "login": "LOGIN",
+    "logout":"LOGOUT",
     "footer": {
       "leftHeading": "Kickdrum",
       "rightHeading": "©Kickdrum Technology Group LLC.",
@@ -14,7 +15,7 @@
       "guests":"Guests",
       "rooms":"Rooms",
       "disabled":"I need an accessible room",
-      "searchButton":"Search",
+      "searchButton":"SEARCH",
       "checkin":"Check-in",
       "checkout":"Check-out",
       "from":"From",
@@ -41,7 +42,7 @@
     "beds":"Beds",
     "checkin":"Check in between",
     "checkout":"Check out between",
-    "searchDates":"Search Dates",
+    "searchDates":"SEARCH DATES",
     "narrowResults":"Narrow Your Results",
     "roomResults":"Room Results",
     "showing":"Showing",
@@ -49,8 +50,179 @@
     "newProperty":"New Property",
     "inclusive":"Inclusive",
     "perNight":"per night",
-    "selectRoom":"SELECT ROOM"
-
-  }
+    "selectRoom":"SELECT ROOM",
+    "chooseRoom":"1:Choose Room",
+    "chooseAddon":"2:Choose add on",
+    "checkOut":"3:Checkout",
+    "king":"KING",
+    "queen":"QUEEN",
+    "GRAND_DELUXE":{
+      "name":"GRAND DELUXE",
+      "description":"Experience luxury at its finest in our Grand Deluxe rooms. These spacious and elegantly appointed rooms offer stunning views and premium amenities to ensure a comfortable and memorable stay. Immerse yourself in opulence as you unwind in the lavish surroundings, where every detail has been meticulously crafted to exceed your expectations.",
+      "amenities": {
+        "amenitiesHeading": "Amenities",
+        "City views": "City views",
+        "Spacious bathroom": "Spacious bathroom",
+        "High-speed Wi-Fi": "High-speed Wi-Fi",
+        "24-hour room service": "24-hour room service",
+        "Complimentary bottled water": "Complimentary bottled water",
+        "In-room coffee maker": "In-room coffee maker",
+        "Luxury bath amenities": "Luxury bath amenities",
+        "Plush bathrobes": "Plush bathrobes",
+        "Evening turndown service": "Evening turndown service",
+        "In-room safe": "In-room safe"
+      }
+    },
+    "SUPER_DELUXE": {
+      "name": "SUPER DELUXE",
+      "description": "Indulge in comfort and style with our Super Deluxe rooms. Featuring modern furnishings and thoughtful touches, these rooms provide the perfect retreat after a day of exploring the city. Relax in contemporary elegance and enjoy the tranquility of your surroundings, knowing that every comfort has been considered to enhance your stay.",
+      "amenities": {
+        "amenitiesHeading": "Amenities",
+        "Garden views": "Garden views",
+        "En-suite bathroom": "En-suite bathroom",
+        "Free Wi-Fi": "Free Wi-Fi",
+        "Mini-fridge": "Mini-fridge",
+        "Flat-screen TV": "Flat-screen TV",
+        "Air conditioning": "Air conditioning",
+        "Work desk": "Work desk",
+        "Hairdryer": "Hairdryer",
+        "Electronic key card access": "Electronic key card access",
+        "Iron and ironing board": "Iron and ironing board"
+      }
+    },
+    "FAMILY_DELUXE": {
+      "name": "FAMILY DELUXE",
+      "description": "Ideal for families traveling together, our Family Deluxe rooms offer ample space and thoughtful amenities to ensure a relaxing stay for everyone. Enjoy quality time together in a comfortable and inviting environment, where each member of the family can unwind and create cherished memories that will last a lifetime.",
+      "amenities": {
+        "amenitiesHeading": "Amenities",
+        "Connecting rooms": "Connecting rooms",
+        "Kid-friendly movies": "Kid-friendly movies",
+        "Microwave and fridge": "Microwave and fridge",
+        "Children's menu": "Children's menu",
+        "Board games": "Board games",
+        "Kids' welcome pack": "Kids' welcome pack",
+        "Baby crib (upon request)": "Baby crib (upon request)",
+        "High chair (upon request)": "High chair (upon request)",
+        "Laundry service": "Laundry service",
+        "Room service menu for kids": "Room service menu for kids"
+      }
+    },
+    "COUPLE_SUITE": {
+      "name": "COUPLE SUITE",
+      "description": "Treat yourself and your loved one to a romantic getaway in our Couple Suite. Featuring luxurious furnishings and intimate settings, these suites provide the perfect ambiance for a memorable stay. Escape the ordinary and indulge in moments of pure bliss as you revel in each other's company in this enchanting retreat.",
+      "amenities": {
+        "amenitiesHeading": "Amenities",
+        "Jacuzzi": "Jacuzzi",
+        "His and hers bathrobes": "His and hers bathrobes",
+        "Concierge service": "Concierge service",
+        "Couples' massage": "Couples' massage",
+        "Romantic dinner package": "Romantic dinner package",
+        "Champagne and strawberries": "Champagne and strawberries",
+        "Turntable with romantic music selection": "Turntable with romantic music selection",
+        "Late check-out option": "Late check-out option",
+        "Private balcony": "Private balcony",
+        "Fireplace": "Fireplace"
+      }
+    },
+    "GARDEN_SUITE": {
+      "name": "GARDEN SUITE",
+      "description": "Escape to tranquility in our Garden Suite, where lush greenery and serene surroundings await. These spacious suites offer a private oasis, perfect for rejuvenating body and mind. Immerse yourself in nature's embrace and let the beauty of the garden inspire moments of serenity and relaxation.",
+      "amenities": {
+        "amenitiesHeading": "Amenities",
+        "Private garden": "Private garden",
+        "Outdoor seating": "Outdoor seating",
+        "Yoga mat": "Yoga mat",
+        "Guided nature walks": "Guided nature walks",
+        "Picnic basket service": "Picnic basket service",
+        "Hammock": "Hammock",
+        "Outdoor shower": "Outdoor shower",
+        "Herb garden": "Herb garden",
+        "Bird watching guidebook": "Bird watching guidebook",
+        "Private BBQ area": "Private BBQ area"
+      }
+    },
+    "STANDARD_SUITE": {
+      "name": "STANDARD SUITE",
+      "description": "Experience comfort and convenience in our Standard Suite. Thoughtfully designed with modern amenities, these suites offer everything you need for a pleasant stay, whether you're traveling for business or leisure. Enjoy the simplicity of elegant design and the ease of modern living in these welcoming accommodations.",
+      "amenities": {
+        "amenitiesHeading": "Amenities",
+        "Choice of bed size": "Choice of bed size",
+        "City views": "City views",
+        "Sitting area": "Sitting area",
+        "Complimentary Wi-Fi": "Complimentary Wi-Fi",
+        "Daily housekeeping": "Daily housekeeping",
+        "Telephone with voicemail": "Telephone with voicemail",
+        "Alarm clock": "Alarm clock",
+        "Tea and coffee facilities": "Tea and coffee facilities",
+        "Laptop-sized safe": "Laptop-sized safe",
+        "Accessible room options": "Accessible room options"
+      }
+    },
+    "SINGLE_BED":{
+      "name":"SINGLE BED"
+    },
+    "DOUBLE_BED":{
+      "name":"DOUBLE BED"
+    },
+    "Bed Type":"Bed type",
+    "Room Type":"Room type",
+    "promoHeading":"Enter a promo code",
+    "apply":"APPLY",
+    "standardRate":"Standard Rate",
+    "dealsNPackages":"Deals & Packages",
+    "selectPackage":"SELECT PACKAGE",
+    "Long weekend discount":{
+      "title":"Long weekend discount",
+      "description":"Applies only if trip more than 2 days and across weekends"
+    },
+    "KDU Membership Discount":{
+      "title":"KDU Membership Discount",
+      "description":"KDU Membership Discount"
+    },
+    "Military personnel discount":{
+      "title":"Military personnel discount",
+      "description":"Military personnel discount"
+    },
+    "Upfront payment discount":{
+      "title":"Upfront payment discount",
+      "description":"Pay 100% while booking and get a discount of 10%"
+    },
+    "Weekend discount":{
+      "title":"Weekend discount",
+      "description":"Applies only if trip falls around a Saturday and Sunday"
+    },
+    "Exclusive Retreat":{
+      "title":"Exclusive Retreat",
+      "description":"Spend $10 every night you stay and earm $150 in dining credit at the resort."
+    },
+    "military":"Military Service Veteran ?",
+    "specialDeal":"Special Deal",
+    "highestPromotion":"Applies only if trip more than 2 days and across weekends",
+    "packageTotal":"Package Total",
+    "taxModal":{
+      "rateBreakdown":"Rate Breakdown",
+      "roomType":"Room Type",
+      "nightlyRate":"Nightly Rate(per room)",
+      "roomTotal":"Room Total",
+      "resortFee":"Resort Fee",
+      "occupancyFee":"Occupancy tax",
+      "dueNow":"Due Now",
+      "dueAtResort":"Due at resort",
+      "taxes":"Taxes and fees(per room)"
+    },
+    "itinerary":{
+      "itineraryHeading":"Your Trip Itinerary",
+      "remove":"Remove",
+      "room":"room",
+      "specialPromo":"Special Promoname",
+      "subtotal":"Subtotal",
+      "taxesCharges":"Taxes,Surcharges,Fees",
+      "vat":"VAT",
+      "dueNow":"Due Now",
+      "checkout":"CHECKOUT",
+      "continue":"CONTINUE SHOPPING"
+    }
+    
+}
   
   

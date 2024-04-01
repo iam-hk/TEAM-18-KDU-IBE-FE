@@ -1,0 +1,15 @@
+.modal-content{
+    padding: 40px 30px;
+    .modal-heading-title{
+        font-size: 1.7rem;
+        margin-bottom:10px;
+    }
+    .modal-offer-title{
+        width: 70%;
+        margin-bottom: 30px;
+    }
+    .modal-bottom{
+        display: flex;
+        justify-content: space-between;
+    }
+}

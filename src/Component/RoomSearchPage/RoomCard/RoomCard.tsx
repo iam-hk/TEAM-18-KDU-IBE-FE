@@ -5,16 +5,41 @@ import {
   PropertyInformation,
   RoomCardIndividual,
 } from "../../../types/RoomCardResponse";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/Store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/Store";
 import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
 import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
 import { useTranslation } from "react-i18next";
-interface RoomCardProp {
+import { useEffect, useState } from "react";
+import RoomModal from "../../Modals/RoomModal/RoomModal";
+import star from "../../../assets/fi_alert-star - filled (1).png";
+import {
+  setStepperState,
+  increaseStepperState,
+} from "../../../redux/StepperSlice";
+import { GlobalPromotions } from "../../../types/PromotionList";
+export interface RoomCardProp {
   property: PropertyInformation;
   currentRoom: RoomCardIndividual;
+  globalPromotion: GlobalPromotions;
 }
 export function RoomCard(props: RoomCardProp) {
+  const [open, setOpen] = useState(false);
+  const selectedPropertyName = useSelector(
+    (state: RootState) => state.itineraryInfo.roomName
+  );
+  useEffect(() => {
+    if (open == false) {
+      if (selectedPropertyName) {
+        reduxDispatch(setStepperState(1));
+      } else {
+        reduxDispatch(setStepperState(0));
+      }
+    }
+  }, [open]);
+  function updateOpen(data: boolean) {
+    setOpen(data);
+  }
   const { t } = useTranslation();
   const currentSelectedCurrency = useSelector(
     (state: RootState) => state.currencyRate.currentSelectedCurrency
@@ -27,12 +52,19 @@ export function RoomCard(props: RoomCardProp) {
   function updatePrice(price: number) {
     return price * currentPrice[currentSelectedCurrency].toFixed(1);
   }
+  const reduxDispatch: AppDispatch = useDispatch();
+  const stepperState = useSelector(
+    (state: RootState) => state.stepper.currentState
+  );
+  function changeStepperState() {
+    reduxDispatch(increaseStepperState(stepperState + 1));
+  }
   return (
     <div className="room-display">
       <div className="individual-roomCard">
         <div className="imageOfRoomTypeContainer">
           <Carousel autoPlay infiniteLoop>
-            {props.currentRoom.arrayOfImages.map((imageUrl) => {
+            {props.currentRoom.lowQualityImages.map((imageUrl) => {
               return (
                 <div key={imageUrl}>
                   <img
@@ -48,15 +80,22 @@ export function RoomCard(props: RoomCardProp) {
         <div className="informationOfRoomType">
           <div className="propertyAndReviewContainer">
             <div className="propertyNameContainer">
-              {props.currentRoom.roomTypeName}
+              {t(`${props.currentRoom.roomTypeName}.name`)}
             </div>
             <div className="reviewAndRatingContainer">
-              <div className="newProperty">{t("newProperty")}</div>
-              {/* <div className="ratingContainer">
-                <i className="fi fi-sr-star"></i>
-                3.5
-              </div>
-              <div className="reviewCountContainer">128 reviews</div> */}
+              {props.currentRoom.newProperty ? (
+                <div className="newProperty">{t("newProperty")}</div>
+              ) : (
+                <>
+                  <div className="ratingContainer">
+                    <img src={star} alt="not found" />
+                    {props.currentRoom.rating.toFixed(1)}
+                  </div>
+                  <div className="reviewCountContainer">
+                    {props.currentRoom.reviewCount} reviews
+                  </div>
+                </>
+              )}
             </div>
           </div>
           <div className="otherDetailsOfRoomType">
@@ -116,42 +155,62 @@ export function RoomCard(props: RoomCardProp) {
               </span>
               <span className="bed_content">
                 {props.currentRoom.singleBed != 0
-                  ? `King - ${props.currentRoom.singleBed} `
+                  ? `${t("king")} - ${props.currentRoom.singleBed} `
                   : ""}
                 {props.currentRoom.doubleBed != 0
-                  ? `Queen - ${props.currentRoom.doubleBed}`
+                  ? `${t("queen")} - ${props.currentRoom.doubleBed}`
                   : ""}
               </span>
             </div>
           </div>
         </div>
-        {/* <div className="promotionOfRoomType">
-          <div className="BannerOfSpecialDeal">
-            <div className="banner_title_of_promotion">Special Deal</div>
-            <svg
-              width="121"
-              height="32"
-              viewBox="0 0 121 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M120.759 0H0V32H120.759L112.775 14.9677L120.759 0Z"
-                fill="#26266D"
-              />
-            </svg>
+        {props.globalPromotion.allApplicablePromotions.length != 0 && (
+          <div className="promotionOfRoomType">
+            <div className="BannerOfSpecialDeal">
+              <div className="banner_title_of_promotion">
+                {t("specialDeal")}
+              </div>
+              <svg
+                width="121"
+                height="32"
+                viewBox="0 0 121 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M120.759 0H0V32H120.759L112.775 14.9677L120.759 0Z"
+                  fill="#26266D"
+                />
+              </svg>
+            </div>
+            <div className="descriptionOfSpecialDeal">
+              {t(
+                `${props.globalPromotion.highestPromotion.promotionTitle}.description`
+              )}
+            </div>
           </div>
-          <div className="descriptionOfSpecialDeal">
-            Lorem ipsum dolor sit amet.
-          </div>
-        </div> */}
+        )}
         <div className="price_containerOfRoomType">
           <div className="minimumPriceOfRoomType">
             {(CurrencySymbols as any)[currentSelectedCurrency]}
             {updatePrice(props.currentRoom.price)}
           </div>
           <div className="priceLabelContainer">{t("perNight")}</div>
-          <button className="selectRoom-btn">{t("selectRoom")}</button>
+          <button
+            className="selectRoom-btn"
+            onClick={() => {
+              setOpen(true);
+              changeStepperState();
+            }}
+          >
+            {t("selectRoom")}
+          </button>
+          <RoomModal
+            open={open}
+            updateOpen={updateOpen}
+            room={props}
+            globalPromotions={props.globalPromotion}
+          />
         </div>
       </div>
     </div>

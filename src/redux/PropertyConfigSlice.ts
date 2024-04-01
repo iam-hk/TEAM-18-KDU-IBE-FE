@@ -80,7 +80,10 @@ const PropertyConfigSlice = createSlice({
       const index = action.payload;
       state.isFilterVisible[index] = !state.isFilterVisible[index];
     },
-    toggleFilterOption(state, action: PayloadAction<{ filterIndex: number; option: string }>) {
+    toggleFilterOption(
+      state,
+      action: PayloadAction<{ filterIndex: number; option: string }>
+    ) {
       const { filterIndex, option } = action.payload;
       const index = state.selectedFilters[filterIndex].indexOf(option);
       if (index === -1) {

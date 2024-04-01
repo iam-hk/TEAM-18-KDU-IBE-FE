@@ -150,15 +150,15 @@ export function RoomCalendar() {
   function updatePrice(price: number) {
     return price * currentPrice[currentSelectedCurrency].toFixed(1);
   }
-  function isDatePast(day: Date){
+  function isDatePast(day: Date) {
     const today = new Date();
-    today.setHours(0,0,0,0);
+    today.setHours(0, 0, 0, 0);
     return day.getTime() < today.getTime();
   }
 
   return (
     <div className="date-component">
-      <div className="date-checkin">
+      <div className="date-checkin" onClick={toggleVisibility}>
         <div className="checkin-heading">
           <div className="checkin_heading-information">{t("checkin")}</div>
         </div>
@@ -167,12 +167,10 @@ export function RoomCalendar() {
         </div>
       </div>
       <div className="border-line"></div>
-      <div className="date-checkout">
+      <div className="date-checkout" onClick={toggleVisibility}>
         <div className="checkout-details">
           <div className="checkout-heading">
-            <div className="checkout_heading-information">
-              {t("checkout")}
-            </div>
+            <div className="checkout_heading-information">{t("checkout")}</div>
           </div>
           <div className="checkout-date">
             <div className="checkout_date_information">{endingDate}</div>
@@ -218,8 +216,8 @@ export function RoomCalendar() {
                     <p
                       className="price-item"
                       style={{
-                        opacity:isDatePast(day) || isNaN(price) || !price ?
-                        "0" : "1"
+                        opacity:
+                          isDatePast(day) || isNaN(price) || !price ? "0" : "1",
                       }}
                     >
                       {(CurrencySymbols as any)[currentSelectedCurrency]}

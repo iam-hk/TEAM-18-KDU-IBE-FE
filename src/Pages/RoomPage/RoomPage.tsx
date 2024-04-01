@@ -17,6 +17,7 @@ import {
   updateStartDate,
   updateEndDate,
   updateBeds,
+  toggleIsMilitaryVetran,
 } from "../../redux/SearchRoomSlice";
 import CustomizedSnackbars from "../../Component/snackbar/CustomizedSnackbars";
 import { validateDates } from "../../utils/RoomValidations/HandleDateValidations";
@@ -38,9 +39,15 @@ import nextIcon from "../../assets/right-arrow-icon.png";
 import prevIcon from "../../assets/left-arrow-icon.png";
 import { addFilters } from "../../redux/FilterSlice";
 import { useTranslation } from "react-i18next";
-
+import { Itinerary } from "../../Component/RoomSearchPage/Itinerary/Itinerary";
+import { setRoomCards } from "../../redux/FilterRoomSlice";
+import { GlobalPromotions } from "../../types/PromotionList";
+import fighterJet from "../../assets/fighter-jet.png";
 export function RoomPage() {
   const { t } = useTranslation();
+  const itineraryPropertyName = useSelector(
+    (state: RootState) => state.itineraryInfo.roomName
+  );
   const maxCards = useSelector(
     (state: RootState) => state.propertyConfigInfo.maxCards
   );
@@ -93,7 +100,20 @@ export function RoomPage() {
   const appliedFilters = useSelector(
     (state: RootState) => state.filterInfo.appliedFilters
   );
-
+  const militaryVeteran = useSelector(
+    (state: RootState) => state.searchRoomInfo.isMilitaryVetran
+  );
+  const [globalApplicablePromotions, setGlobalApplicablePromotions] =
+    useState<GlobalPromotions>({
+      highestPromotion: {
+        priceFactor: 100,
+        minimumDaysOfStay: 100,
+        promotionDescription: "",
+        promotionTitle: "",
+        promotionId: 1,
+      },
+      allApplicablePromotions: [],
+    });
   const [roomCardResponse, setRoomCardResponse] = useState<RoomCardResponse>();
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
@@ -102,6 +122,16 @@ export function RoomPage() {
   const navigate = useNavigate();
   let start = (pageNumber - 1) * maxCards + 1;
   let end = Math.min(pageNumber * maxCards, roomCardResponse?.totalRoomCards);
+  if (Number.isNaN(end)) {
+    start = 0;
+    end = 0;
+  }
+  if (roomCardResponse?.totalRoomCards === 0) {
+    start = 0;
+  }
+  const militaryServiceVetran = useSelector(
+    (state: RootState) => state.searchRoomInfo.isMilitaryVetran
+  );
   useEffect(() => {
     reduxDispatch(updateGuestDispInfo());
   }, [guestCounts]);
@@ -112,6 +142,36 @@ export function RoomPage() {
       window.location.href = "/";
     }, 3000);
   }
+  const checkSeniorCitizenGuest = (): boolean => {
+    const seniorCitizenIndex = guests.findIndex(
+      (guest) => guest.type === "Senior Citizen"
+    );
+    if (seniorCitizenIndex !== -1) {
+      return guestCounts[seniorCitizenIndex] > 0;
+    } else {
+      return false;
+    }
+  };
+  function formPromotionsUrl() {
+    const seniorCitizen = checkSeniorCitizenGuest();
+    let url = import.meta.env.VITE_REACT_APP_GLOBAL_PROMOTION;
+    if (!startDate && !endDate) {
+      const getUrl = window.location.href;
+      const params = new URL(getUrl).searchParams;
+      const sDate = params.get("startDate");
+      const eDate = params.get("endDate");
+      url += `startDate=${sDate}&endDate=${eDate}`;
+    } else {
+      url += `startDate=${startDate}&endDate=${endDate}`;
+    }
+    if (seniorCitizen) {
+      url += "&elderGuest=true";
+    }
+    if (militaryVeteran) {
+      url += "&militaryGuest=true";
+    }
+    return url;
+  }
   const fetchRoomCards = async (roomUrl: string) => {
     try {
       setLoader(true);
@@ -119,7 +179,15 @@ export function RoomPage() {
       const roomCardsUrl = `${backendUrl}${roomUrl}`;
       const roomCardFromBackend = await axios.get(roomCardsUrl);
       const result = await roomCardFromBackend.data;
+      const promoUrl = formPromotionsUrl();
+      console.log(promoUrl);
+      const getAllPromotions = await axios.get(
+        promoUrl
+      );
+      const data_promotions = await getAllPromotions.data;
+      setGlobalApplicablePromotions(data_promotions);
       setRoomCardResponse(result);
+      reduxDispatch(setRoomCards(result));
       setLoader(false);
     } catch (error) {
       console.log(error);
@@ -136,7 +204,6 @@ export function RoomPage() {
     if (previousSearch === null) {
       window.location.href = "/";
     } else {
-      console.log("Redirecting to previous search:", previousSearch);
       window.location.search = previousSearch;
     }
   }
@@ -222,6 +289,7 @@ export function RoomPage() {
           else redirectUrl += `${filterWord}`;
         });
       }
+      window.localStorage.setItem("prevSearch", `?${url.split("?")[1]}`);
       reduxDispatch(updateBeds(parseInt(bedCount)));
       reduxDispatch(assignGuests(countOfGuests));
       reduxDispatch(updateRooms(parseInt(roomCount)));
@@ -314,12 +382,16 @@ export function RoomPage() {
       fetchRoomCards(backendUrl);
     }
   }
+  function toggleMilitaryServiceVetran() {
+    reduxDispatch(toggleIsMilitaryVetran());
+  }
   function updateSearchParams() {
     const totalGuests = guestCounts.reduce((total, count) => total + count, 0);
     const guestTypeParams = guests
       .map((guest, index) => `${guest.type}=${guestCounts[index]}`)
       .join("&");
     const activeUrl = `/rooms?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&${guestTypeParams}&bedCount=${bedsSelected}`;
+    window.localStorage.setItem("prevSearch", `?${activeUrl.split("?")[1]}`);
     const backendUrl = `/roomtype?id=18&guestCount=${totalGuests}&roomCount=${roomsSelected}&startDate=${startDate}&endDate=${endDate}&bedCount=${bedsSelected}`;
     navigate(activeUrl);
     fetchRoomCards(backendUrl);
@@ -333,19 +405,40 @@ export function RoomPage() {
             { "--banner-image": `url(${bannerImage})` } as React.CSSProperties
           }
         ></div>
-        <StepperUI />
+        <StepperUI onStepClick={undefined} />
         <div className="select-form">
           <Guests />
           <RoomPageRoom />
           <RoomBeds />
           <RoomCalendar />
-          <div className="disabled-person">
-            <input className="checkbox-input" type="checkbox" />
-            <div className="disabled-image">
-              <img src={wheelchair} alt="notfound" />
+          <div className="checkbox-wrapper">
+            <div className="disabled-person">
+              <label className="wrapper-label">
+                <input className="checkbox-input" type="checkbox" />
+                <div className="disabled-image">
+                  <img src={wheelchair} alt="notfound" />
+                </div>
+              </label>
+
+              <div className="text">
+                <p>I need an Accessible Room.</p>
+              </div>
             </div>
-            <div className="text">
-              <p>I need an Accessible Room.</p>
+            <div className="military-veteran">
+              <label className="wrapper-label">
+                <input
+                  className="checkbox-input"
+                  type="checkbox"
+                  checked={militaryServiceVetran}
+                  onChange={toggleMilitaryServiceVetran}
+                />
+                <div className="military-image">
+                  <img src={fighterJet} alt="" />
+                </div>
+              </label>
+              <div className="text">
+                <p>Military Service Veteran?</p>
+              </div>
             </div>
           </div>
           <div className="search-submit-button">
@@ -364,6 +457,11 @@ export function RoomPage() {
             <Filters />
           </div>
           <div className="right-display-content">
+            {itineraryPropertyName && (
+              <div className="itinerary-copy">
+                <Itinerary />
+              </div>
+            )}
             {loader ? (
               <div className="wrapper">
                 <div className="loader-container">
@@ -383,7 +481,10 @@ export function RoomPage() {
                       </button>
                       <h3>
                         {t("showing")} {start}-{end} of{" "}
-                        {roomCardResponse?.totalRoomCards} {t("results")}
+                        {isNaN(roomCardResponse?.totalRoomCards)
+                          ? 0
+                          : roomCardResponse?.totalRoomCards}{" "}
+                        {t("results")}
                       </h3>
                       <button className="next-page" onClick={gotoNextPage}>
                         <img src={nextIcon} alt="" />
@@ -393,14 +494,26 @@ export function RoomPage() {
                     <PriceFilterSelect sorts={sortingOptions} />
                   </div>
                 </div>
-                <div className="all-cards-display">
-                  {roomCardResponse?.roomCards.map((room) => (
-                    <RoomCard
-                      key={room.roomTypeId}
-                      property={roomCardResponse.propertyInformation}
-                      currentRoom={room}
-                    />
-                  ))}
+                <div className="itinerary-display-content">
+                  <div className="all-cards-display">
+                    {roomCardResponse?.roomCards.length === 0 ? (
+                      <h3>No results found</h3>
+                    ) : (
+                      roomCardResponse?.roomCards.map((room) => (
+                        <RoomCard
+                          key={room.roomTypeId}
+                          property={roomCardResponse.propertyInformation}
+                          currentRoom={room}
+                          globalPromotion={globalApplicablePromotions}
+                        />
+                      ))
+                    )}
+                  </div>
+                  {itineraryPropertyName && (
+                    <div className="itinerary-content">
+                      <Itinerary />
+                    </div>
+                  )}
                 </div>
               </>
             )}

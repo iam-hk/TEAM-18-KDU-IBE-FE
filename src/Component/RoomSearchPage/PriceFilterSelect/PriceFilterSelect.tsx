@@ -13,20 +13,20 @@ import { updateSortDisplay } from "../../../redux/FilterSlice";
 
 const PriceFilterSelect = (props: IDropDownSort) => {
   const [isOpen, setIsOpen] = useState(false);
-  const selectedSortingParam = useSelector(
-    (state: RootState) => state.filterRoom.selectedSortingParam
+  const displaySort = useSelector(
+    (state: RootState) => state.filterInfo.displaySortName
   );
-  const selectedSortingTechnique = useSelector(
-    (state: RootState) => state.filterRoom.selectedSortingOrder
-  );
-  const displaySort = useSelector((state:RootState)=>state.filterInfo.displaySortName);
 
   const reduxDispatch: AppDispatch = useDispatch();
   const toggleOptions = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (variable: string, sort: boolean,displayName : string) => {
+  const handleOptionClick = (
+    variable: string,
+    sort: boolean,
+    displayName: string
+  ) => {
     reduxDispatch(changeSelectedSortingParam(variable));
     reduxDispatch(updateSortDisplay(displayName));
 
@@ -48,7 +48,7 @@ const PriceFilterSelect = (props: IDropDownSort) => {
         <div className="options">
           <div
             className="option"
-            onClick={() => handleOptionClick("Select", false,"Select")}
+            onClick={() => handleOptionClick("Select", false, "Select")}
           >
             Select
           </div>

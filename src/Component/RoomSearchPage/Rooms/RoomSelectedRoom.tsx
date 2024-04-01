@@ -62,7 +62,6 @@ const RoomSelectedRoom = () => {
   };
   return (
     <div className="room-page-selected-rooms">
-      {/* <FormControl> */}
       <Select
         value={selectedRooms.toString()}
         onChange={handleRoomChange}
@@ -77,7 +76,6 @@ const RoomSelectedRoom = () => {
           </MenuItem>
         ))}
       </Select>
-      {/* </FormControl> */}
     </div>
   );
 };
