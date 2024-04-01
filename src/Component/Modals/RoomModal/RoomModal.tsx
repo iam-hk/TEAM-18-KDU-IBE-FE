@@ -116,7 +116,8 @@ export default function RoomModal(props: IRoomModal) {
   }
 
   async function checkCustomPromoCode() {
-    const customPromoCodeUrl = `http://localhost:8000/api/v1/promocode?promotionCode=${promoCode}&roomTypeId=${props.room.currentRoom.roomTypeId}`;
+     let customPromoCodeUrl= import.meta.env.VITE_REACT_APP_CUSTOM_PROMOTION;
+     customPromoCodeUrl += `${promoCode}&roomTypeId=${props.room.currentRoom.roomTypeId}`;
     setPromoCode("");
     try {
       const customPromotionCard = await axios.get(customPromoCodeUrl);
@@ -146,7 +147,6 @@ export default function RoomModal(props: IRoomModal) {
   };
   const navigate = useNavigate();
   return (
-    <>
       <div className="modal-Container_custom" style={{ width: "80vw" }}>
         <Modal
           open={props.open}
@@ -336,6 +336,5 @@ export default function RoomModal(props: IRoomModal) {
           </div>
         </Modal>
       </div>
-    </>
   );
 }

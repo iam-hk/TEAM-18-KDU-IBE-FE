@@ -22,7 +22,8 @@ export default function CheckoutPage() {
     sendEmailDetails();
   };
   async function sendEmailDetails() {
-    const customUrl = `http://localhost:8000/api/v1/details?roomTypeId=${roomTypeId}&email=${email}`;
+    let customUrl= import.meta.env.VITE_REACT_APP_EMAIL_REVIEW;
+     customUrl+= `roomTypeId=${roomTypeId}&email=${email}`;
     console.log(customUrl);
     try {
       await axios.get(customUrl);

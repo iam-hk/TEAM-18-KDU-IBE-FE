@@ -154,7 +154,7 @@ export function RoomPage() {
   };
   function formPromotionsUrl() {
     const seniorCitizen = checkSeniorCitizenGuest();
-    let url = "http://localhost:8000/api/v1/getAllPromotions?";
+    let url = import.meta.env.VITE_REACT_APP_GLOBAL_PROMOTION;
     if (!startDate && !endDate) {
       const getUrl = window.location.href;
       const params = new URL(getUrl).searchParams;
@@ -182,7 +182,6 @@ export function RoomPage() {
       const promoUrl = formPromotionsUrl();
       console.log(promoUrl);
       const getAllPromotions = await axios.get(
-        //"http://localhost:8000/api/v1/getAllPromotions?startDate=2024-03-24&endDate=2024-03-27&elderGuest=false&militaryGuest=false"
         promoUrl
       );
       const data_promotions = await getAllPromotions.data;

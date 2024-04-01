@@ -1,5 +1,6 @@
 .individual-roomCard {
     width: 293px;
+    min-height: 524px;
     height: max-content;
     border-radius: 5px;
     margin: 1rem 0.5rem;
@@ -36,6 +37,9 @@
                     font-weight: 700px;
                     font-size: 16px;
                     margin-bottom: 0.1rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.3rem;
                 }
                 .reviewCountContainer {
                     font-size: 14px;
@@ -178,7 +182,6 @@
 @media(max-width:800px)
 {
     .individual-roomCard {
-       
         .informationOfRoomType {
             .propertyAndReviewContainer {
                 .propertyNameContainer {

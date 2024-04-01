@@ -19,6 +19,7 @@ export interface RoomCardIndividual {
     price:                           number;
     roomCount:                       number;
     arrayOfImages:                   string[];
+    lowQualityImages:                string[];
     rating:                          number;
     reviewCount:                     number;
     priceOfRoomTypeInParticularDate: { [key: string]: number };

@@ -12,6 +12,7 @@ import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import RoomModal from "../../Modals/RoomModal/RoomModal";
+import star from "../../../assets/fi_alert-star - filled (1).png";
 import {
   setStepperState,
   increaseStepperState,
@@ -63,7 +64,7 @@ export function RoomCard(props: RoomCardProp) {
       <div className="individual-roomCard">
         <div className="imageOfRoomTypeContainer">
           <Carousel autoPlay infiniteLoop>
-            {props.currentRoom.arrayOfImages.map((imageUrl) => {
+            {props.currentRoom.lowQualityImages.map((imageUrl) => {
               return (
                 <div key={imageUrl}>
                   <img
@@ -87,8 +88,8 @@ export function RoomCard(props: RoomCardProp) {
               ) : (
                 <>
                   <div className="ratingContainer">
-                    <i className="fi fi-sr-star"></i>
-                    {props.currentRoom.rating}
+                    <img src={star} alt="not found" />
+                    {props.currentRoom.rating.toFixed(1)}
                   </div>
                   <div className="reviewCountContainer">
                     {props.currentRoom.reviewCount} reviews
@@ -183,7 +184,9 @@ export function RoomCard(props: RoomCardProp) {
               </svg>
             </div>
             <div className="descriptionOfSpecialDeal">
-              {t(`${props.globalPromotion.highestPromotion.promotionTitle}.description`)}
+              {t(
+                `${props.globalPromotion.highestPromotion.promotionTitle}.description`
+              )}
             </div>
           </div>
         )}

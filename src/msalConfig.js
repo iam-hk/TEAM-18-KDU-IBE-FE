@@ -4,8 +4,8 @@ export const msalConfig = {
       authority:
         "https://ibe24.b2clogin.com/ibe24.onmicrosoft.com/B2C_1_signinsignupteam18", // Choose SUSI as your default authority.
       knownAuthorities: ["ibe24.b2clogin.com"], // Mark your B2C tenant's domain as trusted.
-      redirectUri: "http://localhost:5173/", // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
-      postLogoutRedirectUri: "http://localhost:5173/", // Indicates the page to navigate after logout.
+      redirectUri: "https://team18-ibe-hyaheff6heahgra2.z02.azurefd.net/", // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
+      postLogoutRedirectUri: "https://team18-ibe-hyaheff6heahgra2.z02.azurefd.net/", // Indicates the page to navigate after logout.
       navigateToLoginRequestUrl: false, // If 'true', will navigate back to the original request location before processing the auth code response.
     },
     cache: {

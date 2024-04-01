@@ -9,7 +9,7 @@ export const RoomReview = () => {
   const [review, setReview] = useState("");
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
-
+  const [status, setStatus] = useState<string>("error");
   const changeRating = (newRating: SetStateAction<number>) => {
     setStars(newRating);
   };
@@ -37,6 +37,7 @@ export const RoomReview = () => {
         rating: stars,
         review: review,
       });
+      setStatus(response.data.status);
       setMessage(response.data.message);
       setShowSnackbar(true);
       setStars(0);
@@ -77,7 +78,7 @@ export const RoomReview = () => {
       </div>
       {showSnackbar && (
         <CustomizedSnackbars
-          status="error"
+          status={status}
           message={message}
           setShowSnackbar={setShowSnackbar}
         />
