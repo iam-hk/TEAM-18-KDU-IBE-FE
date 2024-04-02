@@ -1,0 +1,65 @@
+@import "../../../Constants/Colors.scss";
+.traveler-info-wrapper{
+    width: 100%;
+    .traveler-name-wrapper{
+        display: flex;
+        justify-content: space-between;
+        padding: 0px 0px 0px 10px;
+        margin-bottom: 25px;
+        .traveler-first-name{
+            width: 49%;
+            .traveler-first-name-label{
+                font-size: 1.1rem;
+                color: $checkout-page-grey;
+                font-weight: 500;
+            }
+        }
+        .traveler-last-name{
+            width: 49%;
+            .traveler-last-name-label{
+                font-size: 1.1rem;
+                color: $checkout-page-grey;
+                font-weight: 500;
+            }
+        }   
+    }
+    .traveler-phone-wrapper{
+
+        width: 50%;
+        padding: 0px 0px 0px 10px;
+        margin-bottom: 25px;
+        .traveler-phone-label{
+            font-size: 1.1rem;
+            color: $checkout-page-grey;
+            font-weight: 500;
+        }
+    }
+    .traveler-email-wrapper{
+        width: 50%;
+        padding: 0px 0px 0px 10px;
+        margin-bottom: 25px;
+        .traveler-email-label{
+            font-size: 1.1rem;
+            color: $checkout-page-grey;
+            font-weight: 500;
+        }
+    }
+    .traveler-submit-button{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 25px;
+        .traveler-button{
+            width: fit-content;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: $light-blue-color;
+            color: $header-background-color;
+            border: none;
+        }
+    }
+}
+.text-field{
+    height: 48px;
+}

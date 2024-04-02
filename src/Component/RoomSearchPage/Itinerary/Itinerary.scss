@@ -164,13 +164,13 @@
     .itinerary-submit-container{
         margin-top: 10px;
         display: flex;
-        justify-content: end;
+        justify-content: center;
         align-items: center;
 
         .itinerary-checkout-button{
             width: 70%;
             padding: 15px 20px;
-            border: 1.5px solid $light-blue-color;
+            border: 2px solid $light-blue-color;
             border-radius: 4px;
             color: $light-blue-color;
             font-size: 0.8rem;

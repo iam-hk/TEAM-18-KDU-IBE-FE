@@ -7,48 +7,48 @@
 .checkout-wrapper {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.form-container {
-  width: 25%;
-  margin: 0;
-  padding: 20px;
-  border: 1px solid $grey;
-  border-radius: 5px;
-  .email-heading{
-    font-size: 1.2rem;
+  // align-items: center;
+  justify-content: space-between;
+  padding-right: 20px;
+  .checkout-form{
+    padding: 30px 40px;
+    min-width:70% ;
+    .form-wrapper{
+      width: 100%;
+    } 
+    .form-heading{
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    .traveler-div{
+      .traveler-heading{
+        font-size: 1.2rem;
+        padding: 8px 0px 8px 10px;
+        background-color: $itinerary-bg;
+        margin-bottom:10px;
+      }
+    }
+    .billing-container{
+      .billing-heading{
+        font-size: 1.2rem;
+        padding: 8px 0px 8px 10px;
+        background-color: $itinerary-bg;
+        margin-bottom:10px;
+      }
+    }
+    .payment-container{
+      .payment-heading{
+        font-size: 1.2rem;
+        padding: 8px 0px 8px 10px;
+        background-color: $itinerary-bg;
+        margin-bottom:10px;
+      }
+    }
   }
-}
-
-.form-container label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.form-container input[type="email"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid $grey;
-  border-radius: 5px;
-}
-
-.form-container button[type="submit"] {
-  background-color: $light-blue-color;
-  color: $white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.form-container button[type="submit"]:hover {
-  background-color: $dark-blue-color;
-}
-
-.itinerary-content {
-  width: 30%;
-  margin-bottom: 20px;
+  .itinerary-content{
+    width: 25%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+  }
 }

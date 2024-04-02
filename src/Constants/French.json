@@ -54,10 +54,10 @@
   "chooseRoom": "1:Chossez un chambre",
   "chooseAddon": "2:Chossez un addon",
   "checkOut": "3:Paser à caisse",
-  "king": "ROI",
-  "queen": "REINE",
+  "king": "Roi",
+  "queen": "Reine",
   "GRAND_DELUXE": {
-    "name": "GRAND DELUXE",
+    "name": "Grand Deluxe",
     "description": "Expérience de luxe à son apogée dans nos chambres Grand Deluxe. Ces chambres spacieuses et élégamment aménagées offrent des vues imprenables et des équipements haut de gamme pour garantir un séjour confortable et mémorable. Plongez-vous dans l'opulence alors que vous vous détendez dans les environs luxueux, où chaque détail a été méticuleusement conçu pour dépasser vos attentes.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -74,7 +74,7 @@
     }
   },
   "SUPER_DELUXE": {
-    "name": "DELUXE SUPÉRIEUR",
+    "name": "Deluxe Supérieur",
     "description": "Indulgez-vous dans le confort et le style avec nos chambres Deluxe Supérieur. Dotées de meubles modernes et de touches réfléchies, ces chambres offrent le refuge parfait après une journée d'exploration en ville. Détendez-vous dans l'élégance contemporaine et profitez de la tranquillité de votre environnement, en sachant que tout le confort a été pris en compte pour améliorer votre séjour.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -91,7 +91,7 @@
     }
   },
   "FAMILY_DELUXE": {
-    "name": "DELUXE FAMILLE",
+    "name": "Deluxe Famille",
     "description": "Idéal pour les familles voyageant ensemble, nos chambres Deluxe Famille offrent un espace généreux et des équipements bien pensés pour garantir un séjour relaxant pour tous. Profitez de moments de qualité ensemble dans un environnement confortable et accueillant, où chaque membre de la famille peut se détendre et créer des souvenirs précieux qui dureront toute une vie.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -108,7 +108,7 @@
     }
   },
   "COUPLE_SUITE": {
-    "name": "SUITE COUPLE",
+    "name": "Suite Couple",
     "description": "Offrez-vous une escapade romantique avec votre bien-aimé(e) dans notre Suite Couple. Dotées de meubles luxueux et de réglages intimes, ces suites offrent l'ambiance parfaite pour un séjour mémorable. Échappez à l'ordinaire et laissez-vous emporter par des moments de pur bonheur en profitant de la compagnie de l'autre dans cette retraite enchanteresse.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -125,7 +125,7 @@
     }
   },
   "GARDEN_SUITE": {
-    "name": "SUITE JARDIN",
+    "name": "Suite Jardin",
     "description": "Évadez-vous vers la tranquillité dans notre Suite Jardin, où la verdure luxuriante et les environs sereins vous attendent. Ces suites spacieuses offrent une oasis privée, parfaite pour revitaliser le corps et l'esprit. Plongez-vous dans l'étreinte de la nature et laissez la beauté du jardin inspirer des moments de sérénité et de relaxation.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -142,7 +142,7 @@
     }
   },
   "STANDARD_SUITE": {
-    "name": "SUITE STANDARD",
+    "name": "Suite Standard",
     "description": "Découvrez le confort et la commodité dans notre Suite Standard. Conçues avec soin et dotées d'équipements modernes, ces suites offrent tout ce dont vous avez besoin pour un séjour agréable, que vous voyagiez pour affaires ou pour le plaisir. Profitez de la simplicité du design élégant et de la facilité de la vie moderne dans ces hébergements accueillants.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -159,10 +159,10 @@
     }
   },
   "SINGLE_BED": {
-    "name": "LIT SIMPLE"
+    "name": "Lit Simple"
   },
   "DOUBLE_BED": {
-    "name": "LIT DOUBLE"
+    "name": "Lit Double"
   },
   "Bed Type": "Type de lit",
   "Room Type": "Type de chambre",

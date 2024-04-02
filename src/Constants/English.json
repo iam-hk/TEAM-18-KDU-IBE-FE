@@ -54,10 +54,10 @@
     "chooseRoom":"1:Choose Room",
     "chooseAddon":"2:Choose add on",
     "checkOut":"3:Checkout",
-    "king":"KING",
-    "queen":"QUEEN",
+    "king":"King",
+    "queen":"Queen",
     "GRAND_DELUXE":{
-      "name":"GRAND DELUXE",
+      "name":"Grand Deluxe",
       "description":"Experience luxury at its finest in our Grand Deluxe rooms. These spacious and elegantly appointed rooms offer stunning views and premium amenities to ensure a comfortable and memorable stay. Immerse yourself in opulence as you unwind in the lavish surroundings, where every detail has been meticulously crafted to exceed your expectations.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -74,7 +74,7 @@
       }
     },
     "SUPER_DELUXE": {
-      "name": "SUPER DELUXE",
+      "name": "Super Deluxe",
       "description": "Indulge in comfort and style with our Super Deluxe rooms. Featuring modern furnishings and thoughtful touches, these rooms provide the perfect retreat after a day of exploring the city. Relax in contemporary elegance and enjoy the tranquility of your surroundings, knowing that every comfort has been considered to enhance your stay.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -91,7 +91,7 @@
       }
     },
     "FAMILY_DELUXE": {
-      "name": "FAMILY DELUXE",
+      "name": "Family Deluxe",
       "description": "Ideal for families traveling together, our Family Deluxe rooms offer ample space and thoughtful amenities to ensure a relaxing stay for everyone. Enjoy quality time together in a comfortable and inviting environment, where each member of the family can unwind and create cherished memories that will last a lifetime.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -108,7 +108,7 @@
       }
     },
     "COUPLE_SUITE": {
-      "name": "COUPLE SUITE",
+      "name": "Couple Suite",
       "description": "Treat yourself and your loved one to a romantic getaway in our Couple Suite. Featuring luxurious furnishings and intimate settings, these suites provide the perfect ambiance for a memorable stay. Escape the ordinary and indulge in moments of pure bliss as you revel in each other's company in this enchanting retreat.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -125,7 +125,7 @@
       }
     },
     "GARDEN_SUITE": {
-      "name": "GARDEN SUITE",
+      "name": "Garden Suite",
       "description": "Escape to tranquility in our Garden Suite, where lush greenery and serene surroundings await. These spacious suites offer a private oasis, perfect for rejuvenating body and mind. Immerse yourself in nature's embrace and let the beauty of the garden inspire moments of serenity and relaxation.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -142,7 +142,7 @@
       }
     },
     "STANDARD_SUITE": {
-      "name": "STANDARD SUITE",
+      "name": "Standard Suite",
       "description": "Experience comfort and convenience in our Standard Suite. Thoughtfully designed with modern amenities, these suites offer everything you need for a pleasant stay, whether you're traveling for business or leisure. Enjoy the simplicity of elegant design and the ease of modern living in these welcoming accommodations.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -159,10 +159,10 @@
       }
     },
     "SINGLE_BED":{
-      "name":"SINGLE BED"
+      "name":"Single Bed"
     },
     "DOUBLE_BED":{
-      "name":"DOUBLE BED"
+      "name":"Double Bed"
     },
     "Bed Type":"Bed type",
     "Room Type":"Room type",

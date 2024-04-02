@@ -7,7 +7,7 @@
     font-size: 1.1rem;
     display: flex;
     flex-direction: column;
-}
+
 .all-search-fields {
     height: 85%;
     display: flex;
@@ -28,7 +28,7 @@
 .MuiInputBase-root {
     width: 100%;
     margin-top: 3px;
-    height: 6vh;
+    height: 6vh !important;
 
 }
 .guests-and-rooms {
@@ -102,6 +102,7 @@
         height: 20px;
         width: 20px;
     }
+}
 }
 @media (max-width: 576px) {
     .home{

@@ -48,6 +48,7 @@ import { StepperReducer } from "./StepperSlice";
 import { FilterRoomReducer } from "./FilterRoomSlice";
 import { FilterReducer } from "./FilterSlice";
 import { ItineraryReducer } from "./ItinerarySlice";
+import { CheckoutReducer } from "./CheckoutSlice";
 export const store = configureStore({
   reducer: {
     currencyRate: CurrencyReducer,
@@ -59,6 +60,7 @@ export const store = configureStore({
     filterRoom: FilterRoomReducer,
     filterInfo: FilterReducer,
     itineraryInfo: ItineraryReducer,
+    checkoutRoom:CheckoutReducer,
   },
 });
 
