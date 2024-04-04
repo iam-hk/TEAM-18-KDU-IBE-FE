@@ -154,8 +154,11 @@ export function DateCalender() {
     }
   }
   const generateMinDate = () => {
-    return new Date();
-  };
+    if(dateRange[0].startDate.getTime() !== dateRange[0].endDate.getTime()){
+        return new Date();
+    }
+    return dateRange[0].startDate;
+}
 
   function updatePrice(price: number) {
     return price * currentPrice[currentSelectedCurrency].toFixed(1);

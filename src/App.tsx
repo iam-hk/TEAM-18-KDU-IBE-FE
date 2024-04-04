@@ -22,6 +22,8 @@ const msalInstance = new PublicClientApplication(msalConfig);
 
 
 import { RoomReview } from "./Pages/ReviewPage/RoomReview";
+import ConfirmPage from "./Pages/ConfirmationPage/ConfirmPage";
+import ConfirmationPage from "./Pages/ConfirmationPage/ConfirmationPage";
 function App() {
   const reduxDispatch: AppDispatch = useDispatch();
   const [loader, setLoader] = useState(true);
@@ -50,6 +52,7 @@ function App() {
         <Route path="/rooms" element={<RoomPage />} />
         <Route path="/checkout" element={<CheckoutPage />}/>
         <Route path="/review" element={<RoomReview />}/>
+        <Route path="/confirmation" element={<ConfirmationPage/>}/>
       </Routes>
       <Footer />
       </MsalProvider>
