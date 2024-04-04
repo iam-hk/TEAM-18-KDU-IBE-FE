@@ -80,11 +80,12 @@ export default function RoomModal(props: IRoomModal) {
         promotionDescription:
           "Spend $10 every night you stay and earm $150 in dining credit at the resort.",
         promotionTitle: "Exclusive Retreat",
+        promotionId:0
       };
       const itinerary: IItinerary = {
         roomName: props.room.currentRoom.roomTypeName,
         priceOfRoomTypeInParticularDate:
-          props.room.currentRoom.priceOfRoomTypeInParticularDate,
+        props.room.currentRoom.priceOfRoomTypeInParticularDate,
         promoCodeInfo: promo,
         roomCount: selectedRooms,
         startDate: startDate,
@@ -99,11 +100,12 @@ export default function RoomModal(props: IRoomModal) {
         priceFactor: promotionsAvailable[index].priceFactor,
         promotionDescription: promotionsAvailable[index].promotionDescription,
         promotionTitle: promotionsAvailable[index].promotionTitle,
+        promotionId:promotionsAvailable[index].promotionId
       };
       const itinerary: IItinerary = {
         roomName: props.room.currentRoom.roomTypeName,
         priceOfRoomTypeInParticularDate:
-          props.room.currentRoom.priceOfRoomTypeInParticularDate,
+        props.room.currentRoom.priceOfRoomTypeInParticularDate,
         promoCodeInfo: promo,
         roomCount: selectedRooms,
         startDate: startDate,

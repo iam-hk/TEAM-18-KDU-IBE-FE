@@ -4,60 +4,53 @@ import "./TravelerInfo.scss";
 import { AppDispatch, RootState } from "../../../redux/Store";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  ITravelerInfo,
+  setCheckoutPage,
   setCurrentIndex,
-  setTravelerEmail,
-  setTravelerFirstName,
-  setTravelerLastName,
-  setTravelerPhone,
+  setTravlerInfo,
 } from "../../../redux/CheckoutSlice";
 
 export function TravelerInfo() {
   const reduxDispatch: AppDispatch = useDispatch();
-  const firstName = useSelector(
+  const firstNameSlice = useSelector(
     (state: RootState) => state.checkoutRoom.travelerInfo.tfirstName
   );
-  const lastName = useSelector(
+  const lastNameSlice = useSelector(
     (state: RootState) => state.checkoutRoom.travelerInfo.tlastName
   );
-  const phone = useSelector(
+  const phoneSlice = useSelector(
     (state: RootState) => state.checkoutRoom.travelerInfo.tphone
   );
-  const email = useSelector(
+  const emailSlice = useSelector(
     (state: RootState) => state.checkoutRoom.travelerInfo.temail
   );
-  const handleValidation = () => {
-    if (!firstName || !lastName || !phone || !email) {
-      return false;
-    }
-
-    if (!/^\d{10}$/.test(phone)) {
-      alert("Please enter a valid phone number");
-      return false;
-    }
-
-    if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
-      alert("Please enter a valid email address");
-      return false;
-    }
-
-    return true;
-  };
+  const [firstName, setFirstName] = useState(firstNameSlice);
+  const [lastName, setLastName] = useState(lastNameSlice);
+  const [phone, setPhone] = useState(phoneSlice);
+  const [email, setEmail] = useState(emailSlice);
   const handleFirstNameChange = (value: string) => {
-    reduxDispatch(setTravelerFirstName(value));
+    setFirstName(value);
   };
   const handleLastNameChange = (value: string) => {
-    reduxDispatch(setTravelerLastName(value));
+    setLastName(value);
   };
   const handleEmailChange = (value: string) => {
-    reduxDispatch(setTravelerEmail(value));
+    setEmail(value);
   };
   const handlePhoneChange = (value: string) => {
-    reduxDispatch(setTravelerPhone(value));
+    setPhone(value);
   };
-  const handleSubmit = () => {
-    if (handleValidation()) {
-      reduxDispatch(setCurrentIndex(1));
-    }
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    const travelerInfo: ITravelerInfo = {
+      tfirstName: firstName,
+      tlastName: lastName,
+      tphone: phone,
+      temail: email,
+    };
+    reduxDispatch(setCurrentIndex(1));
+    reduxDispatch(setTravlerInfo(travelerInfo));
+    
   };
   return (
     <form onSubmit={handleSubmit} className="traveler-info-wrapper">
@@ -79,10 +72,32 @@ export function TravelerInfo() {
                 id="first-name"
                 variant="outlined"
                 className="text-field"
+                required
                 inputProps={{ pattern: "[A-Za-z]+" }}
                 value={firstName}
-                required
+                error={!/^[a-zA-Z]*$/.test(firstName)}
+                helperText={
+                  !/^[a-zA-Z]*$/.test(firstName)
+                    ? "Please enter a valid first name."
+                    : ""
+                }
                 onChange={(e) => handleFirstNameChange(e.target.value)}
+                onKeyDown={(e) => {
+                  const keyCode = e.keyCode;
+
+                  if (
+                    (keyCode >= 65 && keyCode <= 90) ||
+                    (keyCode >= 97 && keyCode <= 122) ||
+                    keyCode === 32 ||
+                    keyCode === 9 ||
+                    keyCode === 8 ||
+                    keyCode === 37 ||
+                    keyCode === 39
+                  ) {
+                    return;
+                  }
+                  e.preventDefault();
+                }}
               />
             </Grid>
           </Grid>
@@ -108,6 +123,28 @@ export function TravelerInfo() {
                 value={lastName}
                 required
                 onChange={(e) => handleLastNameChange(e.target.value)}
+                error={!/^[a-zA-Z]*$/.test(lastName)}
+                helperText={
+                  !/^[a-zA-Z]*$/.test(lastName)
+                    ? "Please enter a valid first name."
+                    : ""
+                }
+                onKeyDown={(e) => {
+                  const keyCode = e.keyCode;
+
+                  if (
+                    (keyCode >= 65 && keyCode <= 90) ||
+                    (keyCode >= 97 && keyCode <= 122) ||
+                    keyCode === 32 ||
+                    keyCode === 9 ||
+                    keyCode === 8 ||
+                    keyCode === 37 ||
+                    keyCode === 39
+                  ) {
+                    return;
+                  }
+                  e.preventDefault();
+                }}
               />
             </Grid>
           </Grid>
@@ -135,6 +172,26 @@ export function TravelerInfo() {
               value={phone}
               required
               onChange={(e) => handlePhoneChange(e.target.value)}
+              error={phone !== "" && !/^[0-9]{10}$/.test(phone)}
+              helperText={
+                phone !== "" && !/^[0-9]{10}$/.test(phone)
+                  ? "Please enter a valid 10-digit phone number"
+                  : ""
+              }
+              onKeyDown={(e) => {
+                if (
+                  e.key === "Backspace" ||
+                  e.key === "Tab" ||
+                  e.key === "ArrowLeft" ||
+                  e.key === "ArrowRight"
+                ) {
+                  return;
+                }
+                const pattern = /^[0-9]*$/;
+                if (!pattern.test(e.key)) {
+                  e.preventDefault();
+                }
+              }}
             />
           </Grid>
         </Grid>
@@ -160,6 +217,16 @@ export function TravelerInfo() {
               required
               type="email"
               onChange={(e) => handleEmailChange(e.target.value)}
+              error={
+                email !== "" &&
+                !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)
+              }
+              helperText={
+                email !== "" &&
+                !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)
+                  ? "Please enter a valid email address"
+                  : ""
+              }
             />
           </Grid>
         </Grid>

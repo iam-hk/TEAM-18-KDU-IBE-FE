@@ -4,6 +4,7 @@ export interface IItineraryPromo{
   priceFactor: number,
   promotionDescription:string,
   promotionTitle: string,
+  promotionId:number
 }
 export interface IItinerary {
   roomName: string;
@@ -22,7 +23,8 @@ const initialState: IItinerary = {
     promoCode: "",
     priceFactor: 0,
     promotionDescription: "",
-    promotionTitle: ""
+    promotionTitle: "",
+    promotionId:0
   },
   roomCount: 0,
   startDate: "",
@@ -54,7 +56,8 @@ const ItinerarySlice = createSlice({
         promoCode: "",
         priceFactor: 0,
         promotionDescription: "",
-        promotionTitle: ""
+        promotionTitle: "",
+        promotionId:0
       };
       state.startDate = "";
       state.endDate = "";

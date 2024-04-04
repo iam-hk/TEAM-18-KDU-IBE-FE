@@ -10,9 +10,12 @@
   // align-items: center;
   justify-content: space-between;
   padding-right: 20px;
+  .checkout-binder{
+    width: 70%;
+  }
   .checkout-form{
     padding: 30px 40px;
-    min-width:70% ;
+    width:100% ;
     .form-wrapper{
       width: 100%;
     } 
@@ -46,9 +49,24 @@
     }
   }
   .itinerary-content{
-    width: 25%;
+    width: 30%;
     display: flex;
     justify-content: start;
     align-items: start;
+   
+  }
+}
+@media (max-width:770px) {
+  .checkout-page .checkout-wrapper{
+    display: flex;
+    flex-direction: column;
+    padding-right: 0;
+    padding: 10px 15px;
+    .checkout-binder{
+      width: 100%;
+    }
+      .itinerary-content{
+        display: block !important;
+    }
   }
 }

@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .billing-first-name {
       width: 49%;
       .billing-first-name-label {
@@ -27,7 +27,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .billing-first-address {
       width: 49%;
       .billing-first-address-label {
@@ -52,7 +52,7 @@
   .billing-country-wrapper {
     width: 50%;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .billing-country-label {
       font-size: 1.1rem;
       color: $checkout-page-grey;
@@ -65,7 +65,7 @@
   .billing-city-wrapper {
     width: 50%;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .billing-city-label {
       font-size: 1.1rem;
       color: $checkout-page-grey;
@@ -79,7 +79,7 @@
   .billing-state-wrapper {
     width: 50%;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .text-field{
       height: 55px;
     }
@@ -92,7 +92,7 @@
   .billing-zip-wrapper {
     width: 50%;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .billing-zip-label {
       font-size: 1.1rem;
       color: $checkout-page-grey;
@@ -102,7 +102,7 @@
   .billing-phone-wrapper {
     width: 50%;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .billing-phone-label {
       font-size: 1.1rem;
       color: $checkout-page-grey;
@@ -112,7 +112,7 @@
   .billing-email-wrapper {
     width: 50%;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .billing-email-label {
       font-size: 1.1rem;
       color: $checkout-page-grey;
@@ -124,7 +124,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 1vw;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .billing-button{
         width: fit-content;
         padding: 12px 20px;
@@ -142,7 +142,14 @@
       color: $light-blue-color;
     }
 }
+.dropdown-span-value{
+  font-size: 1rem;
 }
+.span-selected{
+  font-size: 1rem;
+}
+}
+
 .text-field {
   height: 48px;
 }

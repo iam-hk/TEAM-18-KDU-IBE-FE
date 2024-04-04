@@ -5,7 +5,7 @@
         display: flex;
         justify-content: space-between;
         padding: 0px 0px 0px 10px;
-        margin-bottom: 25px;
+        margin-bottom: 35px;
         .traveler-first-name{
             width: 49%;
             .traveler-first-name-label{
@@ -27,7 +27,7 @@
 
         width: 50%;
         padding: 0px 0px 0px 10px;
-        margin-bottom: 25px;
+        margin-bottom: 35px;
         .traveler-phone-label{
             font-size: 1.1rem;
             color: $checkout-page-grey;
@@ -37,7 +37,7 @@
     .traveler-email-wrapper{
         width: 50%;
         padding: 0px 0px 0px 10px;
-        margin-bottom: 25px;
+        margin-bottom: 35px;
         .traveler-email-label{
             font-size: 1.1rem;
             color: $checkout-page-grey;
@@ -48,7 +48,7 @@
         width: 100%;
         display: flex;
         justify-content: flex-end;
-        margin-bottom: 25px;
+        margin-bottom: 35px;
         .traveler-button{
             width: fit-content;
             padding: 12px 20px;

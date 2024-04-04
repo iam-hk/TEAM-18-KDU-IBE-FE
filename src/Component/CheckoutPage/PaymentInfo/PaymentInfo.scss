@@ -7,7 +7,7 @@
   .payment-cardname-wrapper {
     width: 50%;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .payment-cardname-label {
       font-size: 1.1rem;
       color: $checkout-page-grey;
@@ -21,7 +21,7 @@
   .payment-month-wrapper {
     width: 50%;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .payment-month-label {
       font-size: 1.1rem;
       color: $checkout-page-grey;
@@ -31,7 +31,7 @@
   .payment-year-wrapper {
     width: 50%;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .payment-year-label {
       font-size: 1.1rem;
       color: $checkout-page-grey;
@@ -41,7 +41,7 @@
   .payment-cvv-wrapper {
     width: 50%;
     padding: 0px 0px 0px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     .payment-cvv-label {
       font-size: 1.1rem;
       color: $checkout-page-grey;
@@ -54,7 +54,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
 }
 .special-offers,.terms-policies
 {
@@ -63,6 +63,19 @@
     gap: 4px;
     font-size: 1rem;
     color: #5d5d5d;
+}
+.terms-policies{
+  .react-responsive-modal-modal{
+    top:0% !important;  
+  }
+  .terms-button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: 700;
+    color: #484848;
+    cursor: pointer;
+  }
 }
 .text-field {
   height: 48px;
@@ -88,7 +101,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 1vw;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
   .purchase-button{
       width: fit-content;
       padding: 12px 20px;
@@ -105,4 +118,9 @@
     font-size: 1.0rem;
     color: $light-blue-color;
   }
+}
+.error-message{
+  margin-left: 10px;
+  font-size: 0.8rem;
+  color: #D32F2F;
 }
