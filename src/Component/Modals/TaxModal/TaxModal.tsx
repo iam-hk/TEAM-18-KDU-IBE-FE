@@ -17,6 +17,18 @@ const TaxModal: React.FC<TaxModalProps> = ({ open, onClose }) => {
   const promoCodeInfo = useSelector(
     (state: RootState) => state.itineraryInfo.promoCodeInfo
   );
+  const priceFactor = useSelector(
+    (state: RootState) => state.itineraryInfo.promoCodeInfo.priceFactor
+  );
+  const resortTax = useSelector(
+    (state: RootState) => state.tenantInfo.taxResort
+  );
+  const occupancyTax = useSelector(
+    (state: RootState) => state.tenantInfo.occupancyTax
+  );
+  const dueAtHotel = useSelector(
+    (state: RootState) => state.tenantInfo.percentPayableAtHotel
+  );
   function updatePrice(price: number) {
     return (price * currentPrice[currentSelectedCurrency]).toFixed(1);
   }
@@ -28,13 +40,47 @@ const TaxModal: React.FC<TaxModalProps> = ({ open, onClose }) => {
   const currentPrice = useSelector(
     (state: RootState) => state.currencyRate.currentPrice
   );
-
+  function discountedPrice(price) {
+    return parseFloat((price * priceFactor).toFixed(1));
+  }
   function totalCost() {
     let totalPrice = 0;
     Object.values(priceOfRoomTypeInParticularDate).forEach((price) => {
-      totalPrice += price;
+      totalPrice += price * priceFactor;
     });
     return totalPrice;
+  }
+  function calculateOccupancyTax() {
+    let calcTotalPrice = totalCost();
+    let calcOccupancyTax = parseFloat(
+      (calcTotalPrice * occupancyTax).toFixed(1)
+    );
+    return calcOccupancyTax;
+  }
+  function calculateResortTax() {
+    let calcTotalPrice = totalCost();
+    let calcResortTax = parseFloat((calcTotalPrice * resortTax).toFixed(1));
+    return calcResortTax;
+  }
+  function calcdueNow() {
+    let calcTotalPrice = totalCost();
+    let calcResortTax = parseFloat((calcTotalPrice * resortTax).toFixed(1));
+    let calcOccupancyTax = parseFloat(
+      (calcTotalPrice * occupancyTax).toFixed(1)
+    );
+    calcTotalPrice += calcResortTax + calcOccupancyTax;
+    let dueNow = parseFloat((calcTotalPrice * (1 - dueAtHotel)).toFixed(1));
+    return dueNow;
+  }
+  function calcDueAtHotel() {
+    let calcTotalPrice = totalCost();
+    let calcResortTax = parseFloat((calcTotalPrice * resortTax).toFixed(1));
+    let calcOccupancyTax = parseFloat(
+      (calcTotalPrice * occupancyTax).toFixed(1)
+    );
+    calcTotalPrice += calcResortTax + calcOccupancyTax;
+    let amtdueAtHotel = parseFloat((calcTotalPrice * dueAtHotel).toFixed(1));
+    return amtdueAtHotel;
   }
   return (
     <Modal open={open} onClose={onClose} center>
@@ -60,8 +106,8 @@ const TaxModal: React.FC<TaxModalProps> = ({ open, onClose }) => {
               <div key={dateString} className="tax-modal-date-rate">
                 <div className="tax-modal-date">{formattedDate}</div>
                 <div className="tax-modal-rate">
-                {(CurrencySymbols as any)[currentSelectedCurrency]}
-                  {updatePrice(price)}
+                  {(CurrencySymbols as any)[currentSelectedCurrency]}
+                  {updatePrice(discountedPrice(price))}
                 </div>
               </div>
             );
@@ -85,7 +131,7 @@ const TaxModal: React.FC<TaxModalProps> = ({ open, onClose }) => {
             </div>
             <div className="tax-modal-type-price">
               {(CurrencySymbols as any)[currentSelectedCurrency]}
-              {updatePrice(120)}
+              {updatePrice(calculateResortTax())}
             </div>
           </div>
           <div className="tax-modal-tax-type">
@@ -94,7 +140,7 @@ const TaxModal: React.FC<TaxModalProps> = ({ open, onClose }) => {
             </div>
             <div className="tax-modal-type-price">
               {(CurrencySymbols as any)[currentSelectedCurrency]}
-              {updatePrice(130)}
+              {updatePrice(calculateOccupancyTax())}
             </div>
           </div>
         </div>
@@ -104,14 +150,14 @@ const TaxModal: React.FC<TaxModalProps> = ({ open, onClose }) => {
             <div className="due-now-heading">{t("taxModal.dueNow")}</div>
             <div className="due-amount">
               {(CurrencySymbols as any)[currentSelectedCurrency]}
-              {updatePrice(400)}
+              {updatePrice(calcdueNow())}
             </div>
           </div>
           <div className="tax-modal-due-at-resort">
             <div className="resort-heading">{t("taxModal.dueAtResort")}</div>
             <div className="resort-due-price">
               {(CurrencySymbols as any)[currentSelectedCurrency]}
-              {updatePrice(800)}
+              {updatePrice(calcDueAtHotel())}
             </div>
           </div>
         </div>

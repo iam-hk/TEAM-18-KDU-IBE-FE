@@ -6,6 +6,7 @@ import {
   setCheckoutPage,
   setCurrentIndex,
   setPaymentInfo,
+  setSpecialOffer,
 } from "../../../redux/CheckoutSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/Store";
@@ -20,6 +21,18 @@ export function PaymentInfo() {
   const expYYSlice = useSelector(
     (state: RootState) => state.checkoutRoom.paymentInfo.expYY
   );
+  const Sliceguests = useSelector(
+    (state: RootState) => state.propertyConfigInfo.guests
+  );
+  const sliceGuestCount = useSelector(
+    (state: RootState) => state.propertyConfigInfo.guestCounts
+  );
+  const nightlyRate=useSelector((state:RootState)=>state.itineraryInfo.priceDetails.nightlyRate);
+  const slicesubtotal=useSelector((state:RootState)=>state.itineraryInfo.priceDetails.subtotal);
+  const taxes=useSelector((state:RootState)=>state.itineraryInfo.priceDetails.taxes);
+  const vat=useSelector((state:RootState)=>state.itineraryInfo.priceDetails.vat);
+  const totalCost=useSelector((state:RootState)=>state.itineraryInfo.priceDetails.totalPayment);
+  const amountDueAtResort=useSelector((state:RootState)=>state.itineraryInfo.priceDetails.dueAtResort);
   const [openModal1, setOpenModal1] = useState(false);
   const [cardNumber, setCardNumber] = useState(cardNumberSlice);
   const [cardMonth, setCardMonth] = useState(expMMSlice);
@@ -125,14 +138,24 @@ export function PaymentInfo() {
   }
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    let adultCount = 0;
+    let childCount = 0;
+
+    Sliceguests.forEach((guest, index) => {
+      if (guest.type === "Adults") {
+        adultCount = sliceGuestCount[index];
+      } else if (guest.type === "Kids") {
+        childCount = sliceGuestCount[index];
+      }
+    });
     if (checkValidations()) {
       console.log(specialOffers, "here");
       const paymentInfo: IPaymentInfo = {
         cardNumber: cardNumber,
         expMM: cardMonth,
         expYY: cardYear,
-        specialOffers: specialOffers,
       };
+
       const confirmationDetails = {
         roomName: roomName,
         startDate: startDate,
@@ -144,9 +167,18 @@ export function PaymentInfo() {
           priceFactor: promoCodeInfo.priceFactor,
           promotionDescription: promoCodeInfo.promotionDescription,
           promotionTitle: promoCodeInfo.promotionTitle,
-          promotionId:promoCodeInfo.promotionId
+          promotionId: promoCodeInfo.promotionId,
         },
         roomCount: roomCount,
+        adultCount:adultCount,
+        childCount:childCount,
+        totalCost:totalCost,
+        amountDueAtResort:amountDueAtResort,
+        propertyId:18,
+        nightlyRate:nightlyRate,
+        subtotal:slicesubtotal,
+        taxes:taxes,
+        vat:vat
       };
       reduxDispatch(setPaymentInfo(paymentInfo));
       reduxDispatch(setCheckoutPage(confirmationDetails));
@@ -154,6 +186,7 @@ export function PaymentInfo() {
   }
   function handleSpecialOffers() {
     setSpecialOffers(!specialOffers);
+    reduxDispatch(setSpecialOffer());
   }
   return (
     <form onSubmit={handleSubmit} className="payment-form-info-wrapper">
@@ -385,7 +418,7 @@ export function PaymentInfo() {
               </span>{" "}
               of travel*
             </div>
-            <TermsAndPromoModal open={openModal1} onClose={onCloseModal1}/>
+            <TermsAndPromoModal open={openModal1} onClose={onCloseModal1} />
           </div>
           {!termsAndPolicies && (
             <p className="error-message">

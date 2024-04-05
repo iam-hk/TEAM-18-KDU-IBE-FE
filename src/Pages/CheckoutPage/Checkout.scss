@@ -2,6 +2,13 @@
 .checkout-page {
   min-height: 80%;
   width: 100%;
+  .itinerary-content{
+    width: 30%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    margin-bottom: 20px;
+  }
 }
 
 .checkout-wrapper {
@@ -48,13 +55,7 @@
       }
     }
   }
-  .itinerary-content{
-    width: 30%;
-    display: flex;
-    justify-content: start;
-    align-items: start;
-   
-  }
+
 }
 @media (max-width:770px) {
   .checkout-page .checkout-wrapper{

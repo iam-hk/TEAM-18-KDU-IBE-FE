@@ -19,18 +19,17 @@ export interface IBillingInfo {
   email: string;
   isoCode: string;
 }
-export interface IPromo{
-      promoCode:string,
-      priceFactor: number,
-      promotionDescription: string,
-      promotionTitle: string,
-      promotionId:number
+export interface IPromo {
+  promoCode: string;
+  priceFactor: number;
+  promotionDescription: string;
+  promotionTitle: string;
+  promotionId: number;
 }
 export interface IPaymentInfo {
   cardNumber: string;
   expMM: string;
   expYY: string;
-  specialOffers: boolean;
 }
 export interface IConformationDetails {
   roomName: string;
@@ -40,7 +39,15 @@ export interface IConformationDetails {
   guestCount: number[];
   promoCodeInfo: IPromo;
   roomCount: number;
-
+  adultCount: number;
+  childCount: number;
+  totalCost: number;
+  amountDueAtResort: number;
+  propertyId: number;
+  nightlyRate: number;
+  subtotal: number;
+  taxes: number;
+  vat: number;
 }
 interface ICheckoutPage {
   travelerInfo: ITravelerInfo;
@@ -49,9 +56,10 @@ interface ICheckoutPage {
   conformationDetails: IConformationDetails;
   currentIndex: number;
   termsAndPolicies: boolean;
-  countriesInSlice: ICountry[];
-  cityInSlice: ICity[];
-  stateInSlice: IState[];
+  specialOffers: boolean;
+  // countriesInSlice: ICountry[];
+  // cityInSlice: ICity[];
+  // stateInSlice: IState[];
 }
 const initialState: ICheckoutPage = {
   travelerInfo: {
@@ -77,7 +85,6 @@ const initialState: ICheckoutPage = {
     cardNumber: "",
     expMM: "",
     expYY: "",
-    specialOffers: false,
   },
   conformationDetails: {
     roomName: "",
@@ -90,29 +97,37 @@ const initialState: ICheckoutPage = {
       priceFactor: 0,
       promotionDescription: "",
       promotionTitle: "",
-      promotionId:0
+      promotionId: 0,
     },
     roomCount: 0,
+    adultCount: 0,
+    childCount: 0,
+    totalCost: 0,
+    amountDueAtResort: 0,
+    propertyId: 18,
+    nightlyRate: 0,
+    subtotal: 0,
+    taxes: 0,
+    vat: 0,
   },
   currentIndex: 0,
   termsAndPolicies: false,
-  countriesInSlice: Country.getAllCountries(),
-  stateInSlice: [],
-  cityInSlice: [],
+  specialOffers: false,
 };
 const CheckoutSlice = createSlice({
   name: "checkoutRoom",
   initialState,
   reducers: {
+    setSpecialOffer: (state) => {
+      state.specialOffers = !state.specialOffers;
+    },
     setTravlerInfo: (state, action: PayloadAction<ITravelerInfo>) => {
       state.travelerInfo = action.payload;
-      console.log(state.travelerInfo);
     },
     setBillingInfo: (state, action: PayloadAction<IBillingInfo>) => {
-      state.billingInfo = action.payload;
+      state.billingInfo = action.payload;   
     },
     setPaymentInfo: (state, action: PayloadAction<IPaymentInfo>) => {
-      console.log(action.payload);
       state.paymentInfo = action.payload;
     },
     setCurrentIndex: (state, action: PayloadAction<number>) => {
@@ -121,17 +136,7 @@ const CheckoutSlice = createSlice({
     setTermsAndPolicies: (state, action: PayloadAction<boolean>) => {
       state.termsAndPolicies = action.payload;
     },
-    setCountries: (state, action: PayloadAction<ICountry[]>) => {
-      state.countriesInSlice = action.payload;
-    },
-    setStates: (state, action: PayloadAction<IState[]>) => {
-      state.stateInSlice = action.payload;
-    },
-    setCitySlice: (state, action: PayloadAction<ICity[]>) => {
-      state.cityInSlice = action.payload;
-    },
     setCheckoutPage: (state, action: PayloadAction<IConformationDetails>) => {
-      console.log(action.payload);
       state.conformationDetails = action.payload;
     },
   },
@@ -142,9 +147,7 @@ export const {
   setPaymentInfo,
   setCurrentIndex,
   setTermsAndPolicies,
-  setCountries,
-  setStates,
-  setCitySlice,
   setCheckoutPage,
+  setSpecialOffer,
 } = CheckoutSlice.actions;
 export const CheckoutReducer = CheckoutSlice.reducer;

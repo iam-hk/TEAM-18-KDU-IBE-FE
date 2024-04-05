@@ -50,7 +50,7 @@ export function RoomCard(props: RoomCardProp) {
   );
 
   function updatePrice(price: number) {
-    return price * currentPrice[currentSelectedCurrency].toFixed(1);
+    return (price * currentPrice[currentSelectedCurrency]).toFixed(1);
   }
   const reduxDispatch: AppDispatch = useDispatch();
   const stepperState = useSelector(

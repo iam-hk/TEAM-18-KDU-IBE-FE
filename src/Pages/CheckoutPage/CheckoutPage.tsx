@@ -9,7 +9,7 @@ import CustomizedSnackbars from "../../Component/snackbar/CustomizedSnackbars";
 import { TravelerInfo } from "../../Component/CheckoutPage/TravelerInfo/TravelerInfo";
 import { BillingInfo } from "../../Component/CheckoutPage/BillingInfo/BillingInfo";
 import { PaymentInfo } from "../../Component/CheckoutPage/PaymentInfo/PaymentInfo";
-import TimerComponent  from "../../Component/CheckoutPage/TimerComponent/TimerComponent";
+import CountdownTimer from "../../Component/CheckoutPage/TimerComponent/TimerComponent";
 export default function CheckoutPage() {
   const [email, setEmail] = useState("");
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
@@ -76,7 +76,7 @@ export default function CheckoutPage() {
             </div>
           )}
         </div>
-        {/* <TimerComponent /> */}
+        {/* <CountdownTimer /> */}
       </div>
       {showSnackbar && (
         <CustomizedSnackbars

@@ -1,7 +1,6 @@
 import { Grid, MenuItem, Select, TextField } from "@mui/material";
 import "./BillingInfo.scss";
 import {
-  Country,
   State,
   City,
   ICountry,
@@ -13,10 +12,9 @@ import { AppDispatch, RootState } from "../../../redux/Store";
 import {
   IBillingInfo,
   setBillingInfo,
-  setCitySlice,
-  setCurrentIndex,
-  setStates,
+  setCurrentIndex
 } from "../../../redux/CheckoutSlice";
+import { setStates,setCitySlice } from "../../../redux/LocationSlice";
 import { useState } from "react";
 import axios from "axios";
 export function BillingInfo() {
@@ -52,13 +50,13 @@ export function BillingInfo() {
     (state: RootState) => state.checkoutRoom.billingInfo.email
   );
   const countriesInSlice = useSelector(
-    (state: RootState) => state.checkoutRoom.countriesInSlice
+    (state: RootState) => state.loactions.countriesInSlice
   );
   const stateInSlice = useSelector(
-    (state: RootState) => state.checkoutRoom.stateInSlice
+    (state: RootState) => state.loactions.stateInSlice
   );
   const cityInSlice = useSelector(
-    (state: RootState) => state.checkoutRoom.cityInSlice
+    (state: RootState) => state.loactions.cityInSlice
   );
   const billISOCode=useSelector((state:RootState)=>state.checkoutRoom.billingInfo.isoCode);
   const [countries, setCountries] = useState<ICountry[]>(countriesInSlice);
@@ -77,18 +75,6 @@ export function BillingInfo() {
   const [countryIsoCode, setCountryIsoCode] = useState<string>(billISOCode);
   const [isValidZipForCity, setIsValidZipForCity] = useState<boolean>(true);
   const [isValidCity, setIsValidCity] = useState<boolean>(true);
-  console.log("city printing");
-  console.log(
-    "bill details",
-    billCountry,
-    " ",
-    billState,
-    billState.length,
-    " selectedc",
-    selectedCountry,
-    " selecteds",
-    selectedState
-  );
   const handleFirstNameChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -121,7 +107,6 @@ export function BillingInfo() {
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
-  // console.log(selectedCountry, " cc  ", selectedState);
   function checkCityValidation() {
     const isValidCity = allCities.some((cityEach) => {
       const cityNameLowerCase = cityEach.name.toLowerCase();

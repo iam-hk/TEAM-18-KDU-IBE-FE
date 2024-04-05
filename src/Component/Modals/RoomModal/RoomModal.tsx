@@ -35,6 +35,9 @@ export default function RoomModal(props: IRoomModal) {
   const stepperState = useSelector(
     (state: RootState) => state.stepper.currentState
   );
+  const guestTypes = useSelector(
+    (state: RootState) => state.propertyConfigInfo.guests
+  );
   const roomCardResponse = useSelector(
     (state: RootState) => state.filterRoom.roomCardIndividual
   );
@@ -53,11 +56,11 @@ export default function RoomModal(props: IRoomModal) {
   const [promotionsAvailable, setpromotionsAvailable] = useState<Promotion[]>(
     []
   );
+
   const { t } = useTranslation();
   const currentSelectedCurrency = useSelector(
     (state: RootState) => state.currencyRate.currentSelectedCurrency
   ) as keyof CurrencyExchangeRates;
-
   const currentPrice = useSelector(
     (state: RootState) => state.currencyRate.currentPrice
   );
@@ -73,6 +76,7 @@ export default function RoomModal(props: IRoomModal) {
     reduxDispatch(setStepperState(2));
   }
   function updateItinerary(index: number) {
+    console.log(props.room.currentRoom, "hey");
     if (index == -1) {
       const promo = {
         promoCode: "",
@@ -80,18 +84,31 @@ export default function RoomModal(props: IRoomModal) {
         promotionDescription:
           "Spend $10 every night you stay and earm $150 in dining credit at the resort.",
         promotionTitle: "Exclusive Retreat",
-        promotionId:0
+        promotionId: 0,
       };
+
+      const priceDetails = {
+        nightlyRate: props.room.currentRoom.price,
+        subtotal: 0,
+        taxes: 0,
+        vat: 0,
+        totalPayment: 0,
+        promoDiscount: 0,
+        dueNow: 0,
+        dueAtResort: 0,
+      };
+
       const itinerary: IItinerary = {
         roomName: props.room.currentRoom.roomTypeName,
         priceOfRoomTypeInParticularDate:
-        props.room.currentRoom.priceOfRoomTypeInParticularDate,
+          props.room.currentRoom.priceOfRoomTypeInParticularDate,
         promoCodeInfo: promo,
         roomCount: selectedRooms,
         startDate: startDate,
         endDate: endDate,
         guestCount: guestCount,
         roomTypeId: props.room.currentRoom.roomTypeId,
+        priceDetails: priceDetails,
       };
       reduxDispatch(setItineraryDetails(itinerary));
     } else {
@@ -100,26 +117,37 @@ export default function RoomModal(props: IRoomModal) {
         priceFactor: promotionsAvailable[index].priceFactor,
         promotionDescription: promotionsAvailable[index].promotionDescription,
         promotionTitle: promotionsAvailable[index].promotionTitle,
-        promotionId:promotionsAvailable[index].promotionId
+        promotionId: promotionsAvailable[index].promotionId,
       };
+      const priceDetails = {
+        nightlyRate: props.room.currentRoom.price,
+        subtotal: 0,
+        taxes: 0,
+        vat: 0,
+        totalPayment: 0,
+        promoDiscount: 0,
+        dueNow: 0,
+        dueAtResort: 0,
+      };
+      // console.log(priceDetails.nightlyRate);
       const itinerary: IItinerary = {
         roomName: props.room.currentRoom.roomTypeName,
         priceOfRoomTypeInParticularDate:
-        props.room.currentRoom.priceOfRoomTypeInParticularDate,
+          props.room.currentRoom.priceOfRoomTypeInParticularDate,
         promoCodeInfo: promo,
         roomCount: selectedRooms,
         startDate: startDate,
         endDate: endDate,
         guestCount: guestCount,
         roomTypeId: props.room.currentRoom.roomTypeId,
+        priceDetails: priceDetails,
       };
       reduxDispatch(setItineraryDetails(itinerary));
     }
   }
-
   async function checkCustomPromoCode() {
-     let customPromoCodeUrl= import.meta.env.VITE_REACT_APP_CUSTOM_PROMOTION;
-     customPromoCodeUrl += `${promoCode}&roomTypeId=${props.room.currentRoom.roomTypeId}`;
+    let customPromoCodeUrl = import.meta.env.VITE_REACT_APP_CUSTOM_PROMOTION;
+    customPromoCodeUrl += `${promoCode}&roomTypeId=${props.room.currentRoom.roomTypeId}`;
     setPromoCode("");
     try {
       const customPromotionCard = await axios.get(customPromoCodeUrl);
@@ -134,7 +162,7 @@ export default function RoomModal(props: IRoomModal) {
       };
       setpromotionsAvailable((previousPromotions: Promotion[]) => [
         customPromo,
-        ...previousPromotions
+        ...previousPromotions,
       ]);
     } catch (error) {
       showMessageForDuration(error.response.data.message, 3000);
@@ -149,194 +177,192 @@ export default function RoomModal(props: IRoomModal) {
   };
   const navigate = useNavigate();
   return (
-      <div className="modal-Container_custom" style={{ width: "80vw" }}>
-        <Modal
-          open={props.open}
-          classNames={{ modal: "custom_modal" }}
-          onClose={() => props.updateOpen(false)}
-        >
-          <div className="nameOfTheRoomType">
-            {t(`${props.room.currentRoom.roomTypeName}.name`)}
+    <div className="modal-Container_custom" style={{ width: "80vw" }}>
+      <Modal
+        open={props.open}
+        classNames={{ modal: "custom_modal" }}
+        onClose={() => props.updateOpen(false)}
+      >
+        <div className="nameOfTheRoomType">
+          {t(`${props.room.currentRoom.roomTypeName}.name`)}
+        </div>
+        <div className="individualRoomTypeModal">
+          <div className="imagesOfRoomModalContainer">
+            <Carousel autoPlay infiniteLoop>
+              {props.room.currentRoom.arrayOfImages.map(
+                (particularImage, index) => (
+                  <div key={index}>
+                    <img
+                      className="imageOfRoomTypeModal"
+                      src={particularImage}
+                      alt="room Type photo"
+                    />
+                  </div>
+                )
+              )}
+            </Carousel>
           </div>
-          <div className="individualRoomTypeModal">
-            <div className="imagesOfRoomModalContainer">
-              <Carousel autoPlay infiniteLoop>
-                {props.room.currentRoom.arrayOfImages.map(
-                  (particularImage, index) => (
-                    <div key={index}>
+          <div className="roomModalInforamtionContainer">
+            <div className="roomModalInforamtion-leftContainer">
+              <div className="left_roomtype_in_details">
+                <div className="roomTypeDetailsContainer">
+                  <div className="area_maximumGuests_Beds-Container">
+                    <div className="maximumGuest_inRoomType">
                       <img
-                        className="imageOfRoomTypeModal"
-                        src={particularImage}
-                        alt="room Type photo"
+                        className="user-icon"
+                        src={userIcon}
+                        alt="notfound"
                       />
+                      1-{props.room.currentRoom.maxCapacity}
                     </div>
-                  )
-                )}
-              </Carousel>
-            </div>
-            <div className="roomModalInforamtionContainer">
-              <div className="roomModalInforamtion-leftContainer">
-                <div className="left_roomtype_in_details">
-                  <div className="roomTypeDetailsContainer">
-                    <div className="area_maximumGuests_Beds-Container">
-                      <div className="maximumGuest_inRoomType">
-                        <img
-                          className="user-icon"
-                          src={userIcon}
-                          alt="notfound"
-                        />
-                        1-{props.room.currentRoom.maxCapacity}
-                      </div>
-                      <div className="beds_in_roomType">
-                        <img
-                          src={doubleBed}
-                          className="double-bed-img"
-                          alt="notfound"
-                        />
-                        <span className="bed_content">
-                          {props.room.currentRoom.singleBed !== 0
-                            ? `${t("king")} - ${
-                                props.room.currentRoom.singleBed
-                              } `
-                            : ""}
-                          {props.room.currentRoom.doubleBed !== 0
-                            ? `${t("queen")} - ${
-                                props.room.currentRoom.doubleBed
-                              }`
-                            : ""}
-                        </span>
-                      </div>
-                      <div className="area_of_room_type">
-                        {props.room.currentRoom.areaInSquareFeet} ft
-                      </div>
+                    <div className="beds_in_roomType">
+                      <img
+                        src={doubleBed}
+                        className="double-bed-img"
+                        alt="notfound"
+                      />
+                      <span className="bed_content">
+                        {props.room.currentRoom.singleBed !== 0
+                          ? `${t("king")} - ${
+                              props.room.currentRoom.singleBed
+                            } `
+                          : ""}
+                        {props.room.currentRoom.doubleBed !== 0
+                          ? `${t("queen")} - ${
+                              props.room.currentRoom.doubleBed
+                            }`
+                          : ""}
+                      </span>
                     </div>
-                    <div className="descriptionOfRoomType">
-                      {t(`${props.room.currentRoom.roomTypeName}.description`)}
+                    <div className="area_of_room_type">
+                      {props.room.currentRoom.areaInSquareFeet} ft
                     </div>
                   </div>
-                  <div className="roomModalInforamtion-rightContainer">
-                    <div className="amenitiesTitleContainer">
-                      {t(
-                        `${props.room.currentRoom.roomTypeName}.amenities.amenitiesHeading`
-                      )}
-                    </div>
-                    <div className="amenitiesListContainer">
-                      {props.room.currentRoom.amenitiesOfRoom.map(
-                        (currentAmenity, index) => {
-                          return (
-                            <div className="individual_amenity" key={index}>
-                              <img
-                                className="tick-icon"
-                                src={tick}
-                                alt="not found"
-                              />
-                              <span>
-                                {t(
-                                  `${props.room.currentRoom.roomTypeName}.amenities.${currentAmenity}`
-                                )}
-                              </span>
-                            </div>
-                          );
-                        }
-                      )}
-                    </div>
+                  <div className="descriptionOfRoomType">
+                    {t(`${props.room.currentRoom.roomTypeName}.description`)}
                   </div>
                 </div>
-                <div className="standard-Container">
-                  <div className="standardRate-title">{t("standardRate")}</div>
-                  <div className="individualDeal_rateContainer">
-                    <div className="left-container_rateBox">
-                      <div className="individual_promotion_title">
-                        {t("Exclusive Retreat.title")}
-                      </div>
-                      <div className="individual_promotion_description">
-                        {t("Exclusive Retreat.description")}
-                      </div>
-                    </div>
-                    <div className="right-container_rateBox">
-                      <div className="rate_price_of_promotion">
-                        {(CurrencySymbols as any)[currentSelectedCurrency]}
-                        {updatePrice(props.room.currentRoom.price)}
-                      </div>
-                      <div className="perNightContainer">{t("perNight")}</div>
-                      <button
-                        className="selectPackageButton"
-                        onClick={() => {
-                          changeStepperState();
-                          updateItinerary(-1);
-                          navigate("/checkout");
-                        }}
-                      >
-                        {t("selectPackage")}
-                      </button>
-                    </div>
+                <div className="roomModalInforamtion-rightContainer">
+                  <div className="amenitiesTitleContainer">
+                    {t(
+                      `${props.room.currentRoom.roomTypeName}.amenities.amenitiesHeading`
+                    )}
+                  </div>
+                  <div className="amenitiesListContainer">
+                    {props.room.currentRoom.amenitiesOfRoom.map(
+                      (currentAmenity, index) => {
+                        return (
+                          <div className="individual_amenity" key={index}>
+                            <img
+                              className="tick-icon"
+                              src={tick}
+                              alt="not found"
+                            />
+                            <span>
+                              {t(
+                                `${props.room.currentRoom.roomTypeName}.amenities.${currentAmenity}`
+                              )}
+                            </span>
+                          </div>
+                        );
+                      }
+                    )}
                   </div>
                 </div>
-                <div className="dealsAndPackagesContainer">
-                  <div className="titleOfDealsContainer">
-                    {t("dealsNPackages")}
+              </div>
+              <div className="standard-Container">
+                <div className="standardRate-title">{t("standardRate")}</div>
+                <div className="individualDeal_rateContainer">
+                  <div className="left-container_rateBox">
+                    <div className="individual_promotion_title">
+                      {t("Exclusive Retreat.title")}
+                    </div>
+                    <div className="individual_promotion_description">
+                      {t("Exclusive Retreat.description")}
+                    </div>
                   </div>
-                  {promotionsAvailable.map((individualPromotion, index) => {
-                    return (
-                      <div className="individualDeal_rateContainer" key={index}>
-                        <div className="left-container_rateBox">
-                          <div className="individual_promotion_title">
-                            {t(`${individualPromotion.promotionTitle}.title`)}
-                          </div>
-                          <div className="individual_promotion_description">
-                            {t(
-                              `${individualPromotion.promotionTitle}.description`
-                            )}
-                          </div>
-                        </div>
-                        <div className="right-container_rateBox">
-                          <div className="rate_price_of_promotion">
-                            {(CurrencySymbols as any)[currentSelectedCurrency]}
-                            {updatePrice(
-                              individualPromotion.priceFactor *
-                                props.room.currentRoom.price
-                            )}
-                          </div>
-                          <div className="perNightContainer">
-                            {t("perNight")}
-                          </div>
-                          <button
-                            className="selectPackageButton"
-                            onClick={() => {
-                              changeStepperState();
-                              updateItinerary(index);
-                              navigate("/checkout");
-                            }}
-                          >
-                            {t("selectPackage")}
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="applyPromoCodeContainer">
-                  <div className="promoCode_title">{t("promoHeading")}</div>
-                  <div className="promocode-wrapper">
-                    <input
-                      className="promo_code_enter_box"
-                      type="text"
-                      value={promoCode}
-                      onChange={(e) => setPromoCode(e.target.value)}
-                    ></input>
+                  <div className="right-container_rateBox">
+                    <div className="rate_price_of_promotion">
+                      {(CurrencySymbols as any)[currentSelectedCurrency]}
+                      {updatePrice(props.room.currentRoom.price)}
+                    </div>
+                    <div className="perNightContainer">{t("perNight")}</div>
                     <button
-                      className="apply_promoCode_button"
-                      onClick={checkCustomPromoCode}
+                      className="selectPackageButton"
+                      onClick={() => {
+                        changeStepperState();
+                        updateItinerary(-1);
+                        navigate("/checkout");
+                      }}
                     >
-                      {t("apply")}
+                      {t("selectPackage")}
                     </button>
                   </div>
-                  {showMessage && <h2 className="show-message">{message}</h2>}
                 </div>
+              </div>
+              <div className="dealsAndPackagesContainer">
+                <div className="titleOfDealsContainer">
+                  {t("dealsNPackages")}
+                </div>
+                {promotionsAvailable.map((individualPromotion, index) => {
+                  return (
+                    <div className="individualDeal_rateContainer" key={index}>
+                      <div className="left-container_rateBox">
+                        <div className="individual_promotion_title">
+                          {t(`${individualPromotion.promotionTitle}.title`)}
+                        </div>
+                        <div className="individual_promotion_description">
+                          {t(
+                            `${individualPromotion.promotionTitle}.description`
+                          )}
+                        </div>
+                      </div>
+                      <div className="right-container_rateBox">
+                        <div className="rate_price_of_promotion">
+                          {(CurrencySymbols as any)[currentSelectedCurrency]}
+                          {updatePrice(
+                            individualPromotion.priceFactor *
+                              props.room.currentRoom.price
+                          )}
+                        </div>
+                        <div className="perNightContainer">{t("perNight")}</div>
+                        <button
+                          className="selectPackageButton"
+                          onClick={() => {
+                            changeStepperState();
+                            updateItinerary(index);
+                            navigate("/checkout");
+                          }}
+                        >
+                          {t("selectPackage")}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="applyPromoCodeContainer">
+                <div className="promoCode_title">{t("promoHeading")}</div>
+                <div className="promocode-wrapper">
+                  <input
+                    className="promo_code_enter_box"
+                    type="text"
+                    value={promoCode}
+                    onChange={(e) => setPromoCode(e.target.value)}
+                  ></input>
+                  <button
+                    className="apply_promoCode_button"
+                    onClick={checkCustomPromoCode}
+                  >
+                    {t("apply")}
+                  </button>
+                </div>
+                {showMessage && <h2 className="show-message">{message}</h2>}
               </div>
             </div>
           </div>
-        </Modal>
-      </div>
+        </div>
+      </Modal>
+    </div>
   );
 }

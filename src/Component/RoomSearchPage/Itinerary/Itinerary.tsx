@@ -8,7 +8,16 @@ import PromoModal from "../../Modals/PromoModal/PromoModal";
 import TaxModal from "../../Modals/TaxModal/TaxModal";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/Store";
-import { setDefaultValues } from "../../../redux/ItinerarySlice";
+import {
+  setDefaultValues,
+  setDueAtResort,
+  setDueNow,
+  setPromoDiscount,
+  setSubtotal,
+  setTaxes,
+  setTotalPayment,
+  setVat,
+} from "../../../redux/ItinerarySlice";
 import { useNavigate } from "react-router-dom";
 import { setStepperState } from "../../../redux/StepperSlice";
 import { useTranslation } from "react-i18next";
@@ -21,12 +30,18 @@ export function Itinerary() {
   const toggleDetails = () => {
     setIsOpen(!isOpen);
   };
+  const priceFactor = useSelector(
+    (state: RootState) => state.itineraryInfo.promoCodeInfo.priceFactor
+  );
   const propertyName = useSelector(
     (state: RootState) => state.itineraryInfo.roomName
   );
   const priceOfRoomTypeInParticularDate = useSelector(
     (state: RootState) => state.itineraryInfo.priceOfRoomTypeInParticularDate
   );
+  const percentPayableHotel=useSelector((state:RootState)=>state.tenantInfo.percentPayableAtHotel);
+  const taxes = useSelector((state: RootState) => state.tenantInfo.taxes);
+  const vat = useSelector((state: RootState) => state.tenantInfo.vat);
   const promoCode = useSelector(
     (state: RootState) => state.itineraryInfo.promoCodeInfo
   );
@@ -47,7 +62,6 @@ export function Itinerary() {
   );
   const [openModal1, setOpenModal1] = useState(false);
   const [openModal2, setOpenModal2] = useState(false);
-
   const onOpenModal1 = () => setOpenModal1(true);
   const onCloseModal1 = () => setOpenModal1(false);
 
@@ -62,7 +76,9 @@ export function Itinerary() {
     (state: RootState) => state.currencyRate.currentPrice
   );
   function updatePrice(price: number) {
-    return (price * currentPrice[currentSelectedCurrency]).toFixed(1);
+    return parseFloat( (price * roomCount * currentPrice[currentSelectedCurrency]).toFixed(
+      1
+    ));
   }
   function formatDates() {
     const startDateFormat = new Date(startDate);
@@ -81,6 +97,10 @@ export function Itinerary() {
 
     return `${formattedStartDate} - ${formattedEndDate}`;
   }
+  function currencyAmountChange(price:number)
+  {
+    return (price * currentPrice[currentSelectedCurrency]).toFixed(1);
+  }
   function calculateTotalPrice() {
     let totalPrice = 0;
     for (const date in priceOfRoomTypeInParticularDate) {
@@ -93,14 +113,58 @@ export function Itinerary() {
         totalPrice += priceOfRoomTypeInParticularDate[date];
       }
     }
-
+    reduxDispatch(setSubtotal(totalPrice * roomCount));
     return totalPrice;
   }
+  function calculateDueNow() {
+    let totalAmt = calculateTotalPrice() * roomCount;
+    let vatPayable = calculateVat();
+    let taxPayable = calculateTaxes();
+    let promo = handlePromoCalculation();
+    const payable = totalAmt + vatPayable + taxPayable - promo;
+    reduxDispatch(setTotalPayment(payable));
+    const dueNowAmt =(1-percentPayableHotel)*payable;
+    reduxDispatch(setDueNow(dueNowAmt));
+    return dueNowAmt;
+  }
+  function calculateDueAtResort() {
+    let totalAmt = calculateTotalPrice() * roomCount;
+    let vatPayable = calculateVat();
+    let taxPayable = calculateTaxes();
+    let promo = handlePromoCalculation();
+    const payable = totalAmt + vatPayable + taxPayable - promo;
+    const dueAtresortAmt =(percentPayableHotel)*payable;
+    reduxDispatch(setDueAtResort(dueAtresortAmt));
+    return dueAtresortAmt;
+  }
+  function priceTotal() {
+    let totalPrice = 0;
+    for (const date in priceOfRoomTypeInParticularDate) {
+      if (
+        Object.prototype.hasOwnProperty.call(
+          priceOfRoomTypeInParticularDate,
+          date
+        )
+      ) {
+        totalPrice += priceOfRoomTypeInParticularDate[date];
+      }
+    }
+    return totalPrice;
+  }
+
   function resetItinerary() {
     reduxDispatch(setDefaultValues());
     reduxDispatch(setStepperState(0));
     const previousSearch = window.localStorage.getItem("prevSearch");
     navigate(`/rooms/${previousSearch}`);
+  }
+  function handlePromoCalculation() {
+    const totalPrice = calculateTotalPrice();
+    const promoDiscount = parseFloat(
+      ((1 - priceFactor) * totalPrice).toFixed(1)
+    );
+    reduxDispatch(setPromoDiscount(promoDiscount));
+    return promoDiscount;
   }
   function handleCheckout() {
     if (stepperState <= 1) {
@@ -111,6 +175,18 @@ export function Itinerary() {
       reduxDispatch(setStepperState(1));
       navigate(`/rooms/${previousSearch}`);
     }
+  }
+  function calculateTaxes() {
+    const totalPrice = priceTotal();
+    const taxPayable = parseFloat((taxes * totalPrice).toFixed(1));
+    reduxDispatch(setTaxes(taxPayable));
+    return taxPayable;
+  }
+  function calculateVat() {
+    const totalPrice = priceTotal();
+    const vatPayable = parseFloat((vat * totalPrice).toFixed(1));
+    reduxDispatch(setVat(vatPayable));
+    return vatPayable;
   }
   return (
     <div className="itinerary">
@@ -155,8 +231,8 @@ export function Itinerary() {
               <div key={dateString} className="itinerary-each-day-rate-details">
                 <div className="itinerary-day">{formattedDate}</div>
                 <div className="itinerary-rate">
-                {(CurrencySymbols as any)[currentSelectedCurrency]}
-                  {updatePrice(price)}
+                  {(CurrencySymbols as any)[currentSelectedCurrency]}
+                  {currencyAmountChange(updatePrice(price))}
                 </div>
               </div>
             );
@@ -171,18 +247,18 @@ export function Itinerary() {
             <PromoModal open={openModal1} onClose={onCloseModal1} />
           </div>
           <div className="itinerary-promoname-rate">
-          {(CurrencySymbols as any)[currentSelectedCurrency]}
-                  {updatePrice(0)}
+            {(CurrencySymbols as any)[currentSelectedCurrency]}
+            {currencyAmountChange(handlePromoCalculation())}
           </div>
         </div>
         <div className="itinerary-border-bottom"></div>
         <div className="itinerary-subtotal">
           <div className="itinerary-subtotal-heading">
-            {t("itinerary.specialPromo")}
+            {t("itinerary.subtotal")}
           </div>
           <div className="itinerary-subtotal-value">
-          {(CurrencySymbols as any)[currentSelectedCurrency]}
-                  {updatePrice(calculateTotalPrice())}
+            {(CurrencySymbols as any)[currentSelectedCurrency]}
+            {currencyAmountChange(updatePrice(calculateTotalPrice()))}
           </div>
         </div>
         <div className="itinerary-taxes">
@@ -194,23 +270,30 @@ export function Itinerary() {
             <TaxModal open={openModal2} onClose={onCloseModal2} />
           </div>
           <div className="itinerary-taxes-cost">
-          {(CurrencySymbols as any)[currentSelectedCurrency]}
-                  {updatePrice(0)}
+            {(CurrencySymbols as any)[currentSelectedCurrency]}
+            {currencyAmountChange(calculateTaxes())}
           </div>
         </div>
         <div className="itinerary-vat">
           <div className="itinerary-vat-field">{t("itinerary.vat")}</div>
           <div className="itinerary-vat-price">
-          {(CurrencySymbols as any)[currentSelectedCurrency]}
-                  {updatePrice(0)}
+            {(CurrencySymbols as any)[currentSelectedCurrency]}
+            {currencyAmountChange(calculateVat())}
           </div>
         </div>
         <div className="itinerary-border-bottom"></div>
         <div className="itinerary-amount-details">
           <div className="itinerary-due-now">{t("itinerary.dueNow")}</div>
           <div className="itinarary-due-price">
-          {(CurrencySymbols as any)[currentSelectedCurrency]}
-                  {updatePrice(0)}
+            {(CurrencySymbols as any)[currentSelectedCurrency]}
+            {currencyAmountChange(calculateDueNow())}
+          </div>
+        </div>
+        <div className="itinerary-amount-details">
+          <div className="itinerary-at-resort">Due at Resort</div>
+          <div className="itinarary-due-price">
+            {(CurrencySymbols as any)[currentSelectedCurrency]}
+            {currencyAmountChange(calculateDueAtResort())}
           </div>
         </div>
         <div className="itinerary-submit-container">
