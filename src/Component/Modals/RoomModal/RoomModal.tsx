@@ -129,7 +129,6 @@ export default function RoomModal(props: IRoomModal) {
         dueNow: 0,
         dueAtResort: 0,
       };
-      // console.log(priceDetails.nightlyRate);
       const itinerary: IItinerary = {
         roomName: props.room.currentRoom.roomTypeName,
         priceOfRoomTypeInParticularDate:
@@ -141,6 +140,7 @@ export default function RoomModal(props: IRoomModal) {
         guestCount: guestCount,
         roomTypeId: props.room.currentRoom.roomTypeId,
         priceDetails: priceDetails,
+        imageUrl:props.room.currentRoom.arrayOfImages[0]
       };
       reduxDispatch(setItineraryDetails(itinerary));
     }
@@ -158,7 +158,7 @@ export default function RoomModal(props: IRoomModal) {
         priceFactor: succesfulCustomPromo.priceFactor,
         promotionDescription: succesfulCustomPromo.promotionDescription,
         promotionTitle: succesfulCustomPromo.promotionName,
-        promotionId: promotionsAvailable.length + 1,
+        promotionId:1099,
       };
       setpromotionsAvailable((previousPromotions: Promotion[]) => [
         customPromo,

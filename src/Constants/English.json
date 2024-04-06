@@ -225,6 +225,107 @@
       "dueNow":"Due Now",
       "checkout":"CHECKOUT",
       "continue":"CONTINUE SHOPPING"
+    },
+    "paymentInfo":"Payment Info",
+    "travelerInfo":{
+        "heading":"1. Traveler Info",
+        "firstName":"First Name",
+        "lastName":"Last Name",
+        "phone":"Phone",
+        "email":"Email",
+        "button":"NEXT:BILLING INFO"
+    },
+    "billingInfo":{
+        "heading":"2. Billing Info",
+        "firstName":"First Name",
+        "lastName":"Last Name",
+        "mailingFirstAddress":"Mailing Address 1",
+        "mailingSecondAddress":"Mailing Address 2",
+        "Country":"Country",
+        "City":"City",
+        "State":"State",
+        "Zip":"Zip",
+        "Phone":"Phone",
+        "Email":"Email",
+        "editTraveller":"Edit Traveller .",
+        "button":"NEXT:PAYMENT INFO"
+    },
+    "paymentInfoData":
+    {
+        "heading":"3. Payment Info",
+        "card":"Card Number",
+        "month":"EXP MM",
+        "year":"EXP YY",
+        "offers":"Send me special offers",
+        "termsPart1":"I agree to the ",
+        "termsPart2":"Terms and Policies",
+        "termsPart3":"of travel",
+        "due":"Total Due",
+        "editBilling":"Edit Billing Info .",
+        "button":"PURCHASE",
+        "policy":"Please Agree to the terms and policies"
+    },
+    "paymentInformation":"Payment Information",
+    "confirmationPage":{
+      "cancelRoom":"Cancel Room",
+      "cancellation":"Cancellation Policy",
+      "eachNight":"night total",
+      "reservation":"Upcoming reservation",
+      "print":"Print",
+      "Email":"Email",
+      "roomTotal":{
+        "heading":"Room Total Summary",
+        "nightRate":"Night Rate",
+        "subtotal":"Subtotal",
+        "taxes":"Taxes,Surcharges,Fees",
+        "vat":"VAT",
+        "total":"Total for stay"
+      },
+      "guestInfo":{
+          "heading":"Guest Information",
+          "firstName":"First Name",
+          "middleName":"Middle Name",
+          "lastName":"Last Name",
+          "phone":"Phone",
+          "altPhone":"Alternate Phone",
+          "email":"Email",
+          "altEmail":"Alternate Email"
+      },
+      "billingAddress":{
+        "heading":"Billing Information",
+        "firstName":"First Name",
+        "middleName":"Middle Name",
+        "lastName":"Last Name",
+        "mailAddress":"Mailing Address",
+        "altMailingAddress":"Alternate Mailing Address"
+      },
+      "paymentInfo":{
+        "expMM":"Expiry Month",
+        "expYY":"Expiry Year"
+      },
+      "cancellationPolicies":{
+        "heading":"Cancellation Policies",
+        "point1":"Guests can cancel free of charge up to 3 days before check-in.",
+        "point2":"Cancellations within 2 days incur a 40% charge.",
+        "point3":"Cancellations within 1 day will be charged the full amount.",
+        "cancelBooking":"Shound we cancel the Booking?",
+        "yes":"YES",
+        "no":"NO",
+        "sure":"Are You Sure?",
+        "otp":"Enter OTP for cancelling the booking",
+        "confirm":"CONFIRM OTP"
+      },
+      "terms":{
+        "heading":"Terms And Conditions.",
+        "point1":"Book hotel rooms through our website, mobile app, or reservation desk. All bookings are subject to availability and confirmation by the Hotel.",
+        "point2":"Cancellation and modification policies vary; refer to booking confirmation for details. Modifications may incur charges and depend on availability.",
+        "point3":"Payment due upon check-in, unless specified otherwise. Rates subject to applicable taxes and fees.",
+        "point4":"No smoking indoors; smoking in designated areas only. Pets not allowed unless specified. Guests liable for any damage to hotel property.",
+        "point5":"Hotel not liable for loss, damage, or injury, except where required by law. Right to refuse service to anyone for any reason."
+
+      }
+      
+      
     }
     
 }

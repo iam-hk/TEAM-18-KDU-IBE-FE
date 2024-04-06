@@ -9,8 +9,10 @@ import {
   setCurrentIndex,
   setTravlerInfo,
 } from "../../../redux/CheckoutSlice";
+import { useTranslation } from "react-i18next";
 
 export function TravelerInfo() {
+  const { t } = useTranslation();
   const reduxDispatch: AppDispatch = useDispatch();
   const firstNameSlice = useSelector(
     (state: RootState) => state.checkoutRoom.travelerInfo.tfirstName
@@ -64,7 +66,7 @@ export function TravelerInfo() {
           >
             <Grid item>
               <label htmlFor="first-name" className="traveler-first-name-label">
-                First Name
+                {t("travelerInfo.firstName")}
               </label>
             </Grid>
             <Grid item>
@@ -111,7 +113,7 @@ export function TravelerInfo() {
           >
             <Grid item>
               <label htmlFor="last-name" className="traveler-last-name-label">
-                Last Name
+              {t("travelerInfo.lastName")}
               </label>
             </Grid>
             <Grid item>
@@ -159,7 +161,7 @@ export function TravelerInfo() {
         >
           <Grid item>
             <label htmlFor="phone" className="traveler-phone-label">
-              Phone
+            {t("travelerInfo.phone")}
             </label>
           </Grid>
           <Grid item>
@@ -205,7 +207,7 @@ export function TravelerInfo() {
         >
           <Grid item>
             <label htmlFor="email" className="traveler-email-label">
-              Email
+            {t("travelerInfo.email")}
             </label>
           </Grid>
           <Grid item>
@@ -233,7 +235,7 @@ export function TravelerInfo() {
       </div>
       <div className="traveler-submit-button">
         <button type="submit" className="traveler-button">
-          NEXT: BILLING INFO
+        {t("travelerInfo.button")}
         </button>
       </div>
     </form>

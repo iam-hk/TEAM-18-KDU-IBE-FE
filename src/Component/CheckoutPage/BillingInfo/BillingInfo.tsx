@@ -17,7 +17,9 @@ import {
 import { setStates,setCitySlice } from "../../../redux/LocationSlice";
 import { useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 export function BillingInfo() {
+  const { t } = useTranslation();
   const reduxDispatch: AppDispatch = useDispatch();
   const billFirstName = useSelector(
     (state: RootState) => state.checkoutRoom.billingInfo.firstName
@@ -216,7 +218,7 @@ export function BillingInfo() {
                   htmlFor="first-name"
                   className="billing-first-name-label"
                 >
-                  First Name
+                  {t("billingInfo.firstName")}
                 </label>
               </Grid>
               <Grid item>
@@ -259,7 +261,7 @@ export function BillingInfo() {
             >
               <Grid item>
                 <label htmlFor="last-name" className="billing-last-name-label">
-                  Last Name
+                {t("billingInfo.lastName")}
                 </label>
               </Grid>
               <Grid item>
@@ -307,7 +309,7 @@ export function BillingInfo() {
                   htmlFor="mail-primary"
                   className="billing-first-address-label"
                 >
-                  Mailing Address 1
+                  {t("billingInfo.mailingFirstAddress")}
                 </label>
               </Grid>
               <Grid item>
@@ -334,7 +336,7 @@ export function BillingInfo() {
                   htmlFor="mail-secondary"
                   className="billing-second-address-label"
                 >
-                  Mailing Address 2
+                 {t("billingInfo.mailingSecondAddress")}
                 </label>
               </Grid>
               <Grid item>
@@ -358,7 +360,7 @@ export function BillingInfo() {
           >
             <Grid item>
               <label htmlFor="country" className="billing-country-label">
-                Country
+              {t("billingInfo.Country")}
               </label>
             </Grid>
             <Grid item>
@@ -392,7 +394,7 @@ export function BillingInfo() {
             >
               <Grid item>
                 <label htmlFor="city" className="billing-city-label">
-                  City
+                {t("billingInfo.City")}
                 </label>
               </Grid>
               <Grid item>
@@ -430,7 +432,7 @@ export function BillingInfo() {
               >
                 <Grid item>
                   <label htmlFor="state" className="billing-state-label">
-                    State
+                  {t("billingInfo.State")}
                   </label>
                 </Grid>
                 <Grid item>
@@ -466,7 +468,7 @@ export function BillingInfo() {
               >
                 <Grid item>
                   <label htmlFor="zip" className="billing-zip-label">
-                    Zip
+                  {t("billingInfo.Zip")}
                   </label>
                 </Grid>
                 <Grid item>
@@ -525,7 +527,7 @@ export function BillingInfo() {
           >
             <Grid item>
               <label htmlFor="phone" className="billing-phone-label">
-                Phone
+              {t("billingInfo.Phone")}
               </label>
             </Grid>
             <Grid item>
@@ -575,7 +577,7 @@ export function BillingInfo() {
           >
             <Grid item>
               <label htmlFor="email" className="billing-email-label">
-                Email
+              {t("billingInfo.Email")}
               </label>
             </Grid>
             <Grid item>
@@ -603,9 +605,9 @@ export function BillingInfo() {
         </div>
         <div className="billing-button-wrapper">
           <button className="edit-traveler" onClick={handletravelerInfo}>
-            Edit Traveler Info.
+          {t("billingInfo.editTraveller")}
           </button>
-          <button className="billing-button">NEXT: PAYMENT INFO</button>
+          <button className="billing-button">{t("billingInfo.button")}</button>
         </div>
       </div>
     </form>

@@ -1,7 +1,5 @@
-import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import "./TermsAndPolicies.scss";
-import { RootState } from "../../../redux/Store";
-import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
 import Modal from "react-responsive-modal";
 interface TermsAndPromoProps {
   open: boolean;
@@ -11,34 +9,27 @@ const TermsAndPromoModal: React.FC<TermsAndPromoProps> = ({
   open,
   onClose,
 }) => {
+  const { t } = useTranslation();
   return (
     <Modal open={open} onClose={onClose} center>
       <div className="modal-content">
-        <div className="terms-heading">Terms And Conditions .</div>
+        <div className="terms-heading">{t("confirmationPage.terms.heading")}</div>
         <div className="terms-points">
           <ul>
             <li>
-              Book hotel rooms through our website, mobile app, or reservation
-              desk. All bookings are subject to availability and confirmation by
-              the Hotel.
+            {t("confirmationPage.terms.point1")}
             </li>
             <li>
-              Cancellation and modification policies vary; refer to booking
-              confirmation for details. Modifications may incur charges and
-              depend on availability.
+            {t("confirmationPage.terms.point2")}
             </li>
             <li>
-              Payment due upon check-in, unless specified otherwise. Rates
-              subject to applicable taxes and fees.
+            {t("confirmationPage.terms.point3")}
             </li>
             <li>
-              No smoking indoors; smoking in designated areas only. Pets not
-              allowed unless specified. Guests liable for any damage to hotel
-              property.
+            {t("confirmationPage.terms.point4")}
             </li>
             <li>
-              Hotel not liable for loss, damage, or injury, except where
-              required by law. Right to refuse service to anyone for any reason.
+            {t("confirmationPage.terms.point5")}
             </li>
           </ul>
         </div>

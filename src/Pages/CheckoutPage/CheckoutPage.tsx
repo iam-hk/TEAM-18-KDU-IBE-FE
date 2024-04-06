@@ -9,8 +9,10 @@ import CustomizedSnackbars from "../../Component/snackbar/CustomizedSnackbars";
 import { TravelerInfo } from "../../Component/CheckoutPage/TravelerInfo/TravelerInfo";
 import { BillingInfo } from "../../Component/CheckoutPage/BillingInfo/BillingInfo";
 import { PaymentInfo } from "../../Component/CheckoutPage/PaymentInfo/PaymentInfo";
-import CountdownTimer from "../../Component/CheckoutPage/TimerComponent/TimerComponent";
+import { useTranslation } from "react-i18next";
+import { Help } from "../../Component/CheckoutPage/HelpComponent/Help";
 export default function CheckoutPage() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
@@ -53,18 +55,24 @@ export default function CheckoutPage() {
           <div className="checkout-binder">
             <div className="checkout-form">
               <div className="form-wrapper">
-                <div className="form-heading">Payment Info</div>
+                <div className="form-heading">{t("paymentInfo")}</div>
                 <div className="traveler-div">
-                  <div className="traveler-heading">1. Traveler Info</div>
+                  <div className="traveler-heading">
+                    {t("travelerInfo.heading")}
+                  </div>
                   {currentIndex === 0 && <TravelerInfo />}
                 </div>
                 <div className="billing-container">
-                  <div className="billing-heading">2. Billing Info</div>
+                  <div className="billing-heading">
+                    {t("billingInfo.heading")}
+                  </div>
                   {currentIndex === 1 && <BillingInfo />}
                 </div>
 
                 <div className="payment-container">
-                  <div className="payment-heading">3. Payment Info</div>
+                  <div className="payment-heading">
+                    {t("paymentInfoData.heading")}
+                  </div>
                   {currentIndex === 2 && <PaymentInfo />}
                 </div>
               </div>
@@ -75,6 +83,12 @@ export default function CheckoutPage() {
               <Itinerary />
             </div>
           )}
+        </div>
+        <div className="help-wrapper">
+          <div className="spacing-component"></div>
+          <div className="help-component">
+            <Help />
+          </div>
         </div>
         {/* <CountdownTimer /> */}
       </div>

@@ -31,7 +31,7 @@ export interface IPaymentInfo {
   expMM: string;
   expYY: string;
 }
-export interface IConformationDetails {
+export interface IConfirmationDetails {
   roomName: string;
   startDate: string;
   endDate: string;
@@ -45,21 +45,19 @@ export interface IConformationDetails {
   amountDueAtResort: number;
   propertyId: number;
   nightlyRate: number;
-  subtotal: number;
+  subTotal: number;
   taxes: number;
   vat: number;
 }
-interface ICheckoutPage {
+export interface ICheckoutPage {
   travelerInfo: ITravelerInfo;
   billingInfo: IBillingInfo;
   paymentInfo: IPaymentInfo;
-  conformationDetails: IConformationDetails;
+  confirmationDetails: IConfirmationDetails;
   currentIndex: number;
   termsAndPolicies: boolean;
   specialOffers: boolean;
-  // countriesInSlice: ICountry[];
-  // cityInSlice: ICity[];
-  // stateInSlice: IState[];
+  imageUrl: string;
 }
 const initialState: ICheckoutPage = {
   travelerInfo: {
@@ -86,10 +84,10 @@ const initialState: ICheckoutPage = {
     expMM: "",
     expYY: "",
   },
-  conformationDetails: {
+  confirmationDetails: {
     roomName: "",
-    startDate: "",
-    endDate: "",
+    startDate: "2024-04-20",
+    endDate: "2024-04-24",
     roomTypeId: 0,
     guestCount: [],
     promoCodeInfo: {
@@ -106,13 +104,15 @@ const initialState: ICheckoutPage = {
     amountDueAtResort: 0,
     propertyId: 18,
     nightlyRate: 0,
-    subtotal: 0,
+    subTotal: 0,
     taxes: 0,
     vat: 0,
   },
   currentIndex: 0,
   termsAndPolicies: false,
   specialOffers: false,
+  imageUrl:
+    "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG90ZWxzfGVufDB8fDB8fHww",
 };
 const CheckoutSlice = createSlice({
   name: "checkoutRoom",
@@ -125,10 +125,11 @@ const CheckoutSlice = createSlice({
       state.travelerInfo = action.payload;
     },
     setBillingInfo: (state, action: PayloadAction<IBillingInfo>) => {
-      state.billingInfo = action.payload;   
+      state.billingInfo = action.payload;
     },
     setPaymentInfo: (state, action: PayloadAction<IPaymentInfo>) => {
       state.paymentInfo = action.payload;
+      console.log(state.paymentInfo);
     },
     setCurrentIndex: (state, action: PayloadAction<number>) => {
       state.currentIndex = action.payload;
@@ -136,8 +137,13 @@ const CheckoutSlice = createSlice({
     setTermsAndPolicies: (state, action: PayloadAction<boolean>) => {
       state.termsAndPolicies = action.payload;
     },
-    setCheckoutPage: (state, action: PayloadAction<IConformationDetails>) => {
-      state.conformationDetails = action.payload;
+    setCheckoutPage: (state, action: PayloadAction<IConfirmationDetails>) => {
+      state.confirmationDetails = action.payload;
+      console.log(state.confirmationDetails);
+    },
+    setImage: (state, action: PayloadAction<string>) => {
+      state.imageUrl = action.payload;
+      console.log(state.imageUrl);
     },
   },
 });
@@ -149,5 +155,6 @@ export const {
   setTermsAndPolicies,
   setCheckoutPage,
   setSpecialOffer,
+  setImage,
 } = CheckoutSlice.actions;
 export const CheckoutReducer = CheckoutSlice.reducer;

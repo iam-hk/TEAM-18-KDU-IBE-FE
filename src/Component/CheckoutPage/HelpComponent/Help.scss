@@ -1,0 +1,23 @@
+.help-component-wrap {
+    width: 100%;
+    padding: 20px 20px;
+    padding-bottom: 50px;
+    border-radius: 5px;
+    background-color: #eff0f1;
+    margin-bottom: 30px;
+    .help-component-heading {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+        font-weight: 700;
+    }
+    .help-contact-info {
+        .help-contact-number {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .help-contact-day {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+    }
+}

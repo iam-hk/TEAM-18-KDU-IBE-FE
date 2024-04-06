@@ -1,392 +1,420 @@
 .react-responsive-modal-modal {
-    padding: 0;
-    top: 15%;
-    max-width: 80vw;
-  }
-  .modal-Container_custom {
-    width: 80%;
-  }
-  .react-responsive-modal-container {
-    width: 100%;
-  }
-  .individualRoomTypeModal {
-    display: flex;
-    flex-direction: column;
-    .imagesOfRoomModalContainer {
-      .slide {
-        min-height: 40vh !important;
-        max-height: 45vh;
-        .imageOfRoomTypeModal {
-          height: 100%;
-          min-height: 40vh;
-          max-height: fit-content;
-        }
-      }
-    }
-    .roomModalInforamtionContainer {
-      display: flex;
-      padding: 3% 7%;
-      justify-content: space-between;
-      .roomModalInforamtion-leftContainer {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        .left_roomtype_in_details {
-          display: flex;
-          justify-content: space-between;
-          .roomTypeDetailsContainer {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            width: 60%;
-            .area_maximumGuests_Beds-Container {
-              display: flex;
-              justify-content: start;
-              gap: 30px;
-              font-size: 1rem;
-              color: #5D5D5D;
-              font-weight: 400;
-              .maximumGuest_inRoomType{
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                .user-icon{
-                  height: 16px;
-                  width: 16px;
-                }
-              }
-              .beds_in_roomType{
-                display: flex;
-                align-items: center;
-                gap: 7px;
-              }
-              .area_of_room_type {
-                font-size: 1.1rem;
-              }
-            }
-            .descriptionOfRoomType {
-              font-weight: 400;
-              font-size: 1rem;
-            }
-            @media (max-width: 620px) {
-              .descriptionOfRoomType {
-                font-size: 0.85rem;
-              }
-            }
-          }
-          .roomModalInforamtion-rightContainer {
-            width: 35%;
-            height: max-content;
-            justify-self: end;
-            .amenitiesTitleContainer {
-              margin-bottom: 1rem;
-            }
-            .amenitiesListContainer {
-              display: flex;
-              flex-wrap: wrap;
-              width: 100%;
-              .individual_amenity {
-                width: 50%;
-                display: flex;
-                align-items: start;
-                gap: 7px;
-                margin-bottom: 6px;
-                font-size: 1.0rem;
-                @media (max-width:600px) {
-                  display: flex;
-                  font-size: 0.9rem;
-                }
-              }
-            }
-          }
-        }
-        .standard-Container {
-          .standardRate-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-          }
-        }
-        .dealsAndPackagesContainer {
-          .titleOfDealsContainer {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-          }
-        }
+  padding: 0;
+  top: 15%;
+  max-width: 80vw;
+}
+.modal-Container_custom {
+  width: 80%;
+}
+.react-responsive-modal-container {
+  width: 100%;
+}
+.individualRoomTypeModal {
+  display: flex;
+  flex-direction: column;
+  .imagesOfRoomModalContainer {
+    .slide {
+      min-height: 40vh !important;
+      max-height: 45vh;
+      .imageOfRoomTypeModal {
+        height: 100%;
+        min-height: 40vh;
+        max-height: fit-content;
       }
     }
   }
-  .tick-icon{
-    height: 16px;
-    width: 16px;
-  }
-  .react-responsive-modal-closeButton {
-    z-index: 4;
-  }
-  .nameOfTheRoomType {
-    position: absolute;
-    z-index: 1;
-    top: 32vh;
-    left: 10%;
-    font-size: 2.5rem;
-    color: #fff;
-    @media (max-width: 1080px) {
-      font-size: 2rem;
-    }
-    @media (max-width: 768px) {
-      font-size: 1.8rem;
-    }
-    @media (max-width: 500px) {
-      font-size: 1.5rem;
-    }
-  }
-  .show-message{
-    margin-top: 3px;
-    color: rgb(245, 28, 28);
-  }
-  .individualDeal_rateContainer {
-    border: 1px solid #EFF0F1;
+  .roomModalInforamtionContainer {
     display: flex;
+    padding: 3% 7%;
     justify-content: space-between;
-    border-radius: 5px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 2px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 0.8rem;
-    max-width: 60%;
-    .left-container_rateBox {
+    .roomModalInforamtion-leftContainer {
+      width: 100%;
       display: flex;
-      padding: 3%;
       flex-direction: column;
-      width: 65%;
-      .individual_promotion_title {
-        font-size: 1rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-      }
-      .individual_promotion_description {
-        font-weight: 400;
-        color: #5D5D5D;
-        font-size: 1rem;
-      }
-      @media (max-width: 620px) {
-        .individual_promotion_description {
-          font-size: 0.85rem;
+      .left_roomtype_in_details {
+        display: flex;
+        justify-content: space-between;
+        .roomTypeDetailsContainer {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          margin-bottom: 1.5rem;
+          width: 60%;
+          .area_maximumGuests_Beds-Container {
+            display: flex;
+            justify-content: start;
+            gap: 30px;
+            font-size: 1rem;
+            color: #5d5d5d;
+            font-weight: 400;
+            .maximumGuest_inRoomType {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              .user-icon {
+                height: 16px;
+                width: 16px;
+              }
+            }
+            .beds_in_roomType {
+              display: flex;
+              align-items: center;
+              gap: 7px;
+            }
+            .area_of_room_type {
+              font-size: 1.1rem;
+            }
+          }
+          .descriptionOfRoomType {
+            font-weight: 400;
+            font-size: 1rem;
+          }
+          @media (max-width: 620px) {
+            .descriptionOfRoomType {
+              font-size: 0.85rem;
+            }
+          }
+        }
+        .roomModalInforamtion-rightContainer {
+          width: 35%;
+          height: max-content;
+          justify-self: end;
+          .amenitiesTitleContainer {
+            margin-bottom: 1rem;
+          }
+          .amenitiesListContainer {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            .individual_amenity {
+              width: 50%;
+              display: flex;
+              align-items: start;
+              gap: 7px;
+              margin-bottom: 6px;
+              font-size: 1rem;
+              @media (max-width: 600px) {
+                display: flex;
+                font-size: 0.9rem;
+              }
+            }
+          }
         }
       }
-    }
-    .right-container_rateBox {
-      display: flex;
-      padding: 3%;
-      flex-direction: column;
-      background-color: #EFF0F1;
-      text-align: right;
-      width: 30%;
-      min-width: 100px;
-      .rate_price_of_promotion {
-        font-weight: 700;
-        font-size: 1.5rem;
+      .standard-Container {
+        .standardRate-title {
+          font-size: 1.3rem;
+          margin-bottom: 0.5rem;
+        }
       }
-      .perNightContainer {
-        font-size: 0.8rem;
-        color: #5D5D5D;
-        font-weight: 400;
-        margin-bottom: 1rem;
-      }
-      .selectPackageButton {
-        background-color: #26266D;
-        color: #fff;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        padding-left: 0.25rem;
-        padding-right: 0.25rem;
-        font-weight: 700;
-        font-size: 0.8rem;
-        border: none;
-        border-radius: 3px;
-        max-width: 150px;
-        align-self: flex-end;
-      }
-      @media (max-width: 620px) {
-        .selectPackageButton {
-          font-size: 0.65rem;
+      .dealsAndPackagesContainer {
+        .titleOfDealsContainer {
+          font-size: 1.3rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
         }
       }
     }
   }
-  .applyPromoCodeContainer {
-    margin-top: 1rem;
-
-    .promoCode_title {
-      font-weight: 400;
-      color: #2F2F2F;
-      margin-bottom: 0.7rem;
-    }
-    .promocode-wrapper{
-      display: flex;
-      align-items: center;
-    }
-    .promo_code_enter_box {
-      width: 25%;
-      height: 6vh;
-      font-size: 1.4rem;
-      border: 1px solid #C1C2C2;
-      border-radius: 5px;
-      padding-left: 1rem;
-    }
-    .apply_promoCode_button {
-      margin-left: 1rem;
-      background-color: #26266D;
-      color: #fff;
-      border: none;
-      height: 6vh;
-      width: 6vw;
-      font-size: 1.1rem;
-      border-radius: 5px;
+}
+.tick-icon {
+  height: 16px;
+  width: 16px;
+}
+.react-responsive-modal-closeButton {
+  z-index: 4;
+}
+.nameOfTheRoomType {
+  position: absolute;
+  z-index: 1;
+  top: 32vh;
+  left: 10%;
+  font-size: 2.5rem;
+  color: #fff;
+  @media (max-width: 1080px) {
+    font-size: 2rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
+  @media (max-width: 500px) {
+    font-size: 1.5rem;
+  }
+}
+.show-message {
+  margin-top: 3px;
+  color: rgb(245, 28, 28);
+}
+.individualDeal_rateContainer {
+  border: 1px solid #eff0f1;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 2px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 0.8rem;
+  max-width: 60%;
+  .left-container_rateBox {
+    display: flex;
+    padding: 3%;
+    flex-direction: column;
+    width: 65%;
+    .individual_promotion_title {
+      font-size: 1rem;
       font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .individual_promotion_description {
+      font-weight: 400;
+      color: #5d5d5d;
+      font-size: 1rem;
     }
     @media (max-width: 620px) {
-      .apply_promoCode_button {
+      .individual_promotion_description {
         font-size: 0.85rem;
       }
     }
   }
-  @media screen and (max-width: 980px) {
-    .individualRoomTypeModal {
-      .roomModalInforamtionContainer {
-        .roomModalInforamtion-leftContainer {
-          .left_roomtype_in_details {
-            .roomModalInforamtion-rightContainer {
-              .amenitiesListContainer {
-                .individual_amenity {
-                  width: 100%;
-                }
-              }
-            }
-          }
-        }
-      }
+  .right-container_rateBox {
+    display: flex;
+    padding: 3%;
+    flex-direction: column;
+    background-color: #eff0f1;
+    text-align: right;
+    width: 30%;
+    min-width: 100px;
+    .rate_price_of_promotion {
+      font-weight: 700;
+      font-size: 1.5rem;
     }
-  }
-  @media screen and (max-width: 1220px) {
-    .individualRoomTypeModal {
-      .roomModalInforamtionContainer {
-        .roomModalInforamtion-leftContainer {
-          .left_roomtype_in_details {
-            .roomModalInforamtion-rightContainer {
-              width: 37%;
-            }
-          }
-        }
-      }
-    }
-  }
-  @media screen and (max-width: 768px) {
-    .individualRoomTypeModal {
-      .roomModalInforamtionContainer {
-        .roomModalInforamtion-leftContainer {
-          .left_roomtype_in_details {
-            flex-direction: column;
-            .roomTypeDetailsContainer {
-              width: 100%;
-            }
-            .roomModalInforamtion-rightContainer {
-              width: 100%;
-            }
-            .roomModalInforamtion-rightContainer {
-              .amenitiesListContainer {
-                .individual_amenity {
-                  width: 50%;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    .individualDeal_rateContainer {
-      max-width: 80%;
-    }
-  }
-  @media screen and (max-width: 690px) {
-    .individualDeal_rateContainer {
-      max-width: 80%;
-    }
-  }
-  @media screen and (max-width: 570px) {
-    .individualDeal_rateContainer {
-      max-width: 100%;
-    }
-  }
-  @media (max-width: 1070px) {
-    .applyPromoCodeContainer {
-      .promo_code_enter_box {
-        max-width: 30%;
-        width: 30%;
-        height: 5vh;
-      }
-      .apply_promoCode_button {
-        width: 15%;
-      }
-      .apply_promoCode_button {
-        height: 5vh;
-      }
-    }
-  }
-  @media (max-width: 768px) {
-    .applyPromoCodeContainer {
-      .promo_code_enter_box {
-        max-width: 40%;
-        width: 40%;
-        height: 5vh;
-      }
-      .apply_promoCode_button {
-        width: 20%;
-      }
-    }
-  }
-  @media (max-width: 500px) {
-    .applyPromoCodeContainer {
-      .promo_code_enter_box {
-        max-width: 50%;
-        width: 45%;
-        height: 5vh;
-      }
-      .apply_promoCode_button {
-        width: 25%;
-      }
-    }
-    .individualRoomTypeModal .roomModalInforamtionContainer .roomModalInforamtion-leftContainer .left_roomtype_in_details .roomTypeDetailsContainer .area_maximumGuests_Beds-Container
-    {
-      gap: 18px;
-      font-size: 0.9rem;
-    }
-    .individualRoomTypeModal .roomModalInforamtionContainer .roomModalInforamtion-leftContainer .left_roomtype_in_details .roomModalInforamtion-rightContainer .amenitiesListContainer .individual_amenity{
+    .perNightContainer {
       font-size: 0.8rem;
+      color: #5d5d5d;
+      font-weight: 400;
+      margin-bottom: 1rem;
     }
-    .individualRoomTypeModal .roomModalInforamtionContainer .roomModalInforamtion-leftContainer .left_roomtype_in_details .roomTypeDetailsContainer .area_maximumGuests_Beds-Container .area_of_room_type{
-      font-size: 0.9rem;
+    .selectPackageButton {
+      background-color: #26266d;
+      color: #fff;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-left: 0.25rem;
+      padding-right: 0.25rem;
+      font-weight: 700;
+      font-size: 0.8rem;
+      border: none;
+      border-radius: 3px;
+      max-width: 150px;
+      align-self: flex-end;
     }
-    .individualRoomTypeModal .roomModalInforamtionContainer .roomModalInforamtion-leftContainer .standard-Container .standardRate-title{
-      font-size: 1.1rem;
-    }
-    .individualDeal_rateContainer .left-container_rateBox .individual_promotion_title{
-      font-size: 0.9rem;
-    }
-    .individualDeal_rateContainer .right-container_rateBox .rate_price_of_promotion{
-      font-size: 1.3rem;
-    }
-    .individualRoomTypeModal .roomModalInforamtionContainer .roomModalInforamtion-leftContainer .dealsAndPackagesContainer .titleOfDealsContainer{
-      font-size: 1.1rem;
-    }
-  }
-  .imagesOfRoomModalContainer{
-      .control-arrow {
-      position: absolute !important;
-      top: 45% !important;
-      width: 5vw;
-      min-width: 50px;
-      height: 5vh;
-      min-height: 50px;
-      background-color: #0F0F0F !important;
+    @media (max-width: 620px) {
+      .selectPackageButton {
+        font-size: 0.65rem;
       }
+    }
   }
+}
+.applyPromoCodeContainer {
+  margin-top: 1rem;
+
+  .promoCode_title {
+    font-weight: 400;
+    color: #2f2f2f;
+    margin-bottom: 0.7rem;
+  }
+  .promocode-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .promo_code_enter_box {
+    width: 25%;
+    height: 6vh;
+    font-size: 1.4rem;
+    border: 1px solid #c1c2c2;
+    border-radius: 5px;
+    padding-left: 1rem;
+  }
+  .apply_promoCode_button {
+    margin-left: 1rem;
+    background-color: #26266d;
+    color: #fff;
+    border: none;
+    height: 6vh;
+    width: 6vw;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    font-weight: 700;
+  }
+  @media (max-width: 620px) {
+    .apply_promoCode_button {
+      font-size: 0.85rem;
+    }
+  }
+}
+@media screen and (max-width: 980px) {
+  .individualRoomTypeModal {
+    .roomModalInforamtionContainer {
+      .roomModalInforamtion-leftContainer {
+        .left_roomtype_in_details {
+          .roomModalInforamtion-rightContainer {
+            .amenitiesListContainer {
+              .individual_amenity {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1220px) {
+  .individualRoomTypeModal {
+    .roomModalInforamtionContainer {
+      .roomModalInforamtion-leftContainer {
+        .left_roomtype_in_details {
+          .roomModalInforamtion-rightContainer {
+            width: 37%;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .individualRoomTypeModal {
+    .roomModalInforamtionContainer {
+      .roomModalInforamtion-leftContainer {
+        .left_roomtype_in_details {
+          flex-direction: column;
+          .roomTypeDetailsContainer {
+            width: 100%;
+          }
+          .roomModalInforamtion-rightContainer {
+            width: 100%;
+          }
+          .roomModalInforamtion-rightContainer {
+            .amenitiesListContainer {
+              .individual_amenity {
+                width: 50%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .individualDeal_rateContainer {
+    max-width: 80%;
+  }
+}
+@media screen and (max-width: 690px) {
+  .individualDeal_rateContainer {
+    max-width: 80%;
+  }
+}
+@media screen and (max-width: 570px) {
+  .individualDeal_rateContainer {
+    max-width: 100%;
+  }
+}
+@media (max-width: 1070px) {
+  .applyPromoCodeContainer {
+    .promo_code_enter_box {
+      max-width: 30%;
+      width: 30%;
+      height: 5vh;
+    }
+    .apply_promoCode_button {
+      width: 15%;
+    }
+    .apply_promoCode_button {
+      height: 5vh;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .applyPromoCodeContainer {
+    .promo_code_enter_box {
+      max-width: 40%;
+      width: 40%;
+      height: 5vh;
+    }
+    .apply_promoCode_button {
+      width: 20%;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .applyPromoCodeContainer {
+    .promo_code_enter_box {
+      max-width: 50%;
+      width: 45%;
+      height: 5vh;
+    }
+    .apply_promoCode_button {
+      width: 25%;
+    }
+  }
+  .individualRoomTypeModal
+    .roomModalInforamtionContainer
+    .roomModalInforamtion-leftContainer
+    .left_roomtype_in_details
+    .roomTypeDetailsContainer
+    .area_maximumGuests_Beds-Container {
+    gap: 18px;
+    font-size: 0.9rem;
+  }
+  .individualRoomTypeModal
+    .roomModalInforamtionContainer
+    .roomModalInforamtion-leftContainer
+    .left_roomtype_in_details
+    .roomModalInforamtion-rightContainer
+    .amenitiesListContainer
+    .individual_amenity {
+    font-size: 0.8rem;
+  }
+  .individualRoomTypeModal
+    .roomModalInforamtionContainer
+    .roomModalInforamtion-leftContainer
+    .left_roomtype_in_details
+    .roomTypeDetailsContainer
+    .area_maximumGuests_Beds-Container
+    .area_of_room_type {
+    font-size: 0.9rem;
+  }
+  .individualRoomTypeModal
+    .roomModalInforamtionContainer
+    .roomModalInforamtion-leftContainer
+    .standard-Container
+    .standardRate-title {
+    font-size: 1.1rem;
+  }
+  .individualDeal_rateContainer
+    .left-container_rateBox
+    .individual_promotion_title {
+    font-size: 0.9rem;
+  }
+  .individualDeal_rateContainer
+    .right-container_rateBox
+    .rate_price_of_promotion {
+    font-size: 1.3rem;
+  }
+  .individualRoomTypeModal
+    .roomModalInforamtionContainer
+    .roomModalInforamtion-leftContainer
+    .dealsAndPackagesContainer
+    .titleOfDealsContainer {
+    font-size: 1.1rem;
+  }
+}
+.imagesOfRoomModalContainer {
+  .control-arrow {
+    position: absolute !important;
+    top: 45% !important;
+    width: 5vw;
+    min-width: 50px;
+    height: 5vh;
+    min-height: 50px;
+    background-color: #0f0f0f !important;
+  }
+}

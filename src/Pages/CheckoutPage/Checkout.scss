@@ -57,6 +57,29 @@
   }
 
 }
+.help-wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+    .spacing-component{
+      width: 69%;
+      @media(max-width:750px)
+      {
+        display: none;
+      }
+    }
+    .help-component{
+      width: 30%;
+      @media(max-width:750px)
+      {
+        width: 100%;
+      }
+    }
+    @media(max-width:750px)
+    {
+      padding: 30px 55px;
+    }
+}
 @media (max-width:770px) {
   .checkout-page .checkout-wrapper{
     display: flex;
@@ -65,9 +88,137 @@
     padding: 10px 15px;
     .checkout-binder{
       width: 100%;
+      .checkout-form{
+        .billing-container{
+        .billing-info-wrapper{
+          .billing-location-wrapper{
+            flex-wrap: wrap;
+          }
+              .billing-state-zip-wrapper{
+                width: 100% ;
+              }
+            }
+        }
+      }
     }
       .itinerary-content{
         display: block !important;
+    }
+  }
+}
+@media(max-width:550px)
+{
+  .checkout-wrapper{
+    .checkout-binder{
+      .checkout-form{
+        .form-wrapper{
+          .traveler-div{
+            .traveler-info-wrapper{
+            .traveler-name-wrapper{
+              flex-wrap: wrap;
+              .traveler-first-name{
+                width: 100%;
+                margin-bottom: 30px;
+              }
+              .traveler-last-name{
+                width: 100%;
+              }
+            }
+            .traveler-phone-wrapper{
+              width: 100%;
+              margin-bottom: 30px;
+            }
+            .traveler-email-wrapper{
+              width: 100%;
+              margin-bottom: 30px;
+            }
+          }
+        }
+        .billing-container{
+          .billing-info-wrapper{
+            .billing-name-wrapper{
+              flex-wrap: wrap;
+              .billing-first-name{
+                width: 100%;
+                margin-bottom: 30px;
+              }
+              .billing-last-name{
+                width: 100%;
+              }
+            }
+            .billing-address-wrapper{
+              flex-wrap: wrap;
+              .billing-first-address{
+                width: 100%;
+                margin-bottom: 30px;
+              }
+              .billing-second-address{
+                width: 100%;
+
+              }
+            }
+            .billing-country-wrapper{
+              width: 100%;
+            }
+            .billing-location-wrapper{
+              .billing-city-wrapper{
+                width: 100%;
+              }
+              .billing-state-zip-wrapper{
+                flex-wrap: wrap;
+                .billing-state-wrapper{
+                  width: 100%;
+                }
+                .billing-zip-wrapper{
+                  width: 100%;
+                  margin-bottom: 30px;
+                }
+                
+              }
+            }
+            .billing-phone-wrapper{
+              width: 100%;
+            }
+            .billing-email-wrapper{
+              width: 100%;
+              margin-bottom: 40px;
+            }
+            .billing-button-wrapper{
+              .edit-traveler{
+                font-size: 0.9rem;
+              }
+              .billing-button{
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+          .payment-container{
+            .payment-form-info-wrapper{
+              .payment-card-wrapper{
+                flex-wrap: wrap;
+                .payment-cardname-wrapper{
+                  width: 100%;
+                }
+                .payment-month-year-wrapper{
+                  width: 100%;
+                }
+              }
+              .payment-cvv-wrapper{
+                width: 100%;
+              }
+            }
+            .checkbox-wrapper{
+              .special-offers{
+                font-size: 0.9rem;
+              }
+              .terms-policies{
+                font-size: 0.9rem;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

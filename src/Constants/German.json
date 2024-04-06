@@ -1,229 +1,324 @@
 {
-    "mainHeading": "Kickdrum",
-    "subHeading": "Internet buchungs maschine",
-    "myBookings": "MEINE BUCHUNGEN",
-    "login": "Anmelden",
-    "logout":"Abmelden",
-    "footer": {
-      "leftHeading": "Kickdrum",
-      "rightHeading": "©Kickdrum Technology Group GmbH",
-      "allRightsReserved": "Alle Rechte vorbehalten."
+  "mainHeading": "Kickdrum",
+  "subHeading": "Internet buchungs maschine",
+  "myBookings": "MEINE BUCHUNGEN",
+  "login": "Anmelden",
+  "logout": "Abmelden",
+  "footer": {
+    "leftHeading": "Kickdrum",
+    "rightHeading": "©Kickdrum Technology Group GmbH",
+    "allRightsReserved": "Alle Rechte vorbehalten."
+  },
+  "search": {
+    "propertyName": "Objektname*",
+    "selectDates": "Wählen Sie Daten",
+    "guests": "Gäste",
+    "rooms": "Zimmer",
+    "disabled": "Ich barrierefreien Zugang",
+    "searchButton": "SUCHE",
+    "checkin": "Anreise",
+    "checkout": "Abreise",
+    "from": "Von",
+    "perNight": "pro Nacht",
+    "applyDates": "Termine anwenden",
+    "endDateMessage": "Bitte wählen Sie das Enddatum aus.",
+    "maxLength": "Maximale Aufenthaltsdauer:"
+  },
+  "guestTypes": {
+    "Adults": {
+      "type": "Erwachsene",
+      "age": "18+ Jahre"
     },
-    "search":{
-        "propertyName":"Objektname*",
-        "selectDates":"Wählen Sie Daten",
-        "guests":"Gäste",
-        "rooms":"Zimmer",
-        "disabled":"Ich barrierefreien Zugang",
-        "searchButton":"SUCHE",
-        "checkin":"Anreise",
-        "checkout":"Abreise",
-        "from":"Von",
-        "perNight":"pro Nacht",
-        "applyDates":"Termine anwenden",
-        "endDateMessage":"Bitte wählen Sie das Enddatum aus.",
-        "maxLength":"Maximale Aufenthaltsdauer:"
-      },
-      "guestTypes": {
-        "Adults": {
-          "type": "Erwachsene",
-          "age": "18+ Jahre"
-        },
-        "Teens": {
-          "type": "Jugendliche",
-          "age": "13-17 Jahre"
-        },
-        "Kids": {
-          "type": "Kinder",
-          "age": "0-12 Jahre"
-        }
-      },
-      "rooms": "Zimmer",
-      "beds": "Betten",
-      "checkin": "Einchecken zwischen",
-      "checkout": "Auschecken zwischen",
-      "searchDates": "Suchdaten",
-      "narrowResults": "Ergebnisse eingrenzen",
-      "roomResults": "Zimmerergebnisse",
-      "showing": "Anzeigen",
-      "results": "Ergebnisse",
-      "newProperty": "Neue Immobilie",
-      "inclusive": "Inklusive",
-      "perNight": "pro Nacht",
-      "selectRoom": "ZIMMER AUÄHLEN",
-      "chooseRoom": "1:Wählen Zimmer",
-      "chooseAddon": "2:Wählen Addon",
-      "checkOut": "3:Zur gehen",
-      "king": "König",
-      "queen": "Königin",
-        "GRAND_DELUXE": {
-          "name": "Grand Deluxe",
-          "description": "Erleben Sie Luxus in seiner schönsten Form in unseren Grand Deluxe Zimmern. Diese geräumigen und elegant eingerichteten Zimmer bieten atemberaubende Ausblicke und erstklassige Annehmlichkeiten für einen komfortablen und unvergesslichen Aufenthalt. Tauchen Sie ein in die Opulenz, während Sie sich in der luxuriösen Umgebung entspannen, in der jedes Detail sorgfältig entwickelt wurde, um Ihre Erwartungen zu übertreffen.",
-          "amenities": {
-            "amenitiesHeading": "Annehmlichkeiten",
-            "City views": "Stadtblick",
-            "Spacious bathroom": "Geräumiges Badezimmer",
-            "High-speed Wi-Fi": "Highspeed-WLAN",
-            "24-hour room service": "24-Stunden-Zimmerservice",
-            "Complimentary bottled water": "Kostenloses Wasser in Flaschen",
-            "In-room coffee maker": "Kaffeemaschine im Zimmer",
-            "Luxury bath amenities": "Luxuriöse Badutensilien",
-            "Plush bathrobes": "Plüsch-Bademäntel",
-            "Evening turndown service": "Abendlicher Bettservice",
-            "In-room safe": "Safe im Zimmer"
-          }
-        },
-        "SUPER_DELUXE": {
-          "name": "Super Deluxe",
-          "description": "Genießen Sie Komfort und Stil in unseren Super Deluxe Zimmern. Mit modernen Möbeln und durchdachten Details bieten diese Zimmer die perfekte Rückzugsmöglichkeit nach einem Tag voller Erkundungen in der Stadt. Entspannen Sie sich in zeitgenössischer Eleganz und genießen Sie die Ruhe Ihrer Umgebung, in der jeder Komfort berücksichtigt wurde, um Ihren Aufenthalt zu verbessern.",
-          "amenities": {
-            "amenitiesHeading": "Annehmlichkeiten",
-            "Garden views": "Gartenblick",
-            "En-suite bathroom": "Eigenes Bad",
-            "Free Wi-Fi": "Kostenloses WLAN",
-            "Mini-fridge": "Minibar",
-            "Flat-screen TV": "Flachbildfernseher",
-            "Air conditioning": "Klimaanlage",
-            "Work desk": "Schreibtisch",
-            "Hairdryer": "Haartrockner",
-            "Electronic key card access": "Zugang mit elektronischer Schlüsselkarte",
-            "Iron and ironing board": "Bügeleisen und Bügelbrett"
-          }
-        },
-        "FAMILY_DELUXE": {
-          "name": "Familien Deluxe",
-          "description": "Ideal für Familien, die zusammen reisen, bieten unsere Family Deluxe Zimmer ausreichend Platz und durchdachte Annehmlichkeiten für einen entspannten Aufenthalt für alle. Genießen Sie gemeinsame Zeit in einer komfortablen und einladenden Umgebung, in der jedes Familienmitglied sich entspannen und unvergessliche Erinnerungen schaffen kann, die ein Leben lang halten.",
-          "amenities": {
-            "amenitiesHeading": "Annehmlichkeiten",
-            "Connecting rooms": "Verbindungszimmer",
-            "Kid-friendly movies": "Kindgerechte Filme",
-            "Microwave and fridge": "Mikrowelle und Kühlschrank",
-            "Children's menu": "Kinderkarte",
-            "Board games": "Brettspiele",
-            "Kids' welcome pack": "Willkommenspaket für Kinder",
-            "Baby crib (upon request)": "Babybett (auf Anfrage)",
-            "High chair (upon request)": "Kinderhochstuhl (auf Anfrage)",
-            "Laundry service": "Wäscheservice",
-            "Room service menu for kids": "Zimmerservice-Menü für Kinder"
-          }
-        },
-        "COUPLE_SUITE": {
-          "name": "Paar Suite",
-          "description": "Gönnen Sie sich und Ihrem Liebsten einen romantischen Kurzurlaub in unserer Couple Suite. Mit luxuriösen Möbeln und intimen Settings bieten diese Suiten die perfekte Atmosphäre für einen unvergesslichen Aufenthalt. Entfliehen Sie dem Alltag und genießen Sie Momente purer Glückseligkeit, während Sie sich in dieser bezaubernden Rückzugsmöglichkeit an der Gesellschaft des anderen erfreuen.",
-          "amenities": {
-            "amenitiesHeading": "Annehmlichkeiten",
-            "Jacuzzi": "Jacuzzi",
-            "His and hers bathrobes": "Seine und ihre Bademäntel",
-            "Concierge service": "Concierge-Service",
-            "Couples' massage": "Paarmassage",
-            "Romantic dinner package": "Romantisches Dinner-Paket",
-            "Champagne and strawberries": "Champagner und Erdbeeren",
-            "Turntable with romantic music selection": "Plattenspieler mit romantischer Musikauswahl",
-            "Late check-out option": "Später Check-out",
-            "Private balcony": "Privater Balkon",
-            "Fireplace": "Kamin"
-          }
-        },
-        "GARDEN_SUITE": {
-          "name": "Garten Suite",
-          "description": "Entkommen Sie der Ruhe in unserer Garden Suite, wo üppiges Grün und eine friedliche Umgebung auf Sie warten. Diese geräumigen Suiten bieten eine private Oase, perfekt zur Revitalisierung von Körper und Geist. Tauchen Sie ein in die Umarmung der Natur und lassen Sie sich von der Schönheit des Gartens zu Momenten der Gelassenheit und Entspannung inspirieren.",
-          "amenities": {
-            "amenitiesHeading": "Annehmlichkeiten",
-            "Private garden": "Privatgarten",
-            "Outdoor seating": "Sitzgelegenheiten im Freien",
-            "Yoga mat": "Yogamatte",
-            "Guided nature walks": "Geführte Naturwanderungen",
-            "Picnic basket service": "Picknickkorb-Service",
-            "Hammock": "Hängematte",
-            "Outdoor shower": "Außendusche",
-            "Herb garden": "Kräutergarten",
-            "Bird watching guidebook": "Vogelbeobachtungs-Guidebook",
-            "Private BBQ area": "Privater Grillbereich"
-          }
-        },
-        "STANDARD_SUITE": {
-          "name": "Standard Suite",
-          "description": "Erleben Sie Komfort und Bequemlichkeit in unserer Standard Suite. Mit modernen Annehmlichkeiten durchdacht gestaltet, bieten diese Suiten alles, was Sie für einen angenehmen Aufenthalt benötigen, egal ob Sie geschäftlich oder privat reisen. Genießen Sie die Einfachheit des eleganten Designs und die Bequemlichkeit des modernen Lebens in diesen einladenden Unterkünften.",
-          "amenities": {
-            "amenitiesHeading": "Annehmlichkeiten",
-            "Choice of bed size": "Wahl der Bettgröße",
-            "City views": "Stadtblick",
-            "Sitting area": "Sitzecke",
-            "Complimentary Wi-Fi": "Kostenloses WLAN",
-            "Daily housekeeping": "Tägliche Zimmerreinigung",
-            "Telephone with voicemail": "Telefon mit Anrufbeantworter",
-            "Alarm clock": "Wecker",
-            "Tea and coffee facilities": "Tee- und Kaffeezubereitungsmöglichkeiten",
-            "Laptop-sized safe": "Tresor für Laptops",
-            "Accessible room options": "Barrierefreie Zimmeroptionen"
-          }
-        },
-        "SINGLE_BED": {
-          "name": "Einzelbett"
-        },
-        "DOUBLE_BED": {
-          "name": "Doppelbett"
-        },
-        "Bed Type": "Bettentyp",
-        "Room Type": "Zimmertyp",
-        "promoHeading": "Geben Sie einen Promo-Code ein",
-        "apply": "ANWDEN",
-        "standardRate": "Standardtarif",
-        "dealsNPackages": "Angebote & Pakete",
-        "selectPackage": "PAKET AUSLEN",
-        "Long weekend discount": {
-          "title": "Rabatt für lange Wochenenden",
-          "description": "Gilt nur, wenn die Reise länger als 2 Tage dauert und über Wochenenden stattfindet"
-        },
-        "KDU Membership Discount": {
-          "title": "Rabatt für KDU-Mitgliedschaft",
-          "description": "Rabatt für KDU-Mitgliedschaft"
-        },
-        "Military personnel discount": {
-          "title": "Rabatt für Militärpersonal",
-          "description": "Rabatt für Militärpersonal"
-        },
-        "Upfront payment discount": {
-          "title": "Rabatt für Vorauszahlung",
-          "description": "Zahlen Sie 100% bei der Buchung und erhalten Sie einen Rabatt von 10%"
-        },
-        "Weekend discount": {
-          "title": "Wochenendrabatt",
-          "description": "Gilt nur, wenn die Reise um einen Samstag und Sonntag herum stattfindet"
-        },
-        "Exclusive Retreat": {
-          "title": "Exklusive Rückzugsmöglichkeit",
-          "description": "Geben Sie $10 pro Übernachtung aus und erhalten Sie $150 Guthaben für Speisen im Resort."
-        },
-        "Spring Offer ": {
-          "title": "Frühlingsangebot",
-          "description": "Erhalten Sie 25% Rabatt auf Ihre nächste Buchung."
-        },
-        "military": "Militärdienst-Veteran ?",
-        "specialDeal":"Sonderanbot",
-        "highestPromotion": "Gilt nur, wenn die Reise länger als 2 Tage dauert und über Wochenenden stattfindet",
-        "packageTotal":"Paketgesamtsumme",
-        "taxModal": {
-          "rateBreakdown": "Tarifübersicht",
-          "roomType": "Zimmertyp",
-          "nightlyRate": "Nachtgebühr (pro Zimmer)",
-          "roomTotal": "Zimmer Gesamt",
-          "resortFee": "Resort-Gebühr",
-          "occupancyFee": "Belegungssteuer",
-          "dueNow": "Jetzt fällig",
-          "dueAtResort": "Bei Ankunft fällig",
-          "taxes": "Taxes et frais (par chambre)"
-        },
-        "itinerary": {
-          "itineraryHeading": "Ihr Reiseplan",
-          "remove": "Entfernen",
-          "room": "Zimmer",
-          "specialPromo": "Name der Sonderaktion",
-          "subtotal": "Zwischensumme",
-          "taxesCharges": "Steuern, Zuschläge, Gebühren",
-          "vat": "MwSt.",
-          "dueNow": "Fällig jetzt"
-      }
-              
+    "Teens": {
+      "type": "Jugendliche",
+      "age": "13-17 Jahre"
+    },
+    "Kids": {
+      "type": "Kinder",
+      "age": "0-12 Jahre"
+    }
+  },
+  "rooms": "Zimmer",
+  "beds": "Betten",
+  "checkin": "Einchecken zwischen",
+  "checkout": "Auschecken zwischen",
+  "searchDates": "Suchdaten",
+  "narrowResults": "Ergebnisse eingrenzen",
+  "roomResults": "Zimmerergebnisse",
+  "showing": "Anzeigen",
+  "results": "Ergebnisse",
+  "newProperty": "Neue Immobilie",
+  "inclusive": "Inklusive",
+  "perNight": "pro Nacht",
+  "selectRoom": "ZIMMER AUÄHLEN",
+  "chooseRoom": "1:Wählen Zimmer",
+  "chooseAddon": "2:Wählen Addon",
+  "checkOut": "3:Zur gehen",
+  "king": "König",
+  "queen": "Königin",
+  "GRAND_DELUXE": {
+    "name": "Grand Deluxe",
+    "description": "Erleben Sie Luxus in seiner schönsten Form in unseren Grand Deluxe Zimmern. Diese geräumigen und elegant eingerichteten Zimmer bieten atemberaubende Ausblicke und erstklassige Annehmlichkeiten für einen komfortablen und unvergesslichen Aufenthalt. Tauchen Sie ein in die Opulenz, während Sie sich in der luxuriösen Umgebung entspannen, in der jedes Detail sorgfältig entwickelt wurde, um Ihre Erwartungen zu übertreffen.",
+    "amenities": {
+      "amenitiesHeading": "Annehmlichkeiten",
+      "City views": "Stadtblick",
+      "Spacious bathroom": "Geräumiges Badezimmer",
+      "High-speed Wi-Fi": "Highspeed-WLAN",
+      "24-hour room service": "24-Stunden-Zimmerservice",
+      "Complimentary bottled water": "Kostenloses Wasser in Flaschen",
+      "In-room coffee maker": "Kaffeemaschine im Zimmer",
+      "Luxury bath amenities": "Luxuriöse Badutensilien",
+      "Plush bathrobes": "Plüsch-Bademäntel",
+      "Evening turndown service": "Abendlicher Bettservice",
+      "In-room safe": "Safe im Zimmer"
+    }
+  },
+  "SUPER_DELUXE": {
+    "name": "Super Deluxe",
+    "description": "Genießen Sie Komfort und Stil in unseren Super Deluxe Zimmern. Mit modernen Möbeln und durchdachten Details bieten diese Zimmer die perfekte Rückzugsmöglichkeit nach einem Tag voller Erkundungen in der Stadt. Entspannen Sie sich in zeitgenössischer Eleganz und genießen Sie die Ruhe Ihrer Umgebung, in der jeder Komfort berücksichtigt wurde, um Ihren Aufenthalt zu verbessern.",
+    "amenities": {
+      "amenitiesHeading": "Annehmlichkeiten",
+      "Garden views": "Gartenblick",
+      "En-suite bathroom": "Eigenes Bad",
+      "Free Wi-Fi": "Kostenloses WLAN",
+      "Mini-fridge": "Minibar",
+      "Flat-screen TV": "Flachbildfernseher",
+      "Air conditioning": "Klimaanlage",
+      "Work desk": "Schreibtisch",
+      "Hairdryer": "Haartrockner",
+      "Electronic key card access": "Zugang mit elektronischer Schlüsselkarte",
+      "Iron and ironing board": "Bügeleisen und Bügelbrett"
+    }
+  },
+  "FAMILY_DELUXE": {
+    "name": "Familien Deluxe",
+    "description": "Ideal für Familien, die zusammen reisen, bieten unsere Family Deluxe Zimmer ausreichend Platz und durchdachte Annehmlichkeiten für einen entspannten Aufenthalt für alle. Genießen Sie gemeinsame Zeit in einer komfortablen und einladenden Umgebung, in der jedes Familienmitglied sich entspannen und unvergessliche Erinnerungen schaffen kann, die ein Leben lang halten.",
+    "amenities": {
+      "amenitiesHeading": "Annehmlichkeiten",
+      "Connecting rooms": "Verbindungszimmer",
+      "Kid-friendly movies": "Kindgerechte Filme",
+      "Microwave and fridge": "Mikrowelle und Kühlschrank",
+      "Children's menu": "Kinderkarte",
+      "Board games": "Brettspiele",
+      "Kids' welcome pack": "Willkommenspaket für Kinder",
+      "Baby crib (upon request)": "Babybett (auf Anfrage)",
+      "High chair (upon request)": "Kinderhochstuhl (auf Anfrage)",
+      "Laundry service": "Wäscheservice",
+      "Room service menu for kids": "Zimmerservice-Menü für Kinder"
+    }
+  },
+  "COUPLE_SUITE": {
+    "name": "Paar Suite",
+    "description": "Gönnen Sie sich und Ihrem Liebsten einen romantischen Kurzurlaub in unserer Couple Suite. Mit luxuriösen Möbeln und intimen Settings bieten diese Suiten die perfekte Atmosphäre für einen unvergesslichen Aufenthalt. Entfliehen Sie dem Alltag und genießen Sie Momente purer Glückseligkeit, während Sie sich in dieser bezaubernden Rückzugsmöglichkeit an der Gesellschaft des anderen erfreuen.",
+    "amenities": {
+      "amenitiesHeading": "Annehmlichkeiten",
+      "Jacuzzi": "Jacuzzi",
+      "His and hers bathrobes": "Seine und ihre Bademäntel",
+      "Concierge service": "Concierge-Service",
+      "Couples' massage": "Paarmassage",
+      "Romantic dinner package": "Romantisches Dinner-Paket",
+      "Champagne and strawberries": "Champagner und Erdbeeren",
+      "Turntable with romantic music selection": "Plattenspieler mit romantischer Musikauswahl",
+      "Late check-out option": "Später Check-out",
+      "Private balcony": "Privater Balkon",
+      "Fireplace": "Kamin"
+    }
+  },
+  "GARDEN_SUITE": {
+    "name": "Garten Suite",
+    "description": "Entkommen Sie der Ruhe in unserer Garden Suite, wo üppiges Grün und eine friedliche Umgebung auf Sie warten. Diese geräumigen Suiten bieten eine private Oase, perfekt zur Revitalisierung von Körper und Geist. Tauchen Sie ein in die Umarmung der Natur und lassen Sie sich von der Schönheit des Gartens zu Momenten der Gelassenheit und Entspannung inspirieren.",
+    "amenities": {
+      "amenitiesHeading": "Annehmlichkeiten",
+      "Private garden": "Privatgarten",
+      "Outdoor seating": "Sitzgelegenheiten im Freien",
+      "Yoga mat": "Yogamatte",
+      "Guided nature walks": "Geführte Naturwanderungen",
+      "Picnic basket service": "Picknickkorb-Service",
+      "Hammock": "Hängematte",
+      "Outdoor shower": "Außendusche",
+      "Herb garden": "Kräutergarten",
+      "Bird watching guidebook": "Vogelbeobachtungs-Guidebook",
+      "Private BBQ area": "Privater Grillbereich"
+    }
+  },
+  "STANDARD_SUITE": {
+    "name": "Standard Suite",
+    "description": "Erleben Sie Komfort und Bequemlichkeit in unserer Standard Suite. Mit modernen Annehmlichkeiten durchdacht gestaltet, bieten diese Suiten alles, was Sie für einen angenehmen Aufenthalt benötigen, egal ob Sie geschäftlich oder privat reisen. Genießen Sie die Einfachheit des eleganten Designs und die Bequemlichkeit des modernen Lebens in diesen einladenden Unterkünften.",
+    "amenities": {
+      "amenitiesHeading": "Annehmlichkeiten",
+      "Choice of bed size": "Wahl der Bettgröße",
+      "City views": "Stadtblick",
+      "Sitting area": "Sitzecke",
+      "Complimentary Wi-Fi": "Kostenloses WLAN",
+      "Daily housekeeping": "Tägliche Zimmerreinigung",
+      "Telephone with voicemail": "Telefon mit Anrufbeantworter",
+      "Alarm clock": "Wecker",
+      "Tea and coffee facilities": "Tee- und Kaffeezubereitungsmöglichkeiten",
+      "Laptop-sized safe": "Tresor für Laptops",
+      "Accessible room options": "Barrierefreie Zimmeroptionen"
+    }
+  },
+  "SINGLE_BED": {
+    "name": "Einzelbett"
+  },
+  "DOUBLE_BED": {
+    "name": "Doppelbett"
+  },
+  "Bed Type": "Bettentyp",
+  "Room Type": "Zimmertyp",
+  "promoHeading": "Geben Sie einen Promo-Code ein",
+  "apply": "ANWDEN",
+  "standardRate": "Standardtarif",
+  "dealsNPackages": "Angebote & Pakete",
+  "selectPackage": "PAKET AUSLEN",
+  "Long weekend discount": {
+    "title": "Rabatt für lange Wochenenden",
+    "description": "Gilt nur, wenn die Reise länger als 2 Tage dauert und über Wochenenden stattfindet"
+  },
+  "KDU Membership Discount": {
+    "title": "Rabatt für KDU-Mitgliedschaft",
+    "description": "Rabatt für KDU-Mitgliedschaft"
+  },
+  "Military personnel discount": {
+    "title": "Rabatt für Militärpersonal",
+    "description": "Rabatt für Militärpersonal"
+  },
+  "Upfront payment discount": {
+    "title": "Rabatt für Vorauszahlung",
+    "description": "Zahlen Sie 100% bei der Buchung und erhalten Sie einen Rabatt von 10%"
+  },
+  "Weekend discount": {
+    "title": "Wochenendrabatt",
+    "description": "Gilt nur, wenn die Reise um einen Samstag und Sonntag herum stattfindet"
+  },
+  "Exclusive Retreat": {
+    "title": "Exklusive Rückzugsmöglichkeit",
+    "description": "Geben Sie $10 pro Übernachtung aus und erhalten Sie $150 Guthaben für Speisen im Resort."
+  },
+  "Spring Offer ": {
+    "title": "Frühlingsangebot",
+    "description": "Erhalten Sie 25% Rabatt auf Ihre nächste Buchung."
+  },
+  "military": "Militärdienst-Veteran ?",
+  "specialDeal": "Sonderanbot",
+  "highestPromotion": "Gilt nur, wenn die Reise länger als 2 Tage dauert und über Wochenenden stattfindet",
+  "packageTotal": "Paketgesamtsumme",
+  "taxModal": {
+    "rateBreakdown": "Tarifübersicht",
+    "roomType": "Zimmertyp",
+    "nightlyRate": "Nachtgebühr (pro Zimmer)",
+    "roomTotal": "Zimmer Gesamt",
+    "resortFee": "Resort-Gebühr",
+    "occupancyFee": "Belegungssteuer",
+    "dueNow": "Jetzt fällig",
+    "dueAtResort": "Bei Ankunft fällig",
+    "taxes": "Taxes et frais (par chambre)"
+  },
+  "itinerary": {
+    "itineraryHeading": "Ihr Reiseplan",
+    "remove": "Entfernen",
+    "room": "Zimmer",
+    "specialPromo": "Name der Sonderaktion",
+    "subtotal": "Zwischensumme",
+    "taxesCharges": "Steuern, Zuschläge, Gebühren",
+    "vat": "MwSt.",
+    "dueNow": "Fällig jetzt"
+  },
+  "paymentInfo": "Zahlungsinformationen",
+  "travelerInfo": {
+    "heading": "1. Reisende Informationen",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "phone": "Telefon",
+    "eamail": "E-Mail",
+    "button": "WEITER: RECHNUNGSINFORMATIONEN"
+  },
+  "billingInfo": {
+    "heading": "2. Rechnungsadresse",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "mailingFirstAddress": "Postadresse 1",
+    "mailingSecondAddress": "Postadresse 2",
+    "Country": "Land",
+    "City": "Stadt",
+    "State": "Bundesland",
+    "Zip": "Postleitzahl",
+    "Phone": "Telefon",
+    "Email": "E-Mail",
+    "editTraveller": "Reisende bearbeiten",
+    "button": "WEITER: ZAHLUNGSINFORMATIONEN"
+  },
+  "paymentInfoData": {
+    "heading": "3. Zahlungsinformationen",
+    "card": "Kartennummer",
+    "month": "EXP MM",
+    "year": "EXP YY",
+    "offers": "Senden Sie mir spezielle Angebote",
+    "termsPart1": "Ich stimme den ",
+    "termsPart2": "Geschäftsbedingungen und Richtlinien",
+    "termsPart3": "der Reise zu",
+    "due": "Gesamtsumme",
+    "editBilling": "Rechnungsdaten bearbeiten",
+    "button": "KAUFEN",
+    "policy": "Bitte akzeptieren Sie die Geschäftsbedingungen"
+  },
+  "paymentInformation": "Zahlungsinformationen",
+  "confirmationPage": {
+    "cancelRoom": "Zimmer stornieren",
+    "cancellation": "Stornierungsbedingungen",
+    "eachNight": "Gesamtbetrag pro Nacht",
+    "reservation": "Bevorstehende Reservierung",
+    "print": "Drucken",
+    "Email": "E-Mail",
+    "roomTotal": {
+      "heading": "Zusammenfassung der Zimmerkosten",
+      "nightRate": "Nachtgebühr",
+      "subtotal": "Zwischensumme",
+      "taxes": "Steuern, Gebühren, Zuschläge",
+      "vat": "MwSt.",
+      "total": "Gesamt für den Aufenthalt"
+    },
+    "guestInfo": {
+      "heading": "Gastinformationen",
+      "firstName": "Vorname",
+      "middleName": "Zweitname",
+      "lastName": "Nachname",
+      "phone": "Telefon",
+      "altPhone": "Alternatives Telefon",
+      "email": "E-Mail",
+      "altEmail": "Alternative E-Mail"
+    },
+    "billingAddress": {
+      "heading": "Rechnungsadresse",
+      "firstName": "Vorname",
+      "middleName": "Zweitname",
+      "lastName": "Nachname",
+      "mailAddress": "Postadresse",
+      "altMailingAddress": "Alternative Postadresse"
+    },
+    "paymentInfo": {
+      "expMM": "Ablaufmonat",
+      "expYY": "Ablaufjahr"
+    },
+    "cancellationPolicies": {
+      "heading": "Storngungen",
+      "point1": "Gäste können bis zu 3 Tage vor dem Check-in kostenlos stornieren.",
+      "point2": "Stornierungen innerhalb von 2 Tagen werden mit 40 % berechnet.",
+      "point3": "Stornierungen innerhalb eines Tages werden der volle Betrag berechnet.",
+      "cancelBooking": "Sollen wir die Buchung stornieren?",
+      "yes": "JA",
+      "no": "NEIN",
+      "sure": "Êtes-vous sûr?",
+      "otp": "Entrez le code OTP pour annuler la réservation",
+      "confirm": "CONFIRMER OTP"
+    },
+    "terms": {
+      "heading": "Allgemeine Geschäftsbedingungen.",
+      "point1": "Buchen Sie Hotelzimmer über unsere Website, unsere mobile App oder unseren Reservierungsschalter. Alle Buchungen unterliegen der Verfügbarkeit und Bestätigung durch das Hotel.",
+      "point2": "Stornierungs- und Änderungsrichtlinien variieren; bitte beachten Sie die Buchungsbestätigung für Details. Änderungen können Gebühren verursachen und hängen von der Verfügbarkeit ab.",
+      "point3": "Zahlung bei Check-in fällig, sofern nicht anders angegeben. Tarife unterliegen den geltenden Steuern und Gebühren.",
+      "point4": "Rauchen in Innenräumen verboten; Rauchen nur in ausgewiesenen Bereichen. Haustiere sind nur nach vorheriger Ankündigung erlaubt. Gäste haften für Schäden am Hotelbesitz.",
+      "point5": "Hotel haftet nicht für Verluste, Schäden oder Verletzungen, außer wenn gesetzlich vorgeschrieben. Recht, den Service für jeden Grund abzulehnen."
+    }
+  }
 }
-  
