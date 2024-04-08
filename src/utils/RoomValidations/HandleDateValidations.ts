@@ -19,29 +19,39 @@ export function validateDates(
     return START_DATE_AFTER_END_DATE;
   }
 
-  const currentYear = new Date().getFullYear();
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+
   if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
     return INVALID_DATE_FORMAT;
   }
+
   const startYear = startDate.getFullYear();
   const endYear = endDate.getFullYear();
+
   if (startYear !== currentYear || endYear !== currentYear) {
     return INVALID_YEAR;
   }
-  const currentDate = new Date();
+
   const startMonth = startDate.getMonth() + 1;
   const endMonth = endDate.getMonth() + 1;
+
   if (startMonth < 1 || startMonth > 12 || endMonth < 1 || endMonth > 12) {
     return INVALID_MONTH;
   }
+
   const diffInDays = Math.ceil(
     (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
   );
+
   if (diffInDays > maxDays) {
     return INVALID_TIME_PERIOD;
   }
-  if (startDate < currentDate || endDate < currentDate) {
+
+  if (startDate.getTime() < currentDate.getTime() || endDate.getTime() < currentDate.getTime()) {
     return "Selected dates have already expired";
   }
+
   return "";
 }
+
