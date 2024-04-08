@@ -1,0 +1,155 @@
+@import "../../../Constants/Colors.scss";
+.billing-info-wrapper {
+  width: 100%;
+  .billing-name-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .billing-first-name {
+      width: 49%;
+      .billing-first-name-label {
+        font-size: 1.1rem;
+        color: $checkout-page-grey;
+        font-weight: 500;
+      }
+    }
+    .billing-last-name {
+      width: 49%;
+      .billing-last-name-label {
+        font-size: 1.1rem;
+        color: $checkout-page-grey;
+        font-weight: 500;
+      }
+    }
+  }
+  .billing-address-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .billing-first-address {
+      width: 49%;
+      .billing-first-address-label {
+        font-size: 1.1rem;
+        color: $checkout-page-grey;
+        font-weight: 500;
+      }
+    }
+    .billing-second-address {
+      width: 49%;
+      .billing-second-address-label {
+        font-size: 1.1rem;
+        color: $checkout-page-grey;
+        font-weight: 500;
+      }
+    }
+  }
+  .billing-location-wrapper{
+    display: flex;
+    justify-content: space-between;
+  }
+  .billing-country-wrapper {
+    width: 50%;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .billing-country-label {
+      font-size: 1.1rem;
+      color: $checkout-page-grey;
+      font-weight: 500;
+    }
+    .text-field{
+      height: 55px;
+    }
+  }
+  .billing-city-wrapper {
+    width: 50%;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .billing-city-label {
+      font-size: 1.1rem;
+      color: $checkout-page-grey;
+      font-weight: 500;
+    }
+  }
+  .billing-state-zip-wrapper{
+    width: 50%;
+    display: flex;
+  }
+  .billing-state-wrapper {
+    width: 50%;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .text-field{
+      height: 55px;
+    }
+    .billing-state-label {
+      font-size: 1.1rem;
+      color: $checkout-page-grey;
+      font-weight: 500;
+    }
+  }
+  .billing-zip-wrapper {
+    width: 50%;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .billing-zip-label {
+      font-size: 1.1rem;
+      color: $checkout-page-grey;
+      font-weight: 500;
+    }
+  }
+  .billing-phone-wrapper {
+    width: 50%;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .billing-phone-label {
+      font-size: 1.1rem;
+      color: $checkout-page-grey;
+      font-weight: 500;
+    }
+  }
+  .billing-email-wrapper {
+    width: 50%;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .billing-email-label {
+      font-size: 1.1rem;
+      color: $checkout-page-grey;
+      font-weight: 500;
+    }
+  }
+  .billing-button-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1vw;
+    margin-bottom: 35px;
+    .billing-button{
+        width: fit-content;
+        padding: 12px 20px;
+        border-radius: 4px;
+        font-size: 1rem;
+        background-color: $light-blue-color;
+        color: $header-background-color;
+        border: none;
+    }
+    .edit-traveler{
+      border: none;
+      outline: none;
+      background-color: transparent;
+      font-size: 1.0rem;
+      color: $light-blue-color;
+    }
+}
+.dropdown-span-value{
+  font-size: 1rem;
+}
+.span-selected{
+  font-size: 1rem;
+}
+}
+
+.text-field {
+  height: 48px;
+}

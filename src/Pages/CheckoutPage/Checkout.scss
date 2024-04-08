@@ -2,53 +2,263 @@
 .checkout-page {
   min-height: 80%;
   width: 100%;
+  .itinerary-content{
+    // width: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    margin-bottom: 20px;
+  }
 }
 
 .checkout-wrapper {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
+  .itinerary-help-wrapper{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+  }
+  // align-items: center;
+  justify-content: space-between;
+  padding-right: 20px;
+  .checkout-binder{
+    width: 70%;
+  }
+  .checkout-form{
+    padding: 30px 40px;
+    width:100% ;
+    .form-wrapper{
+      width: 100%;
+    } 
+    .form-heading{
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    .traveler-div{
+      .traveler-heading{
+        font-size: 1.2rem;
+        padding: 8px 0px 8px 10px;
+        background-color: $itinerary-bg;
+        margin-bottom:10px;
+      }
+    }
+    .billing-container{
+      .billing-heading{
+        font-size: 1.2rem;
+        padding: 8px 0px 8px 10px;
+        background-color: $itinerary-bg;
+        margin-bottom:10px;
+      }
+    }
+    .payment-container{
+      .payment-heading{
+        font-size: 1.2rem;
+        padding: 8px 0px 8px 10px;
+        background-color: $itinerary-bg;
+        margin-bottom:10px;
+      }
+    }
+  }
 
-.form-container {
-  width: 25%;
-  margin: 0;
-  padding: 20px;
-  border: 1px solid $grey;
-  border-radius: 5px;
-  .email-heading{
-    font-size: 1.2rem;
+}
+.help-wrapper{
+    display: flex;
+    justify-content: space-between;
+    .spacing-component{
+      width: 0%;
+      @media(max-width:750px)
+      {
+        display: none;
+      }
+    }
+    .help-component{
+      width: 100%;
+      @media(max-width:750px)
+      {
+        width: 100%;
+      }
+    }
+    @media(max-width:750px)
+    {
+      padding: 30px 55px;
+    }
+}
+@media (max-width:770px) {
+  .checkout-page .checkout-wrapper{
+    display: flex;
+    flex-direction: column;
+    padding-right: 0;
+    padding: 10px 15px;
+    .itinerary-help-wrapper{
+      width: 100%;
+      order: -1;
+    }
+    .help-wrapper{
+      padding: 0px;
+      .spacing-component{
+        width: 0;
+
+      }
+      .help-component{
+        width: 100%;
+
+      }
+    }
+    .checkout-binder{
+      width: 100% !important;
+      .checkout-form{
+        .billing-container{
+        .billing-info-wrapper{
+          .billing-location-wrapper{
+            flex-wrap: wrap;
+          }
+              .billing-state-zip-wrapper{
+                width: 100% ;
+              }
+            }
+        }
+      }
+    }
+      .itinerary-content{
+        display: block !important;
+    }
   }
 }
+@media(max-width:550px)
+{
+  .checkout-page .checkbox-wrapper{
+    .help-wrapper{
+      .help-component{
+        width: 100%;
+        .help-component-wrap{
+          padding-bottom: 25px;
+        }
+      }
+    }
+  }
+  .checkout-wrapper{
+    .checkout-binder{
+      .checkout-form{
+        .form-wrapper{
+          .traveler-div{
+            .traveler-info-wrapper{
+            .traveler-name-wrapper{
+              flex-wrap: wrap;
+              .traveler-first-name{
+                width: 100%;
+                margin-bottom: 30px;
+              }
+              .traveler-last-name{
+                width: 100%;
+              }
+            }
+            .traveler-phone-wrapper{
+              width: 100%;
+              margin-bottom: 30px;
+            }
+            .traveler-email-wrapper{
+              width: 100%;
+              margin-bottom: 30px;
+            }
+          }
+        }
+        .billing-container{
+          .billing-info-wrapper{
+            .billing-name-wrapper{
+              flex-wrap: wrap;
+              .billing-first-name{
+                width: 100%;
+                margin-bottom: 30px;
+              }
+              .billing-last-name{
+                width: 100%;
+              }
+            }
+            .billing-address-wrapper{
+              flex-wrap: wrap;
+              .billing-first-address{
+                width: 100%;
+                margin-bottom: 30px;
+              }
+              .billing-second-address{
+                width: 100%;
 
-.form-container label {
-  display: block;
-  margin-bottom: 10px;
+              }
+            }
+            .billing-country-wrapper{
+              width: 100%;
+            }
+            .billing-location-wrapper{
+              .billing-city-wrapper{
+                width: 100%;
+              }
+              .billing-state-zip-wrapper{
+                flex-wrap: wrap;
+                .billing-state-wrapper{
+                  width: 100%;
+                }
+                .billing-zip-wrapper{
+                  width: 100%;
+                  margin-bottom: 30px;
+                }
+                
+              }
+            }
+            .billing-phone-wrapper{
+              width: 100%;
+            }
+            .billing-email-wrapper{
+              width: 100%;
+              margin-bottom: 40px;
+            }
+            .billing-button-wrapper{
+              .edit-traveler{
+                font-size: 0.9rem;
+              }
+              .billing-button{
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+          .payment-container{
+            .payment-form-info-wrapper{
+              .payment-card-wrapper{
+                flex-wrap: wrap;
+                .payment-cardname-wrapper{
+                  width: 100%;
+                }
+                .payment-month-year-wrapper{
+                  width: 100%;
+                }
+              }
+              .payment-cvv-wrapper{
+                width: 100%;
+              }
+            }
+            .checkbox-wrapper{
+              .special-offers{
+                font-size: 0.9rem;
+              }
+              .terms-policies{
+                font-size: 0.9rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
-
-.form-container input[type="email"] {
-  width: 100%;
-  padding: 10px;
+.error-in-checkout{
+  text-align: center;
+  font-weight: 500;
   margin-bottom: 20px;
-  border: 1px solid $grey;
-  border-radius: 5px;
 }
-
-.form-container button[type="submit"] {
-  background-color: $light-blue-color;
-  color: $white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.form-container button[type="submit"]:hover {
-  background-color: $dark-blue-color;
-}
-
-.itinerary-content {
-  width: 30%;
-  margin-bottom: 20px;
+.redirecting-home-page{
+  font-weight: 500;
+  color:#007bff;
+  text-align: center;
 }

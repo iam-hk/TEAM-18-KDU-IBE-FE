@@ -34,7 +34,6 @@ import {
   setResponseReceived,
   changePageNumber,
 } from "../../redux/FilterRoomSlice";
-import CircularProgress from "@mui/material/CircularProgress";
 import nextIcon from "../../assets/right-arrow-icon.png";
 import prevIcon from "../../assets/left-arrow-icon.png";
 import { addFilters } from "../../redux/FilterSlice";
@@ -181,7 +180,6 @@ export function RoomPage() {
       const roomCardFromBackend = await axios.get(roomCardsUrl);
       const result = await roomCardFromBackend.data;
       const promoUrl = formPromotionsUrl();
-      console.log(promoUrl);
       const getAllPromotions = await axios.get(
         promoUrl
       );

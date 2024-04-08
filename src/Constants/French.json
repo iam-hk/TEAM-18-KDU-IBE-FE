@@ -54,10 +54,10 @@
   "chooseRoom": "1:Chossez un chambre",
   "chooseAddon": "2:Chossez un addon",
   "checkOut": "3:Paser à caisse",
-  "king": "ROI",
-  "queen": "REINE",
+  "king": "Roi",
+  "queen": "Reine",
   "GRAND_DELUXE": {
-    "name": "GRAND DELUXE",
+    "name": "Grand Deluxe",
     "description": "Expérience de luxe à son apogée dans nos chambres Grand Deluxe. Ces chambres spacieuses et élégamment aménagées offrent des vues imprenables et des équipements haut de gamme pour garantir un séjour confortable et mémorable. Plongez-vous dans l'opulence alors que vous vous détendez dans les environs luxueux, où chaque détail a été méticuleusement conçu pour dépasser vos attentes.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -74,7 +74,7 @@
     }
   },
   "SUPER_DELUXE": {
-    "name": "DELUXE SUPÉRIEUR",
+    "name": "Deluxe Supérieur",
     "description": "Indulgez-vous dans le confort et le style avec nos chambres Deluxe Supérieur. Dotées de meubles modernes et de touches réfléchies, ces chambres offrent le refuge parfait après une journée d'exploration en ville. Détendez-vous dans l'élégance contemporaine et profitez de la tranquillité de votre environnement, en sachant que tout le confort a été pris en compte pour améliorer votre séjour.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -91,7 +91,7 @@
     }
   },
   "FAMILY_DELUXE": {
-    "name": "DELUXE FAMILLE",
+    "name": "Deluxe Famille",
     "description": "Idéal pour les familles voyageant ensemble, nos chambres Deluxe Famille offrent un espace généreux et des équipements bien pensés pour garantir un séjour relaxant pour tous. Profitez de moments de qualité ensemble dans un environnement confortable et accueillant, où chaque membre de la famille peut se détendre et créer des souvenirs précieux qui dureront toute une vie.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -108,7 +108,7 @@
     }
   },
   "COUPLE_SUITE": {
-    "name": "SUITE COUPLE",
+    "name": "Suite Couple",
     "description": "Offrez-vous une escapade romantique avec votre bien-aimé(e) dans notre Suite Couple. Dotées de meubles luxueux et de réglages intimes, ces suites offrent l'ambiance parfaite pour un séjour mémorable. Échappez à l'ordinaire et laissez-vous emporter par des moments de pur bonheur en profitant de la compagnie de l'autre dans cette retraite enchanteresse.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -125,7 +125,7 @@
     }
   },
   "GARDEN_SUITE": {
-    "name": "SUITE JARDIN",
+    "name": "Suite Jardin",
     "description": "Évadez-vous vers la tranquillité dans notre Suite Jardin, où la verdure luxuriante et les environs sereins vous attendent. Ces suites spacieuses offrent une oasis privée, parfaite pour revitaliser le corps et l'esprit. Plongez-vous dans l'étreinte de la nature et laissez la beauté du jardin inspirer des moments de sérénité et de relaxation.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -142,7 +142,7 @@
     }
   },
   "STANDARD_SUITE": {
-    "name": "SUITE STANDARD",
+    "name": "Suite Standard",
     "description": "Découvrez le confort et la commodité dans notre Suite Standard. Conçues avec soin et dotées d'équipements modernes, ces suites offrent tout ce dont vous avez besoin pour un séjour agréable, que vous voyagiez pour affaires ou pour le plaisir. Profitez de la simplicité du design élégant et de la facilité de la vie moderne dans ces hébergements accueillants.",
     "amenities": {
       "amenitiesHeading": "Équipements",
@@ -159,74 +159,168 @@
     }
   },
   "SINGLE_BED": {
-    "name": "LIT SIMPLE"
+    "name": "Lit Simple"
   },
   "DOUBLE_BED": {
-    "name": "LIT DOUBLE"
+    "name": "Lit Double"
   },
   "Bed Type": "Type de lit",
   "Room Type": "Type de chambre",
   "promoHeading": "Entrez un code promo",
-    "apply": "APPLQER",
-    "standardRate": "Tarif standard",
-    "dealsNPackages": "Offres et forfaits",
-    "selectPackage": "SÉLER UN FOIT",
-    "Long weekend discount": {
-      "title": "Remise pour les longs week-ends",
-      "description": "S'applique uniquement si le voyage dure plus de 2 jours et inclut des week-ends"
-    },
-    "KDU Membership Discount": {
-      "title": "Remise adhérent KDU",
-      "description": "Remise adhérent KDU"
-    },
-    "Military personnel discount": {
-      "title": "Remise pour personnel militaire",
-      "description": "Remise pour personnel militaire"
-    },
-    "Upfront payment discount": {
-      "title": "Remise pour paiement anticipé",
-      "description": "Payez 100% lors de la réservation et bénéficiez d'une remise de 10%"
-    },
-    "Weekend discount": {
-      "title": "Remise week-end",
-      "description": "S'applique uniquement si le voyage tombe autour d'un samedi et d'un dimanche"
-    },
-    "Exclusive Retreat": {
-      "title": "Retraite Exclusive",
-      "description": "Dépensez 10 $ chaque nuitée et bénéficiez de 150 $ de crédit repas à l'hôtel."
-    },
-    "Spring Offer ": {
-      "title": "Offre de printemps",
-      "description": "Profitez de 25% de réduction sur votre prochaine réservation."
-    },
-    "military": "Ancien combattant des services militaires ?",
-    "specialDeal":"Offre spéca  le",
-    "highestPromotion": "S'applique uniquement si le voyage dure plus de 2 jours et comprend des week-ends",
-    "packageTotal":"Total du forfait",
-    "taxModal": {
-      "rateBreakdown": "Détails de la tarification",
-      "roomType": "Type de chambre",
-      "nightlyRate": "Tarif par nuit (par chambre)",
-      "roomTotal": "Total chambre",
-      "resortFee": "Frais de station",
-      "occupancyFee": "Taxe d'occupation",
-      "dueNow": "Dû maintenant",
-      "dueAtResort": "Dû à la station",
-      "taxes": "Taxes et frais (par chambre)"
-
-    },
-    "itinerary": {
-      "itineraryHeading": "Votre itinéraire de voyage",
-      "remove": "Supprimer",
-      "room": "chambre",
-      "specialPromo": "Nom de la promotion spéciale",
+  "apply": "APPLQER",
+  "standardRate": "Tarif standard",
+  "dealsNPackages": "Offres et forfaits",
+  "selectPackage": "SÉLER UN FOIT",
+  "Long weekend discount": {
+    "title": "Remise pour les longs week-ends",
+    "description": "S'applique uniquement si le voyage dure plus de 2 jours et inclut des week-ends"
+  },
+  "KDU Membership Discount": {
+    "title": "Remise adhérent KDU",
+    "description": "Remise adhérent KDU"
+  },
+  "Military personnel discount": {
+    "title": "Remise pour personnel militaire",
+    "description": "Remise pour personnel militaire"
+  },
+  "Upfront payment discount": {
+    "title": "Remise pour paiement anticipé",
+    "description": "Payez 100% lors de la réservation et bénéficiez d'une remise de 10%"
+  },
+  "Weekend discount": {
+    "title": "Remise week-end",
+    "description": "S'applique uniquement si le voyage tombe autour d'un samedi et d'un dimanche"
+  },
+  "Exclusive Retreat": {
+    "title": "Retraite Exclusive",
+    "description": "Dépensez 10 $ chaque nuitée et bénéficiez de 150 $ de crédit repas à l'hôtel."
+  },
+  "Spring Offer ": {
+    "title": "Offre de printemps",
+    "description": "Profitez de 25% de réduction sur votre prochaine réservation."
+  },
+  "military": "Ancien combattant des services militaires ?",
+  "specialDeal": "Offre spéca  le",
+  "highestPromotion": "S'applique uniquement si le voyage dure plus de 2 jours et comprend des week-ends",
+  "packageTotal": "Total du forfait",
+  "taxModal": {
+    "rateBreakdown": "Détails de la tarification",
+    "roomType": "Type de chambre",
+    "nightlyRate": "Tarif par nuit (par chambre)",
+    "roomTotal": "Total chambre",
+    "resortFee": "Frais de station",
+    "occupancyFee": "Taxe d'occupation",
+    "dueNow": "Dû maintenant",
+    "dueAtResort": "Dû à la station",
+    "taxes": "Taxes et frais (par chambre)"
+  },
+  "itinerary": {
+    "itineraryHeading": "Votre itinéraire de voyage",
+    "remove": "Supprimer",
+    "room": "chambre",
+    "specialPromo": "Nom de la promotion spéciale",
+    "subtotal": "Sous-total",
+    "taxesCharges": "Taxes, suppléments, frais",
+    "vat": "TVA",
+    "dueNow": "Dû maintenant",
+    "checkout": "PASSER AISSE",
+    "continue": "CONTINU ACHATS"
+  },
+  "paymentInfo": "Informations de paiement",
+  "travelerInfo": {
+    "heading": "1. Informations du voyageur",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "phone": "Téléphone",
+    "eamail": "Email",
+    "button": "SUIVANT : INFORMNS FACUATION"
+  },
+  "billingInfo": {
+    "heading": "2. Informations de facturation",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "mailingFirstAddress": "Adresse postale 1",
+    "mailingSecondAddress": "Adresse postale 2",
+    "Country": "Pays",
+    "City": "Ville",
+    "State": "État",
+    "Zip": "Code postal",
+    "Phone": "Téléphone",
+    "Email": "Email",
+    "editTraveller": "Modifier le voyageur",
+    "button": "SUIVANT : INFORMNS PAIEMENT"
+  },
+  "paymentInfoData": {
+    "heading": "3. Informations de paiement",
+    "card": "Numéro de carte",
+    "month": "EXP MM",
+    "year": "EXP YY",
+    "offers": "Envoyez-moi des offres spéciales",
+    "termsPart1": "Je suis d'accord avec les ",
+    "termsPart2": "Conditions et Politiques",
+    "termsPart3": "de voyage",
+    "due": "Total dû",
+    "editBilling": "Modifier les informations de facturation",
+    "button": "ACHETER",
+    "policy": "Veuillez accepter les termes et politiques"
+  },
+  "paymentInformation": "Informations de paiement",
+  "confirmationPage": {
+    "cancelRoom": "Annuler la chambre",
+    "cancellation": "Politique d'annulation",
+    "eachNight": "total par nuit",
+    "reservation": "Réservation à venir",
+    "print": "Imprimer",
+    "Email": "Email",
+    "roomTotal": {
+      "heading": "Résumé total de la chambre",
+      "nightRate": "Tarif de nuit",
       "subtotal": "Sous-total",
-      "taxesCharges": "Taxes, suppléments, frais",
+      "taxes": "Taxes, suppléments, frais",
       "vat": "TVA",
-      "dueNow": "Dû maintenant",
-      "checkout": "PASSER AISSE",
-      "continue": "CONTINU ACHATS"
+      "total": "Total pour le séjour"
+    },
+    "guestInfo": {
+      "heading": "Informations sur les invités",
+      "firstName": "Prénom",
+      "middleName": "Deuxième prénom",
+      "lastName": "Nom de famille",
+      "phone": "Téléphone",
+      "altPhone": "Téléphone alternatif",
+      "email": "Email",
+      "altEmail": "Email alternatif"
+    },
+    "billingAddress": {
+      "heading": "Adresse de facturation",
+      "firstName": "Prénom",
+      "middleName": "Deuxième prénom",
+      "lastName": "Nom de famille",
+      "mailAddress": "Adresse postale",
+      "altMailingAddress": "Adresse postale alternative"
+    },
+    "paymentInfo": {
+      "expMM": "Mois d'expiration",
+      "expYY": "Année d'expiration"
+    },
+    "cancellationPolicies": {
+      "heading": "Polues d'annulation",
+      "point1": "Les clients peuvent annuler gratuitement jusqu'à 3 jours avant l'enregistrement.",
+      "point2": "Les annulations dans les 2 jours entraînent des frais de 40 %.",
+      "point3": "Les annulations dans un délai d'un jour seront facturées le montant total.",
+      "cancelBooking": "Devrions-nous annuler la réservation ?",
+      "yes": "OUI",
+      "no": "NON",
+      "sure": "Êtes-vous sûr?",
+      "otp": "Entrez le code OTP pour annuler la réservation",
+      "confirm": "CONFIRMER OTP"
+    },
+    "terms": {
+      "heading": "Conditions générales.",
+      "point1": "Réservez des chambres d'hôtel via notre site Web, notre application mobile ou notre bureau de réservation. Toutes les réservations sont soumises à disponibilité et confirmation par l'hôtel.",
+      "point2": "Les politiques d'annulation et de modification varient ; consultez la confirmation de réservation pour plus de détails. Les modifications peuvent entraîner des frais et dépendent de la disponibilité.",
+      "point3": "Paiement dû à l'arrivée, sauf indication contraire. Tarifs soumis aux taxes et frais applicables.",
+      "point4": "Interdiction de fumer à l'intérieur ; fumer uniquement dans les zones désignées. Animaux non autorisés sauf indication contraire. Les clients sont responsables de tout dommage à la propriété de l'hôtel.",
+      "point5": "L'hôtel n'est pas responsable des pertes, dommages ou blessures, sauf indication contraire par la loi. Droit de refuser le service à quiconque pour n'importe quelle raison."
+    }
   }
-  
-    
 }

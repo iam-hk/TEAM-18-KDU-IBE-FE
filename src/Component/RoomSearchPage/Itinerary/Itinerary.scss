@@ -1,5 +1,5 @@
 @import "../../../Constants/Colors.scss";
-.itinerary{
+.itinerary {
     margin-top: 15px;
     padding: 20px 20px;
     display: flex;
@@ -8,33 +8,31 @@
     width: 100%;
     background-color: $itinerary-bg;
     border-radius: 4px;
-    .itinerary-heading-container{
+    .itinerary-heading-container {
         display: flex;
         justify-content: space-between;
-        .itinerary-heading-arrow{
+        .itinerary-heading-arrow {
             display: none;
         }
     }
-    .itinerary-heading{
+    .itinerary-heading {
         font-weight: 700;
         font-size: 1.2rem;
         margin-bottom: 8px;
     }
-    .itinerary-details{
+    .itinerary-details {
         display: flex;
         flex-direction: column;
         gap: 10px;
     }
-    .itinerary-hotel-details{
+    .itinerary-hotel-details {
         display: flex;
         justify-content: space-between;
-        .itinerary-hotel-name
-        {
-            
+        .itinerary-hotel-name {
             font-size: 1rem;
             font-weight: 700;
         }
-        .itinerary-hotel-remove{
+        .itinerary-hotel-remove {
             border: none;
             outline: none;
             font-size: 0.9rem;
@@ -43,346 +41,335 @@
             color: $cyan-blue;
         }
     }
-    .itinerary-trip-details{
+    .itinerary-trip-details {
         display: flex;
         gap: 4px;
         align-items: center;
         font-weight: 500;
-        .date-details{
+        .date-details {
             font-size: 1rem;
         }
-        .itinerary-guest-information{
+        .itinerary-guest-information {
             font-size: 1rem;
         }
     }
-    .itinerary-room-details{
+    .itinerary-room-details {
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-weight: 500;
-        .room-name{
+        .room-name {
             font-size: 1rem;
-
         }
-        .room-count{
+        .room-count {
             font-size: 1rem;
         }
     }
-    .itinerary-each-day-rate-details{
+    .itinerary-each-day-rate-details {
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-weight: 500;
-        .itinerary-day{
+        .itinerary-day {
             font-size: 1rem;
         }
-        .itinerary-rate{
+        .itinerary-rate {
             font-size: 1rem;
         }
     }
-    .itinerary-promocode{
+    .itinerary-promocode {
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-weight: 500;
-        .itinerary-promoname{
+        .itinerary-promoname {
             font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 4px;
-            .modal-button{
-                border:none;
+            .modal-button {
+                border: none;
                 outline: none;
             }
         }
-        .itinerary-promoname-rate{
+        .itinerary-promoname-rate {
             font-size: 1rem;
         }
     }
-    .itinerary-border-bottom{
+    .itinerary-border-bottom {
         height: 0.5px;
         width: 100%;
         background-color: $itinerary-grey;
         margin: 6px 0px;
     }
-    .itinerary-subtotal{
+    .itinerary-subtotal {
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-weight: 500;
-        .itinerary-subtotal-heading{
+        .itinerary-subtotal-heading {
             font-size: 1rem;
         }
-        .itinerary-subtotal-value{
+        .itinerary-subtotal-value {
             font-size: 1rem;
         }
-
     }
-    .itinerary-taxes{
+    .itinerary-taxes {
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-weight: 500;
-        .itinerary-taxes-field{
+        .itinerary-taxes-field {
             display: flex;
             align-items: center;
             gap: 4px;
             font-size: 1rem;
-            .modal-button{
+            .modal-button {
                 outline: none;
                 border: none;
             }
         }
-        .itinerary-taxes-cost{
+        .itinerary-taxes-cost {
             font-size: 1rem;
         }
     }
-    .itinerary-vat{
+    .itinerary-vat {
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-weight: 500;
-        .itinerary-vat-field{
+        .itinerary-vat-field {
             font-size: 1rem;
         }
-        .itinerary-vat-price{
+        .itinerary-vat-price {
             font-size: 1rem;
         }
     }
-    .itinerary-amount-details{
+    .itinerary-amount-details {
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-weight: 500;
-        .itinerary-due-now{
+        .itinerary-due-now {
             font-size: 1rem;
         }
-        .itinerary-due-price{
+        .itinerary-due-price {
+            font-size: 1rem;
+        }
+        .itinerary-at-resort {
             font-size: 1rem;
         }
     }
-    .itinerary-submit-container{
+    .itinerary-submit-container {
         margin-top: 10px;
         display: flex;
-        justify-content: end;
+        justify-content: center;
         align-items: center;
 
-        .itinerary-checkout-button{
+        .itinerary-checkout-button {
             width: 70%;
             padding: 15px 20px;
-            border: 1.5px solid $light-blue-color;
+            border: 3px solid $light-blue-color;
             border-radius: 4px;
             color: $light-blue-color;
             font-size: 0.8rem;
-            font-weight:700;
+            font-weight: 700;
         }
     }
-    
 }
 
 .itinerary-details.open {
     display: flex !important;
-    flex-direction:column;
-    gap:10px;
-  }
+    flex-direction: column;
+    gap: 10px;
+}
 
-@media(max-width:1200px)
-{
-    .itinerary{
-        .itinerary-heading{
+@media (max-width: 1200px) {
+    .itinerary {
+        .itinerary-heading {
             font-size: 1.1rem;
         }
-        .itinerary-hotel-details{
-            .itinerary-hotel-name
-            {   
+        .itinerary-hotel-details {
+            .itinerary-hotel-name {
                 font-size: 0.9rem;
                 font-weight: 700;
             }
-            .itinerary-hotel-remove{
+            .itinerary-hotel-remove {
                 font-size: 0.8rem;
             }
         }
-        .itinerary-trip-details{
-            .date-details{
+        .itinerary-trip-details {
+            .date-details {
                 font-size: 0.8rem;
             }
-            .itinerary-guest-information{
-                font-size: 0.8rem;
-            }
-        }
-        .itinerary-room-details{
-            .room-name{
-                font-size: 0.8rem;
-    
-            }
-            .room-count{
+            .itinerary-guest-information {
                 font-size: 0.8rem;
             }
         }
-        .itinerary-each-day-rate-details{
-            .itinerary-day{
+        .itinerary-room-details {
+            .room-name {
                 font-size: 0.8rem;
             }
-            .itinerary-rate{
+            .room-count {
                 font-size: 0.8rem;
             }
         }
-        .itinerary-promocode{
-            .itinerary-promoname{
+        .itinerary-each-day-rate-details {
+            .itinerary-day {
+                font-size: 0.8rem;
+            }
+            .itinerary-rate {
+                font-size: 0.8rem;
+            }
+        }
+        .itinerary-promocode {
+            .itinerary-promoname {
                 font-size: 0.9rem;
             }
-            .itinerary-promoname-rate{
+            .itinerary-promoname-rate {
                 font-size: 0.9rem;
             }
         }
-        .itinerary-subtotal{
-            .itinerary-subtotal-heading{
+        .itinerary-subtotal {
+            .itinerary-subtotal-heading {
                 font-size: 0.8rem;
             }
-            .itinerary-subtotal-value{
-                font-size: 0.8rem;
-            }
-    
-        }
-        .itinerary-taxes{
-            .itinerary-taxes-field{
-                font-size: 0.8rem;
-            }
-            .itinerary-taxes-cost{
+            .itinerary-subtotal-value {
                 font-size: 0.8rem;
             }
         }
-        .itinerary-vat{
-            .itinerary-vat-field{
+        .itinerary-taxes {
+            .itinerary-taxes-field {
                 font-size: 0.8rem;
             }
-            .itinerary-vat-price{
-                font-size: 0.8rem;
-            }
-        }
-        .itinerary-amount-details{
-            .itinerary-due-now{
-                font-size: 0.8rem;
-            }
-            .itinerary-due-price{
+            .itinerary-taxes-cost {
                 font-size: 0.8rem;
             }
         }
-        
+        .itinerary-vat {
+            .itinerary-vat-field {
+                font-size: 0.8rem;
+            }
+            .itinerary-vat-price {
+                font-size: 0.8rem;
+            }
+        }
+        .itinerary-amount-details {
+            .itinerary-due-now {
+                font-size: 0.8rem;
+            }
+            .itinerary-due-price {
+                font-size: 0.8rem;
+            }
+            .itinerary-at-resort {
+                font-size: 0.8rem;
+            }
+        }
     }
 }
-@media(max-width:1300px)
-{
-    .right-display-content .all-cards-display{
+@media (max-width: 1300px) {
+    .right-display-content .all-cards-display {
         min-width: 55%;
     }
-    .right-display-content .itinerary-display-content .itinerary-content{
+    .right-display-content .itinerary-display-content .itinerary-content {
         min-width: 45%;
     }
-    .room-display{
+    .room-display {
         margin-left: 6vw;
     }
 }
-@media(max-width:950px)
-{
-    .room-display{
+@media (max-width: 950px) {
+    .room-display {
         margin-left: 0vw;
     }
 }
-@media(max-width:800px)
-{
-    .itinerary{
-       
-        .itinerary-heading{
+@media (max-width: 800px) {
+    .itinerary {
+        .itinerary-heading {
             font-size: 1.2rem;
         }
-        .itinerary-hotel-details{
-            .itinerary-hotel-name
-            {   
-                font-size: 1.0rem;
+        .itinerary-hotel-details {
+            .itinerary-hotel-name {
+                font-size: 1rem;
                 font-weight: 700;
             }
-            .itinerary-hotel-remove{
+            .itinerary-hotel-remove {
                 font-size: 0.9rem;
             }
         }
-        .itinerary-trip-details{
-            .date-details{
+        .itinerary-trip-details {
+            .date-details {
                 font-size: 0.9rem;
             }
-            .itinerary-guest-information{
-                font-size: 0.9rem;
-            }
-        }
-        .itinerary-room-details{
-            .room-name{
-                font-size: 0.9rem;
-    
-            }
-            .room-count{
+            .itinerary-guest-information {
                 font-size: 0.9rem;
             }
         }
-        .itinerary-each-day-rate-details{
-            .itinerary-day{
+        .itinerary-room-details {
+            .room-name {
                 font-size: 0.9rem;
             }
-            .itinerary-rate{
-                font-size: 0.9rem;
-            }
-        }
-        .itinerary-promocode{
-            .itinerary-promoname{
-                font-size: 0.9rem;
-            }
-            .itinerary-promoname-rate{
+            .room-count {
                 font-size: 0.9rem;
             }
         }
-        .itinerary-subtotal{
-            .itinerary-subtotal-heading{
+        .itinerary-each-day-rate-details {
+            .itinerary-day {
                 font-size: 0.9rem;
             }
-            .itinerary-subtotal-value{
-                font-size: 0.9rem;
-            }
-    
-        }
-        .itinerary-taxes{
-            .itinerary-taxes-field{
-                font-size: 0.9rem;
-            }
-            .itinerary-taxes-cost{
+            .itinerary-rate {
                 font-size: 0.9rem;
             }
         }
-        .itinerary-vat{
-            .itinerary-vat-field{
+        .itinerary-promocode {
+            .itinerary-promoname {
                 font-size: 0.9rem;
             }
-            .itinerary-vat-price{
-                font-size: 0.9rem;
-            }
-        }
-        .itinerary-amount-details{
-            .itinerary-due-now{
-                font-size: 0.9rem;
-            }
-            .itinerary-due-price{
+            .itinerary-promoname-rate {
                 font-size: 0.9rem;
             }
         }
-        
+        .itinerary-subtotal {
+            .itinerary-subtotal-heading {
+                font-size: 0.9rem;
+            }
+            .itinerary-subtotal-value {
+                font-size: 0.9rem;
+            }
+        }
+        .itinerary-taxes {
+            .itinerary-taxes-field {
+                font-size: 0.9rem;
+            }
+            .itinerary-taxes-cost {
+                font-size: 0.9rem;
+            }
+        }
+        .itinerary-vat {
+            .itinerary-vat-field {
+                font-size: 0.9rem;
+            }
+            .itinerary-vat-price {
+                font-size: 0.9rem;
+            }
+        }
+        .itinerary-amount-details {
+            .itinerary-due-now {
+                font-size: 0.9rem;
+            }
+            .itinerary-due-price {
+                font-size: 0.9rem;
+            }
+        }
     }
 }
-@media(max-width:650px)
-{
-    .itinerary{
-        .itinerary-details{
+@media (max-width: 650px) {
+    .itinerary {
+        .itinerary-details {
             display: none;
         }
-        .itinerary-heading-container{
-            .itinerary-heading-arrow{
+        .itinerary-heading-container {
+            .itinerary-heading-arrow {
                 display: block;
             }
         }

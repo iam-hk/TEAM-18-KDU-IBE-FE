@@ -8,6 +8,9 @@ interface ITenantConfigState {
   title: string;
   bannerImage: string;
   taxes: number;
+  vat: number;
+  occupancyTax: number;
+  taxResort: number;
   percentPayableAtHotel: number;
   state: string;
   errorMessage: string;
@@ -23,6 +26,9 @@ const initialState: ITenantConfigState = {
   percentPayableAtHotel: 0.0,
   state: "pending",
   errorMessage: "",
+  vat: 0,
+  occupancyTax: 0,
+  taxResort: 0,
 };
 const TenantConfigSlice = createSlice({
   name: "tenantInfo",
@@ -42,6 +48,9 @@ const TenantConfigSlice = createSlice({
         state.bannerImage = action.payload.bannerImage;
         state.taxes = action.payload.taxes;
         state.percentPayableAtHotel = action.payload.percentPayableAtHotel;
+        state.vat = action.payload.vat;
+        state.occupancyTax = action.payload.occupanyTax;
+        state.taxResort = action.payload.taxResort;
         state.state = "fulfilled";
       })
       .addCase(getTenantConfig.rejected, (state, action) => {

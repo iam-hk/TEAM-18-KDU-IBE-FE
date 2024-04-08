@@ -54,10 +54,10 @@
     "chooseRoom":"1:Choose Room",
     "chooseAddon":"2:Choose add on",
     "checkOut":"3:Checkout",
-    "king":"KING",
-    "queen":"QUEEN",
+    "king":"King",
+    "queen":"Queen",
     "GRAND_DELUXE":{
-      "name":"GRAND DELUXE",
+      "name":"Grand Deluxe",
       "description":"Experience luxury at its finest in our Grand Deluxe rooms. These spacious and elegantly appointed rooms offer stunning views and premium amenities to ensure a comfortable and memorable stay. Immerse yourself in opulence as you unwind in the lavish surroundings, where every detail has been meticulously crafted to exceed your expectations.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -74,7 +74,7 @@
       }
     },
     "SUPER_DELUXE": {
-      "name": "SUPER DELUXE",
+      "name": "Super Deluxe",
       "description": "Indulge in comfort and style with our Super Deluxe rooms. Featuring modern furnishings and thoughtful touches, these rooms provide the perfect retreat after a day of exploring the city. Relax in contemporary elegance and enjoy the tranquility of your surroundings, knowing that every comfort has been considered to enhance your stay.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -91,7 +91,7 @@
       }
     },
     "FAMILY_DELUXE": {
-      "name": "FAMILY DELUXE",
+      "name": "Family Deluxe",
       "description": "Ideal for families traveling together, our Family Deluxe rooms offer ample space and thoughtful amenities to ensure a relaxing stay for everyone. Enjoy quality time together in a comfortable and inviting environment, where each member of the family can unwind and create cherished memories that will last a lifetime.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -108,7 +108,7 @@
       }
     },
     "COUPLE_SUITE": {
-      "name": "COUPLE SUITE",
+      "name": "Couple Suite",
       "description": "Treat yourself and your loved one to a romantic getaway in our Couple Suite. Featuring luxurious furnishings and intimate settings, these suites provide the perfect ambiance for a memorable stay. Escape the ordinary and indulge in moments of pure bliss as you revel in each other's company in this enchanting retreat.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -125,7 +125,7 @@
       }
     },
     "GARDEN_SUITE": {
-      "name": "GARDEN SUITE",
+      "name": "Garden Suite",
       "description": "Escape to tranquility in our Garden Suite, where lush greenery and serene surroundings await. These spacious suites offer a private oasis, perfect for rejuvenating body and mind. Immerse yourself in nature's embrace and let the beauty of the garden inspire moments of serenity and relaxation.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -142,7 +142,7 @@
       }
     },
     "STANDARD_SUITE": {
-      "name": "STANDARD SUITE",
+      "name": "Standard Suite",
       "description": "Experience comfort and convenience in our Standard Suite. Thoughtfully designed with modern amenities, these suites offer everything you need for a pleasant stay, whether you're traveling for business or leisure. Enjoy the simplicity of elegant design and the ease of modern living in these welcoming accommodations.",
       "amenities": {
         "amenitiesHeading": "Amenities",
@@ -159,10 +159,10 @@
       }
     },
     "SINGLE_BED":{
-      "name":"SINGLE BED"
+      "name":"Single Bed"
     },
     "DOUBLE_BED":{
-      "name":"DOUBLE BED"
+      "name":"Double Bed"
     },
     "Bed Type":"Bed type",
     "Room Type":"Room type",
@@ -225,6 +225,107 @@
       "dueNow":"Due Now",
       "checkout":"CHECKOUT",
       "continue":"CONTINUE SHOPPING"
+    },
+    "paymentInfo":"Payment Info",
+    "travelerInfo":{
+        "heading":"1. Traveler Info",
+        "firstName":"First Name",
+        "lastName":"Last Name",
+        "phone":"Phone",
+        "email":"Email",
+        "button":"NEXT:BILLING INFO"
+    },
+    "billingInfo":{
+        "heading":"2. Billing Info",
+        "firstName":"First Name",
+        "lastName":"Last Name",
+        "mailingFirstAddress":"Mailing Address 1",
+        "mailingSecondAddress":"Mailing Address 2",
+        "Country":"Country",
+        "City":"City",
+        "State":"State",
+        "Zip":"Zip",
+        "Phone":"Phone",
+        "Email":"Email",
+        "editTraveller":"Edit Traveller .",
+        "button":"NEXT:PAYMENT INFO"
+    },
+    "paymentInfoData":
+    {
+        "heading":"3. Payment Info",
+        "card":"Card Number",
+        "month":"EXP MM",
+        "year":"EXP YY",
+        "offers":"Send me special offers",
+        "termsPart1":"I agree to the ",
+        "termsPart2":"Terms and Policies",
+        "termsPart3":"of travel",
+        "due":"Total Due",
+        "editBilling":"Edit Billing Info .",
+        "button":"PURCHASE",
+        "policy":"Please Agree to the terms and policies"
+    },
+    "paymentInformation":"Payment Information",
+    "confirmationPage":{
+      "cancelRoom":"Cancel Room",
+      "cancellation":"Cancellation Policy",
+      "eachNight":"night total",
+      "reservation":"Upcoming reservation",
+      "print":"Print",
+      "Email":"Email",
+      "roomTotal":{
+        "heading":"Room Total Summary",
+        "nightRate":"Night Rate",
+        "subtotal":"Subtotal",
+        "taxes":"Taxes,Surcharges,Fees",
+        "vat":"VAT",
+        "total":"Total for stay"
+      },
+      "guestInfo":{
+          "heading":"Guest Information",
+          "firstName":"First Name",
+          "middleName":"Middle Name",
+          "lastName":"Last Name",
+          "phone":"Phone",
+          "altPhone":"Alternate Phone",
+          "email":"Email",
+          "altEmail":"Alternate Email"
+      },
+      "billingAddress":{
+        "heading":"Billing Information",
+        "firstName":"First Name",
+        "middleName":"Middle Name",
+        "lastName":"Last Name",
+        "mailAddress":"Mailing Address",
+        "altMailingAddress":"Alternate Mailing Address"
+      },
+      "paymentInfo":{
+        "expMM":"Expiry Month",
+        "expYY":"Expiry Year"
+      },
+      "cancellationPolicies":{
+        "heading":"Cancellation Policies",
+        "point1":"Guests can cancel free of charge up to 3 days before check-in.",
+        "point2":"Cancellations within 2 days incur a 40% charge.",
+        "point3":"Cancellations within 1 day will be charged the full amount.",
+        "cancelBooking":"Shound we cancel the Booking?",
+        "yes":"YES",
+        "no":"NO",
+        "sure":"Are You Sure , you want to cancel the booking?",
+        "otp":"Enter OTP for cancelling the booking",
+        "confirm":"CONFIRM OTP"
+      },
+      "terms":{
+        "heading":"Terms And Conditions.",
+        "point1":"Book hotel rooms through our website, mobile app, or reservation desk. All bookings are subject to availability and confirmation by the Hotel.",
+        "point2":"Cancellation and modification policies vary; refer to booking confirmation for details. Modifications may incur charges and depend on availability.",
+        "point3":"Payment due upon check-in, unless specified otherwise. Rates subject to applicable taxes and fees.",
+        "point4":"No smoking indoors; smoking in designated areas only. Pets not allowed unless specified. Guests liable for any damage to hotel property.",
+        "point5":"Hotel not liable for loss, damage, or injury, except where required by law. Right to refuse service to anyone for any reason."
+
+      }
+      
+      
     }
     
 }

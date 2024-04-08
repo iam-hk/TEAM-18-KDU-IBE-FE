@@ -18,7 +18,6 @@ export default function CustomizedSnackbars(
     props.setShowSnackbar(false);
     setOpen(false);
   };
-  console.log("hey");
   return (
     <div>
       <Snackbar

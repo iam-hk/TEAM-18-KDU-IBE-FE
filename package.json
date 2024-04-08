@@ -24,6 +24,7 @@
     "@sentry/react": "^7.105.0",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
+    "country-state-city": "^3.2.1",
     "date-fns": "^3.5.0",
     "env-cmd": "^10.1.0",
     "i18next": "^23.10.1",

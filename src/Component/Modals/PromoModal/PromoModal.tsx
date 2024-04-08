@@ -22,6 +22,7 @@ const PromoModal: React.FC<PromoModalProps> = ({ open, onClose }) => {
   const currentPrice = useSelector(
     (state: RootState) => state.currencyRate.currentPrice
   );
+  const payableAmount=useSelector((state:RootState)=>state.itineraryInfo.priceDetails.totalPayment);
   function updatePrice(price: number) {
     return (price * currentPrice[currentSelectedCurrency]).toFixed(1);
   }
@@ -38,7 +39,7 @@ const PromoModal: React.FC<PromoModalProps> = ({ open, onClose }) => {
           <h3 className="modal-package-total">{t("packageTotal")}</h3>
           <h3>
           {(CurrencySymbols as any)[currentSelectedCurrency]}
-                        {updatePrice(2340)}
+                        {updatePrice(payableAmount)}
           </h3>
         </div>
       </div>

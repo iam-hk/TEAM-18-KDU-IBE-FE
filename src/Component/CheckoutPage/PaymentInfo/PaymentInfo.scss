@@ -1,0 +1,134 @@
+@import "../../../Constants/Colors.scss";
+.payment-info-wrapper {
+  width: 100%;
+  .payment-card-wrapper{
+    display: flex;
+  }
+  .payment-cardname-wrapper {
+    width: 50%;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .payment-cardname-label {
+      font-size: 1.1rem;
+      color: $checkout-page-grey;
+      font-weight: 500;
+    }
+  }
+  .payment-month-year-wrapper{
+    width: 50%;
+    display: flex;
+  }
+  .payment-month-wrapper {
+    width: 50%;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .payment-month-label {
+      font-size: 1.1rem;
+      color: $checkout-page-grey;
+      font-weight: 500;
+    }
+  }
+  .payment-year-wrapper {
+    width: 50%;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .payment-year-label {
+      font-size: 1.1rem;
+      color: $checkout-page-grey;
+      font-weight: 500;
+    }
+  }
+  .payment-cvv-wrapper {
+    width: 50%;
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 35px;
+    .payment-cvv-label {
+      font-size: 1.1rem;
+      color: $checkout-page-grey;
+      font-weight: 500;
+    }
+  }
+  
+
+.checkbox-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+.special-offers,.terms-policies
+{
+    padding: 0px 0px 0px 10px;
+    display: flex;
+    gap: 4px;
+    font-size: 1rem;
+    color: #5d5d5d;
+}
+.terms-policies{
+  .react-responsive-modal-modal{
+    top:0% !important;  
+  }
+  .terms-button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: 700;
+    color: #484848;
+    cursor: pointer;
+  }
+}
+.text-field {
+  height: 48px;
+}
+.payment-bottom-wrapper{
+  width: 100%;
+  position: relative;
+  .payment-amount-container{
+    display: flex;
+    gap: 1vw;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    align-items: center;
+    .payment-amount-text{
+      font-size: 1rem;
+    }
+    .payment-amount-figure{
+      font-size: 1.4rem;
+    }
+  }
+}
+.payment-button-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1vw;
+  margin-bottom: 35px;
+ 
+  .purchase-button{
+      width: fit-content;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 1rem;
+      background-color: $light-blue-color;
+      color: $header-background-color;
+      border: none;
+  }
+  .edit-billing{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.0rem;
+    color: $light-blue-color;
+  }
+}
+.error-message{
+  margin-left: 10px;
+  font-size: 0.8rem;
+  color: #D32F2F;
+}
+}
+.loader-wrapper{
+  position: absolute;
+  top: 15%;
+  left: 20%;
+}

@@ -2,6 +2,7 @@ import { SetStateAction, useState } from "react";
 import StarRatings from "react-star-ratings";
 import "./RoomReview.scss";
 import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
 import CustomizedSnackbars from "../../Component/snackbar/CustomizedSnackbars";
 
 export const RoomReview = () => {
@@ -13,6 +14,9 @@ export const RoomReview = () => {
   const changeRating = (newRating: SetStateAction<number>) => {
     setStars(newRating);
   };
+  const headers = {
+    'Content-Type': 'application/json'
+  };
 
   const handleReviewChange = (event: {
     target: { value: SetStateAction<string> };
@@ -23,9 +27,8 @@ export const RoomReview = () => {
     event.preventDefault();
     const urlParams = new URLSearchParams(window.location.search);
     const uuid = urlParams.get("id");
-    console.log(uuid);
+    // const uuid = id ? uuidv4(id) : null;
     const url = import.meta.env.VITE_REACT_APP_REVIEW_SUBMIT;
-    console.log(url);
     try {
       const response = await axios.post(url, {
         uuid: uuid,
