@@ -108,7 +108,7 @@ export default function CheckoutPage() {
             </div>
           </div>
         </div>
-        {/* <CountdownTimer /> */}
+        <CountdownTimer />
       </div>
       {showSnackbar && (
         <CustomizedSnackbars

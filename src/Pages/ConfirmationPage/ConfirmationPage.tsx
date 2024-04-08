@@ -21,7 +21,7 @@ import {
   setTravlerInfo,
 } from "../../redux/CheckoutSlice";
 import CustomizedSnackbars from "../../Component/snackbar/CustomizedSnackbars";
-import { Box,CircularProgress } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 export default function ConfirmationPage() {
   const { t } = useTranslation();
   const [totalSummary, setTotalSummary] = useState<boolean>(false);
@@ -74,7 +74,9 @@ export default function ConfirmationPage() {
   const [message, setMessage] = useState<string>("");
   const [success, setSuccess] = useState<boolean>(false);
   const [loader, setLoader] = useState(false);
-  const userEmail=useSelector((state:RootState)=>state.checkoutRoom.travelerInfo.temail);
+  const userEmail = useSelector(
+    (state: RootState) => state.checkoutRoom.travelerInfo.temail
+  );
   const imageUrl = useSelector(
     (state: RootState) => state.checkoutRoom.imageUrl
   );
@@ -112,7 +114,7 @@ export default function ConfirmationPage() {
       const urlParams = new URLSearchParams(window.location.search);
       const bookingId = urlParams.get("id");
       const backendUrl =
-      import.meta.env.VITE_REACT_APP_API_MGT + `/book?id=${bookingId}`;
+        import.meta.env.VITE_REACT_APP_API_MGT + `/book?id=${bookingId}`;
       const bookingDetails = await axios.get(backendUrl);
       const result = await bookingDetails.data;
       setBookingActive(result.active);
@@ -170,13 +172,17 @@ export default function ConfirmationPage() {
   const sendConfirmationEmail = async () => {
     try {
       setLoader(true);
-      const backendUrl=import.meta.env.VITE_REACT_APP_API_MGT+`/email-booking?id=${id}&email=${userEmail}`
+      const backendUrl =
+        import.meta.env.VITE_REACT_APP_API_MGT +
+        `/email-booking?id=${id}&email=${userEmail}`;
       const response = await axios.get(
         // `http://localhost:8000/api/v1/email-booking?id=${id}&email=${userEmail}`
         backendUrl
       );
       setLoader(false);
-      if (response.data.message === "Confirmation of Booking Sent Successfully") {
+      if (
+        response.data.message === "Confirmation of Booking Sent Successfully"
+      ) {
         setSuccess(true);
         setShowSnackbar(true);
         setMessage("Confirmation of Booking Sent Successfully");
@@ -231,13 +237,13 @@ export default function ConfirmationPage() {
             </span>
           </div>
           <div className="print_or_email_box">
-          {loader && (
-                <div className="loader-wrapper-checkoutpage">
-                  <Box sx={{ display: "flex" }}>
-                    <CircularProgress />
-                  </Box>
-                </div>
-                )} 
+            {loader && (
+              <div className="loader-wrapper-checkoutpage">
+                <Box sx={{ display: "flex" }}>
+                  <CircularProgress />
+                </Box>
+              </div>
+            )}
             <button className="print_button" onClick={handlePrint}>
               {t("confirmationPage.print")}
             </button>
@@ -266,11 +272,13 @@ export default function ConfirmationPage() {
                   </span>
                 </div>
               </div>
-              <div className="cancel_button_container">
-                <button className="cancel_button" onClick={onOpenModal1}>
-                  {t("confirmationPage.cancelRoom")}
-                </button>
-              </div>
+              {bookingActive && (
+                <div className="cancel_button_container">
+                  <button className="cancel_button" onClick={onOpenModal1}>
+                    {t("confirmationPage.cancelRoom")}
+                  </button>
+                </div>
+              )}
             </div>
             <div className="image_and_details_container">
               <div className="image_container_of_room_type">

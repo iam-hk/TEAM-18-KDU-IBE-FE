@@ -170,7 +170,8 @@ export function TravelerInfo() {
               variant="outlined"
               className="text-field"
               type="tel"
-              inputProps={{ pattern: "[0-9]{10}" }}
+              inputProps={{ pattern: "[0-9]{10}", maxLength: 10,
+             }}
               value={phone}
               required
               onChange={(e) => handlePhoneChange(e.target.value)}

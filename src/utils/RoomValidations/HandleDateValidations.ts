@@ -20,6 +20,7 @@ export function validateDates(
   }
 
   const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
   const currentYear = currentDate.getFullYear();
 
   if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
@@ -28,7 +29,7 @@ export function validateDates(
 
   const startYear = startDate.getFullYear();
   const endYear = endDate.getFullYear();
-
+  
   if (startYear !== currentYear || endYear !== currentYear) {
     return INVALID_YEAR;
   }
@@ -48,7 +49,7 @@ export function validateDates(
     return INVALID_TIME_PERIOD;
   }
 
-  if (startDate.getTime() < currentDate.getTime() || endDate.getTime() < currentDate.getTime()) {
+  if (startDate < currentDate || endDate < currentDate) {
     return "Selected dates have already expired";
   }
 
