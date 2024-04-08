@@ -353,6 +353,8 @@ export default function RoomModal(props: IRoomModal) {
                   <button
                     className="apply_promoCode_button"
                     onClick={checkCustomPromoCode}
+                    disabled={promoCode === ""}
+                    style={{ opacity: promoCode === "" ? 0.5 : 1 }} 
                   >
                     {t("apply")}
                   </button>

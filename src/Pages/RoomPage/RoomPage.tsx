@@ -180,7 +180,6 @@ export function RoomPage() {
       const roomCardFromBackend = await axios.get(roomCardsUrl);
       const result = await roomCardFromBackend.data;
       const promoUrl = formPromotionsUrl();
-      console.log(promoUrl);
       const getAllPromotions = await axios.get(
         promoUrl
       );

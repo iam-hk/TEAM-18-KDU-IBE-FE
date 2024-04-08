@@ -11,6 +11,8 @@ import { BillingInfo } from "../../Component/CheckoutPage/BillingInfo/BillingInf
 import { PaymentInfo } from "../../Component/CheckoutPage/PaymentInfo/PaymentInfo";
 import { useTranslation } from "react-i18next";
 import { Help } from "../../Component/CheckoutPage/HelpComponent/Help";
+import CountdownTimer from "../../Component/CheckoutPage/TimerComponent/TimerComponent";
+import { useNavigate } from "react-router-dom";
 export default function CheckoutPage() {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
@@ -28,7 +30,7 @@ export default function CheckoutPage() {
   const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
     setEmail(e.target.value);
   };
-
+  const navigate=useNavigate();
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setEmail("");
@@ -39,14 +41,28 @@ export default function CheckoutPage() {
   async function sendEmailDetails() {
     let customUrl = import.meta.env.VITE_REACT_APP_EMAIL_REVIEW;
     customUrl += `roomTypeId=${roomTypeId}&email=${email}`;
-    console.log(customUrl);
     try {
       await axios.get(customUrl);
     } catch (error) {
       console.log(error);
     }
   }
-
+  const handleNavigate = () => {
+    setTimeout(() => {
+      navigate("/");
+    }, 3500);
+  };
+  if (!itineraryPropertyName) {
+    handleNavigate(); 
+    return (
+      <>
+      <div className="checkout-page">
+        <h1 className="error-in-checkout">Please select a room first.</h1>
+        <h3 className="redirecting-home-page">Redirectiong to home page.....</h3>
+      </div>
+      </>
+    );
+  }
   return (
     <>
       <div className="checkout-page">
@@ -78,16 +94,18 @@ export default function CheckoutPage() {
               </div>
             </div>
           </div>
-          {itineraryPropertyName && (
-            <div className="itinerary-content">
-              <Itinerary />
+          <div className="itinerary-help-wrapper">
+            {itineraryPropertyName && (
+              <div className="itinerary-content">
+                <Itinerary />
+              </div>
+            )}
+            <div className="help-wrapper">
+              <div className="spacing-component"></div>
+              <div className="help-component">
+                <Help />
+              </div>
             </div>
-          )}
-        </div>
-        <div className="help-wrapper">
-          <div className="spacing-component"></div>
-          <div className="help-component">
-            <Help />
           </div>
         </div>
         {/* <CountdownTimer /> */}

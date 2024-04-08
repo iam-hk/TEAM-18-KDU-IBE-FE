@@ -28,7 +28,7 @@ export function validateDates(
   if (startYear !== currentYear || endYear !== currentYear) {
     return INVALID_YEAR;
   }
-
+  const currentDate = new Date();
   const startMonth = startDate.getMonth() + 1;
   const endMonth = endDate.getMonth() + 1;
   if (startMonth < 1 || startMonth > 12 || endMonth < 1 || endMonth > 12) {
@@ -39,6 +39,9 @@ export function validateDates(
   );
   if (diffInDays > maxDays) {
     return INVALID_TIME_PERIOD;
+  }
+  if (startDate < currentDate || endDate < currentDate) {
+    return "Selected dates have already expired";
   }
   return "";
 }

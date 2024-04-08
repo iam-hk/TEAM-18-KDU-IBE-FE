@@ -311,7 +311,7 @@
         "cancelBooking":"Shound we cancel the Booking?",
         "yes":"YES",
         "no":"NO",
-        "sure":"Are You Sure?",
+        "sure":"Are You Sure , you want to cancel the booking?",
         "otp":"Enter OTP for cancelling the booking",
         "confirm":"CONFIRM OTP"
       },

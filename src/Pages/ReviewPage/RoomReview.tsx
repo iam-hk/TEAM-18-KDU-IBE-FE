@@ -28,9 +28,7 @@ export const RoomReview = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const uuid = urlParams.get("id");
     // const uuid = id ? uuidv4(id) : null;
-    console.log(uuid);
     const url = import.meta.env.VITE_REACT_APP_REVIEW_SUBMIT;
-    console.log(url);
     try {
       const response = await axios.post(url, {
         uuid: uuid,

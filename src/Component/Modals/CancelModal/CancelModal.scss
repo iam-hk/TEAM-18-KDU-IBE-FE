@@ -1,5 +1,6 @@
 .cancel-modal-wrapper{
     padding: 40px 30px;
+    position: relative;
     .cancel-heading-text{
         font-size: 1.2rem;
         margin-bottom: 20px;
@@ -16,9 +17,29 @@
             font-size: 1rem;
         }
     }
-    .otp-submit-button{
+    .button-wrapper-cancel-modal{
         display: flex;
-        justify-content: flex-end;
+        position: relative;
+        justify-content: space-between;
+        .send-otp-button{
+            button{
+                padding: 8px 15px;
+                background-color: #26266D;
+                color: #ffffff;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+            }
+            
+        }
+        .loader-wrapper{
+            position: absolute;
+            top: 0;
+            left: 40%;
+        }
+    }
+    .otp-submit-button{
+     
         button{
             padding: 8px 15px;
             background-color: #26266D;
@@ -28,7 +49,6 @@
             border-radius: 5px;
         }
     }
-
 }
 .cancel-modal-wrapper-auth{
     padding: 50px 50px;

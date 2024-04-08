@@ -36,7 +36,16 @@
 .print_or_email_box{
     display: flex;
     justify-content: space-between;
+    position: relative;
     gap: 1.2rem;
+    .loader-wrapper-checkoutpage{
+        position: absolute;
+        top: 0;
+        left: -60%;
+        height: 100%;
+        width: 100%;
+        z-index:999;
+    }
     .print_button{
         border: 0;
         background-color: #fff;

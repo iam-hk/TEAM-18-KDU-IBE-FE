@@ -115,13 +115,12 @@ export function BillingInfo() {
       const inputCityLowerCase = city.toLowerCase();
       const isValid = cityNameLowerCase === inputCityLowerCase;
       if (isValid) {
-        console.log("Valid city:", cityEach.name);
+    
       }
       return isValid;
     });
 
     setIsValidCity(isValidCity);
-    console.log(isValidCity, "validity");
     return isValidCity;
   }
   const fetchZipCodes = async () => {
@@ -137,7 +136,6 @@ export function BillingInfo() {
     try {
       const response = await axios.request(options);
       const responseData = response.data;
-      console.log(responseData);
       for (const data of responseData) {
         if (
           data.country_code === countryIsoCode &&
@@ -150,7 +148,6 @@ export function BillingInfo() {
       setIsValidZipForCity(false);
       return false;
     } catch (error) {
-      console.error(error);
       return false;
     }
   };
@@ -163,7 +160,7 @@ export function BillingInfo() {
     event.preventDefault();
     checkZipValidation().then((isValid) => {
       if (!checkCityValidation() && isValid) {
-        console.log("Enter a valid city");
+        // console.log("Enter a valid city");
       } else if (checkCityValidation() && isValid) {
         const billingInfoObject: IBillingInfo = {
           firstName: firstName,
@@ -180,9 +177,7 @@ export function BillingInfo() {
         };
         reduxDispatch(setBillingInfo(billingInfoObject));
         reduxDispatch(setCurrentIndex(2));
-      } else {
-        console.log("Invalid Zip Code");
-      }
+      } 
     });
   }
   const updateCountry = (event: ICountry) => {

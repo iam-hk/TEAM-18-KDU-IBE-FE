@@ -129,7 +129,6 @@ const CheckoutSlice = createSlice({
     },
     setPaymentInfo: (state, action: PayloadAction<IPaymentInfo>) => {
       state.paymentInfo = action.payload;
-      console.log(state.paymentInfo);
     },
     setCurrentIndex: (state, action: PayloadAction<number>) => {
       state.currentIndex = action.payload;
@@ -139,11 +138,9 @@ const CheckoutSlice = createSlice({
     },
     setCheckoutPage: (state, action: PayloadAction<IConfirmationDetails>) => {
       state.confirmationDetails = action.payload;
-      console.log(state.confirmationDetails);
     },
     setImage: (state, action: PayloadAction<string>) => {
       state.imageUrl = action.payload;
-      console.log(state.imageUrl);
     },
   },
 });

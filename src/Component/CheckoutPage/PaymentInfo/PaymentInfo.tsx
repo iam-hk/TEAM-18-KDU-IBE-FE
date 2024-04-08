@@ -27,6 +27,7 @@ import axios from "axios";
 export function PaymentInfo() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [success, setSuccess] = useState(false);
   const cardNumberSlice = useSelector(
     (state: RootState) => state.checkoutRoom.paymentInfo.cardNumber
   );
@@ -119,9 +120,6 @@ export function PaymentInfo() {
   const checkoutDetailsSlice = useSelector(
     (state: RootState) => state.checkoutRoom
   );
-  function printCheckoutDetails() {
-    console.log(checkoutDetailsSlice, "checkout");
-  }
   function createObjectToSend() {
     let adultCount = 0;
     let childCount = 0;
@@ -137,7 +135,7 @@ export function PaymentInfo() {
       travelerInfo: travelerInfo,
       billingInfo: billingInfo,
       paymentInfo: {
-        cardNumber: cardNumber,
+        cardNumber: encodeCardNumber(cardNumber),
         expMM: cardMonth,
         expYY: cardYear,
       },
@@ -175,20 +173,26 @@ export function PaymentInfo() {
   const sendInfoToBackend = async () => {
     try {
       const data = createObjectToSend();
+      let url=import.meta.env.VITE_REACT_APP_POST_REQ;
+      url+='/book';
       const response = await axios.post(
-        "http://localhost:8000/api/v1/book",
+        url,
         data
       );
       setLoader(false);
+      setSuccess(true);
       setMessage(`Your Booking id is ${response.data.toString()}`);
       setShowSnackbar(true);
-      console.log("Response from backend:", response.data);
       setTimeout(() => {
         navigate(`/confirmation?id=${response.data}`);
       }, 3000);
     } catch (error) {
       setLoader(false);
-      console.error("Error while sending itinerary to backend:", error);
+      setIsBookingClicked(false);
+      const errorMessage =
+        error.response?.data?.message || "Error occurred while booking";
+      setShowSnackbar(true);
+      setMessage(errorMessage);
     }
   };
   function updatePrice(price: number) {
@@ -200,24 +204,23 @@ export function PaymentInfo() {
   function isCardExpired() {
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
     const expYear = parseInt(cardYear);
     const expMonth = parseInt(cardMonth);
     const fullExpYear = currentYear - (currentYear % 100) + expYear;
-    if (fullExpYear > currentYear) {
-      setIsDateValid(true);
-      return true;
-    }
-    if (
-      fullExpYear < currentYear ||
-      (fullExpYear === currentYear && expMonth >= currentDate.getMonth() + 1)
-    ) {
-      setIsDateValid(true);
-      return true;
+
+    if (fullExpYear > currentYear || (fullExpYear === currentYear && expMonth > currentMonth)) {
+        setIsDateValid(true);
+        return false; // Card is not expired
+    } else if (fullExpYear < currentYear || (fullExpYear === currentYear && expMonth < currentMonth)) {
+        setIsDateValid(false);
+        return true; // Card is expired
     } else {
-      setIsDateValid(false);
-      return false;
+        setIsDateValid(true);
+        return false; 
     }
-  }
+}
+
   function isValidCreditCardNumber(cardNumber: string): boolean {
     const cleanedNumber = cardNumber.replace(/\D/g, "");
     if (cleanedNumber.length < 13 || cleanedNumber.length > 19) {
@@ -255,8 +258,9 @@ export function PaymentInfo() {
     setTermsAndPolicies(!termsAndPolicies);
   }
   function checkValidations() {
-    isCardExpired();
-    if (!isDateValid) {
+    console.log("check validations");
+    // isCardExpired();
+    if (isCardExpired()) {
       setIsDateValid(false);
       return false;
     }
@@ -269,10 +273,12 @@ export function PaymentInfo() {
     reduxDispatch(setCurrentIndex(1));
   }
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    
     event.preventDefault();
-    if (isBookingClicked) {
-      return;
-    }
+    // console.log("here");
+        if (isBookingClicked) {
+          return;
+        }
     let adultCount = 0;
     let childCount = 0;
 
@@ -284,6 +290,7 @@ export function PaymentInfo() {
       }
     });
     if (checkValidations()) {
+      console.log("validated");
       const paymentInfo: IPaymentInfo = {
         cardNumber: encodeCardNumber(cardNumber),
         expMM: cardMonth,
@@ -291,7 +298,6 @@ export function PaymentInfo() {
       };
       setLoader(true);
       setIsBookingClicked(true);
-      console.log(isBookingClicked);
       const confirmationDetails = {
         roomName: roomName,
         startDate: startDate,
@@ -312,7 +318,7 @@ export function PaymentInfo() {
         amountDueAtResort: amountDueAtResort,
         propertyId: 18,
         nightlyRate: nightlyRate,
-        subtotal: slicesubtotal,
+        subTotal: slicesubtotal,
         taxes: taxes,
         vat: vat,
       };
@@ -320,8 +326,6 @@ export function PaymentInfo() {
       reduxDispatch(setImage(imgUrl));
       reduxDispatch(setCheckoutPage(confirmationDetails));
       sendInfoToBackend();
-
-      // navigate("/confirmation");
     }
   }
   function handleSpecialOffers() {
@@ -347,21 +351,35 @@ export function PaymentInfo() {
                 </Grid>
                 <Grid item>
                   <TextField
-                    type="number"
+                    type="text"
                     id="card-name"
                     variant="outlined"
                     className="text-field"
                     value={cardNumber}
                     required
                     inputProps={{
-                      pattern: "[0-9]{16}",
+                      pattern: "[0-9]{14-16}",
                     }}
-                    error={cardNumber && !isValidCreditCardNumber(cardNumber)}
+                    error={!isValidCreditCardNumber(cardNumber)} 
                     helperText={
-                      cardNumber && !isValidCreditCardNumber(cardNumber)
+                      !isValidCreditCardNumber(cardNumber)
                         ? "Please enter a valid card number"
                         : ""
                     }
+                    onKeyDown={(e) => {
+                      if (
+                        e.key === "Backspace" ||
+                        e.key === "Tab" ||
+                        e.key === "ArrowLeft" ||
+                        e.key === "ArrowRight"
+                      ) {
+                        return;
+                      }
+                      const pattern = /^[0-9]*$/;
+                      if (!pattern.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
                     onChange={(e) => handleCardChange(e.target.value)}
                   />
                 </Grid>
@@ -566,14 +584,14 @@ export function PaymentInfo() {
               </div>
             </div>
             <div className="payment-button-wrapper">
-              <button
-                className="edit-billing"
-                onClick={handleEditBilling}
-                disabled={isBookingClicked}
-              >
+              <button className="edit-billing" onClick={handleEditBilling}>
                 {t("paymentInfoData.editBilling")}
               </button>
-              <button className="purchase-button">
+              <button
+                className="purchase-button"
+                disabled={isBookingClicked}
+                style={{ opacity: isBookingClicked ? 0.5 : 1 }}
+              >
                 {t("paymentInfoData.button")}
               </button>
             </div>
@@ -589,7 +607,7 @@ export function PaymentInfo() {
       </form>
       {showSnackbar && (
         <CustomizedSnackbars
-          status="success"
+          status={success ? "success" : "error"}
           message={message}
           setShowSnackbar={setShowSnackbar}
         />

@@ -3,7 +3,8 @@
   min-height: 80%;
   width: 100%;
   .itinerary-content{
-    width: 30%;
+    // width: 30%;
+    width: 100%;
     display: flex;
     justify-content: start;
     align-items: start;
@@ -14,6 +15,11 @@
 .checkout-wrapper {
   width: 100%;
   display: flex;
+  .itinerary-help-wrapper{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+  }
   // align-items: center;
   justify-content: space-between;
   padding-right: 20px;
@@ -60,16 +66,15 @@
 .help-wrapper{
     display: flex;
     justify-content: space-between;
-    padding-right: 20px;
     .spacing-component{
-      width: 69%;
+      width: 0%;
       @media(max-width:750px)
       {
         display: none;
       }
     }
     .help-component{
-      width: 30%;
+      width: 100%;
       @media(max-width:750px)
       {
         width: 100%;
@@ -86,8 +91,23 @@
     flex-direction: column;
     padding-right: 0;
     padding: 10px 15px;
-    .checkout-binder{
+    .itinerary-help-wrapper{
       width: 100%;
+      order: -1;
+    }
+    .help-wrapper{
+      padding: 0px;
+      .spacing-component{
+        width: 0;
+
+      }
+      .help-component{
+        width: 100%;
+
+      }
+    }
+    .checkout-binder{
+      width: 100% !important;
       .checkout-form{
         .billing-container{
         .billing-info-wrapper{
@@ -108,6 +128,16 @@
 }
 @media(max-width:550px)
 {
+  .checkout-page .checkbox-wrapper{
+    .help-wrapper{
+      .help-component{
+        width: 100%;
+        .help-component-wrap{
+          padding-bottom: 25px;
+        }
+      }
+    }
+  }
   .checkout-wrapper{
     .checkout-binder{
       .checkout-form{
@@ -221,4 +251,14 @@
       }
     }
   }
+}
+.error-in-checkout{
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.redirecting-home-page{
+  font-weight: 500;
+  color:#007bff;
+  text-align: center;
 }
