@@ -258,7 +258,7 @@ export function PaymentInfo() {
     setTermsAndPolicies(!termsAndPolicies);
   }
   function checkValidations() {
-    console.log("check validations");
+    // console.log("check validations");
     // isCardExpired();
     if (isCardExpired()) {
       setIsDateValid(false);
@@ -290,7 +290,7 @@ export function PaymentInfo() {
       }
     });
     if (checkValidations()) {
-      console.log("validated");
+      // console.log("validated");
       const paymentInfo: IPaymentInfo = {
         cardNumber: encodeCardNumber(cardNumber),
         expMM: cardMonth,

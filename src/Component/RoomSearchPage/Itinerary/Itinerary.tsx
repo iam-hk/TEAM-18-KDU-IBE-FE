@@ -1,7 +1,7 @@
 import "./Itinerary.scss";
 import downArrow from "../../../assets/down-arrow.png";
 import upArrow from "../../../assets/up-arrow.png";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import infoIcon from "../../../assets/info-icon.png";
 import "react-responsive-modal/styles.css";
 import PromoModal from "../../Modals/PromoModal/PromoModal";
@@ -19,17 +19,36 @@ import {
   setVat,
 } from "../../../redux/ItinerarySlice";
 import { useNavigate } from "react-router-dom";
-import { setStepperState } from "../../../redux/StepperSlice";
+import { setStepperState,setTimeLeft } from "../../../redux/StepperSlice";
 import { useTranslation } from "react-i18next";
 import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
 import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
 export function Itinerary() {
   const { t } = useTranslation();
   const reduxDispatch: AppDispatch = useDispatch();
+  const timeLeft=useSelector((state:RootState)=>state.stepper.timeLeft);
   const [isOpen, setIsOpen] = useState(false);
   const toggleDetails = () => {
     setIsOpen(!isOpen);
   };
+  const timeLeftRef = useRef<number>(timeLeft);
+  const navigate = useNavigate();
+  useEffect(() => {
+    let startTime = timeLeft;
+    const remainingTime = 600 - (Date.now() - startTime) / 1000;
+    reduxDispatch(setTimeLeft(remainingTime > 0 ? remainingTime : 0));
+
+    const timerId = setInterval(() => {
+      if (timeLeft < 0) {
+        reduxDispatch(setTimeLeft(0));
+        navigate("/");
+      } else {
+        timeLeftRef.current -= 1
+        reduxDispatch(setTimeLeft(timeLeftRef.current));
+      }
+    }, 1000);
+    return () => clearInterval(timerId);
+  }, [navigate]);
   const priceFactor = useSelector(
     (state: RootState) => state.itineraryInfo.promoCodeInfo.priceFactor
   );
@@ -67,11 +86,10 @@ export function Itinerary() {
 
   const onOpenModal2 = () => setOpenModal2(true);
   const onCloseModal2 = () => setOpenModal2(false);
-  const navigate = useNavigate();
   const currentSelectedCurrency = useSelector(
     (state: RootState) => state.currencyRate.currentSelectedCurrency
   ) as keyof CurrencyExchangeRates;
-
+  
   const currentPrice = useSelector(
     (state: RootState) => state.currencyRate.currentPrice
   );
@@ -156,6 +174,7 @@ export function Itinerary() {
     reduxDispatch(setDefaultValues());
     reduxDispatch(setStepperState(0));
     const previousSearch = window.localStorage.getItem("prevSearch");
+    reduxDispatch(setTimeLeft(600));
     navigate(`/rooms/${previousSearch}`);
   }
   function handlePromoCalculation() {
@@ -188,6 +207,8 @@ export function Itinerary() {
     reduxDispatch(setVat(vatPayable));
     return vatPayable;
   }
+
+
   return (
     <div className="itinerary">
       <div className="itinerary-heading-container" onClick={toggleDetails}>

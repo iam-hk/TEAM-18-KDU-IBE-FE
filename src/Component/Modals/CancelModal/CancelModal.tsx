@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import { Box, CircularProgress } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 interface ICancelModal {
   open: boolean;
   onClose: () => void;
@@ -22,6 +23,7 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
   const [success, setSuccess] = useState<boolean>(false);
   const [loader, setLoader] = useState(false);
   const [sentOtp,setSentOtp]=useState(false);
+  const navigate=useNavigate();
   const email = useSelector(
     (state: RootState) => state.checkoutRoom.travelerInfo.temail
   );
@@ -94,12 +96,16 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
       if (response.data.message === "Booking Cancelled Successfully") {
         setSuccess(true);
         setMessage("Booking cancelled successfully");
+        setTimeout(() => {
+          navigate(`/checkout?id=${id}`);
+        }, 4000);
       } else {
         setSuccess(false);
         setMessage(response.data.message);
       }
       setShowSnackbar(true);
     } catch (error) {
+      setLoader(false);
       console.error("Error cancelling booking:", error);
       setSuccess(false);
       setShowSnackbar(true);
@@ -118,6 +124,13 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
             </div>
             <div className="cancel-modal-auth-button">
               <button onClick={cancelLoggedInBooking}>{t("confirmationPage.cancellationPolicies.yes")}</button>
+              {loader && (
+                <div className="loader-wrapper">
+                  <Box sx={{ display: "flex" }}>
+                    <CircularProgress />
+                  </Box>
+                </div>
+              )}
               <button onClick={handleNoButtonClick}>{t("confirmationPage.cancellationPolicies.no")}</button>
             </div>
           </div>

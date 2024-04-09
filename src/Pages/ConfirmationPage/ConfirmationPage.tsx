@@ -220,6 +220,9 @@ export default function ConfirmationPage() {
     const monthIndex = monthNumber - 1;
     return months[monthIndex];
   };
+  window.onpopstate = function(event) {
+    window.location.href = '/';
+  };
   const greenSpanClass = bookingActive ? "green-span" : "";
   const redSpanClass = !bookingActive ? "red-span" : "";
   return (
