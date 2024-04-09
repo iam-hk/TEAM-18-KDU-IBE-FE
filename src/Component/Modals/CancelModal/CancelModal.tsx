@@ -97,7 +97,7 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
         setSuccess(true);
         setMessage("Booking cancelled successfully");
         setTimeout(() => {
-          navigate(`/checkout?id=${id}`);
+          navigate(`/confirmation?id=${id}`);
         }, 4000);
       } else {
         setSuccess(false);
