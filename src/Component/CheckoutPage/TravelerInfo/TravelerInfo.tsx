@@ -30,30 +30,60 @@ export function TravelerInfo() {
   const [lastName, setLastName] = useState(lastNameSlice);
   const [phone, setPhone] = useState(phoneSlice);
   const [email, setEmail] = useState(emailSlice);
-  const handleFirstNameChange = (value: string) => {
+  const [submitted, setSubmitted] = useState(false);
+  const [firstNameError, setFirstNameError] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
+  const [phoneError, setPhoneError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const handleFirstNameChange = (value:string) => {
     setFirstName(value);
+    if (submitted) {
+      setFirstNameError(!value.trim() ? 'Please enter a first name.' : !/^[a-zA-Z]+$/.test(value) ? 'Please enter a valid first name.' : '');
+    }
   };
-  const handleLastNameChange = (value: string) => {
+
+  const handleLastNameChange = (value:string) => {
     setLastName(value);
+    if (submitted) {
+      setLastNameError(!value.trim() ? 'Please enter a last name.' : !/^[a-zA-Z]+$/.test(value) ? 'Please enter a valid last name.' : '');
+    }
   };
-  const handleEmailChange = (value: string) => {
-    setEmail(value);
-  };
-  const handlePhoneChange = (value: string) => {
+
+  const handlePhoneChange = (value:string) => {
     setPhone(value);
+    if (submitted) {
+      setPhoneError(!value.trim() ? 'Please enter a phone number.' : !/^[0-9]{10}$/.test(value) ? 'Please enter a valid 10-digit phone number.' : '');
+    }
   };
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-    const travelerInfo: ITravelerInfo = {
-      tfirstName: firstName,
-      tlastName: lastName,
-      tphone: phone,
-      temail: email,
-    };
-    reduxDispatch(setCurrentIndex(1));
-    reduxDispatch(setTravlerInfo(travelerInfo));
-    
+
+  const handleEmailChange = (value:string) => {
+    setEmail(value);
+    if (submitted) {
+      setEmailError(!value.trim() ? 'Please enter an email address.' : !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value) ? 'Please enter a valid email address.' : '');
+    }
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+
+    setFirstNameError(!firstName.trim() ? 'Please enter a first name.' : !/^[a-zA-Z]+$/.test(firstName) ? 'Please enter a valid first name.' : '');
+    setLastNameError(!lastName.trim() ? 'Please enter a last name.' : !/^[a-zA-Z]+$/.test(lastName) ? 'Please enter a valid last name.' : '');
+    setPhoneError(!phone.trim() ? 'Please enter a phone number.' : !/^[0-9]{10}$/.test(phone) ? 'Please enter a valid 10-digit phone number.' : '');
+    setEmailError(!email.trim() ? 'Please enter an email address.' : !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email) ? 'Please enter a valid email address.' : '');
+
+    if (firstName.trim() && /^[a-zA-Z]+$/.test(firstName) && lastName.trim() && /^[a-zA-Z]+$/.test(lastName) && phone.trim() && /^[0-9]{10}$/.test(phone) && email.trim() && /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
+      const travelerInfo: ITravelerInfo = {
+        tfirstName: firstName,
+        tlastName: lastName,
+        tphone: phone,
+        temail: email,
+      };
+      reduxDispatch(setCurrentIndex(1));
+      reduxDispatch(setTravlerInfo(travelerInfo));
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} className="traveler-info-wrapper">
       <div className="traveler-name-wrapper">
@@ -74,32 +104,27 @@ export function TravelerInfo() {
                 id="first-name"
                 variant="outlined"
                 className="text-field"
-                required
-                inputProps={{ pattern: "[A-Za-z]+" }}
                 value={firstName}
-                error={!/^[a-zA-Z]*$/.test(firstName)}
-                helperText={
-                  !/^[a-zA-Z]*$/.test(firstName)
-                    ? "Please enter a valid first name."
-                    : ""
-                }
+                error={!!firstNameError}
+                helperText={firstNameError}
+                onBlur={() => handleFirstNameChange(firstName)}
                 onChange={(e) => handleFirstNameChange(e.target.value)}
-                onKeyDown={(e) => {
-                  const keyCode = e.keyCode;
+                 onKeyDown={(e) => {
+                    if (
+                      e.key === "Backspace" ||
+                      e.key === "Tab" ||
+                      e.key === "ArrowLeft" ||
+                      e.key === "ArrowRight"
+                    ) {
+                      return;
+                    }
 
-                  if (
-                    (keyCode >= 65 && keyCode <= 90) ||
-                    (keyCode >= 97 && keyCode <= 122) ||
-                    keyCode === 32 ||
-                    keyCode === 9 ||
-                    keyCode === 8 ||
-                    keyCode === 37 ||
-                    keyCode === 39
-                  ) {
-                    return;
-                  }
-                  e.preventDefault();
-                }}
+                    const isAlphabetic = /^[A-Za-z]*$/.test(e.key);
+
+                    if (!isAlphabetic) {
+                      e.preventDefault();
+                    }
+                  }}
               />
             </Grid>
           </Grid>
@@ -113,7 +138,7 @@ export function TravelerInfo() {
           >
             <Grid item>
               <label htmlFor="last-name" className="traveler-last-name-label">
-              {t("travelerInfo.lastName")}
+                {t("travelerInfo.lastName")}
               </label>
             </Grid>
             <Grid item>
@@ -121,32 +146,27 @@ export function TravelerInfo() {
                 id="last-name"
                 variant="outlined"
                 className="text-field"
-                inputProps={{ pattern: "[A-Za-z]+" }}
                 value={lastName}
-                required
+                error={!!lastNameError}
+                helperText={lastNameError}
+                onBlur={() => handleLastNameChange(lastName)}
                 onChange={(e) => handleLastNameChange(e.target.value)}
-                error={!/^[a-zA-Z]*$/.test(lastName)}
-                helperText={
-                  !/^[a-zA-Z]*$/.test(lastName)
-                    ? "Please enter a valid first name."
-                    : ""
-                }
-                onKeyDown={(e) => {
-                  const keyCode = e.keyCode;
+                 onKeyDown={(e) => {
+                    if (
+                      e.key === "Backspace" ||
+                      e.key === "Tab" ||
+                      e.key === "ArrowLeft" ||
+                      e.key === "ArrowRight"
+                    ) {
+                      return;
+                    }
 
-                  if (
-                    (keyCode >= 65 && keyCode <= 90) ||
-                    (keyCode >= 97 && keyCode <= 122) ||
-                    keyCode === 32 ||
-                    keyCode === 9 ||
-                    keyCode === 8 ||
-                    keyCode === 37 ||
-                    keyCode === 39
-                  ) {
-                    return;
-                  }
-                  e.preventDefault();
-                }}
+                    const isAlphabetic = /^[A-Za-z]*$/.test(e.key);
+
+                    if (!isAlphabetic) {
+                      e.preventDefault();
+                    }
+                  }}
               />
             </Grid>
           </Grid>
@@ -161,7 +181,7 @@ export function TravelerInfo() {
         >
           <Grid item>
             <label htmlFor="phone" className="traveler-phone-label">
-            {t("travelerInfo.phone")}
+              {t("travelerInfo.phone")}
             </label>
           </Grid>
           <Grid item>
@@ -170,31 +190,37 @@ export function TravelerInfo() {
               variant="outlined"
               className="text-field"
               type="tel"
-              inputProps={{ pattern: "[0-9]{10}", maxLength: 10,
-             }}
+              inputProps={{maxLength: 10 }}
               value={phone}
-              required
-              onChange={(e) => handlePhoneChange(e.target.value)}
-              error={phone !== "" && !/^[0-9]{10}$/.test(phone)}
+              error={
+                (phone !== "" && !/^[0-9]{10}$/.test(phone)) ||
+                phoneError !== ""
+              }
               helperText={
-                phone !== "" && !/^[0-9]{10}$/.test(phone)
-                  ? "Please enter a valid 10-digit phone number"
+                phoneError
+                  ? phoneError
+                  : phone !== ""
+                  ? !/^[0-9]{10}$/.test(phone)
+                    ? "Please enter a valid 10-digit phone number"
+                    : ""
                   : ""
               }
+              onBlur={() => handlePhoneChange(phone)}
+              onChange={(e) => handlePhoneChange(e.target.value)}
               onKeyDown={(e) => {
-                if (
-                  e.key === "Backspace" ||
-                  e.key === "Tab" ||
-                  e.key === "ArrowLeft" ||
-                  e.key === "ArrowRight"
-                ) {
-                  return;
-                }
-                const pattern = /^[0-9]*$/;
-                if (!pattern.test(e.key)) {
-                  e.preventDefault();
-                }
-              }}
+                              if (
+                                e.key === "Backspace" ||
+                                e.key === "Tab" ||
+                                e.key === "ArrowLeft" ||
+                                e.key === "ArrowRight"
+                              ) {
+                                return;
+                              }
+                              const pattern = /^[0-9]*$/;
+                              if (!pattern.test(e.key)) {
+                                e.preventDefault();
+                              }
+                            }}
             />
           </Grid>
         </Grid>
@@ -208,7 +234,7 @@ export function TravelerInfo() {
         >
           <Grid item>
             <label htmlFor="email" className="traveler-email-label">
-            {t("travelerInfo.email")}
+              {t("travelerInfo.email")}
             </label>
           </Grid>
           <Grid item>
@@ -217,26 +243,32 @@ export function TravelerInfo() {
               variant="outlined"
               className="text-field"
               value={email}
-              required
-              type="email"
-              onChange={(e) => handleEmailChange(e.target.value)}
               error={
-                email !== "" &&
-                !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)
+                (email !== "" &&
+                  !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(
+                    email
+                  )) ||
+                emailError !== ""
               }
               helperText={
-                email !== "" &&
-                !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)
+                emailError
+                  ? emailError
+                  : email !== "" &&
+                    !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(
+                      email
+                    )
                   ? "Please enter a valid email address"
                   : ""
               }
+              onBlur={() => handleEmailChange(email)}
+              onChange={(e) => handleEmailChange(e.target.value)}
             />
           </Grid>
         </Grid>
       </div>
       <div className="traveler-submit-button">
         <button type="submit" className="traveler-button">
-        {t("travelerInfo.button")}
+          {t("travelerInfo.button")}
         </button>
       </div>
     </form>

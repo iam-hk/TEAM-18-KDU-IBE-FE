@@ -67,6 +67,7 @@ export default function CheckoutPage() {
     <>
       <div className="checkout-page">
         <StepperUI onStepClick={undefined} />
+        <CountdownTimer />
         <div className="checkout-wrapper">
           <div className="checkout-binder">
             <div className="checkout-form">
@@ -108,7 +109,6 @@ export default function CheckoutPage() {
             </div>
           </div>
         </div>
-        <CountdownTimer />
       </div>
       {showSnackbar && (
         <CustomizedSnackbars

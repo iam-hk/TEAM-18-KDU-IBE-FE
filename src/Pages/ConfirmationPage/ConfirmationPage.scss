@@ -37,15 +37,8 @@
     display: flex;
     justify-content: space-between;
     position: relative;
+    align-items: center;
     gap: 1.2rem;
-    .loader-wrapper-checkoutpage{
-        position: absolute;
-        top: 0;
-        left: -60%;
-        height: 100%;
-        width: 100%;
-        z-index:999;
-    }
     .print_button{
         border: 0;
         background-color: #fff;
@@ -136,10 +129,8 @@
     width: 25%;
     min-width: 295px;
     height: 232px;
-    // background-color: blue;
 
     .actual_image{
-        // width:100%;
         max-width: 295px;
         width: 295px;
         height: 100%;
@@ -169,7 +160,6 @@
     margin-right: 1rem;
 
     @media (max-width:720px) {
-        // width: 91%;
         width: 295px;
         align-self: center;
         margin-right: 1rem;
@@ -365,11 +355,6 @@
         font-size: 0.8rem;
         margin-left: 1rem;
     }
-    // @media (max-width:560px) {
-    //     font-size: 0.7rem;
-    //     margin-left: 0.7rem;
-    // }
-
 }
 
 .title_nightly_rate{

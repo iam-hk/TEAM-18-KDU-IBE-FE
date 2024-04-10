@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from "../../redux/Store";
 import { changeCurrentCurrency } from "../../redux/CurrencySlice";
 import { useNavigate} from "react-router-dom"
 import LoggIn from "../LoggIn/LoggIn";
+import { AuthenticatedTemplate } from "@azure/msal-react";
 export function Header() {
   const navigate=useNavigate();
   const [isRightCopyOpen, setIsRightCopyOpen] = useState(false);
@@ -38,7 +39,9 @@ export function Header() {
         <h4 className="sub-heading">{i18n.t("subHeading")}</h4>
       </div>
       <div className="right-part">
+        <AuthenticatedTemplate>
         <button className="my-bookings">{i18n.t("myBookings")}</button>
+        </AuthenticatedTemplate>
         <div className="choice-components">
           <div className="language-component">
             <img src={siteLogo} alt="imagenotfound" className="language-component-img"/>

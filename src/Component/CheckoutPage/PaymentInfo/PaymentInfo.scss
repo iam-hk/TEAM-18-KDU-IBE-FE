@@ -103,7 +103,7 @@
   justify-content: flex-end;
   gap: 1vw;
   margin-bottom: 35px;
- 
+  position: relative;
   .purchase-button{
       width: fit-content;
       padding: 12px 20px;
@@ -126,9 +126,4 @@
   font-size: 0.8rem;
   color: #D32F2F;
 }
-}
-.loader-wrapper{
-  position: absolute;
-  top: 15%;
-  left: 20%;
 }

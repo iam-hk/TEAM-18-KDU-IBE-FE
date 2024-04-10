@@ -13,6 +13,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import { Box, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Loader1 from "../../Loaders/Loader1";
+import Loader2 from "../../Loaders/Loader2/Loader2";
 interface ICancelModal {
   open: boolean;
   onClose: () => void;
@@ -22,8 +24,8 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
   const [message, setMessage] = useState<string>("");
   const [success, setSuccess] = useState<boolean>(false);
   const [loader, setLoader] = useState(false);
-  const [sentOtp,setSentOtp]=useState(false);
-  const navigate=useNavigate();
+  const [sentOtp, setSentOtp] = useState(false);
+  const navigate = useNavigate();
   const email = useSelector(
     (state: RootState) => state.checkoutRoom.travelerInfo.temail
   );
@@ -36,10 +38,10 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
   const sendOtpToUser = async () => {
     try {
       setLoader(true);
-      const otpUrl=import.meta.env.VITE_REACT_APP_API_MGT+`/otp-cancel?id=${id}&email=${email}`
-      const response = await axios.get(
-       otpUrl
-      );
+      const otpUrl =
+        import.meta.env.VITE_REACT_APP_API_MGT +
+        `/otp-cancel?id=${id}&email=${email}`;
+      const response = await axios.get(otpUrl);
       setSentOtp(true);
       setLoader(false);
       if (response.data.message === "OTP sent to your mail successfully") {
@@ -58,22 +60,26 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
     }
   };
   const confirmOtpOfUser = async () => {
-    if(!otp)
-      {
-        return;
-      }
+    if (!otp) {
+      return;
+    }
     try {
       setLoader(true);
-      const confirmOtpUrl=import.meta.env.VITE_REACT_APP_API_MGT+`/validate-otp?id=${id}&otp=${otp}`;
-      const response = await axios.get(
-        confirmOtpUrl
-      );
+      const confirmOtpUrl =
+        import.meta.env.VITE_REACT_APP_API_MGT +
+        `/validate-otp?id=${id}&otp=${otp}`;
+      const response = await axios.get(confirmOtpUrl);
       setLoader(false);
       setSuccess(true);
       setMessage(response.data.message);
       setShowSnackbar(true);
+      onClose();
       if (response.data.message === "Booking cancellation successful") {
+        console.log("Success");
         setSuccess(true);
+        setTimeout(() => {
+          window.location.reload();
+        }, 4000);
       }
       setOtp("");
     } catch (error) {
@@ -81,23 +87,23 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
       console.error("Error confirming OTP:", error);
       setShowSnackbar(true);
       setSuccess(false);
-      setMessage("Error confirming OTP");
+      setMessage("Invalid OTP");
       setOtp("");
     }
   };
   const cancelLoggedInBooking = async () => {
     try {
       setLoader(true);
-      const cancelLoggedIn=import.meta.env.VITE_REACT_APP_API_MGT+`/cancel?id=${id}`;
-      const response = await axios.get(
-        cancelLoggedIn
-      );
-      setLoader(false);
+      const cancelLoggedIn =
+        import.meta.env.VITE_REACT_APP_API_MGT + `/cancel?id=${id}`;
+      const response = await axios.get(cancelLoggedIn);
+      setLoader(false); 
       if (response.data.message === "Booking Cancelled Successfully") {
         setSuccess(true);
+        onClose();
         setMessage("Booking cancelled successfully");
         setTimeout(() => {
-          navigate(`/confirmation?id=${id}`);
+          window.location.reload();
         }, 4000);
       } else {
         setSuccess(false);
@@ -112,7 +118,7 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
       setMessage("Error cancelling booking");
     }
   };
-  
+
   const { t } = useTranslation();
   return (
     <>
@@ -123,16 +129,20 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
               {t("confirmationPage.cancellationPolicies.sure")}
             </div>
             <div className="cancel-modal-auth-button">
-              <button onClick={cancelLoggedInBooking}>{t("confirmationPage.cancellationPolicies.yes")}</button>
-              {loader && (
-                <div className="loader-wrapper">
-                  <Box sx={{ display: "flex" }}>
-                    <CircularProgress />
-                  </Box>
-                </div>
-              )}
-              <button onClick={handleNoButtonClick}>{t("confirmationPage.cancellationPolicies.no")}</button>
+              <button onClick={cancelLoggedInBooking}>
+                {t("confirmationPage.cancellationPolicies.yes")}
+              </button>
+              <button onClick={handleNoButtonClick}>
+                {t("confirmationPage.cancellationPolicies.no")}
+              </button>
             </div>
+            {loader && (
+            <div className="style-loader-wrapper">
+                  <Box sx={{ display: "flex" }}>
+                    <Loader1 />
+                  </Box>
+                </div>  
+             )}
           </div>
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>
@@ -144,27 +154,44 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
               <input
                 type="text"
                 value={otp}
-                onChange={(e) => setOtp(e.target.value)}
+                onChange={(e) => {
+                  const { value } = e.target;
+                  if (/^\d*$/.test(value)) {
+                   
+                    setOtp(value);
+                  }
+                }}
               />
             </div>
             <div className="button-wrapper-cancel-modal">
-              {loader && (
-                <div className="loader-wrapper">
-                  <Box sx={{ display: "flex" }}>
-                    <CircularProgress />
-                  </Box>
-                </div>
-              )}
               <div className="send-otp-button">
-                <button onClick={sendOtpToUser} disabled={sentOtp} style={{ opacity: sentOtp ? 0.5 : 1 }}>SEND OTP</button>
+                <button
+                  onClick={sendOtpToUser}
+                  disabled={sentOtp}
+                  style={{ opacity: sentOtp ? 0.5 : 1 }}
+                >
+                  SEND OTP
+                </button>
               </div>
               <div className="otp-submit-button">
-                <button onClick={confirmOtpOfUser} disabled={otp === ""} style={{ opacity: otp === "" ? 0.5 : 1 }} >
+                <button
+                  onClick={confirmOtpOfUser}
+                  disabled={otp === ""}
+                  style={{ opacity: otp === "" ? 0.5 : 1 }}
+                >
                   {t("confirmationPage.cancellationPolicies.confirm")}
                 </button>
               </div>
             </div>
+            {loader && (
+            <div className="style-loader-wrapper">
+                  <Box sx={{ display: "flex" }}>
+                    <Loader1 />
+                  </Box>
+                </div>
+                 )}
           </div>
+          
         </UnauthenticatedTemplate>
       </Modal>
       {showSnackbar && (

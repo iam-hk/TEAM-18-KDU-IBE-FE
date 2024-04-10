@@ -22,6 +22,8 @@ import {
 } from "../../redux/CheckoutSlice";
 import CustomizedSnackbars from "../../Component/snackbar/CustomizedSnackbars";
 import { Box, CircularProgress } from "@mui/material";
+import Loader2 from "../../Component/Loaders/Loader2/Loader2";
+import Loader1 from "../../Component/Loaders/Loader1";
 export default function ConfirmationPage() {
   const { t } = useTranslation();
   const [totalSummary, setTotalSummary] = useState<boolean>(false);
@@ -176,7 +178,6 @@ export default function ConfirmationPage() {
         import.meta.env.VITE_REACT_APP_API_MGT +
         `/email-booking?id=${id}&email=${userEmail}`;
       const response = await axios.get(
-        // `http://localhost:8000/api/v1/email-booking?id=${id}&email=${userEmail}`
         backendUrl
       );
       setLoader(false);
@@ -243,10 +244,10 @@ export default function ConfirmationPage() {
             {loader && (
               <div className="loader-wrapper-checkoutpage">
                 <Box sx={{ display: "flex" }}>
-                  <CircularProgress />
+                  <Loader1 />
                 </Box>
               </div>
-            )}
+             )} 
             <button className="print_button" onClick={handlePrint}>
               {t("confirmationPage.print")}
             </button>

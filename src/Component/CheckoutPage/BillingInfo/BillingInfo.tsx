@@ -1,21 +1,22 @@
 import { Grid, MenuItem, Select, TextField } from "@mui/material";
 import "./BillingInfo.scss";
-import {
-  State,
-  City,
-  ICountry,
-  ICity,
-  IState,
-} from "country-state-city";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/Store";
 import {
   IBillingInfo,
   setBillingInfo,
-  setCurrentIndex
+  setCurrentIndex,
 } from "../../../redux/CheckoutSlice";
-import { setStates,setCitySlice } from "../../../redux/LocationSlice";
-import { useState } from "react";
+import {
+  ICountry,
+  ICity,
+  IState,
+  Country,
+  City,
+  State,
+} from "country-state-city";
+import { setStates, setCitySlice } from "../../../redux/LocationSlice";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 export function BillingInfo() {
@@ -60,7 +61,9 @@ export function BillingInfo() {
   const cityInSlice = useSelector(
     (state: RootState) => state.loactions.cityInSlice
   );
-  const billISOCode=useSelector((state:RootState)=>state.checkoutRoom.billingInfo.isoCode);
+  const billISOCode = useSelector(
+    (state: RootState) => state.checkoutRoom.billingInfo.isoCode
+  );
   const [countries, setCountries] = useState<ICountry[]>(countriesInSlice);
   const [allStates, setAllStates] = useState<IState[]>(stateInSlice);
   const [allCities, setAllCities] = useState<ICity[]>(cityInSlice);
@@ -77,37 +80,87 @@ export function BillingInfo() {
   const [countryIsoCode, setCountryIsoCode] = useState<string>(billISOCode);
   const [isValidZipForCity, setIsValidZipForCity] = useState<boolean>(true);
   const [isValidCity, setIsValidCity] = useState<boolean>(true);
-  const handleFirstNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setFirstName(event.target.value);
+  const [firstNameError, setFirstNameError] = useState<string>("");
+  const [lastNameError, setLastNameError] = useState<string>("");
+  const [submitted, setSubmitted] = useState(false);
+  const [mailPrimaryError, setMailPrimaryError] = useState<string>("");
+  const [mailSecondaryError, setMailSecondaryError] = useState<string>("");
+  const [zipError, setZipError] = useState<string>("");
+  const [phoneError, setPhoneError] = useState<string>("");
+  const [emailError, setEmailError] = useState<string>("");
+  const [countryError, setCountryError] = useState<string>("");
+  const [cityError, setCityError] = useState<string>("");
+  const [stateError, setStateError] = useState<string>("");
+  const [isValidCityError, setIsValidCityError] = useState<string>("");
+  const handleFirstNameChange = (e) => {
+    const { value } = e.target;
+    setFirstName(value);
+    setFirstNameError(validateFirst());
   };
-  const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLastName(event.target.value);
+
+  const handleLastNameChange = (e) => {
+    const { value } = e.target;
+    setLastName(value);
+    setLastNameError(validateLastName(value));
   };
-  const handleMailPrimaryChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setMailPrimary(event.target.value);
+  const validateFirst=()=>{
+    if (!/^[A-Za-z]*$/.test(firstName)) {
+      return "Please enter only letters";
+    }
+    return "";
+  }
+  const validateFirstName = () => {
+    if (!firstName.trim()) {
+      return "First Name is required";
+    }
+    if (!/^[A-Za-z]*$/.test(firstName)) {
+      return "Please enter only letters";
+    }
+    return "";
+  };
+  const validateLastName = (name: string) => {
+    if (!name.trim()) {
+      return "Last Name is required";
+    }
+    if (!/^[A-Za-z]*$/.test(name)) {
+      return "Please enter only letters";
+    }
+    return "";
+  };
+  const handleMailPrimaryChange = (e) => {
+    const { value } = e.target;
+    setMailPrimary(value);
+    setMailPrimaryError("");
   };
   const handleMailSecondaryChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setMailSecondary(event.target.value);
   };
+
   const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCity(event.target.value);
+    const { value } = event.target;
+    setCity(value);
+    setCityError("");
+    if (value.trim() === "") {
+      setCityError("City is required");
+    } else if (!/^[A-Za-z]*$/.test(value)) {
+      setCityError("Please enter only letters");
+    }
     setIsValidCity(true);
   };
   const handleZipChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsValidZipForCity(true);
     setZip(event.target.value);
+    setZipError("");
   };
   const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(event.target.value);
+    setPhoneError("");
   };
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
+    setEmailError("");
   };
   function checkCityValidation() {
     const isValidCity = allCities.some((cityEach) => {
@@ -115,7 +168,6 @@ export function BillingInfo() {
       const inputCityLowerCase = city.toLowerCase();
       const isValid = cityNameLowerCase === inputCityLowerCase;
       if (isValid) {
-    
       }
       return isValid;
     });
@@ -158,10 +210,45 @@ export function BillingInfo() {
 
   function handleBillingSubmit(event: { preventDefault: () => void }) {
     event.preventDefault();
+    setFirstNameError(validateFirstName(firstName));
+    setLastNameError(validateLastName(lastName));
+    if (mailPrimary.trim() === "") {
+      setMailPrimaryError("Please enter mailing address");
+    }
+    if (!selectedCountry) {
+      setCountryError("Please select a country");
+    }
+    if (!selectedState) {
+      setStateError("Please select a state");
+    }
+    if (!city.trim()) {
+      setCityError("City is required");
+    }
+    if (!zip.trim()) {
+      setZipError("Zip code is required");
+    }
+    if (!phone) {
+      setPhoneError("Please Enter the phone number");
+    }
+    if (!email) {
+      setEmailError("Please Enter the email");
+    }
     checkZipValidation().then((isValid) => {
       if (!checkCityValidation() && isValid) {
-        // console.log("Enter a valid city");
       } else if (checkCityValidation() && isValid) {
+        if (
+          !email ||
+          !zip ||
+          !city ||
+          !phone ||
+          !selectedState ||
+          !selectedCountry ||
+          !mailPrimary ||
+          !lastName ||
+          !firstName
+        ) {
+          return;
+        }
         const billingInfoObject: IBillingInfo = {
           firstName: firstName,
           lastName: lastName,
@@ -173,16 +260,17 @@ export function BillingInfo() {
           zip: zip,
           phone: phone,
           email: email,
-          isoCode:countryIsoCode
+          isoCode: countryIsoCode,
         };
         reduxDispatch(setBillingInfo(billingInfoObject));
         reduxDispatch(setCurrentIndex(2));
-      } 
+      }
     });
   }
   const updateCountry = (event: ICountry) => {
     const updatedCountry = event.target.value.name;
     setSelectedCountry(updatedCountry);
+    setCountryError("");
     const states = State.getStatesOfCountry(`${event.target.value.isoCode}`);
     setAllStates(states);
     const cities = City.getCitiesOfCountry(`${event.target.value.isoCode}`);
@@ -193,6 +281,7 @@ export function BillingInfo() {
   };
   const updateState = (event: string) => {
     setSelectedState(event.target.value);
+    setStateError("");
   };
   function handletravelerInfo() {
     reduxDispatch(setCurrentIndex(0));
@@ -221,28 +310,30 @@ export function BillingInfo() {
                   id="first-name"
                   variant="outlined"
                   className="text-field"
-                  required
                   inputProps={{
                     pattern: "[A-Za-z]*",
                   }}
                   value={firstName}
                   onChange={handleFirstNameChange}
+                  error={firstNameError !== ""}
+                  helperText={firstNameError}
                   onKeyDown={(e) => {
-                    if (e.keyCode === 8 || e.keyCode === 9) {
+                    if (
+                      e.key === "Backspace" ||
+                      e.key === "Tab" ||
+                      e.key === "ArrowLeft" ||
+                      e.key === "ArrowRight"
+                    ) {
                       return;
                     }
-                    const pattern = /^[A-Za-z]*$/;
-                    const inputChar = String.fromCharCode(e.keyCode);
-                    if (!pattern.test(inputChar)) {
+                  
+                    const isAlphabetic = /^[A-Za-z]*$/.test(e.key);
+                    
+                    if (!isAlphabetic) {
                       e.preventDefault();
                     }
                   }}
-                  error={!/^[A-Za-z]*$/.test(firstName)}
-                  helperText={
-                    !/^[A-Za-z]*$/.test(firstName)
-                      ? "Please enter only letters"
-                      : ""
-                  }
+                  
                 />
               </Grid>
             </Grid>
@@ -256,7 +347,7 @@ export function BillingInfo() {
             >
               <Grid item>
                 <label htmlFor="last-name" className="billing-last-name-label">
-                {t("billingInfo.lastName")}
+                  {t("billingInfo.lastName")}
                 </label>
               </Grid>
               <Grid item>
@@ -264,25 +355,26 @@ export function BillingInfo() {
                   id="last-name"
                   variant="outlined"
                   className="text-field"
-                  required
                   inputProps={{
                     pattern: "[A-Za-z]*",
                   }}
                   value={lastName}
                   onChange={handleLastNameChange}
-                  error={!/^[A-Za-z]*$/.test(lastName)}
-                  helperText={
-                    !/^[A-Za-z]*$/.test(lastName)
-                      ? "Please enter only letters"
-                      : ""
-                  }
+                  error={lastNameError !== ""}
+                  helperText={lastNameError}
                   onKeyDown={(e) => {
-                    if (e.keyCode === 8 || e.keyCode === 9) {
+                    if (
+                      e.key === "Backspace" ||
+                      e.key === "Tab" ||
+                      e.key === "ArrowLeft" ||
+                      e.key === "ArrowRight"
+                    ) {
                       return;
                     }
-                    const pattern = /^[A-Za-z]*$/;
-                    const inputChar = String.fromCharCode(e.keyCode);
-                    if (!pattern.test(inputChar)) {
+
+                    const isAlphabetic = /^[A-Za-z]*$/.test(e.key);
+
+                    if (!isAlphabetic) {
                       e.preventDefault();
                     }
                   }}
@@ -312,7 +404,8 @@ export function BillingInfo() {
                   id="mail-primary"
                   variant="outlined"
                   className="text-field"
-                  required
+                  error={mailPrimaryError !== ""}
+                  helperText={mailPrimaryError}
                   value={mailPrimary}
                   onChange={handleMailPrimaryChange}
                 />
@@ -331,7 +424,7 @@ export function BillingInfo() {
                   htmlFor="mail-secondary"
                   className="billing-second-address-label"
                 >
-                 {t("billingInfo.mailingSecondAddress")}
+                  {t("billingInfo.mailingSecondAddress")}
                 </label>
               </Grid>
               <Grid item>
@@ -355,7 +448,7 @@ export function BillingInfo() {
           >
             <Grid item>
               <label htmlFor="country" className="billing-country-label">
-              {t("billingInfo.Country")}
+                {t("billingInfo.Country")}
               </label>
             </Grid>
             <Grid item>
@@ -367,8 +460,9 @@ export function BillingInfo() {
                   <span className="dropdown-span-value">{selectedCountry}</span>
                 )}
                 value={selectedCountry}
-                required
                 onChange={updateCountry}
+                error={countryError !== ""}
+                helperText={"Select a country"}
               >
                 {countries.map((country) => (
                   <MenuItem key={country.isoCode} value={country}>
@@ -389,7 +483,7 @@ export function BillingInfo() {
             >
               <Grid item>
                 <label htmlFor="city" className="billing-city-label">
-                {t("billingInfo.City")}
+                  {t("billingInfo.City")}
                 </label>
               </Grid>
               <Grid item>
@@ -397,22 +491,20 @@ export function BillingInfo() {
                   id="city"
                   variant="outlined"
                   className="text-field"
-                  required
                   value={city}
                   inputProps={{
                     pattern: "[A-Za-z]*",
                   }}
                   onChange={handleCityChange}
-                  error={!/^[A-Za-z]*$/.test(city) || !isValidCity}
+                  error={cityError !== "" || !isValidCity}
                   helperText={
-                    city === ""
-                      ? ""
-                      : !/^[A-Za-z]*$/.test(city)
-                      ? "Please enter only letters"
+                    cityError !== ""
+                      ? cityError
                       : !isValidCity
                       ? "The provided city is invalid"
                       : ""
                   }
+
                 />
               </Grid>
             </Grid>
@@ -427,7 +519,7 @@ export function BillingInfo() {
               >
                 <Grid item>
                   <label htmlFor="state" className="billing-state-label">
-                  {t("billingInfo.State")}
+                    {t("billingInfo.State")}
                   </label>
                 </Grid>
                 <Grid item>
@@ -441,9 +533,25 @@ export function BillingInfo() {
                     )}
                     value={selectedState}
                     disabled={selectedCountry.length == 0}
-                    required
                     onChange={updateState}
+                    error={stateError}
+                    helperText={stateError}
+                    onKeyDown={(e) => {
+                      if (
+                        e.key === "Backspace" ||
+                        e.key === "Tab" ||
+                        e.key === "ArrowLeft" ||
+                        e.key === "ArrowRight"
+                      ) {
+                        return;
+                      }
+                      const pattern = /^[0-9]*$/;
+                      if (!pattern.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
                   >
+                    
                     <MenuItem value="">Select State</MenuItem>
                     {allStates.map((state) => (
                       <MenuItem key={state.isoCode} value={state.name}>
@@ -463,7 +571,7 @@ export function BillingInfo() {
               >
                 <Grid item>
                   <label htmlFor="zip" className="billing-zip-label">
-                  {t("billingInfo.Zip")}
+                    {t("billingInfo.Zip")}
                   </label>
                 </Grid>
                 <Grid item>
@@ -471,7 +579,6 @@ export function BillingInfo() {
                     id="zip"
                     variant="outlined"
                     className="text-field"
-                    required
                     value={zip}
                     inputProps={{
                       pattern: "^[0-9]{4,6}$",
@@ -480,11 +587,14 @@ export function BillingInfo() {
                     }}
                     onChange={handleZipChange}
                     error={
-                      zip !== "" &&
-                      (!/^[0-9]{4,6}$/.test(zip) || !isValidZipForCity)
+                      (zip !== "" &&
+                        (!/^[0-9]{4,6}$/.test(zip) || !isValidZipForCity)) ||
+                      zipError !== ""
                     }
                     helperText={
-                      zip === ""
+                      zipError
+                        ? zipError
+                        : zip === ""
                         ? ""
                         : !/^[0-9]{4,6}$/.test(zip)
                         ? "Please enter a valid zip code (4-6 digits)"
@@ -506,7 +616,6 @@ export function BillingInfo() {
                         e.preventDefault();
                       }
                     }}
-                    
                   />
                 </Grid>
               </Grid>
@@ -522,7 +631,7 @@ export function BillingInfo() {
           >
             <Grid item>
               <label htmlFor="phone" className="billing-phone-label">
-              {t("billingInfo.Phone")}
+                {t("billingInfo.Phone")}
               </label>
             </Grid>
             <Grid item>
@@ -530,7 +639,6 @@ export function BillingInfo() {
                 id="phone"
                 variant="outlined"
                 className="text-field"
-                required
                 type="tel"
                 inputProps={{
                   pattern: "[0-9]{10}",
@@ -539,19 +647,26 @@ export function BillingInfo() {
                 }}
                 value={phone}
                 onChange={handlePhoneChange}
-                error={phone !== "" && !/^[0-9]{10}$/.test(phone)}
+                error={
+                  (phone !== "" && !/^[0-9]{10}$/.test(phone)) ||
+                  phoneError !== ""
+                }
                 helperText={
-                  phone !== ""
+                  phoneError
+                    ? phoneError
+                    : phone !== ""
                     ? !/^[0-9]{10}$/.test(phone)
                       ? "Please enter a valid 10-digit phone number"
                       : ""
                     : ""
                 }
                 onKeyDown={(e) => {
-                  if (  e.key === "Backspace" ||
-                  e.key === "Tab" ||
-                  e.key === "ArrowLeft" ||
-                  e.key === "ArrowRight") {
+                  if (
+                    e.key === "Backspace" ||
+                    e.key === "Tab" ||
+                    e.key === "ArrowLeft" ||
+                    e.key === "ArrowRight"
+                  ) {
                     return;
                   }
                   const pattern = /^[0-9]*$/;
@@ -572,7 +687,7 @@ export function BillingInfo() {
           >
             <Grid item>
               <label htmlFor="email" className="billing-email-label">
-              {t("billingInfo.Email")}
+                {t("billingInfo.Email")}
               </label>
             </Grid>
             <Grid item>
@@ -581,16 +696,22 @@ export function BillingInfo() {
                 type="email"
                 variant="outlined"
                 className="text-field"
-                required
                 value={email}
                 onChange={handleEmailChange}
                 error={
-                  email !== "" &&
-                  !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)
+                  (email !== "" &&
+                    !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(
+                      email
+                    )) ||
+                  emailError !== ""
                 }
                 helperText={
-                  email !== "" &&
-                  !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)
+                  emailError
+                    ? emailError
+                    : email !== "" &&
+                      !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(
+                        email
+                      )
                     ? "Please enter a valid email address"
                     : ""
                 }
@@ -600,7 +721,7 @@ export function BillingInfo() {
         </div>
         <div className="billing-button-wrapper">
           <button className="edit-traveler" onClick={handletravelerInfo}>
-          {t("billingInfo.editTraveller")}
+            {t("billingInfo.editTraveller")}
           </button>
           <button className="billing-button">{t("billingInfo.button")}</button>
         </div>
