@@ -76,7 +76,6 @@ export default function RoomModal(props: IRoomModal) {
     reduxDispatch(setStepperState(2));
   }
   function updateItinerary(index: number) {
-    console.log(props.room.currentRoom, "hey");
     if (index == -1) {
       const promo = {
         promoCode: "",

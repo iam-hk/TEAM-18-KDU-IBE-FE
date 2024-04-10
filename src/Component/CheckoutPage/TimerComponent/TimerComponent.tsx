@@ -9,7 +9,7 @@ const TimerDisplay = styled("div")({
   gap: "8px",
   fontSize: "1.8rem",
   color: "white",
-  backgroundColor: "#5a52adb5",
+  backgroundColor: "#f81414b5",
   padding: "8px",
   justifyContent: "center",
 });

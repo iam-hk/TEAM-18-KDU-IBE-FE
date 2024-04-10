@@ -1,13 +1,28 @@
-.cancellation-policies-modal{
-    padding: 40px 30px;
-    .cancellation-policies-heading{
-        font-size: 1.2rem;
-        margin-bottom: 20px;
-    }
-    .cancellation-policies-wrapper{
-        li{
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-    }
-}
+.cancellation-policies-modal {
+    min-width: 40vw;
+    min-height: 40vh;
+    padding: 40px; 
+    background-color: #fff; 
+  }
+  
+  .cancellation-policies-heading {
+    font-size: 1.6rem; 
+    margin-bottom: 20px;
+    color: #333; 
+  }
+  
+  .cancellation-policies-wrapper {
+    padding-left: 0;
+  }
+  
+  .cancellation-policies-wrapper li {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #666; 
+  }
+  
+  .cancellation-policies-wrapper li:hover {
+    color: #000; 
+    cursor: pointer; 
+    transition: color 0.3s ease;
+  }     

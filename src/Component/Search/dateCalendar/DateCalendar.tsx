@@ -222,7 +222,6 @@ export function DateCalender() {
                       opacity:isDatePast(day) || isNaN(price) || !price ?
                       "0" : "1"
                     }}
-                    // style={price ? { opacity: "1" } : { opacity: "0" }}
                   >
                     {(CurrencySymbols as any)[currentSelectedCurrency]}
                     {updatePrice(price)}{" "}

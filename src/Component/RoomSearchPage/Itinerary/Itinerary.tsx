@@ -39,9 +39,10 @@ export function Itinerary() {
     reduxDispatch(setTimeLeft(remainingTime > 0 ? remainingTime : 0));
 
     const timerId = setInterval(() => {
-      if (timeLeft < 0) {
-        reduxDispatch(setTimeLeft(0));
-        navigate("/");
+      if (timeLeftRef.current == 0) {
+        setDefaultValues();
+        reduxDispatch(setTimeLeft(600));
+        window.location.href=("/");
       } else {
         timeLeftRef.current -= 1
         reduxDispatch(setTimeLeft(timeLeftRef.current));

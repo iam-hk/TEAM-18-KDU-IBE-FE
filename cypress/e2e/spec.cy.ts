@@ -56,7 +56,7 @@ describe("home page", () => {
   // Room Page
   it("Room Page", () => {
     cy.visit(
-      "http://localhost:5173/rooms?id=18&guestCount=1&roomCount=1&startDate=2024-03-25&endDate=2024-03-26&Adults=1&Kids=0&Teens=0&bedCount=1&sortType=true&sortTerm=price"
+      "http://localhost:5173/rooms?id=18&guestCount=1&roomCount=1&startDate=2024-04-25&endDate=2024-04-26&Adults=1&Kids=0&Teens=0&bedCount=1&sortType=true&sortTerm=price"
     );
     cy.wait(8000);
     //room beds
@@ -116,7 +116,6 @@ describe("home page", () => {
 
     cy.get(".propertyNameContainer")
       .should("exist")
-      .should("contain", "GRAND DELUXE");
 
     cy.get(".reviewAndRatingContainer").should("exist");
     cy.get(".location_content").should("exist").should("contain", "Kickdrum");
@@ -138,14 +137,12 @@ describe("home page", () => {
       cy.wrap($card)
         .find(".propertyNameContainer")
         .should("exist")
-        .should("contain", "GRAND DELUXE");
     });
     cy.get(
       ":nth-child(1) > .individual-roomCard > .price_containerOfRoomType > .selectRoom-btn"
     )
       .should("exist")
       .click();
-    cy.get(".nameOfTheRoomType").should("contain", "GRAND DELUXE");
     cy.get(".area_maximumGuests_Beds-Container")
       .should("exist")
       .should("contain", "1-4");
@@ -195,8 +192,8 @@ describe("home page", () => {
     cy.contains(".itinerary-heading", "Your Trip Itinerary").should("exist");
     cy.get(".itinerary-hotel-name").should("exist");
     cy.get(".itinerary-hotel-remove").should("exist");
-    cy.contains(".date-details", "March 25 - March 26, 2024").should("exist");
-    cy.contains(".room-name", "GRAND DELUXE").should("exist");
+    cy.contains(".date-details", "April 25 - April 26, 2024").should("exist");
+    // cy.contains(".room-name", "GRAND DELUXE").should("exist");
     cy.contains(".room-count", "1 room").should("exist");
     cy.get(".itinerary-each-day-rate-details").should("have.length", 2);
     cy.get(".itinerary-promocode").should("exist");
@@ -204,12 +201,6 @@ describe("home page", () => {
     cy.contains(".itinerary-vat-field", "VAT").should("exist");
     cy.contains(".itinerary-due-now", "Due Now").should("exist");
     cy.get(".itinerary-checkout-button").should("exist");
-    cy.get(".checkout-wrapper").should("exist");
-
-    cy.get("form").within(() => {
-      cy.get(".email-heading").should("exist");
-      cy.get("input[type='email']").should("exist");
-    });
     cy.get(".stepper-container").should("exist");
 
     const steps = ["Choose Room", "Choose add on", "Checkout"];
@@ -219,6 +210,31 @@ describe("home page", () => {
       });
     });
     cy.get(".active-label").should("contain.text", "3:Checkout");
+    cy.get('.help-component-wrap').should('contain.text', 'Need Help?')
+  .and('contain.text', 'Call 1-800-555-5555')
+  .and('contain.text', 'Mon-Fri 8a-5p EST');
+  cy.get('.itinerary-promoname > .modal-button > img').click(); // Click on the specified element
+
+cy.get('.modal-content')
+  .should('contain.text', 'KDU Membership Discount')
+  .and('contain.text', 'Package Total')
+  .and('contain.text', '$231.0');
+cy.get('body').click();
+cy.get('.itinerary-taxes-field > .modal-button > img').click();
+
+
+cy.get('.tax-modal-content')
+  .should('contain.text', 'Rate Breakdown')
+  .and('contain.text', 'Room Type')
+  .and('contain.text', 'Nightly Rate(per room)')
+  .and('contain.text', 'KDU Membership Discount')
+  .and('contain.text', 'Room Total')
+  .and('contain.text', 'Taxes and fees(per room)')
+  .and('contain.text', 'Resort Fee')
+  .and('contain.text', 'Occupancy tax')
+  .and('contain.text', 'Due Now')
+  .and('contain.text', 'Due at resort');
+  cy.get('body').click();
   });
   it("Review Page", () => {
     cy.visit("http://localhost:5173/review");

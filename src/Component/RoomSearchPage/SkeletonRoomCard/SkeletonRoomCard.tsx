@@ -1,5 +1,4 @@
 import "./SkeletonRoomCard.scss";
-// import "../RoomCard/RoomCard.scss"
 export default function SkeletonRoomCard() {
   return (
         <div className="room-display">
