@@ -1,9 +1,10 @@
+@import "../../../Constants/Colors.scss";
 .help-component-wrap {
     width: 100%;
     padding: 20px 20px;
     padding-bottom: 50px;
     border-radius: 5px;
-    background-color: #eff0f1;
+    background-color: $itinerary-bg;
     margin-bottom: 30px;
     .help-component-heading {
         font-size: 1.1rem;

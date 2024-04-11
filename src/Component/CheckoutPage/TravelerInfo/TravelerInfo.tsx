@@ -32,7 +32,6 @@ export function TravelerInfo() {
   const [email, setEmail] = useState(emailSlice);
   const [submitted, setSubmitted] = useState(false);
   const [firstNameError, setFirstNameError] = useState('');
-  const [lastNameError, setLastNameError] = useState('');
   const [phoneError, setPhoneError] = useState('');
   const [emailError, setEmailError] = useState('');
   const handleFirstNameChange = (value:string) => {
@@ -44,9 +43,6 @@ export function TravelerInfo() {
 
   const handleLastNameChange = (value:string) => {
     setLastName(value);
-    if (submitted) {
-      setLastNameError(!value.trim() ? 'Please enter a last name.' : !/^[a-zA-Z]+$/.test(value) ? 'Please enter a valid last name.' : '');
-    }
   };
 
   const handlePhoneChange = (value:string) => {
@@ -68,11 +64,10 @@ export function TravelerInfo() {
     setSubmitted(true);
 
     setFirstNameError(!firstName.trim() ? 'Please enter a first name.' : !/^[a-zA-Z]+$/.test(firstName) ? 'Please enter a valid first name.' : '');
-    setLastNameError(!lastName.trim() ? 'Please enter a last name.' : !/^[a-zA-Z]+$/.test(lastName) ? 'Please enter a valid last name.' : '');
     setPhoneError(!phone.trim() ? 'Please enter a phone number.' : !/^[0-9]{10}$/.test(phone) ? 'Please enter a valid 10-digit phone number.' : '');
     setEmailError(!email.trim() ? 'Please enter an email address.' : !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email) ? 'Please enter a valid email address.' : '');
 
-    if (firstName.trim() && /^[a-zA-Z]+$/.test(firstName) && lastName.trim() && /^[a-zA-Z]+$/.test(lastName) && phone.trim() && /^[0-9]{10}$/.test(phone) && email.trim() && /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
+    if (firstName.trim() && /^[a-zA-Z]+$/.test(firstName) &&  phone.trim() && /^[0-9]{10}$/.test(phone) && email.trim() && /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
       const travelerInfo: ITravelerInfo = {
         tfirstName: firstName,
         tlastName: lastName,
@@ -147,8 +142,6 @@ export function TravelerInfo() {
                 variant="outlined"
                 className="text-field"
                 value={lastName}
-                error={!!lastNameError}
-                helperText={lastNameError}
                 onBlur={() => handleLastNameChange(lastName)}
                 onChange={(e) => handleLastNameChange(e.target.value)}
                  onKeyDown={(e) => {

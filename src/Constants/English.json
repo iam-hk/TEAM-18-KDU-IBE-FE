@@ -271,6 +271,7 @@
       "cancellation":"Cancellation Policy",
       "eachNight":"night total",
       "reservation":"Upcoming reservation",
+      "cancelled":"Cancelled Booking",
       "print":"Print",
       "Email":"Email",
       "roomTotal":{

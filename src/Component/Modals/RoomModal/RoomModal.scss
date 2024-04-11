@@ -1,6 +1,6 @@
+@import "../../../Constants/Colors.scss";
 .react-responsive-modal-modal {
   padding: 0;
-  // top: 15%;
   max-width: 80vw;
 }
 .modal-Container_custom {
@@ -45,7 +45,7 @@
             justify-content: start;
             gap: 30px;
             font-size: 1rem;
-            color: #5d5d5d;
+            color: $itinerary-grey;
             font-weight: 400;
             .maximumGuest_inRoomType {
               display: flex;
@@ -130,7 +130,7 @@
   top: 32vh;
   left: 10%;
   font-size: 2.5rem;
-  color: #fff;
+  color: $white;
   @media (max-width: 1080px) {
     font-size: 2rem;
   }
@@ -143,10 +143,10 @@
 }
 .show-message {
   margin-top: 3px;
-  color: rgb(245, 28, 28);
+  color:$light-red;
 }
 .individualDeal_rateContainer {
-  border: 1px solid #eff0f1;
+  border: 1px solid $dark-white;
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
@@ -165,7 +165,7 @@
     }
     .individual_promotion_description {
       font-weight: 400;
-      color: #5d5d5d;
+      color: $itinerary-grey;
       font-size: 1rem;
     }
     @media (max-width: 620px) {
@@ -178,7 +178,7 @@
     display: flex;
     padding: 3%;
     flex-direction: column;
-    background-color: #eff0f1;
+    background-color: $dark-white;
     text-align: right;
     width: 30%;
     min-width: 100px;
@@ -188,13 +188,13 @@
     }
     .perNightContainer {
       font-size: 0.8rem;
-      color: #5d5d5d;
+      color: $itinerary-grey;
       font-weight: 400;
       margin-bottom: 1rem;
     }
     .selectPackageButton {
       background-color: #26266d;
-      color: #fff;
+      color: $white;
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
       padding-left: 0.25rem;
@@ -218,7 +218,7 @@
 
   .promoCode_title {
     font-weight: 400;
-    color: #2f2f2f;
+    color: $dark-grey;
     margin-bottom: 0.7rem;
   }
   .promocode-wrapper {
@@ -229,14 +229,14 @@
     width: 25%;
     height: 6vh;
     font-size: 1.4rem;
-    border: 1px solid #c1c2c2;
+    border: 1px solid $grey;
     border-radius: 5px;
     padding-left: 1rem;
   }
   .apply_promoCode_button {
     margin-left: 1rem;
-    background-color: #26266d;
-    color: #fff;
+    background-color: $light-blue-color;
+    color: $white;
     border: none;
     height: 6vh;
     width: 6vw;

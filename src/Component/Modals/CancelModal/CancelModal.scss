@@ -1,3 +1,4 @@
+@import "../../../Constants//Colors.scss";
 .cancel-modal-wrapper{
     min-width: 30vw;
     padding: 50px 40px;
@@ -13,7 +14,7 @@
             height: 50px;
             border-radius: 4px;
             outline: none;
-            border: 1px solid black;
+            border: 1px solid $black-color;
             padding-left: 10px;
             font-size: 1rem;
         }
@@ -25,18 +26,17 @@
         .send-otp-button{
             button{
                 padding: 16px 22px;
-                background-color: #26266D;
-                color: #ffffff;
+                background-color: $light-blue-color;
+                color: $header-background-color;
                 border: none;
                 outline: none;
                 border-radius: 5px;
                 font-size: 1rem;
-                border-radius: 5px;
             }
             button:hover {
                 
-                background-color: rgb(47, 69, 164);
-                color: white;
+                background-color: $cyan-light;
+                color: $white;
             }
             
         }
@@ -50,17 +50,16 @@
      
         button{
             padding: 16px 22px;
-            background-color: #26266D;
-            color: #ffffff;
+            background-color: $light-blue-color;
+            color: $header-background-color;
             border: none;
             outline: none;
             border-radius: 5px;
             font-size: 1rem;
-            border-radius: 5px
         }
         button:hover {
-            background-color: rgb(47, 69, 164);
-            color: white;
+            background-color: $cyan-light;
+            color: $white;
         }
     }
     
@@ -81,16 +80,16 @@
         position: relative;
         button{
             padding: 23px 30px;
-            background-color: #26266D;
-            color: #ffffff;
+            background-color: $light-blue-color;
+            color: $header-background-color;
             border: none;
             font-size: 1rem;
             outline: none;
             border-radius: 5px;
         }
         button:hover {
-            background-color: rgb(47, 69, 164);
-            color: white;
+            background-color: $cyan-light;
+            color: $white;
         }
     }
 }

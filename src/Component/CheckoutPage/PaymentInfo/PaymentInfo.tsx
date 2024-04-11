@@ -1,7 +1,6 @@
 import { Grid, TextField } from "@mui/material";
 import "./PaymentInfo.scss";
 import { useEffect, useState } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
 import {
@@ -25,6 +24,7 @@ import { decodeCardNumber } from "../../../utils/CreditCard/creditCardDecoder";
 import CustomizedSnackbars from "../../../Component/snackbar/CustomizedSnackbars";
 import axios from "axios";
 import Loader2 from "../../Loaders/Loader2/Loader2";
+import { setBookingStatus } from "../../../redux/StepperSlice";
 export function PaymentInfo() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -37,6 +37,9 @@ export function PaymentInfo() {
   );
   const expYYSlice = useSelector(
     (state: RootState) => state.checkoutRoom.paymentInfo.expYY
+  );
+  const travelerEmail = useSelector(
+    (state: RootState) => state.checkoutRoom.travelerInfo.temail
   );
   const Sliceguests = useSelector(
     (state: RootState) => state.propertyConfigInfo.guests
@@ -90,7 +93,7 @@ export function PaymentInfo() {
   const [cardMonthError, setCardMonthError] = useState<string>("");
   const [cardCVVError, setCardCVVError] = useState<string>("");
   const [reqError, setReqError] = useState<string>("");
-  const [keepCheck,setKeepCheck]=useState<boolean>(false);
+  const [keepCheck, setKeepCheck] = useState<boolean>(false);
   const roomName = useSelector(
     (state: RootState) => state.itineraryInfo.roomName
   );
@@ -177,6 +180,32 @@ export function PaymentInfo() {
     };
     return checkoutPageData;
   }
+  // const sendInfoToBackend = async () => {
+  //   try {
+  //     const data = createObjectToSend();
+  //     let url = import.meta.env.VITE_REACT_APP_POST_REQ;
+  //     url += "/book";
+  //     const response = await axios.post(url, data);
+  //     setLoader(false);
+  //     setSuccess(true);
+  //     setMessage(`Your Booking id is ${response.data.toString()}`);
+  //     setShowSnackbar(true);
+  //     //add here
+  //     setTimeout(() => {
+  //       navigate(`/confirmation?id=${response.data}`);
+  //     }, 3000);
+  //   } catch (error) {
+  //     setLoader(false);
+  //     setIsBookingClicked(false);
+  //     const errorMessage =
+  //       error.response?.data?.message || "Error occurred while booking";
+  //     setShowSnackbar(true);
+  //     setMessage(errorMessage);
+  //     const timeoutId = setTimeout(() => {
+  //      navigate("/");
+  //     }, 4000);
+  //   }
+  // };
   const sendInfoToBackend = async () => {
     try {
       const data = createObjectToSend();
@@ -186,7 +215,14 @@ export function PaymentInfo() {
       setLoader(false);
       setSuccess(true);
       setMessage(`Your Booking id is ${response.data.toString()}`);
+      reduxDispatch(setBookingStatus(true));
       setShowSnackbar(true);
+
+      const backendUrl =
+        import.meta.env.VITE_REACT_APP_API_MGT +
+        `/email-booking?id=${response.data}&email=${travelerEmail}`;
+      const emailBookingResponse = await axios.get(backendUrl);
+
       setTimeout(() => {
         navigate(`/confirmation?id=${response.data}`);
       }, 3000);
@@ -198,10 +234,11 @@ export function PaymentInfo() {
       setShowSnackbar(true);
       setMessage(errorMessage);
       const timeoutId = setTimeout(() => {
-       navigate("/");
+        navigate("/");
       }, 4000);
     }
   };
+
   function updatePrice(price: number) {
     return (price * currentPrice[currentSelectedCurrency]).toFixed(1);
   }
@@ -221,13 +258,13 @@ export function PaymentInfo() {
       (fullExpYear === currentYear && expMonth > currentMonth)
     ) {
       setIsDateValid(true);
-      return false; 
+      return false;
     } else if (
       fullExpYear < currentYear ||
       (fullExpYear === currentYear && expMonth < currentMonth)
     ) {
       setIsDateValid(false);
-      return true; 
+      return true;
     } else {
       setIsDateValid(true);
       return false;
@@ -272,34 +309,32 @@ export function PaymentInfo() {
     setCardCVVError("");
   }
   function handlePolicyChange() {
+    if (!termsAndPolicies) {
+      onOpenModal1();
+    }
     setTermsAndPolicies(!termsAndPolicies);
+
     setKeepCheck(false);
     setReqError("");
   }
   function checkValidations() {
-    if(!cardNumber)
-      {
-        setCardNumberError("Please Enter Card Number");
-      }
-      if(!cardMonth)
-        {
-          setCardMonthError("Please Enter Card Month");
-        }
-      if(!cardYear)
-        {
-          setCardYearError("Please Enter Card Year");
-        }
-      if(!CVV)
-        {
-          setCardCVVError("Please Enter CVV ");
-        }
-        if(termsAndPolicies)
-          {
-            setKeepCheck(false);
-          }
-          else{
-            setKeepCheck(true);
-          }
+    if (!cardNumber) {
+      setCardNumberError("Please Enter Card Number");
+    }
+    if (!cardMonth) {
+      setCardMonthError("Please Enter Card Month");
+    }
+    if (!cardYear) {
+      setCardYearError("Please Enter Card Year");
+    }
+    if (!CVV) {
+      setCardCVVError("Please Enter CVV ");
+    }
+    if (termsAndPolicies) {
+      setKeepCheck(false);
+    } else {
+      setKeepCheck(true);
+    }
     if (isCardExpired()) {
       setIsDateValid(false);
       return false;
@@ -307,11 +342,17 @@ export function PaymentInfo() {
     if (!termsAndPolicies) {
       return false;
     }
-   
-    if(!isValidCreditCardNumber(cardNumber)||!cardMonth||!cardYear||!CVV||isCardExpired()||!setKeepCheck)
-      {
-          return false;
-      }
+
+    if (
+      !isValidCreditCardNumber(cardNumber) ||
+      !cardMonth ||
+      !cardYear ||
+      !CVV ||
+      isCardExpired() ||
+      !setKeepCheck
+    ) {
+      return false;
+    }
     return true;
   }
   function handleEditBilling(event: { preventDefault: () => void }) {
@@ -320,8 +361,8 @@ export function PaymentInfo() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (isBookingClicked) {
-        return;
-      }
+      return;
+    }
     let adultCount = 0;
     let childCount = 0;
 
@@ -398,14 +439,22 @@ export function PaymentInfo() {
                     variant="outlined"
                     className="text-field"
                     value={cardNumber}
-                    error={!!cardNumberError || ((cardNumber)&&!isValidCreditCardNumber(cardNumber))}
-                    helperText={cardNumberError ||((cardNumber)&& !isValidCreditCardNumber(cardNumber)) ? "Please enter a valid card number" : ""}
+                    error={
+                      !!cardNumberError ||
+                      (cardNumber && !isValidCreditCardNumber(cardNumber))
+                    }
+                    helperText={
+                      cardNumberError ||
+                      (cardNumber && !isValidCreditCardNumber(cardNumber))
+                        ? "Please enter a valid card number"
+                        : ""
+                    }
                     onKeyDown={(e) => {
                       if (
                         e.key === "Backspace" ||
                         e.key === "Tab" ||
                         e.key === "ArrowLeft" ||
-                        e.key === "ArrowRight"||
+                        e.key === "ArrowRight" ||
                         e.key === "-"
                       ) {
                         return;
@@ -445,7 +494,8 @@ export function PaymentInfo() {
                         maxLength: 2,
                       }}
                       error={
-                        (cardMonth !== "" && !/^(0?[1-9]|1[0-2])$/.test(cardMonth)) ||
+                        (cardMonth !== "" &&
+                          !/^(0?[1-9]|1[0-2])$/.test(cardMonth)) ||
                         cardMonthError !== "" ||
                         (!isDateValid && cardMonth !== "")
                       }
@@ -453,10 +503,9 @@ export function PaymentInfo() {
                         cardMonth !== "" &&
                         !/^(0?[1-9]|1[0-2])$/.test(cardMonth)
                           ? "Please enter a valid month (01-12)"
-                          : cardMonthError ||
-                            (!isDateValid && cardMonth !== "")
-                            ? cardMonthError || "Card already expired"
-                            : ""
+                          : cardMonthError || (!isDateValid && cardMonth !== "")
+                          ? cardMonthError || "Card already expired"
+                          : ""
                       }
                       onKeyDown={(e) => {
                         if (
@@ -499,16 +548,19 @@ export function PaymentInfo() {
                       }}
                       value={cardYear}
                       error={
-                        cardYear !== "" &&
-                        (!/^\d{2}$/.test(cardYear) ||
-                          parseInt(cardYear, 10) < new Date().getFullYear() % 100) ||
+                        (cardYear !== "" &&
+                          (!/^\d{2}$/.test(cardYear) ||
+                            parseInt(cardYear, 10) <
+                              new Date().getFullYear() % 100)) ||
                         cardYearError !== ""
                       }
                       helperText={
-                        cardYear !== "" &&
-                        ((!/^\d{2}$/.test(cardYear) && "Please enter a valid 2-digit year") ||
-                          (parseInt(cardYear, 10) < new Date().getFullYear() % 100 &&
-                            "Year must be greater than current year")) ||
+                        (cardYear !== "" &&
+                          ((!/^\d{2}$/.test(cardYear) &&
+                            "Please enter a valid 2-digit year") ||
+                            (parseInt(cardYear, 10) <
+                              new Date().getFullYear() % 100 &&
+                              "Year must be greater than current year"))) ||
                         cardYearError
                       }
                       onKeyDown={(e) => {
@@ -570,11 +622,12 @@ export function PaymentInfo() {
                     }
                   }}
                   error={
-                    (((CVV)&&!/^[0-9]{3,4}$/.test(CVV)) || cardCVVError !== "")
+                    (CVV && !/^[0-9]{3,4}$/.test(CVV)) || cardCVVError !== ""
                   }
                   helperText={
-                    (((CVV)&&!/^[0-9]{3,4}$/.test(CVV)) || cardCVVError !== "")
-                      ? cardCVVError || "Please enter a valid CVV (3 or 4 digits)"
+                    (CVV && !/^[0-9]{3,4}$/.test(CVV)) || cardCVVError !== ""
+                      ? cardCVVError ||
+                        "Please enter a valid CVV (3 or 4 digits)"
                       : ""
                   }
                   onChange={(e) => handleCVV(e.target.value)}
@@ -590,7 +643,7 @@ export function PaymentInfo() {
               </div>
             </div>
             <div className="terms-policies">
-              <input type="checkbox"  onClick={handlePolicyChange} />
+              <input type="checkbox" onClick={handlePolicyChange} />
               <div className="terms-test">
                 {t("paymentInfoData.termsPart1")}{" "}
                 <span className="terms-button" onClick={onOpenModal1}>
@@ -632,7 +685,7 @@ export function PaymentInfo() {
                   <Loader2 />
                 </Box>
               </div>
-             )}
+            )}
           </div>
         </div>
       </form>

@@ -167,8 +167,6 @@ export function BillingInfo() {
       const cityNameLowerCase = cityEach.name.toLowerCase();
       const inputCityLowerCase = city.toLowerCase();
       const isValid = cityNameLowerCase === inputCityLowerCase;
-      if (isValid) {
-      }
       return isValid;
     });
 
@@ -210,8 +208,7 @@ export function BillingInfo() {
 
   function handleBillingSubmit(event: { preventDefault: () => void }) {
     event.preventDefault();
-    setFirstNameError(validateFirstName(firstName));
-    setLastNameError(validateLastName(lastName));
+    setFirstNameError(validateFirstName());
     if (mailPrimary.trim() === "") {
       setMailPrimaryError("Please enter mailing address");
     }
@@ -235,6 +232,7 @@ export function BillingInfo() {
     }
     checkZipValidation().then((isValid) => {
       if (!checkCityValidation() && isValid) {
+        console.log(city)
       } else if (checkCityValidation() && isValid) {
         if (
           !email ||
@@ -244,7 +242,6 @@ export function BillingInfo() {
           !selectedState ||
           !selectedCountry ||
           !mailPrimary ||
-          !lastName ||
           !firstName
         ) {
           return;
@@ -360,8 +357,6 @@ export function BillingInfo() {
                   }}
                   value={lastName}
                   onChange={handleLastNameChange}
-                  error={lastNameError !== ""}
-                  helperText={lastNameError}
                   onKeyDown={(e) => {
                     if (
                       e.key === "Backspace" ||

@@ -1,8 +1,9 @@
+@import "../../../Constants//Colors.scss";
 .modal-content {
     min-width: 60vw;
     min-height: 60vh;
-    padding: 30px;
-    background-color: #fff;
+    padding: 50px;
+    background-color: $white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -10,7 +11,7 @@
   .terms-heading {
     font-size: 1.6rem;
     margin-bottom: 20px;
-    color: #333;
+    color: $charcoal;
   }
   
   .terms-points ul {
@@ -20,12 +21,12 @@
   .terms-points li {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: #666;
+    color: $medium-grey;
   }
   
   
   .terms-points li:hover {
-    color: #000;
+    color: $black-color;
     cursor: pointer;
     transition: color 0.3s ease;
   }

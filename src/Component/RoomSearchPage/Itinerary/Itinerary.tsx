@@ -40,7 +40,7 @@ export function Itinerary() {
 
     const timerId = setInterval(() => {
       if (timeLeftRef.current == 0) {
-        setDefaultValues();
+        reduxDispatch(setDefaultValues());
         reduxDispatch(setTimeLeft(600));
         window.location.href=("/");
       } else {
