@@ -180,32 +180,6 @@ export function PaymentInfo() {
     };
     return checkoutPageData;
   }
-  // const sendInfoToBackend = async () => {
-  //   try {
-  //     const data = createObjectToSend();
-  //     let url = import.meta.env.VITE_REACT_APP_POST_REQ;
-  //     url += "/book";
-  //     const response = await axios.post(url, data);
-  //     setLoader(false);
-  //     setSuccess(true);
-  //     setMessage(`Your Booking id is ${response.data.toString()}`);
-  //     setShowSnackbar(true);
-  //     //add here
-  //     setTimeout(() => {
-  //       navigate(`/confirmation?id=${response.data}`);
-  //     }, 3000);
-  //   } catch (error) {
-  //     setLoader(false);
-  //     setIsBookingClicked(false);
-  //     const errorMessage =
-  //       error.response?.data?.message || "Error occurred while booking";
-  //     setShowSnackbar(true);
-  //     setMessage(errorMessage);
-  //     const timeoutId = setTimeout(() => {
-  //      navigate("/");
-  //     }, 4000);
-  //   }
-  // };
   const sendInfoToBackend = async () => {
     try {
       const data = createObjectToSend();
