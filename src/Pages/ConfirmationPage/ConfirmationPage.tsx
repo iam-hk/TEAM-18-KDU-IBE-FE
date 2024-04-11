@@ -24,6 +24,7 @@ import CustomizedSnackbars from "../../Component/snackbar/CustomizedSnackbars";
 import { Box, CircularProgress } from "@mui/material";
 import Loader2 from "../../Component/Loaders/Loader2/Loader2";
 import Loader1 from "../../Component/Loaders/Loader1";
+import { setBookingStatus } from "../../redux/StepperSlice";
 export default function ConfirmationPage() {
   const { t } = useTranslation();
   const [totalSummary, setTotalSummary] = useState<boolean>(false);
@@ -35,7 +36,7 @@ export default function ConfirmationPage() {
   const [bookingActive, setBookingActive] = useState(false);
   const [id, setId] = useState("0");
   const reduxDispatch: AppDispatch = useDispatch();
-
+  const bookingIsActive=useSelector((state:RootState)=>state.stepper.isActive);
   const maxDays = useSelector(
     (state: RootState) => state.tenantInfo.maximumDays
   );
@@ -121,6 +122,7 @@ export default function ConfirmationPage() {
       const result = await bookingDetails.data;
       setBookingActive(result.active);
       setId(bookingId);
+      reduxDispatch(setBookingStatus(result.active));
       reduxDispatch(setTravlerInfo(result.bookingDetails.travelerInfo));
       reduxDispatch(setBillingInfo(result.bookingDetails.billingInfo));
       reduxDispatch(setPaymentInfo(result.bookingDetails.paymentInfo));
@@ -177,9 +179,7 @@ export default function ConfirmationPage() {
       const backendUrl =
         import.meta.env.VITE_REACT_APP_API_MGT +
         `/email-booking?id=${id}&email=${userEmail}`;
-      const response = await axios.get(
-        backendUrl
-      );
+      const response = await axios.get(backendUrl);
       setLoader(false);
       if (
         response.data.message === "Confirmation of Booking Sent Successfully"
@@ -221,11 +221,11 @@ export default function ConfirmationPage() {
     const monthIndex = monthNumber - 1;
     return months[monthIndex];
   };
-  window.onpopstate = function(event) {
-    window.location.href = '/';
+  window.onpopstate = function (event) {
+    window.location.href = "/";
   };
-  const greenSpanClass = bookingActive ? "green-span" : "";
-  const redSpanClass = !bookingActive ? "red-span" : "";
+  const greenSpanClass = bookingIsActive ? "green-span" : "";
+  const redSpanClass = !bookingIsActive ? "red-span" : "";
   return (
     <>
       <div className="confirmation_main_container" id="printable_content">
@@ -233,12 +233,21 @@ export default function ConfirmationPage() {
         <CancellationPolicies open={openModal2} onClose={onCloseModal2} />
         <div className="bookingId_print_or_email_container">
           <div className="reservation_id_container">
-            {t("confirmationPage.reservation")}{" "}
-            <span
-              className={`confirmation-page-id ${greenSpanClass} ${redSpanClass}`}
-            >
-              #{id}
-            </span>
+            {!bookingIsActive ? (
+              <>
+                {t("confirmationPage.cancelled")}{"  "}
+                <span className={`confirmation-page-id ${redSpanClass}`}>
+                  #{id}
+                </span>
+              </>
+            ) : (
+              <>
+                {t("confirmationPage.reservation")}{" "}
+                <span className={`confirmation-page-id ${greenSpanClass}`}>
+                  #{id}
+                </span>
+              </>
+            )}
           </div>
           <div className="print_or_email_box">
             {loader && (
@@ -247,11 +256,11 @@ export default function ConfirmationPage() {
                   <Loader1 />
                 </Box>
               </div>
-             )} 
+            )}
             <button className="print_button" onClick={handlePrint}>
               {t("confirmationPage.print")}
             </button>
-            <button className="email_button" onClick={sendConfirmationEmail}>
+            <button className="email_button" onClick={sendConfirmationEmail}  style={{ opacity: bookingIsActive ? 1 : 0.5 }} disabled={!bookingIsActive}>
               {t("confirmationPage.Email")}
             </button>
           </div>
@@ -276,7 +285,7 @@ export default function ConfirmationPage() {
                   </span>
                 </div>
               </div>
-              {bookingActive && (
+              {bookingIsActive && (
                 <div className="cancel_button_container">
                   <button className="cancel_button" onClick={onOpenModal1}>
                     {t("confirmationPage.cancelRoom")}
@@ -616,7 +625,7 @@ export default function ConfirmationPage() {
                       {t("confirmationPage.guestInfo.altEmail")}
                     </div>
                     <div className="value_of_nightly_rate">
-                      ankushrauni@gmail.com
+                      --
                     </div>
                   </div>
                 </div>

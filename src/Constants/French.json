@@ -270,6 +270,7 @@
     "cancellation": "Politique d'annulation",
     "eachNight": "total par nuit",
     "reservation": "Réservation à venir",
+    "cancelled":"Annulé Réservation",
     "print": "Imprimer",
     "Email": "Email",
     "roomTotal": {

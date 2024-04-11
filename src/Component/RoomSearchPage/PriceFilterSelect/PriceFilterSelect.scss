@@ -1,3 +1,4 @@
+@import "../../../Constants/Colors.scss";
 .custom-select {
     position: relative;
     min-width: 100px;
@@ -18,8 +19,8 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: $white;
+    border: 1px solid $grey;
   }
   
   .option {
@@ -28,6 +29,6 @@
   }
   
   .option:hover {
-    background-color: #f0f0f0;
+    background-color: $light-grey;
   }
   

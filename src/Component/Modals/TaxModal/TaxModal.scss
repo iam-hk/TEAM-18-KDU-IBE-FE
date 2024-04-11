@@ -1,5 +1,6 @@
+@import "../../../Constants//Colors.scss";
 .tax-modal-content{
-    padding: 35px 25px;
+    padding: 45px 35px;
     line-height: 1.6rem;
     font-weight: 500;
     max-width: 30vw;
@@ -49,7 +50,7 @@
     .tax-modal-border-bottom{
         height: 0.5px;
         width: 100%;
-        background-color:black;
+        background-color:$black-color;
         margin: 10px 0px;
     }
     .tax-modal-taxes-details{

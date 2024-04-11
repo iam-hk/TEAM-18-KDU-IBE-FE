@@ -28,7 +28,7 @@ const PromoModal: React.FC<PromoModalProps> = ({ open, onClose }) => {
   }
   return (
     <Modal open={open} onClose={onClose} center>
-      <div className="modal-content">
+      <div className="promo-modal-content">
         <h1 className="modal-heading-title">
           {t(`${promoCodeInfo.promotionTitle}.title`)}
         </h1>

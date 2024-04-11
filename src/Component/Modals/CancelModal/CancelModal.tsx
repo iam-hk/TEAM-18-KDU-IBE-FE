@@ -9,12 +9,13 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import CustomizedSnackbars from "../../../Component/snackbar/CustomizedSnackbars";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/Store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/Store";
 import { Box, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Loader1 from "../../Loaders/Loader1";
 import Loader2 from "../../Loaders/Loader2/Loader2";
+import { setBookingStatus } from "../../../redux/StepperSlice";
 interface ICancelModal {
   open: boolean;
   onClose: () => void;
@@ -26,9 +27,11 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
   const [loader, setLoader] = useState(false);
   const [sentOtp, setSentOtp] = useState(false);
   const navigate = useNavigate();
+  const isActive=useSelector((state:RootState)=>state.stepper.isActive);
   const email = useSelector(
     (state: RootState) => state.checkoutRoom.travelerInfo.temail
   );
+  const reduxDispatch: AppDispatch = useDispatch();
   const [otp, setOtp] = useState("");
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
@@ -74,12 +77,11 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
       setMessage(response.data.message);
       setShowSnackbar(true);
       onClose();
+      window.location.href=import.meta.env.VITE_REACT_APP_API_MGT+`/confirmation?id=${id}`;
       if (response.data.message === "Booking cancellation successful") {
         console.log("Success");
         setSuccess(true);
-        setTimeout(() => {
-          window.location.reload();
-        }, 4000);
+        reduxDispatch(setBookingStatus(false));
       }
       setOtp("");
     } catch (error) {

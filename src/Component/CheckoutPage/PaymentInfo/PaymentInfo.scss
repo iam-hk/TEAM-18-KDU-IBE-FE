@@ -62,7 +62,7 @@
     display: flex;
     gap: 4px;
     font-size: 1rem;
-    color: #5d5d5d;
+    color: $itinerary-grey;
 }
 .terms-policies{
   .react-responsive-modal-modal{
@@ -73,7 +73,7 @@
     outline: none;
     background-color: transparent;
     font-weight: 700;
-    color: #484848;
+    color: $light-shade-grey;
     cursor: pointer;
   }
 }
@@ -124,6 +124,6 @@
 .error-message{
   margin-left: 10px;
   font-size: 0.8rem;
-  color: #D32F2F;
+  color: $light-red;
 }
 }
