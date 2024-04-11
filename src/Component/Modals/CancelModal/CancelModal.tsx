@@ -77,7 +77,7 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
       setMessage(response.data.message);
       setShowSnackbar(true);
       onClose();
-      window.location.href=import.meta.env.VITE_REACT_APP_API_MGT+`/confirmation?id=${id}`;
+      window.location.href=import.meta.env.VITE_REACT_APP_FRONTEND+`/confirmation?id=${id}`;
       if (response.data.message === "Booking cancellation successful") {
         console.log("Success");
         setSuccess(true);
