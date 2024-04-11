@@ -5,6 +5,7 @@ import {
   PropertyInformation,
   RoomCardIndividual,
 } from "../../../types/RoomCardResponse";
+import fire from "../../../assets/fire.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/Store";
 import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
@@ -205,6 +206,10 @@ export function RoomCard(props: RoomCardProp) {
           >
             {t("selectRoom")}
           </button>
+          {props.currentRoom.recentPurchase != 0 &&
+          <div className="today-purchase_roomtype"><img className="hot-deals" src={fire}/>{props.currentRoom.recentPurchase +" people booked this room today"}</div>
+          }
+          
           <RoomModal
             open={open}
             updateOpen={updateOpen}
