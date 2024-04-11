@@ -332,10 +332,10 @@ export default function ConfirmationPage() {
 
                 <div className="package_information">
                   <div className="package_title_box">
-                    {confirmationDetails.promoCodeInfo.promotionTitle}
+                    {t(`${confirmationDetails.promoCodeInfo.promotionTitle}.title`)}
                   </div>
                   <div className="package_description">
-                    {confirmationDetails.promoCodeInfo.promotionDescription}
+                    {t(`${confirmationDetails.promoCodeInfo.promotionTitle}.description`)}
                   </div>
                 </div>
 

@@ -267,25 +267,25 @@
   "paymentInformation": "Informations de paiement",
   "confirmationPage": {
     "cancelRoom": "Annuler la chambre",
-    "cancellation": "Politique d'annulation",
+    "cancellation": "Polite d'alation",
     "eachNight": "total par nuit",
-    "reservation": "Réservation à venir",
+    "reservation": "Réservation venir",
     "cancelled":"Annulé Réservation",
     "print": "Imprimer",
     "Email": "Email",
     "roomTotal": {
-      "heading": "Résumé total de la chambre",
-      "nightRate": "Tarif de nuit",
+      "heading": "Résumé tot chambre",
+      "nightRate": "Tarif  nuit",
       "subtotal": "Sous-total",
       "taxes": "Taxes, suppléments, frais",
       "vat": "TVA",
-      "total": "Total pour le séjour"
+      "total": "Total po séjour"
     },
     "guestInfo": {
-      "heading": "Informations sur les invités",
+      "heading": "Informat sur les inités",
       "firstName": "Prénom",
-      "middleName": "Deuxième prénom",
-      "lastName": "Nom de famille",
+      "middleName": "Deième prénom",
+      "lastName": "Nom famille",
       "phone": "Téléphone",
       "altPhone": "Téléphone alternatif",
       "email": "Email",
