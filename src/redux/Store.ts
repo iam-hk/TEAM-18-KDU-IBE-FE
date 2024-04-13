@@ -50,6 +50,7 @@ import { FilterReducer } from "./FilterSlice";
 import { ItineraryReducer } from "./ItinerarySlice";
 import { CheckoutReducer } from "./CheckoutSlice";
 import { LocationReducer } from "./LocationSlice";
+import { MyBookingsReducer } from "./MyBookings";
 export const store = configureStore({
   reducer: {
     currencyRate: CurrencyReducer,
@@ -62,7 +63,8 @@ export const store = configureStore({
     filterInfo: FilterReducer,
     itineraryInfo: ItineraryReducer,
     checkoutRoom:CheckoutReducer,
-    loactions:LocationReducer
+    loactions:LocationReducer,
+    myBookings:MyBookingsReducer
   },
 });
 
