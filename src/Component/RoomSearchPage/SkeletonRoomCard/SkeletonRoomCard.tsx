@@ -2,7 +2,7 @@ import "./SkeletonRoomCard.scss";
 export default function SkeletonRoomCard() {
   return (
         <div className="room-display">
-          <div className="individual-roomCard" style={{minHeight:"524px"}}>
+          <div className="individual-roomCard" style={{minHeight:"524px",minWidth:"290px"}}>
             <div className="imageOfRoomTypeContainer">
               <div className="skeleton-loader skeleton-image"></div>
             </div>
