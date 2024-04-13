@@ -26,4 +26,5 @@ export interface RoomCardIndividual {
     amenitiesOfRoom:                 any[];
     description:                     string;
     newProperty:                     boolean;
+    recentPurchase:                  number;
 }
