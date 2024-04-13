@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { Header } from "./Component/Header/Header";
 import { Footer } from "./Component/Footer/Footer";
 import * as Sentry from "@sentry/react";
@@ -13,21 +13,32 @@ import { getTenantConfig } from "../src/redux/thunk/GetTenantConfig";
 
 import "./App.scss";
 import CheckoutPage from "./Pages/CheckoutPage/CheckoutPage";
-
-import { PublicClientApplication } from '@azure/msal-browser';
-import { msalConfig } from './msalConfig';
+import { ErrorPage } from "./Pages/ErrorPage/ErrorPage";
+import { PublicClientApplication } from "@azure/msal-browser";
+import { msalConfig } from "./msalConfig";
 import { MsalProvider } from "@azure/msal-react";
 
 const msalInstance = new PublicClientApplication(msalConfig);
 
-
 import { RoomReview } from "./Pages/ReviewPage/RoomReview";
 import ConfirmPage from "./Pages/ConfirmationPage/ConfirmPage";
 import ConfirmationPage from "./Pages/ConfirmationPage/ConfirmationPage";
+import { MyBookings } from "./Pages/MyBookings/MyBookings";
 function App() {
   const reduxDispatch: AppDispatch = useDispatch();
   const [loader, setLoader] = useState(true);
   useEffect(() => {
+    async () => {
+      const url = import.meta.env.VITE_REACT_APP_PROPERTY_NAME;
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        return data;
+      } catch (err) {
+        window.location.href = "http://localhost:5173/error";
+        return;
+      }
+    }
     const fetchData = async () => {
       try {
         const currencyUrl = import.meta.env.VITE_REACT_APP_CURRENCY_CONVERTER;
@@ -42,22 +53,21 @@ function App() {
     fetchData();
   }, []);
   return (
-    // <PersistGate loading={null}persistor={persistor}>
     <BrowserRouter>
-        <MsalProvider instance={msalInstance}>
-
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home loader={loader} />} />
-        <Route path="/rooms" element={<RoomPage />} />
-        <Route path="/checkout" element={<CheckoutPage />}/>
-        <Route path="/review" element={<RoomReview />}/>
-        <Route path="/confirmation" element={<ConfirmationPage/>}/>
-      </Routes>
-      <Footer />
+      <MsalProvider instance={msalInstance}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home loader={loader} />} />
+          <Route path="/rooms" element={<RoomPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/review" element={<RoomReview />} />
+          <Route path="/confirmation" element={<ConfirmationPage />} />
+          <Route path="/mybookings" element={<MyBookings />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+        <Footer />
       </MsalProvider>
     </BrowserRouter>
-    // </PersistGate>
   );
 }
 

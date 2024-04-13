@@ -25,6 +25,7 @@ import { Box, CircularProgress } from "@mui/material";
 import Loader2 from "../../Component/Loaders/Loader2/Loader2";
 import Loader1 from "../../Component/Loaders/Loader1";
 import { setBookingStatus } from "../../redux/StepperSlice";
+import { useMsal } from "@azure/msal-react";
 export default function ConfirmationPage() {
   const { t } = useTranslation();
   const [totalSummary, setTotalSummary] = useState<boolean>(false);
@@ -36,7 +37,9 @@ export default function ConfirmationPage() {
   const [bookingActive, setBookingActive] = useState(false);
   const [id, setId] = useState("0");
   const reduxDispatch: AppDispatch = useDispatch();
-  const bookingIsActive=useSelector((state:RootState)=>state.stepper.isActive);
+  const bookingIsActive = useSelector(
+    (state: RootState) => state.stepper.isActive
+  );
   const maxDays = useSelector(
     (state: RootState) => state.tenantInfo.maximumDays
   );
@@ -72,6 +75,9 @@ export default function ConfirmationPage() {
 
   const specialOffers = useSelector(
     (state: RootState) => state.checkoutRoom.specialOffers
+  );
+  const travelerEmail = useSelector(
+    (state: RootState) => state.checkoutRoom.travelerInfo.temail
   );
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
@@ -173,6 +179,34 @@ export default function ConfirmationPage() {
     const lastFourDigits = cardNumber.slice(-4);
     return maskedDigits + lastFourDigits;
   };
+  function validateUserLoggedIn() {
+    let username = "";
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i);
+      const value = sessionStorage.getItem(key);
+      if (value) {
+        try {
+          const data = JSON.parse(value);
+          if (data && data.username) {
+            username = data.username;
+            break;
+          }
+        } catch (error) {}
+      }
+    }
+    if (username) {
+      if (username === travelerEmail) {
+        onOpenModal1();
+      } else {
+        setSuccess(false);
+        setShowSnackbar(true);
+        setMessage("Booking was not done from this Email");
+      }
+      console.log(username);
+    } else {
+      onOpenModal1();
+    }
+  }
   const sendConfirmationEmail = async () => {
     try {
       setLoader(true);
@@ -235,7 +269,8 @@ export default function ConfirmationPage() {
           <div className="reservation_id_container">
             {!bookingIsActive ? (
               <>
-                {t("confirmationPage.cancelled")}{"  "}
+                {t("confirmationPage.cancelled")}
+                {"  "}
                 <span className={`confirmation-page-id ${redSpanClass}`}>
                   #{id}
                 </span>
@@ -260,7 +295,12 @@ export default function ConfirmationPage() {
             <button className="print_button" onClick={handlePrint}>
               {t("confirmationPage.print")}
             </button>
-            <button className="email_button" onClick={sendConfirmationEmail}  style={{ opacity: bookingIsActive ? 1 : 0.5 }} disabled={!bookingIsActive}>
+            <button
+              className="email_button"
+              onClick={sendConfirmationEmail}
+              style={{ opacity: bookingIsActive ? 1 : 0.5 }}
+              disabled={!bookingIsActive}
+            >
               {t("confirmationPage.Email")}
             </button>
           </div>
@@ -287,7 +327,10 @@ export default function ConfirmationPage() {
               </div>
               {bookingIsActive && (
                 <div className="cancel_button_container">
-                  <button className="cancel_button" onClick={onOpenModal1}>
+                  <button
+                    className="cancel_button"
+                    onClick={validateUserLoggedIn}
+                  >
                     {t("confirmationPage.cancelRoom")}
                   </button>
                 </div>
@@ -332,10 +375,14 @@ export default function ConfirmationPage() {
 
                 <div className="package_information">
                   <div className="package_title_box">
-                    {t(`${confirmationDetails.promoCodeInfo.promotionTitle}.title`)}
+                    {t(
+                      `${confirmationDetails.promoCodeInfo.promotionTitle}.title`
+                    )}
                   </div>
                   <div className="package_description">
-                    {t(`${confirmationDetails.promoCodeInfo.promotionTitle}.description`)}
+                    {t(
+                      `${confirmationDetails.promoCodeInfo.promotionTitle}.description`
+                    )}
                   </div>
                 </div>
 
@@ -624,9 +671,7 @@ export default function ConfirmationPage() {
                     <div className="title_nightly_rate">
                       {t("confirmationPage.guestInfo.altEmail")}
                     </div>
-                    <div className="value_of_nightly_rate">
-                      --
-                    </div>
+                    <div className="value_of_nightly_rate">--</div>
                   </div>
                 </div>
               )}

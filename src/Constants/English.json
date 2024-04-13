@@ -327,7 +327,11 @@
       }
       
       
-    }
+    },
+    "bookingId":"Booking Id",
+    "upcoming":"Upcoming",
+    "cancelled":"Cancelled",
+    "scan":"Scan to get complete details"
     
 }
   

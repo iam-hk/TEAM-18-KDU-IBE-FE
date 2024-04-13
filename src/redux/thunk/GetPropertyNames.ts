@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IPropertyResponse } from "../PropertyNameSlice";
-
 export const getPropertyNames = createAsyncThunk<IPropertyResponse>(
   "getPropertyNames",
   async () => {
@@ -11,6 +10,7 @@ export const getPropertyNames = createAsyncThunk<IPropertyResponse>(
       return data;
     } catch (err) {
       throw new Error("Wrong URL");
+      
     }
   }
 );

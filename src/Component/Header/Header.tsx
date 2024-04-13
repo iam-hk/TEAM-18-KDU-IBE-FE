@@ -5,11 +5,13 @@ import i18n from "../../Constants/LanguageTranslator";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/Store";
 import { changeCurrentCurrency } from "../../redux/CurrencySlice";
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import LoggIn from "../LoggIn/LoggIn";
-import { AuthenticatedTemplate } from "@azure/msal-react";
+import { AuthenticatedTemplate, useMsal } from "@azure/msal-react";
+import axios from "axios";
+import { setMyBookings } from "../../redux/MyBookings";
 export function Header() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [isRightCopyOpen, setIsRightCopyOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const reduxDispatch: AppDispatch = useDispatch();
@@ -28,23 +30,59 @@ export function Header() {
     const newCurrency = e.target.value;
     reduxDispatch(changeCurrentCurrency(newCurrency));
   };
-  function handleRedirect()
-  {
+  function handleRedirect() {
     navigate("/");
+  }
+  async function handleAllBookings() {
+    let username = "";
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i);
+      const value = sessionStorage.getItem(key);
+      if (value) {
+        try {
+          const data = JSON.parse(value);
+          if (data && data.username) {
+            username = data.username;
+            console.log("Username:", username);
+            break;
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+    const url =
+      import.meta.env.VITE_REACT_APP_POST_REQ +
+      `/my-bookings?email=${username}`;
+    try {
+      const response = await axios.get(url);
+      reduxDispatch(setMyBookings(response.data));
+      navigate("/myBookings");
+    } catch (error) {
+      navigate("/error");
+    }
   }
   return (
     <div className="header">
       <div className="headings">
-        <button className="main-heading" onClick={handleRedirect}>{i18n.t("mainHeading")}</button>
+        <button className="main-heading" onClick={handleRedirect}>
+          {i18n.t("mainHeading")}
+        </button>
         <h4 className="sub-heading">{i18n.t("subHeading")}</h4>
       </div>
       <div className="right-part">
         <AuthenticatedTemplate>
-        <button className="my-bookings">{i18n.t("myBookings")}</button>
+          <button className="my-bookings" onClick={handleAllBookings}>
+            {i18n.t("myBookings")}
+          </button>
         </AuthenticatedTemplate>
         <div className="choice-components">
           <div className="language-component">
-            <img src={siteLogo} alt="imagenotfound" className="language-component-img"/>
+            <img
+              src={siteLogo}
+              alt="imagenotfound"
+              className="language-component-img"
+            />
             <select
               className="language-selection"
               name="language"
@@ -69,13 +107,17 @@ export function Header() {
             </select>
           </div>
         </div>
-          <LoggIn/>
+        <LoggIn />
       </div>
       {isRightCopyOpen && (
         <div className="right-part-copy">
           <button className="my-bookings">{i18n.t("myBookings")}</button>
           <div className="language-component">
-            <img src={siteLogo} alt="logo not found" className="language-component-img" />
+            <img
+              src={siteLogo}
+              alt="logo not found"
+              className="language-component-img"
+            />
             <select
               className="language-selection"
               name="language"
@@ -99,7 +141,7 @@ export function Header() {
               <option value="CAD">$ CAD</option>
             </select>
           </div>
-          <LoggIn/>
+          <LoggIn />
         </div>
       )}
       <div className="hamburger" onClick={toggleRightCopy}>

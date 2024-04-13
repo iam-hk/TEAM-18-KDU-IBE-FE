@@ -321,5 +321,9 @@
       "point4": "Rauchen in Innenräumen verboten; Rauchen nur in ausgewiesenen Bereichen. Haustiere sind nur nach vorheriger Ankündigung erlaubt. Gäste haften für Schäden am Hotelbesitz.",
       "point5": "Hotel haftet nicht für Verluste, Schäden oder Verletzungen, außer wenn gesetzlich vorgeschrieben. Recht, den Service für jeden Grund abzulehnen."
     }
-  }
+  },
+  "bookingId": "Buchungs-ID",
+  "upcoming": "Bevorstehend",
+  "cancelled": "Abgesagt",
+  "scan": "Scannen Details zu erhalten"
 }

@@ -1,0 +1,15 @@
+.my-bookings-wrapper{
+    width: 100%;
+    min-height: 80%;
+    background-image: url("https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGhvdGVsJTIwYm9va2luZ3xlbnwwfHwwfHx8MA%3D%3D");
+    background-attachment: fixed;
+    background-position: top;
+    background-size: cover;
+    padding: 2vw 10vw;
+}
+@media(max-width:830px)
+{
+  .my-bookings-wrapper{
+    padding: 2vw 1.5vw;
+  }
+}

@@ -323,5 +323,9 @@
       "point4": "Interdiction de fumer à l'intérieur ; fumer uniquement dans les zones désignées. Animaux non autorisés sauf indication contraire. Les clients sont responsables de tout dommage à la propriété de l'hôtel.",
       "point5": "L'hôtel n'est pas responsable des pertes, dommages ou blessures, sauf indication contraire par la loi. Droit de refuser le service à quiconque pour n'importe quelle raison."
     }
-  }
+  },
+    "bookingId": "Identiant réservation",
+    "upcoming": "À venir",
+    "cancelled": "Annulé",
+    "scan": "Scanner pour détails complets"
 }
