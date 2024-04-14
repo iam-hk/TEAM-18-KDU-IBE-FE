@@ -9,16 +9,8 @@ import { RootState } from "../../../redux/Store";
 import { CurrencyExchangeRates } from "../../../types/CurrencyExchange";
 import { DateRangePicker } from "react-date-range";
 import { CurrencySymbols } from "../../../Constants/CurrencySymbols";
-
 export function RoomCalendar() {
   const { t } = useTranslation();
-  const [dateRange, setDateRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
   const maxDays = useSelector(
     (state: RootState) => state.tenantInfo.maximumDays
   );
@@ -38,6 +30,13 @@ export function RoomCalendar() {
   const endingDate = useSelector(
     (state: RootState) => state.searchRoomInfo.endDate
   );
+  const [dateRange, setDateRange] = useState([
+    {
+      startDate: new Date(startingDate),
+      endDate: new Date(endingDate),
+      key: "selection",
+    },
+  ]);
   useEffect(() => {
     const url = import.meta.env.VITE_REACT_APP_MINIMUM_ROOM_RATES;
     fetch(url)
@@ -56,46 +55,35 @@ export function RoomCalendar() {
         console.error("Error fetching prices:", error);
       });
   }, []);
-
   const [dateInitial, setDateInitial] = useState(false);
-
   const [isVisible, setIsVisible] = useState(false);
-
   const dispatch = useDispatch();
-
   const handleDateChange = (ranges: {
     selection: { startDate: Date; endDate: Date; key: string };
   }) => {
     setDateInitial(true);
     setDateRange([ranges.selection]);
-
     const newEndDate: Date = new Date(ranges.selection.endDate);
     const newStartDate: Date = new Date(ranges.selection.startDate);
-
     newEndDate.setDate(newEndDate.getDate() + 1);
     newStartDate.setDate(newStartDate.getDate() + 1);
-
     const updatedEndDateString: string = newEndDate.toISOString().split("T")[0];
     const updatedStartDateString: string = newStartDate
       .toISOString()
       .split("T")[0];
-
     dispatch(updateEndDate(updatedEndDateString));
     dispatch(updateStartDate(updatedStartDateString));
   };
-
   const getMaxEndDate = () => {
     if (dateRange[0].startDate.getTime() === dateRange[0].endDate.getTime()) {
       const maxEndDate = new Date(dateRange[0].startDate);
       maxEndDate.setDate(
         dateRange[0].startDate.getDate() + maximumLengthOfStay
       );
-
       const maxEndDate1 = new Date();
       maxEndDate1.setDate(1);
       maxEndDate1.setMonth(6);
       maxEndDate1.setFullYear(2024);
-
       if (maxEndDate.getTime() < maxEndDate1.getTime()) {
         return maxEndDate;
       } else {
@@ -106,11 +94,9 @@ export function RoomCalendar() {
       maxEndDate.setDate(1);
       maxEndDate.setMonth(6);
       maxEndDate.setFullYear(2024);
-
       return maxEndDate;
     }
   };
-
   const handleStartDateChange = (startDate) => {
     let maxDate = null;
     if (startDate.getTime() === dateRange[0].endDate.getTime()) {
@@ -121,7 +107,6 @@ export function RoomCalendar() {
     ]);
     return { minDate: startDate, maxDate };
   };
-
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
@@ -144,9 +129,11 @@ export function RoomCalendar() {
     }
   }
   const generateMinDate = () => {
-    return new Date();
-  };
-
+    if(dateRange[0].startDate.getTime() !== dateRange[0].endDate.getTime()){
+        return new Date();
+    }
+    return dateRange[0].startDate;
+}
   function updatePrice(price: number) {
     return price * currentPrice[currentSelectedCurrency].toFixed(1);
   }
@@ -155,11 +142,10 @@ export function RoomCalendar() {
     today.setHours(0, 0, 0, 0);
     return day.getTime() < today.getTime();
   }
-
   return (
     <div className="date-component">
-      <div className="date-checkin">
-        <div className="checkin-heading">
+      <div className="date-checkin"onClick={toggleVisibility}>
+        <div className="checkin-heading" >
           <div className="checkin_heading-information">{t("checkin")}</div>
         </div>
         <div className="checkin-date">
@@ -168,8 +154,8 @@ export function RoomCalendar() {
       </div>
       <div className="border-line"></div>
       <div className="date-checkout">
-        <div className="checkout-details">
-          <div className="checkout-heading">
+        <div className="checkout-details" onClick={toggleVisibility}>
+          <div className="checkout-heading" >
             <div className="checkout_heading-information">{t("checkout")}</div>
           </div>
           <div className="checkout-date">
@@ -201,7 +187,6 @@ export function RoomCalendar() {
               dayContentRenderer={(day) => {
                 const selectedDate = day.toISOString().split("T")[0];
                 const price = prices[selectedDate] || "";
-
                 return (
                   <div
                     className="individual-date-container"

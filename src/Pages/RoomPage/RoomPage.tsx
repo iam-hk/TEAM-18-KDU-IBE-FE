@@ -461,23 +461,21 @@ export function RoomPage() {
         <div className="display-content">
           <div className="left-display-content">
             <Filters />
-            <div className="carousal-room-tour" style={{width:"100%"}}>
+            {/* <div className="carousal-room-tour" style={{width:"100%"}}>
               <Carousel autoPlay infiniteLoop interval={3000}>
                 <div className="tour-modal-image" onClick={onClose}>
                 <img className="room-tour-image"src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
                 <div className="legend">Property 18 Tour</div>
-                <RoomTourModal open={open} onClose={onClose} srcImg="https://www.3dvista.com/samples/zanzibar_villa_turquoise_virtual_tour.html"/>
-
+                <RoomTourModal open={open} onClose={onClose} srcImg="https://my.matterport.com/show/?m=NUJz97HJ5w9&play=1"/>
                 </div>
                 <div className="tour-modal-image" onClick={onClose}>
                   <img src="https://images.unsplash.com/photo-1612637968894-660373e23b03?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="room-tour-image"/>
                   <div className="legend">Premium Tour</div>
                   <RoomTourModal open={open} onClose={onClose} srcImg="https://my.matterport.com/show/?m=NUJz97HJ5w9&play=1"/>
                 </div>
-
               </Carousel>
             
-            </div>
+            </div> */}
           </div>
           <div className="right-display-content">
             {itineraryPropertyName && (

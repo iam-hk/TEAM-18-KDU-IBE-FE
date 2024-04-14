@@ -14,6 +14,7 @@ interface ITenantConfigState {
   percentPayableAtHotel: number;
   state: string;
   errorMessage: string;
+  propertyTourLink:string;
 }
 const initialState: ITenantConfigState = {
   maximumDays: 0,
@@ -29,6 +30,7 @@ const initialState: ITenantConfigState = {
   vat: 0,
   occupancyTax: 0,
   taxResort: 0,
+  propertyTourLink:""
 };
 const TenantConfigSlice = createSlice({
   name: "tenantInfo",
@@ -51,6 +53,7 @@ const TenantConfigSlice = createSlice({
         state.vat = action.payload.vat;
         state.occupancyTax = action.payload.occupanyTax;
         state.taxResort = action.payload.taxResort;
+        state.propertyTourLink=action.payload.propertyTourLink;
         state.state = "fulfilled";
       })
       .addCase(getTenantConfig.rejected, (state, action) => {

@@ -84,3 +84,42 @@
         width: 44%;
     }
 }
+@media(max-width:1000px)
+{
+  .error-page-wrapper{
+    background-color: #ffffff;
+    background-image: none;
+    justify-content: center;
+    .error-page-text-wrapper{
+      width: 60%;
+      .error-page-para{
+        width: 80%;
+      }
+    }
+  }
+}
+@media(max-width:800px)
+{
+.error-page-wrapper{
+  .error-page-text-wrapper{
+    .error-page-heading{
+      font-size: 3rem;
+    }
+    .error-page-subheading{
+      font-size: 1.5rem;
+    }
+    .error-page-para{
+      font-size: 1.2rem;
+    }
+  }
+    background-color: #ffffff;
+    background-image: none;
+    justify-content: center;
+    .error-page-text-wrapper{
+      width: 90%;
+      .error-page-para{
+        width: 80%;
+      }
+    }
+  }
+}

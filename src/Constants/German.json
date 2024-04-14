@@ -325,5 +325,6 @@
   "bookingId": "Buchungs-ID",
   "upcoming": "Bevorstehend",
   "cancelled": "Abgesagt",
-  "scan": "Scannen Details zu erhalten"
+  "scan": "Scannen Details zu erhalten",
+  "threeD":"3D-Ansicht"
 }

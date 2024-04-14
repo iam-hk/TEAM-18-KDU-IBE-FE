@@ -19,6 +19,7 @@ import {
   increaseStepperState,
 } from "../../../redux/StepperSlice";
 import { GlobalPromotions } from "../../../types/PromotionList";
+import RoomTourModal from "../../Modals/RoomTourModal/RoomTourModal";
 export interface RoomCardProp {
   property: PropertyInformation;
   currentRoom: RoomCardIndividual;
@@ -26,9 +27,16 @@ export interface RoomCardProp {
 }
 export function RoomCard(props: RoomCardProp) {
   const [open, setOpen] = useState(false);
+  const onOpenModal1 = () => {
+    setOpenModal1(true);
+  };
+  const onCloseModal1 = () => {
+    setOpenModal1(false);
+  };
   const selectedPropertyName = useSelector(
     (state: RootState) => state.itineraryInfo.roomName
   );
+  const [openModal1, setOpenModal1] = useState(false);
   useEffect(() => {
     if (open == false) {
       if (selectedPropertyName) {
@@ -59,6 +67,10 @@ export function RoomCard(props: RoomCardProp) {
   );
   function changeStepperState() {
     reduxDispatch(increaseStepperState(stepperState + 1));
+  }
+  function handleVirtualTour()
+  {
+      onOpenModal1();
   }
   return (
     <div className="room-display">
@@ -100,6 +112,7 @@ export function RoomCard(props: RoomCardProp) {
             </div>
           </div>
           <div className="otherDetailsOfRoomType">
+            <div className="location-container-and-btn">
             <div className="locationContainer">
               <span>
                 <svg
@@ -117,6 +130,11 @@ export function RoomCard(props: RoomCardProp) {
               <span className="location_content">
                 {props.property.propertyAddress}
               </span>
+            </div>
+            <div className="location-container-btn">
+              <button className="handle-virtual-modal" onClick={handleVirtualTour}>{t("threeD")}</button>
+              <RoomTourModal open={openModal1} onClose={onCloseModal1} />
+            </div>
             </div>
             <div className="roomCategoryAndSizeContainer">
               <div className="category_container">{t("inclusive")}</div>
