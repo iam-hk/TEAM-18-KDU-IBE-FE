@@ -191,12 +191,6 @@ export function PaymentInfo() {
       setMessage(`Your Booking id is ${response.data.toString()}`);
       reduxDispatch(setBookingStatus(true));
       setShowSnackbar(true);
-
-      const backendUrl =
-        import.meta.env.VITE_REACT_APP_API_MGT +
-        `/email-booking?id=${response.data}&email=${travelerEmail}`;
-      const emailBookingResponse = await axios.get(backendUrl);
-
       setTimeout(() => {
         navigate(`/confirmation?id=${response.data}`);
       }, 3000);
