@@ -174,7 +174,6 @@ export default function RoomModal(props: IRoomModal) {
       setShowMessage(false);
     }, duration);
   };
-  console.log(promotionsAvailable,"promotions");
   const navigate = useNavigate();
   return (
     <div className="modal-Container_custom" style={{ width: "80vw" }}>

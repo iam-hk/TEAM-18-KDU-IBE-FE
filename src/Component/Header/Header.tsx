@@ -43,7 +43,6 @@ export function Header() {
           const data = JSON.parse(value);
           if (data && data.username) {
             username = data.username;
-            console.log("Username:", username);
             break;
           }
         } catch (error) {
