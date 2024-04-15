@@ -79,7 +79,6 @@ const CancelModal: React.FC<ICancelModal> = ({ open, onClose }) => {
       onClose();
       window.location.href=import.meta.env.VITE_REACT_APP_FRONTEND+`/confirmation?id=${id}`;
       if (response.data.message === "Booking cancellation successful") {
-        console.log("Success");
         setSuccess(true);
         reduxDispatch(setBookingStatus(false));
       }

@@ -171,6 +171,10 @@
   "standardRate": "Standardtarif",
   "dealsNPackages": "Angebote & Pakete",
   "selectPackage": "PAKET AUSLEN",
+  "Standard Promotion":{
+    "title":"Standard Aktion",
+    "description":"Standardaktion"
+    },
   "Long weekend discount": {
     "title": "Rabatt für lange Wochenenden",
     "description": "Gilt nur, wenn die Reise länger als 2 Tage dauert und über Wochenenden stattfindet"
