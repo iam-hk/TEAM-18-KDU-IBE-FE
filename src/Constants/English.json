@@ -171,6 +171,10 @@
     "standardRate":"Standard Rate",
     "dealsNPackages":"Deals & Packages",
     "selectPackage":"SELECT PACKAGE",
+    "Standard Promotion":{
+      "title":"Standard Promotion",
+      "description":"Standard Promo"
+    },
     "Long weekend discount":{
       "title":"Long weekend discount",
       "description":"Applies only if trip more than 2 days and across weekends"

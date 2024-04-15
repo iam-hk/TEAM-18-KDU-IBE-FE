@@ -175,6 +175,10 @@
     "title": "Remise pour les longs week-ends",
     "description": "S'applique uniquement si le voyage dure plus de 2 jours et inclut des week-ends"
   },
+  "Standard Promotion":{
+    "title":"Promotion Standard",
+    "description":"Promotion standard"
+    },
   "KDU Membership Discount": {
     "title": "Remise adhérent KDU",
     "description": "Remise adhérent KDU"
