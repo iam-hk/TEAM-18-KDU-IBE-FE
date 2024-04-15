@@ -18,10 +18,16 @@ import {
 
 export function DateCalender() {
   const { t } = useTranslation();
+    const startDateSlice = useSelector(
+    (state: RootState) => state.searchRoomInfo.startDate
+  );
+  const endDateSlice = useSelector(
+    (state: RootState) => state.searchRoomInfo.endDate
+  );
   const [dateRange, setDateRange] = useState([
     {
       startDate: new Date(),
-      endDate: new Date(),
+      endDate: new Date(new Date().getTime() + 86400000 + 2),
       key: "selection",
     },
   ]);
@@ -37,12 +43,6 @@ export function DateCalender() {
   );
   const currentPrice: CurrencyExchangeRates = useSelector(
     (state: RootState) => state.currencyRate.currentPrice
-  );
-  const startDateSlice = useSelector(
-    (state: RootState) => state.searchRoomInfo.startDate
-  );
-  const endDateSlice = useSelector(
-    (state: RootState) => state.searchRoomInfo.endDate
   );
   const setInitials = useSelector(
     (state: RootState) => state.searchRoomInfo.dateInitial
