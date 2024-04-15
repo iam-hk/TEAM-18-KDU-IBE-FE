@@ -1,12 +1,12 @@
 .individual-roomCard {
     width: 293px;
-    min-height: 524px;
+    min-height: 535px;
     height: max-content;
     border-radius: 5px;
     margin: 1rem 0.5rem;
-    border: 1px solid #EFF0F1;
+    border: 1px solid #eff0f1;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease;
     transform: scale(1);
     .imageOfRoomTypeContainer {
         height: 143px;
@@ -25,11 +25,11 @@
             }
             .reviewAndRatingContainer {
                 text-align: right;
-                .newProperty{
+                .newProperty {
                     font-size: 14px;
                     font-weight: 400;
                     color: #000;
-                    background-color: #CDCDED;
+                    background-color: #cdcded;
                     border-radius: 5px;
                     padding: 3px;
                 }
@@ -47,74 +47,74 @@
                 }
             }
         }
-        .otherDetailsOfRoomType{
-            .locationContainer{
+        .otherDetailsOfRoomType {
+            .locationContainer {
                 font-size: 14px;
                 font-weight: 400;
                 margin-bottom: 0.7rem;
-                color: #5D5D5D;
-                .locationIcon{
+                color: #5d5d5d;
+                .locationIcon {
                     margin-right: 0.1rem;
                     height: 15px;
                     width: 15px;
                 }
-                .location_content{
+                .location_content {
                     margin-top: 1rem;
                 }
             }
-            .roomCategoryAndSizeContainer{
+            .roomCategoryAndSizeContainer {
                 display: flex;
                 font-size: 16px;
                 font-weight: 400;
-                color: #5D5D5D;
+                color: #5d5d5d;
                 margin-bottom: 0.7rem;
-                .category_container{
+                .category_container {
                     font-style: italic;
                     margin-right: 1rem;
                 }
             }
-            .maximumNumberOfGuestsContainer{
+            .maximumNumberOfGuestsContainer {
                 font-size: 14px;
                 font-weight: 400;
                 margin-bottom: 0.6rem;
                 display: flex;
                 gap: 3px;
-                .guest_count_icon{
+                .guest_count_icon {
                     width: 15px;
                     height: 15px;
                 }
-                .numberOfGuests_content{
-                    color: #5D5D5D;
+                .numberOfGuests_content {
+                    color: #5d5d5d;
                 }
             }
-            .bedInformation{
+            .bedInformation {
                 font-size: 14px;
                 font-weight: 400;
                 display: flex;
                 align-items: end;
-                .bedIconSpan{
+                .bedIconSpan {
                     display: inline-block;
                     height: 17px;
                 }
-                .bedIcon{
+                .bedIcon {
                     width: 15px;
                     height: 15px;
                     margin-top: 2.5px;
                 }
-                .bed_content{
+                .bed_content {
                     margin-left: 0.4rem;
-                    color: #5D5D5D;
+                    color: #5d5d5d;
                 }
             }
         }
     }
-    .promotionOfRoomType{
+    .promotionOfRoomType {
         margin-bottom: 0.5rem;
-        .BannerOfSpecialDeal{
+        .BannerOfSpecialDeal {
             position: relative;
-            .banner_title_of_promotion{
+            .banner_title_of_promotion {
                 position: absolute;
-                bottom:10px;
+                bottom: 10px;
                 color: #fff;
                 font-size: 16px;
                 font-weight: 400;
@@ -122,32 +122,32 @@
                 width: max-content;
             }
         }
-        .descriptionOfSpecialDeal{
+        .descriptionOfSpecialDeal {
             font-size: 14px;
             font-weight: 400;
-            color: #5D5D5D;
+            color: #5d5d5d;
             margin-top: 0.2rem;
             margin-left: 1.2rem;
         }
     }
-    .price_containerOfRoomType{
+    .price_containerOfRoomType {
         margin-left: 1.2rem;
         margin-bottom: 1.2rem;
-        .minimumPriceOfRoomType{
+        .minimumPriceOfRoomType {
             font-weight: 700;
             font-size: 16px;
             margin-bottom: 0.2rem;
         }
-        .priceLabelContainer{
+        .priceLabelContainer {
             font-weight: 400;
             font-size: 14px;
             color: #858685;
             margin-bottom: 0.5rem;
         }
-        .selectRoom-btn{
+        .selectRoom-btn {
             color: #fff;
             padding: 0.8rem 0.9rem;
-            background-color: #26266D;
+            background-color: #26266d;
             border: none;
             border-radius: 5px;
             font-size: 14px;
@@ -156,35 +156,35 @@
         }
     }
 }
-.carousel-control-prev,.carousel-control-next{
+.carousel-control-prev,
+.carousel-control-next {
     position: relative;
 }
-.carousel-control-prev-icon{
+.carousel-control-prev-icon {
     position: absolute;
     top: 60px;
 }
-.carousel-control-next-icon{
+.carousel-control-next-icon {
     position: absolute;
     top: 60px;
 }
-.carousel-indicators{
+.carousel-indicators {
     top: 120px;
 }
-.carousel-item{
+.carousel-item {
     width: 100%;
     height: 143px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
-.imageOfRoomType{
+.imageOfRoomType {
     width: 100% !important;
     height: 100% !important;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
 
-@media(max-width:800px)
-{
+@media (max-width: 800px) {
     .individual-roomCard {
         .informationOfRoomType {
             .propertyAndReviewContainer {
@@ -194,8 +194,8 @@
                 }
                 .reviewAndRatingContainer {
                     text-align: right;
-                    .newProperty{
-                        font-size:0.9rem;
+                    .newProperty {
+                        font-size: 0.9rem;
                         font-weight: 400;
                     }
                     .ratingContainer {
@@ -208,66 +208,66 @@
                     }
                 }
             }
-            .otherDetailsOfRoomType{
-                .locationContainer{
+            .otherDetailsOfRoomType {
+                .locationContainer {
                     font-size: 1rem;
                     font-weight: 400;
                 }
-                .roomCategoryAndSizeContainer{
+                .roomCategoryAndSizeContainer {
                     display: flex;
                     font-size: 1rem;
-                    .category_container{
+                    .category_container {
                         font-style: italic;
                         margin-right: 1rem;
                     }
                 }
-                .maximumNumberOfGuestsContainer{
+                .maximumNumberOfGuestsContainer {
                     font-size: 1rem;
                     font-weight: 400;
                     margin-bottom: 0.6rem;
                 }
-                .bedInformation{
+                .bedInformation {
                     font-size: 1rem;
                     font-weight: 400;
-                    .bed_content{
+                    .bed_content {
                         font-size: 1rem;
                     }
                 }
             }
         }
-        .promotionOfRoomType{
+        .promotionOfRoomType {
             margin-bottom: 0.5rem;
-            .BannerOfSpecialDeal{
+            .BannerOfSpecialDeal {
                 position: relative;
-                .banner_title_of_promotion{
+                .banner_title_of_promotion {
                     position: absolute;
-                    bottom:10px;
+                    bottom: 10px;
                     color: #fff;
                     font-size: 1rem;
                 }
             }
-            .descriptionOfSpecialDeal{
+            .descriptionOfSpecialDeal {
                 font-size: 14px;
             }
         }
-        .price_containerOfRoomType{
+        .price_containerOfRoomType {
             margin-left: 1.2rem;
             margin-bottom: 1.2rem;
-            .minimumPriceOfRoomType{
+            .minimumPriceOfRoomType {
                 font-weight: 700;
                 font-size: 16px;
                 margin-bottom: 0.2rem;
             }
-            .priceLabelContainer{
+            .priceLabelContainer {
                 font-weight: 400;
                 font-size: 14px;
                 color: #858685;
                 margin-bottom: 0.5rem;
             }
-            .selectRoom-btn{
+            .selectRoom-btn {
                 color: #fff;
                 padding: 0.8rem 0.9rem;
-                background-color: #26266D;
+                background-color: #26266d;
                 border: none;
                 border-radius: 5px;
                 font-size: 14px;
@@ -278,25 +278,25 @@
     }
 }
 .individual-roomCard:hover {
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 
-.thumbs-wrapper{
+.thumbs-wrapper {
     display: none;
 }
 
-.slide{
+.slide {
     width: 100%;
     height: 143px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
 
-.carousel-status{
+.carousel-status {
     display: none;
 }
 
-.today-purchase_roomtype{
+.today-purchase_roomtype {
     color: #ef4023;
     font-size: 0.8rem;
     width: 100%;
@@ -305,7 +305,24 @@
     text-align: right;
 }
 
-.hot-deals{
+.hot-deals {
     height: 16px;
     width: 16px;
+}
+.location-container-and-btn {
+    display: flex;
+    justify-content: space-between;
+    .location-container-btn {
+        .handle-virtual-modal{
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        border-radius: 5px;
+        background-color: #333382;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0px 4px 3px 0px #1b1b47;
+        transition: all 0.1s ease-in-out;
+        }
+    }
 }

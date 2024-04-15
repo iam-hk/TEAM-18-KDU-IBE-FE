@@ -331,8 +331,8 @@
     "bookingId":"Booking Id",
     "upcoming":"Upcoming",
     "cancelled":"Cancelled",
-    "scan":"Scan to get complete details"
-    
+    "scan":"Scan to get complete details",
+    "threeD":"3D View"    
 }
   
   

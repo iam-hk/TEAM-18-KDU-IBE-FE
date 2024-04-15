@@ -327,5 +327,7 @@
     "bookingId": "Identiant réservation",
     "upcoming": "À venir",
     "cancelled": "Annulé",
-    "scan": "Scanner pour détails complets"
+    "scan": "Scanner pour détails complets",
+    "threeD":"Vue 3D"
+    
 }
