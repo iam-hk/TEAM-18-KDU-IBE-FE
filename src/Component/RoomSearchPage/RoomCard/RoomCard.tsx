@@ -225,7 +225,7 @@ export function RoomCard(props: RoomCardProp) {
             {t("selectRoom")}
           </button>
           {props.currentRoom.recentPurchase != 0 &&
-          <div className="today-purchase_roomtype"><img className="hot-deals" src={fire}/>{props.currentRoom.recentPurchase +" people booked this room today"}</div>
+          <div className="today-purchase_roomtype"><img className="hot-deals" src={fire}/>{props.currentRoom.recentPurchase +" people booked this room this week"}</div>
           }
           
           <RoomModal
