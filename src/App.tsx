@@ -28,17 +28,6 @@ function App() {
   const reduxDispatch: AppDispatch = useDispatch();
   const [loader, setLoader] = useState(true);
   useEffect(() => {
-    async () => {
-      const url = import.meta.env.VITE_REACT_APP_PROPERTY_NAME;
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        return data;
-      } catch (err) {
-        window.location.href = "http://localhost:5173/error";
-        return;
-      }
-    }
     const fetchData = async () => {
       try {
         const currencyUrl = import.meta.env.VITE_REACT_APP_CURRENCY_CONVERTER;
